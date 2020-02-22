@@ -48,7 +48,7 @@ install_deps: get_source
 pull: get_source
 	git pull
 	cd lucet-spectre && git pull --recurse-submodules
-	cd sfi-spectre-testing && git pull
+	cd sfi-spectre-testing && git pull --recurse-submodules
 
 build: install_deps pull
 	cd lucet-spectre && cargo build
