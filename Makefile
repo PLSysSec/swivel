@@ -39,10 +39,10 @@ bootstrap:
 	touch ./bootstrap
 
 lucet-spectre:
-	git clone git@github.com:shravanrn/lucet-spectre.git $@
+	git clone git@github.com:PLSysSec/lucet-spectre.git $@
 
 sfi-spectre-testing:
-	git clone git@github.com:shravanrn/sfi-spectre-testing.git $@
+	git clone git@github.com:PLSysSec/sfi-spectre-testing.git $@
 
 rlbox_lucet_sandbox:
 	git clone git@github.com:PLSysSec/rlbox_lucet_sandbox.git $@
@@ -65,10 +65,10 @@ build: install_deps
 	# cd rlbox_lucet_sandbox/build && $(MAKE)
 	$(MAKE) -C sfi-spectre-testing build
 
-test: 
+test:
 	# $(MAKE) -C rlbox_lucet_sandbox/build check
 	$(MAKE) -C sfi-spectre-testing test
-	$(MAKE) -C lucet-spectre/benchmarks/shootout 
+	$(MAKE) -C lucet-spectre/benchmarks/shootout
 
 
 clean:
