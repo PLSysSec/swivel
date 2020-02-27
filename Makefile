@@ -40,13 +40,16 @@ bootstrap:
 
 lucet-spectre:
 	git clone git@github.com:PLSysSec/lucet-spectre.git $@
+	cd $@ && git submodule update --init --recursive
 
 sfi-spectre-testing:
 	git clone git@github.com:PLSysSec/sfi-spectre-testing.git $@
+	cd $@ && git submodule update --init --recursive
 
 rlbox_lucet_sandbox:
 	git clone git@github.com:PLSysSec/rlbox_lucet_sandbox.git $@
 	cd $@ && git checkout experimental
+	cd $@ && git submodule update --init --recursive
 	CUSTOM_LUCET_DIR=$(CURR_DIR)/lucet-spectre cmake -S $@ -B $@/build
 
 get_source: $(DIRS)
