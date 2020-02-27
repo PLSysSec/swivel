@@ -1,6 +1,3 @@
-DEPOT_TOOLS_PATH := $(shell realpath ./depot_tools)
-export PATH := $(DEPOT_TOOLS_PATH):$(PATH)
-
 .NOTPARALLEL:
 .PHONY : build pull clean get_source test
 
@@ -47,14 +44,14 @@ lucet-spectre:
 sfi-spectre-testing:
 	git clone git@github.com:shravanrn/sfi-spectre-testing.git $@
 
-rlbox_lucet_sandbox: lucet-spectre
+rlbox_lucet_sandbox:
 	git clone git@github.com:PLSysSec/rlbox_lucet_sandbox.git $@
 	cd $@ && git checkout experimental
 	CUSTOM_LUCET_DIR=$(CURR_DIR)/lucet-spectre cmake -S $@ -B $@/build
 
 get_source: $(DIRS)
 
-install_deps: get_source
+install_deps: $(DIRS)
 	touch ./install_deps
 
 pull: get_source
@@ -63,12 +60,13 @@ pull: get_source
 	cd lucet-spectre && git pull --recurse-submodules
 	cd sfi-spectre-testing && git pull --recurse-submodules
 
-build: install_deps pull
+build: install_deps
 	cd lucet-spectre && cargo build
-	$(MAKE) -C rlbox_lucet_sandbox/build
+	# cd rlbox_lucet_sandbox/build && $(MAKE)
 	$(MAKE) -C sfi-spectre-testing build
 
-test: build
+test: 
+	# $(MAKE) -C rlbox_lucet_sandbox/build check
 	$(MAKE) -C sfi-spectre-testing test
 	$(MAKE) -C lucet-spectre/benchmarks/shootout 
 
