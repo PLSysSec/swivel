@@ -20,8 +20,8 @@ bootstrap:
 	fi
 	if [ ! -d /opt/binaryen/ ]; then \
 		wget https://github.com/WebAssembly/binaryen/releases/download/version_90/binaryen-version_90-x86_64-linux.tar.gz -P /tmp/ && \
-		sudo mkdir /opt/binaryen &&
-		sudo tar -xzf /tmp/binaryen-version_90-x86_64-linux.tar.gz -C /opt/binaryen &&
+		sudo mkdir /opt/binaryen && \
+		sudo tar -xzf /tmp/binaryen-version_90-x86_64-linux.tar.gz -C /opt/binaryen && \
 		sudo mv /opt/binaryen/binaryen-version_90 /opt/binaryen/bin; \
 	fi
 
