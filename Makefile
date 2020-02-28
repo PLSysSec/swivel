@@ -57,6 +57,9 @@ pull: get_source
 	cd lucet-spectre && git pull --recurse-submodules
 	cd sfi-spectre-testing && git pull --recurse-submodules
 
+spec:
+	git clone git@github.com:PLSysSec/sfi-spectre-spec.git 
+
 build: install_deps pull
 	cd lucet-spectre && cargo build
 	$(MAKE) -C sfi-spectre-testing build
