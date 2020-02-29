@@ -5,7 +5,7 @@
 
 SHELL := /bin/bash
 
-DIRS=lucet-spectre sfi-spectre-testing rlbox_lucet_sandbox aligned_clang
+DIRS=lucet-spectre sfi-spectre-testing rlbox_lucet_sandbox aligned_clang firefox-stock firefox-spectre
 
 CURR_DIR := $(shell realpath ./)
 
@@ -56,9 +56,19 @@ aligned_clang:
 	git clone https://github.com/llvm/llvm-project.git $@
 	cd $@ && git checkout -b 14fc20ca6282
 
+firefox-stock:
+	git clone https://github.com/PLSysSec/firefox-spectre $@
+	cd $@ && git checkout stock
+
+firefox-spectre:
+	git clone https://github.com/PLSysSec/firefox-spectre $@
+
 get_source: $(DIRS)
 
 install_deps: $(DIRS)
+	$(MAKE) -C ./firefox-stock bootstrap
+	# don't need to run bootstrap in second firefox repo
+	touch ./firefox-spectre/builds/bootstrap
 	touch ./install_deps
 
 pull: get_source
@@ -66,17 +76,19 @@ pull: get_source
 	cd rlbox_lucet_sandbox && git pull --recurse-submodules
 	cd lucet-spectre && git pull --recurse-submodules
 	cd sfi-spectre-testing && git pull --recurse-submodules
+	cd firefox-stock && git pull
+	cd firefox-spectre && git pull
 
 spec:
 	git clone git@github.com:PLSysSec/sfi-spectre-spec.git
 
-aligned_clang/build/bin/clang:
-	mkdir -p $@
-	cd $@ && cmake -DLLVM_ENABLE_PROJECTS=clang ../llvm
+out/aligned_clang/bin/clang:
+	mkdir -p out/aligned_clang
+	cd out/aligned_clang && cmake -DLLVM_ENABLE_PROJECTS=clang $(CURR_DIR)/aligned_clang/llvm
 	# Some build failures exist which seem ignorable
-	-$(MAKE) -C $@
+	-$(MAKE) -C out/aligned_clang
 
-build: install_deps aligned_clang/build/bin/clang
+build: install_deps out/aligned_clang/bin/clang
 	cd lucet-spectre && cargo build
 	# cd rlbox_lucet_sandbox/build && $(MAKE)
 	$(MAKE) -C sfi-spectre-testing build
@@ -89,3 +101,6 @@ test:
 clean:
 	-cd lucet-spectre && cargo clean
 	-$(MAKE) -C sfi-spectre-testing clean
+	-$(MAKE) -C out/aligned_clang clean
+	-$(MAKE) -C firefox-stock/builds clean
+	-$(MAKE) -C firefox-spectre/builds clean
