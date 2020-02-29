@@ -5,7 +5,7 @@
 
 SHELL := /bin/bash
 
-DIRS=lucet-spectre sfi-spectre-testing rlbox_lucet_sandbox aligned_clang firefox-stock firefox-spectre
+DIRS=lucet-spectre sfi-spectre-testing rlbox_lucet_spectre_sandbox aligned_clang firefox-stock firefox-spectre
 
 CURR_DIR := $(shell realpath ./)
 
@@ -46,8 +46,8 @@ sfi-spectre-testing:
 	git clone git@github.com:PLSysSec/sfi-spectre-testing.git $@
 	cd $@ && git submodule update --init --recursive
 
-rlbox_lucet_sandbox:
-	git clone git@github.com:PLSysSec/rlbox_lucet_sandbox.git $@
+rlbox_lucet_spectre_sandbox:
+	git clone git@github.com:PLSysSec/rlbox_lucet_spectre_sandbox.git $@
 	cd $@ && git checkout experimental
 	cd $@ && git submodule update --init --recursive
 	CUSTOM_LUCET_DIR=$(CURR_DIR)/lucet-spectre cmake -S $@ -B $@/build
@@ -73,7 +73,7 @@ install_deps: $(DIRS)
 
 pull: get_source
 	git pull
-	cd rlbox_lucet_sandbox && git pull --recurse-submodules
+	cd rlbox_lucet_spectre_sandbox && git pull --recurse-submodules
 	cd lucet-spectre && git pull --recurse-submodules
 	cd sfi-spectre-testing && git pull --recurse-submodules
 	cd firefox-stock && git pull
@@ -90,11 +90,11 @@ out/aligned_clang/bin/clang:
 
 build: install_deps out/aligned_clang/bin/clang
 	cd lucet-spectre && cargo build
-	# cd rlbox_lucet_sandbox/build && $(MAKE)
+	# cd rlbox_lucet_spectre_sandbox/build && $(MAKE)
 	$(MAKE) -C sfi-spectre-testing build
 
 test:
-	# $(MAKE) -C rlbox_lucet_sandbox/build check
+	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build check
 	$(MAKE) -C sfi-spectre-testing test
 	$(MAKE) -C lucet-spectre/benchmarks/shootout
 
