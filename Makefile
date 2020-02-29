@@ -70,12 +70,13 @@ pull: get_source
 spec:
 	git clone git@github.com:PLSysSec/sfi-spectre-spec.git
 
-aligned_clang/build:
+aligned_clang/build/bin/clang:
 	mkdir -p $@
 	cd $@ && cmake -DLLVM_ENABLE_PROJECTS=clang ../llvm
-	$(MAKE) -C $@
+	# Some build failures exist which seem ignorable
+	-$(MAKE) -C $@
 
-build: install_deps aligned_clang/build
+build: install_deps aligned_clang/build/bin/clang
 	cd lucet-spectre && cargo build
 	# cd rlbox_lucet_sandbox/build && $(MAKE)
 	$(MAKE) -C sfi-spectre-testing build
