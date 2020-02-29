@@ -5,7 +5,7 @@
 
 SHELL := /bin/bash
 
-DIRS=lucet-spectre sfi-spectre-testing rlbox_lucet_sandbox
+DIRS=lucet-spectre sfi-spectre-testing rlbox_lucet_sandbox aligned_clang
 
 CURR_DIR := $(shell realpath ./)
 
@@ -52,6 +52,10 @@ rlbox_lucet_sandbox:
 	cd $@ && git submodule update --init --recursive
 	CUSTOM_LUCET_DIR=$(CURR_DIR)/lucet-spectre cmake -S $@ -B $@/build
 
+aligned_clang:
+	git clone https://github.com/llvm/llvm-project.git $@
+	cd $@ && git checkout -b 14fc20ca6282
+
 get_source: $(DIRS)
 
 install_deps: $(DIRS)
@@ -66,7 +70,12 @@ pull: get_source
 spec:
 	git clone git@github.com:PLSysSec/sfi-spectre-spec.git
 
-build: install_deps
+aligned_clang/build:
+	mkdir -p $@
+	cd $@ && cmake -DLLVM_ENABLE_PROJECTS=clang ../llvm
+	$(MAKE) -C $@
+
+build: install_deps aligned_clang/build
 	cd lucet-spectre && cargo build
 	# cd rlbox_lucet_sandbox/build && $(MAKE)
 	$(MAKE) -C sfi-spectre-testing build
@@ -75,7 +84,6 @@ test:
 	# $(MAKE) -C rlbox_lucet_sandbox/build check
 	$(MAKE) -C sfi-spectre-testing test
 	$(MAKE) -C lucet-spectre/benchmarks/shootout
-
 
 clean:
 	-cd lucet-spectre && cargo clean
