@@ -5,7 +5,7 @@
 
 SHELL := /bin/bash
 
-DIRS=lucet-spectre sfi-spectre-testing rlbox_lucet_spectre_sandbox #aligned_clang firefox-stock firefox-spectre
+DIRS=lucet-spectre sfi-spectre-testing rlbox_lucet_spectre_sandbox aligned_clang firefox-stock firefox-spectre
 
 CURR_DIR := $(shell realpath ./)
 
@@ -66,18 +66,18 @@ firefox-spectre:
 get_source: $(DIRS)
 
 install_deps: $(DIRS)
-	#$(MAKE) -C ./firefox-stock bootstrap
+	$(MAKE) -C ./firefox-stock bootstrap
 	# don't need to run bootstrap in second firefox repo
-	#touch ./firefox-spectre/builds/bootstrap
-	#touch ./install_deps
+	touch ./firefox-spectre/builds/bootstrap
+	touch ./install_deps
 
 pull: get_source
 	git pull
 	cd rlbox_lucet_spectre_sandbox && git pull --recurse-submodules
 	cd lucet-spectre && git pull --recurse-submodules
 	cd sfi-spectre-testing && git pull --recurse-submodules
-	#cd firefox-stock && git pull
-	#cd firefox-spectre && git pull
+	cd firefox-stock && git pull
+	cd firefox-spectre && git pull
 
 spec:
 	git clone git@github.com:PLSysSec/sfi-spectre-spec.git
@@ -88,7 +88,7 @@ out/aligned_clang/bin/clang:
 	# Some build failures exist which seem ignorable
 	-$(MAKE) -C out/aligned_clang
 
-build: install_deps
+build: install_deps out/aligned_clang/bin/clang
 	cd lucet-spectre && cargo build
 	$(MAKE) -C rlbox_lucet_spectre_sandbox/build
 	$(MAKE) -C sfi-spectre-testing build
