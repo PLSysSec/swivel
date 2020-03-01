@@ -90,11 +90,11 @@ out/aligned_clang/bin/clang:
 
 build: install_deps out/aligned_clang/bin/clang
 	cd lucet-spectre && cargo build
-	# cd rlbox_lucet_spectre_sandbox/build && $(MAKE)
+	$(MAKE) -C rlbox_lucet_spectre_sandbox/build
 	$(MAKE) -C sfi-spectre-testing build
 
 test:
-	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build check
+	$(MAKE) -C rlbox_lucet_spectre_sandbox/build check
 	$(MAKE) -C sfi-spectre-testing test
 	$(MAKE) -C lucet-spectre/benchmarks/shootout
 
