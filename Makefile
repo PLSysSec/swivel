@@ -89,8 +89,21 @@ min_pull: $(MIN_DIRS)
 	cd lucet-spectre && git pull --recurse-submodules
 	cd sfi-spectre-testing && git pull --recurse-submodules
 
-spec:
+setup_spec:
 	git clone git@github.com:PLSysSec/sfi-spectre-spec.git
+	cd sfi-spectre-spec && sh install.sh 
+
+build_spec:
+	cd sfi-spectre-spec && source shrc
+	cd sfi-spectre-spec/config && runspec --config=wasm_lucet.cfg --action=build oakland
+	cd sfi-spectre-spec/config && runspec --config=wasm_spectre.cfg --action=build oakland
+	cd sfi-spectre-spec/config && runspec --config=wasm_fence.cfg --action=build oakland
+
+run_spec:
+	cd sfi-spectre-spec && source shrc
+	cd sfi-spectre-spec/config && runspec --config=wasm_lucet.cfg --iterations=1 --noreportable --size=ref --wasm oakland
+	cd sfi-spectre-spec/config && runspec --config=wasm_spectre.cfg --iterations=1 --noreportable --size=ref --wasm oakland
+	cd sfi-spectre-spec/config && runspec --config=wasm_fence.cfg --iterations=1 --noreportable --size=ref --wasm oakland
 
 out/aligned_clang/bin/clang:
 	mkdir -p out/aligned_clang
