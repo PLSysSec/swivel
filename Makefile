@@ -1,11 +1,12 @@
 .NOTPARALLEL:
-.PHONY : build pull clean get_source test
+.PHONY : build min_build pull clean get_source test
 
 .DEFAULT_GOAL := build
 
 SHELL := /bin/bash
 
-DIRS=lucet-spectre sfi-spectre-testing rlbox_lucet_spectre_sandbox aligned_clang firefox-stock firefox-spectre
+MIN_DIRS=lucet-spectre sfi-spectre-testing rlbox_spectre_sandboxing_api rlbox_lucet_spectre_sandbox
+DIRS=lucet-spectre sfi-spectre-testing rlbox_spectre_sandboxing_api rlbox_lucet_spectre_sandbox aligned_clang firefox-stock firefox-spectre
 
 CURR_DIR := $(shell realpath ./)
 
@@ -46,6 +47,9 @@ sfi-spectre-testing:
 	git clone git@github.com:PLSysSec/sfi-spectre-testing.git $@
 	cd $@ && git submodule update --init --recursive
 
+rlbox_spectre_sandboxing_api:
+	git clone git@github.com:PLSysSec/rlbox_spectre_sandboxing_api.git $@
+
 rlbox_lucet_spectre_sandbox:
 	git clone git@github.com:PLSysSec/rlbox_lucet_spectre_sandbox.git $@
 	cd $@ && git checkout experimental
@@ -71,13 +75,21 @@ install_deps: $(DIRS)
 	touch ./firefox-spectre/builds/bootstrap
 	touch ./install_deps
 
-pull: get_source
+pull: $(DIRS)
 	git pull
+	cd rlbox_spectre_sandboxing_api && git pull
 	cd rlbox_lucet_spectre_sandbox && git pull --recurse-submodules
 	cd lucet-spectre && git pull --recurse-submodules
 	cd sfi-spectre-testing && git pull --recurse-submodules
 	cd firefox-stock && git pull
 	cd firefox-spectre && git pull
+
+min_pull: $(MIN_DIRS)
+	git pull
+	cd rlbox_spectre_sandboxing_api && git pull
+	cd rlbox_lucet_spectre_sandbox && git pull --recurse-submodules
+	cd lucet-spectre && git pull --recurse-submodules
+	cd sfi-spectre-testing && git pull --recurse-submodules
 
 spec:
 	git clone git@github.com:PLSysSec/sfi-spectre-spec.git
@@ -89,6 +101,11 @@ out/aligned_clang/bin/clang:
 	-$(MAKE) -C out/aligned_clang
 
 build: install_deps out/aligned_clang/bin/clang
+	cd lucet-spectre && cargo build
+	$(MAKE) -C rlbox_lucet_spectre_sandbox/build
+	$(MAKE) -C sfi-spectre-testing build
+
+min_build: $(MIN_DIRS)
 	cd lucet-spectre && cargo build
 	$(MAKE) -C rlbox_lucet_spectre_sandbox/build
 	$(MAKE) -C sfi-spectre-testing build
