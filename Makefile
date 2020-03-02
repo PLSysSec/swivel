@@ -5,7 +5,7 @@
 
 SHELL := /bin/bash
 
-MIN_DIRS=lucet-spectre sfi-spectre-testing rlbox_spectre_sandboxing_api rlbox_lucet_spectre_sandbox
+MIN_DIRS=lucet-spectre sfi-spectre-testing
 DIRS=lucet-spectre sfi-spectre-testing rlbox_spectre_sandboxing_api rlbox_lucet_spectre_sandbox aligned_clang firefox-stock firefox-spectre
 
 CURR_DIR := $(shell realpath ./)
@@ -86,8 +86,6 @@ pull: $(DIRS)
 
 min_pull: $(MIN_DIRS)
 	git pull
-	cd rlbox_spectre_sandboxing_api && git pull
-	cd rlbox_lucet_spectre_sandbox && git pull --recurse-submodules
 	cd lucet-spectre && git pull --recurse-submodules
 	cd sfi-spectre-testing && git pull --recurse-submodules
 
@@ -107,7 +105,6 @@ build: install_deps out/aligned_clang/bin/clang
 
 min_build: $(MIN_DIRS)
 	cd lucet-spectre && cargo build
-	$(MAKE) -C rlbox_lucet_spectre_sandbox/build
 	$(MAKE) -C sfi-spectre-testing build
 
 test:
