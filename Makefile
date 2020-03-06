@@ -123,7 +123,10 @@ min_build: $(MIN_DIRS)
 test:
 	$(MAKE) -C rlbox_lucet_spectre_sandbox/build check
 	$(MAKE) -C sfi-spectre-testing test
+	
+sightglass:
 	$(MAKE) -C lucet-spectre/benchmarks/shootout
+	$(MAKE) -C lucet-spectre/benchmarks/shootout run_sensitivity
 
 clean:
 	-cd lucet-spectre && cargo clean
