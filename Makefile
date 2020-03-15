@@ -100,6 +100,7 @@ build_spec:
 	cd sfi-spectre-spec/config && runspec --config=wasm_fence.cfg --action=build oakland
 
 run_spec:
+	sh cp_spec_data_into_tmp.sh 
 	cd sfi-spectre-spec && source shrc
 	cd sfi-spectre-spec/config && runspec --config=wasm_lucet.cfg --iterations=1 --noreportable --size=ref --wasm oakland
 	cd sfi-spectre-spec/config && runspec --config=wasm_spectre.cfg --iterations=1 --noreportable --size=ref --wasm oakland
@@ -125,7 +126,10 @@ min_build: $(MIN_DIRS)
 test:
 	$(MAKE) -C rlbox_lucet_spectre_sandbox/build check
 	$(MAKE) -C sfi-spectre-testing test
-	$(MAKE) -C lucet-spectre/benchmarks/shootout
+	
+sightglass:
+	$(MAKE) -C lucet-spectre/benchmarks/shootout run_all
+	#$(MAKE) -C lucet-spectre/benchmarks/shootout run_sensitivity
 
 clean:
 	-cd lucet-spectre && cargo clean
