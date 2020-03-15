@@ -112,11 +112,13 @@ out/aligned_clang/bin/clang:
 	-$(MAKE) -C out/aligned_clang
 
 build: install_deps out/aligned_clang/bin/clang
+	mkdir -p ./out
 	cd lucet-spectre && cargo build
 	$(MAKE) -C rlbox_lucet_spectre_sandbox/build
 	$(MAKE) -C sfi-spectre-testing build
 
 min_build: $(MIN_DIRS)
+	mkdir -p ./out
 	cd lucet-spectre && cargo build
 	$(MAKE) -C sfi-spectre-testing build
 
