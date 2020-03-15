@@ -11,13 +11,21 @@ DIRS=lucet-spectre sfi-spectre-testing rlbox_spectre_sandboxing_api rlbox_lucet_
 CURR_DIR := $(shell realpath ./)
 
 bootstrap:
-	sudo apt -y install curl cmake
+	if [ -x "$(shell command -v apt)" ]; then \
+		sudo apt -y install curl cmake; \
+	elif [ -x "$(shell command -v dnf)" ]; then \
+		sudo dnf -y install curl cmake; \
+	else \
+		echo "Unknown installer. apt/dnf not found"; \
+		exit 1; \
+	fi
 	if [ ! -x "$(shell command -v rustc)" ] ; then \
 		curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y; \
 	fi
 	if [ ! -d /opt/wasi-sdk/ ]; then \
-		wget https://github.com/CraneStation/wasi-sdk/releases/download/wasi-sdk-8/wasi-sdk_8.0_amd64.deb -P /tmp/ && \
-		sudo dpkg -i /tmp/wasi-sdk_8.0_amd64.deb; \
+		wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-8/wasi-sdk-8.0-linux.tar.gz -P /tmp/ && \
+		tar -xzf /tmp/wasi-sdk-8.0-linux.tar.gz && \
+		sudo mv /tmp/wasi-sdk-8.0 /opt/wasi-sdk; \
 	fi
 	if [ ! -d /opt/binaryen/ ]; then \
 		wget https://github.com/WebAssembly/binaryen/releases/download/version_90/binaryen-version_90-x86_64-linux.tar.gz -P /tmp/ && \
