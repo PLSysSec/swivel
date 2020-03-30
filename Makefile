@@ -12,9 +12,9 @@ CURR_DIR := $(shell realpath ./)
 
 bootstrap:
 	if [ -x "$(shell command -v apt)" ]; then \
-		sudo apt -y install curl cmake; \
+		sudo apt -y install curl cmake msr-tools cpuid; \
 	elif [ -x "$(shell command -v dnf)" ]; then \
-		sudo dnf -y install curl cmake; \
+		sudo dnf -y install curl cmake msr-tools cpuid; \
 	else \
 		echo "Unknown installer. apt/dnf not found"; \
 		exit 1; \
@@ -78,10 +78,11 @@ firefox-spectre:
 get_source: $(DIRS)
 
 install_deps: $(DIRS)
-	$(MAKE) -C ./firefox-stock bootstrap
-	# don't need to run bootstrap in second firefox repo
-	touch ./firefox-spectre/builds/bootstrap
-	touch ./install_deps
+	if [ -d ./firefox-stock ]; then \
+		$(MAKE) -C ./firefox-stock bootstrap && \
+		touch ./firefox-spectre/builds/bootstrap && \
+		touch ./install_deps; \
+	fi
 
 pull: $(DIRS)
 	git pull
@@ -99,7 +100,7 @@ min_pull: $(MIN_DIRS)
 
 setup_spec:
 	git clone git@github.com:PLSysSec/sfi-spectre-spec.git
-	cd sfi-spectre-spec && sh install.sh 
+	cd sfi-spectre-spec && sh install.sh
 
 build_spec:
 	cd sfi-spectre-spec && source shrc
@@ -108,7 +109,7 @@ build_spec:
 	cd sfi-spectre-spec/config && runspec --config=wasm_fence.cfg --action=build oakland
 
 run_spec:
-	sh cp_spec_data_into_tmp.sh 
+	sh cp_spec_data_into_tmp.sh
 	cd sfi-spectre-spec && source shrc
 	cd sfi-spectre-spec/config && runspec --config=wasm_lucet.cfg --iterations=1 --noreportable --size=ref --wasm oakland
 	cd sfi-spectre-spec/config && runspec --config=wasm_spectre.cfg --iterations=1 --noreportable --size=ref --wasm oakland
@@ -134,7 +135,7 @@ min_build: $(MIN_DIRS)
 test:
 	$(MAKE) -C rlbox_lucet_spectre_sandbox/build check
 	$(MAKE) -C sfi-spectre-testing test
-	
+
 sightglass:
 	$(MAKE) -C lucet-spectre/benchmarks/shootout run_all
 	#$(MAKE) -C lucet-spectre/benchmarks/shootout run_sensitivity
