@@ -6,7 +6,7 @@
 SHELL := /bin/bash
 
 MIN_DIRS=lucet-spectre sfi-spectre-testing
-DIRS=lucet-spectre sfi-spectre-testing rlbox_spectre_sandboxing_api rlbox_lucet_spectre_sandbox aligned_clang firefox-stock firefox-spectre
+DIRS=rustc-cet lucet-spectre sfi-spectre-testing rlbox_spectre_sandboxing_api rlbox_lucet_spectre_sandbox aligned_clang firefox-stock firefox-spectre
 
 CURR_DIR := $(shell realpath ./)
 
