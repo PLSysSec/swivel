@@ -68,6 +68,9 @@ aligned_clang:
 	git clone https://github.com/llvm/llvm-project.git $@
 	cd $@ && git checkout -b 14fc20ca6282
 
+rustc-cet:
+	git clone git@github.com:PLSysSec/rustc-cet.git $@
+
 firefox-stock:
 	git clone https://github.com/PLSysSec/firefox-spectre $@
 	cd $@ && git checkout stock
@@ -120,6 +123,10 @@ out/aligned_clang/bin/clang:
 	cd out/aligned_clang && cmake -DLLVM_ENABLE_PROJECTS=clang $(CURR_DIR)/aligned_clang/llvm
 	# Some build failures exist which seem ignorable
 	-$(MAKE) -C out/aligned_clang
+
+out/rust_build/bin/rustc:
+	mkdir -p out/rust_build
+	cd ./rustc-cet && ./x.py build && ./x.py install
 
 build: install_deps out/aligned_clang/bin/clang
 	mkdir -p ./out
