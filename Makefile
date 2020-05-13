@@ -101,10 +101,11 @@ build_spec:
 
 run_spec:
 	sh cp_spec_data_into_tmp.sh 
-	cd sfi-spectre-spec && source shrc
-	cd sfi-spectre-spec/config && runspec --config=wasm_lucet.cfg --iterations=1 --noreportable --size=ref --wasm oakland
-	cd sfi-spectre-spec/config && runspec --config=wasm_spectre.cfg --iterations=1 --noreportable --size=ref --wasm oakland
-	cd sfi-spectre-spec/config && runspec --config=wasm_fence.cfg --iterations=1 --noreportable --size=ref --wasm oakland
+	cd sfi-spectre-spec && source shrc && cd config && \
+	runspec --config=wasm_lucet.cfg --iterations=1 --noreportable --size=ref --wasm mini && \
+	runspec --config=wasm_spectre.cfg --iterations=1 --noreportable --size=ref --wasm mini && \
+	runspec --config=wasm_fence.cfg --iterations=1 --noreportable --size=ref --wasm mini && \ 
+	python3 sfi-spectre-testing/scripts/spec_stats.py
 
 out/aligned_clang/bin/clang:
 	mkdir -p out/aligned_clang
