@@ -6,18 +6,26 @@
 SHELL := /bin/bash
 
 MIN_DIRS=lucet-spectre sfi-spectre-testing
-DIRS=lucet-spectre sfi-spectre-testing rlbox_spectre_sandboxing_api rlbox_lucet_spectre_sandbox aligned_clang firefox-stock firefox-spectre
+DIRS=rustc-cet lucet-spectre sfi-spectre-testing rlbox_spectre_sandboxing_api rlbox_lucet_spectre_sandbox aligned_clang firefox-stock firefox-spectre
 
 CURR_DIR := $(shell realpath ./)
 
 bootstrap:
-	sudo apt -y install curl cmake
+	if [ -x "$(shell command -v apt)" ]; then \
+		sudo apt -y install curl cmake msr-tools cpuid; \
+	elif [ -x "$(shell command -v dnf)" ]; then \
+		sudo dnf -y install curl cmake msr-tools cpuid; \
+	else \
+		echo "Unknown installer. apt/dnf not found"; \
+		exit 1; \
+	fi
 	if [ ! -x "$(shell command -v rustc)" ] ; then \
 		curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y; \
 	fi
 	if [ ! -d /opt/wasi-sdk/ ]; then \
-		wget https://github.com/CraneStation/wasi-sdk/releases/download/wasi-sdk-8/wasi-sdk_8.0_amd64.deb -P /tmp/ && \
-		sudo dpkg -i /tmp/wasi-sdk_8.0_amd64.deb; \
+		wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-8/wasi-sdk-8.0-linux.tar.gz -P /tmp/ && \
+		tar -xzf /tmp/wasi-sdk-8.0-linux.tar.gz && \
+		sudo mv /tmp/wasi-sdk-8.0 /opt/wasi-sdk; \
 	fi
 	if [ ! -d /opt/binaryen/ ]; then \
 		wget https://github.com/WebAssembly/binaryen/releases/download/version_90/binaryen-version_90-x86_64-linux.tar.gz -P /tmp/ && \
@@ -60,6 +68,9 @@ aligned_clang:
 	git clone https://github.com/llvm/llvm-project.git $@
 	cd $@ && git checkout -b 14fc20ca6282
 
+rustc-cet:
+	git clone git@github.com:PLSysSec/rustc-cet.git $@
+
 firefox-stock:
 	git clone https://github.com/PLSysSec/firefox-spectre $@
 	cd $@ && git checkout stock
@@ -70,10 +81,11 @@ firefox-spectre:
 get_source: $(DIRS)
 
 install_deps: $(DIRS)
-	$(MAKE) -C ./firefox-stock bootstrap
-	# don't need to run bootstrap in second firefox repo
-	touch ./firefox-spectre/builds/bootstrap
-	touch ./install_deps
+	if [ -d ./firefox-stock ]; then \
+		$(MAKE) -C ./firefox-stock bootstrap && \
+		touch ./firefox-spectre/builds/bootstrap && \
+		touch ./install_deps; \
+	fi
 
 pull: $(DIRS)
 	git pull
@@ -91,7 +103,7 @@ min_pull: $(MIN_DIRS)
 
 setup_spec:
 	git clone git@github.com:PLSysSec/sfi-spectre-spec.git
-	cd sfi-spectre-spec && sh install.sh 
+	cd sfi-spectre-spec && sh install.sh
 
 build_spec:
 	cd sfi-spectre-spec && source shrc
@@ -113,19 +125,25 @@ out/aligned_clang/bin/clang:
 	# Some build failures exist which seem ignorable
 	-$(MAKE) -C out/aligned_clang
 
+out/rust_build/bin/rustc:
+	mkdir -p out/rust_build
+	cd ./rustc-cet && ./x.py build && ./x.py install
+
 build: install_deps out/aligned_clang/bin/clang
+	mkdir -p ./out
 	cd lucet-spectre && cargo build
 	$(MAKE) -C rlbox_lucet_spectre_sandbox/build
 	$(MAKE) -C sfi-spectre-testing build
 
 min_build: $(MIN_DIRS)
+	mkdir -p ./out
 	cd lucet-spectre && cargo build
 	$(MAKE) -C sfi-spectre-testing build
 
 test:
 	$(MAKE) -C rlbox_lucet_spectre_sandbox/build check
 	$(MAKE) -C sfi-spectre-testing test
-	
+
 sightglass:
 	$(MAKE) -C lucet-spectre/benchmarks/shootout run_all
 	#$(MAKE) -C lucet-spectre/benchmarks/shootout run_sensitivity
