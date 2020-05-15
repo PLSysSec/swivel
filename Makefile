@@ -6,7 +6,7 @@
 SHELL := /bin/bash
 
 MIN_DIRS=lucet-spectre sfi-spectre-testing
-DIRS=rustc-cet lucet-spectre sfi-spectre-testing rlbox_spectre_sandboxing_api rlbox_lucet_spectre_sandbox aligned_clang firefox-stock firefox-spectre
+DIRS=rustc-cet lucet-spectre sfi-spectre-testing rlbox_spectre_sandboxing_api rlbox_lucet_spectre_sandbox
 
 CURR_DIR := $(shell realpath ./)
 
@@ -23,9 +23,9 @@ bootstrap:
 		curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y; \
 	fi
 	if [ ! -d /opt/wasi-sdk/ ]; then \
-		wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-8/wasi-sdk-8.0-linux.tar.gz -P /tmp/ && \
-		tar -xzf /tmp/wasi-sdk-8.0-linux.tar.gz && \
-		sudo mv /tmp/wasi-sdk-8.0 /opt/wasi-sdk; \
+		wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-10/wasi-sdk-10.0-linux.tar.gz -P /tmp/ && \
+		tar -xzf /tmp/wasi-sdk-10.0-linux.tar.gz && \
+		sudo mv /tmp/wasi-sdk-10.0 /opt/wasi-sdk; \
 	fi
 	if [ ! -d /opt/binaryen/ ]; then \
 		wget https://github.com/WebAssembly/binaryen/releases/download/version_90/binaryen-version_90-x86_64-linux.tar.gz -P /tmp/ && \
@@ -64,28 +64,13 @@ rlbox_lucet_spectre_sandbox:
 	cd $@ && git submodule update --init --recursive
 	CUSTOM_LUCET_DIR=$(CURR_DIR)/lucet-spectre cmake -S $@ -B $@/build
 
-aligned_clang:
-	git clone https://github.com/llvm/llvm-project.git $@
-	cd $@ && git checkout -b 14fc20ca6282
-
 rustc-cet:
 	git clone git@github.com:PLSysSec/rustc-cet.git $@
-
-firefox-stock:
-	git clone https://github.com/PLSysSec/firefox-spectre $@
-	cd $@ && git checkout stock
-
-firefox-spectre:
-	git clone https://github.com/PLSysSec/firefox-spectre $@
 
 get_source: $(DIRS)
 
 install_deps: $(DIRS)
-	if [ -d ./firefox-stock ]; then \
-		$(MAKE) -C ./firefox-stock bootstrap && \
-		touch ./firefox-spectre/builds/bootstrap && \
-		touch ./install_deps; \
-	fi
+	touch ./install_deps;
 
 pull: $(DIRS)
 	git pull
@@ -93,8 +78,6 @@ pull: $(DIRS)
 	cd rlbox_lucet_spectre_sandbox && git pull --recurse-submodules
 	cd lucet-spectre && git pull --recurse-submodules
 	cd sfi-spectre-testing && git pull --recurse-submodules
-	cd firefox-stock && git pull
-	cd firefox-spectre && git pull
 
 min_pull: $(MIN_DIRS)
 	git pull
@@ -118,20 +101,15 @@ run_spec:
 	cd sfi-spectre-spec/config && runspec --config=wasm_spectre.cfg --iterations=1 --noreportable --size=ref --wasm oakland
 	cd sfi-spectre-spec/config && runspec --config=wasm_fence.cfg --iterations=1 --noreportable --size=ref --wasm oakland
 
-out/aligned_clang/bin/clang:
-	mkdir -p out/aligned_clang
-	cd out/aligned_clang && cmake -DLLVM_ENABLE_PROJECTS=clang $(CURR_DIR)/aligned_clang/llvm
-	# Some build failures exist which seem ignorable
-	-$(MAKE) -C out/aligned_clang
-
 out/rust_build/bin/rustc:
 	mkdir -p out/rust_build
 	cd ./rustc-cet && ./x.py build && ./x.py install
+	rustup toolchain link rust-cet ./out/rust_build
 
-build: install_deps out/aligned_clang/bin/clang
+build: install_deps
 	mkdir -p ./out
 	cd lucet-spectre && cargo build
-	$(MAKE) -C rlbox_lucet_spectre_sandbox/build
+	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build
 	$(MAKE) -C sfi-spectre-testing build
 
 min_build: $(MIN_DIRS)
@@ -140,7 +118,7 @@ min_build: $(MIN_DIRS)
 	$(MAKE) -C sfi-spectre-testing build
 
 test:
-	$(MAKE) -C rlbox_lucet_spectre_sandbox/build check
+	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build check
 	$(MAKE) -C sfi-spectre-testing test
 
 sightglass:
@@ -150,6 +128,3 @@ sightglass:
 clean:
 	-cd lucet-spectre && cargo clean
 	-$(MAKE) -C sfi-spectre-testing clean
-	-$(MAKE) -C out/aligned_clang clean
-	-$(MAKE) -C firefox-stock/builds clean
-	-$(MAKE) -C firefox-spectre/builds clean
