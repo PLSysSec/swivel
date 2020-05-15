@@ -25,7 +25,7 @@ bootstrap:
 	if [ ! -d /opt/wasi-sdk/ ]; then \
 		wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-10/wasi-sdk-10.0-linux.tar.gz -P /tmp/ && \
 		tar -xzf /tmp/wasi-sdk-10.0-linux.tar.gz && \
-		sudo mv /tmp/wasi-sdk-10.0 /opt/wasi-sdk; \
+		sudo mv wasi-sdk-10.0 /opt/wasi-sdk; \
 	fi
 	if [ ! -d /opt/binaryen/ ]; then \
 		wget https://github.com/WebAssembly/binaryen/releases/download/version_90/binaryen-version_90-x86_64-linux.tar.gz -P /tmp/ && \
@@ -107,7 +107,7 @@ out/rust_build/bin/rustc:
 	cd ./rustc-cet && ./x.py build && ./x.py install
 	rustup toolchain link rust-cet ./out/rust_build
 
-build: install_deps
+build: install_deps out/rust_build/bin/rustc
 	mkdir -p ./out
 	cd lucet-spectre && cargo build
 	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build
