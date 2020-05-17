@@ -92,15 +92,21 @@ setup_spec:
 build_spec:
 	cd sfi-spectre-spec && source shrc
 	cd sfi-spectre-spec/config && runspec --config=wasm_lucet.cfg --action=build oakland
-	cd sfi-spectre-spec/config && runspec --config=wasm_spectre.cfg --action=build oakland
-	cd sfi-spectre-spec/config && runspec --config=wasm_fence.cfg --action=build oakland
+	cd sfi-spectre-spec/config && runspec --config=wasm_loadlfence.cfg --action=build oakland
+	cd sfi-spectre-spec/config && runspec --config=wasm_strawman.cfg --action=build oakland
+	cd sfi-spectre-spec/config && runspec --config=wasm_sfi.cfg --action=build oakland
+	cd sfi-spectre-spec/config && runspec --config=wasm_cet.cfg --action=build oakland
+	cd sfi-spectre-spec/config && runspec --config=wasm_blade.cfg --action=build oakland
 
 run_spec:
 	sh cp_spec_data_into_tmp.sh 
 	cd sfi-spectre-spec && source shrc && cd config && \
-	runspec --config=wasm_lucet.cfg --iterations=1 --noreportable --size=ref --wasm mini && \
-	runspec --config=wasm_spectre.cfg --iterations=1 --noreportable --size=ref --wasm mini && \
-	runspec --config=wasm_fence.cfg --iterations=1 --noreportable --size=ref --wasm mini && \ 
+	runspec --config=wasm_lucet.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
+	runspec --config=wasm_loadlfence.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
+	runspec --config=wasm_strawman.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
+	runspec --config=wasm_sfi.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
+	runspec --config=wasm_cet.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
+	runspec --config=wasm_blade.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
 	python3 sfi-spectre-testing/scripts/spec_stats.py
 
 out/rust_build/bin/rustc:
