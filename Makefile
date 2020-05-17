@@ -118,7 +118,7 @@ build: install_deps out/rust_build/bin/rustc
 	mkdir -p ./out
 	cd lucet-spectre && cargo build
 	cd lucet-spectre && \
-		RUSTFLAGS="--cf_protection_branch --cf_protection_return" \
+		CFLAGS="-fcf-protection=full" \
 		CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER="$(CURR_DIR)/rustc-cet/rust_cet_linker" \
 		CARGO_TARGET_DIR="${CURR_DIR}/lucet-spectre/target-cet" \
 		cargo +rust-cet build
