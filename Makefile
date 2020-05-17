@@ -129,7 +129,7 @@ test:
 	$(MAKE) -C sfi-spectre-testing test
 
 sightglass:
-	$(MAKE) -C lucet-spectre/benchmarks/shootout run_all
+	$(MAKE) -C lucet-spectre/benchmarks/shootout
 	#$(MAKE) -C lucet-spectre/benchmarks/shootout run_sensitivity
 
 clean:
