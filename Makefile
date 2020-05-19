@@ -126,12 +126,12 @@ build: install_deps out/rust_build/bin/rustc
 		CARGO_TARGET_DIR="${CURR_DIR}/lucet-spectre/target-cet" \
 		cargo +rust-cet build
 	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build
-	$(MAKE) -C sfi-spectre-testing build
+	$(MAKE) -C sfi-spectre-testing build -j8
 
 min_build: $(MIN_DIRS)
 	mkdir -p ./out
 	cd lucet-spectre && cargo build
-	$(MAKE) -C sfi-spectre-testing build
+	$(MAKE) -C sfi-spectre-testing build -j8
 
 test:
 	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build check
@@ -145,7 +145,7 @@ build_sightglass: install_deps out/rust_build/bin/rustc
 		CARGO_TARGET_DIR="${CURR_DIR}/lucet-spectre/target-cet" \
 		cargo +rust-cet build --release
 	$(MAKE) -C lucet-spectre/benchmarks/shootout clean
-	REALLY_USE_CET=1 $(MAKE) -C lucet-spectre/benchmarks/shootout build
+	REALLY_USE_CET=1 $(MAKE) -C lucet-spectre/benchmarks/shootout build -j8
 
 run_sightglass:
 	if [ -x "$(shell command -v cpupower)" ]; then \
@@ -158,7 +158,7 @@ run_sightglass:
 build_sightglass_nocet: install_deps
 	cd lucet-spectre && cargo build --release
 	$(MAKE) -C lucet-spectre/benchmarks/shootout clean
-	$(MAKE) -C lucet-spectre/benchmarks/shootout build
+	$(MAKE) -C lucet-spectre/benchmarks/shootout build -j8
 
 run_sightglass_nocet:
 	if [ -x "$(shell command -v cpupower)" ]; then \
