@@ -109,8 +109,9 @@ run_spec:
 	runspec --config=wasm_strawman.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
 	runspec --config=wasm_sfi.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
 	runspec --config=wasm_cet.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
-	runspec --config=wasm_blade.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
+	runspec --config=wasm_blade.cfg --iterations=1 --noreportable --size=ref --wasm oakland
 	python3 sfi-spectre-testing/scripts/spec_stats.py
+	mv sfi-spectre-spec/result/ benchmarks/spec_$(shell date --iso=seconds)
 
 out/rust_build/bin/rustc:
 	mkdir -p out/rust_build
