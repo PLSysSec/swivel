@@ -1,5 +1,5 @@
 .NOTPARALLEL:
-.PHONY : build min_build pull clean get_source test
+.PHONY : build min_build pull clean get_source test build_spec run_spec
 
 .DEFAULT_GOAL := build
 
@@ -85,18 +85,19 @@ min_pull: $(MIN_DIRS)
 	cd lucet-spectre && git pull --recurse-submodules
 	cd sfi-spectre-testing && git pull --recurse-submodules
 
-setup_spec:
+sfi-spectre-spec:
 	git clone git@github.com:PLSysSec/sfi-spectre-spec.git
-	cd sfi-spectre-spec && sh install.sh
+	cd sfi-spectre-spec && SPEC_INSTALL_NOCHECK=1 SPEC_FORCE_INSTALL=1 sh install.sh -f
 
-build_spec:
-	cd sfi-spectre-spec && source shrc
-	cd sfi-spectre-spec/config && runspec --config=wasm_lucet.cfg --action=build oakland
-	cd sfi-spectre-spec/config && runspec --config=wasm_loadlfence.cfg --action=build oakland
-	cd sfi-spectre-spec/config && runspec --config=wasm_strawman.cfg --action=build oakland
-	cd sfi-spectre-spec/config && runspec --config=wasm_sfi.cfg --action=build oakland
-	cd sfi-spectre-spec/config && runspec --config=wasm_cet.cfg --action=build oakland
-	cd sfi-spectre-spec/config && runspec --config=wasm_blade.cfg --action=build oakland
+build_spec: sfi-spectre-spec
+	cd sfi-spectre-spec && source shrc && \
+	cd config && \
+	runspec --config=wasm_lucet.cfg --action=build oakland && \
+	runspec --config=wasm_loadlfence.cfg --action=build oakland && \
+	runspec --config=wasm_strawman.cfg --action=build oakland && \
+	runspec --config=wasm_sfi.cfg --action=build oakland && \
+	runspec --config=wasm_cet.cfg --action=build oakland && \
+	runspec --config=wasm_blade.cfg --action=build oakland
 
 run_spec:
 	sh cp_spec_data_into_tmp.sh 
@@ -135,6 +136,11 @@ test:
 	$(MAKE) -C sfi-spectre-testing test
 
 sightglass:
+	if [ -x "$(shell command -v cpupower)" ]; then \
+		sudo cpupower -c 1 frequency-set --min 2200MHz --max 2200MHz; \
+	else \
+		sudo cpufreq-set -c 1 --min 2200MHz --max 2200MHz; \
+	fi
 	$(MAKE) -C lucet-spectre/benchmarks/shootout
 	#$(MAKE) -C lucet-spectre/benchmarks/shootout run_sensitivity
 
