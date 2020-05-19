@@ -140,9 +140,9 @@ build_sightglass:
 
 run_sightglass:
 	if [ -x "$(shell command -v cpupower)" ]; then \
-		sudo cpupower -c 1 frequency-set --min 2200MHz --max 2200MHz; \
+		sudo cpupower -c 1 frequency-set --min 2700MHz --max 2700MHz; \
 	else \
-		sudo cpufreq-set -c 1 --min 2200MHz --max 2200MHz; \
+		sudo cpufreq-set -c 1 --min 2700MHz --max 2700MHz; \
 	fi
 	$(MAKE) -C lucet-spectre/benchmarks/shootout run
 	#$(MAKE) -C lucet-spectre/benchmarks/shootout run_sensitivity
