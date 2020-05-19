@@ -1,5 +1,5 @@
 .NOTPARALLEL:
-.PHONY : build min_build pull clean get_source test build_spec run_spec build_sightglass run_sightglass
+.PHONY : build min_build pull clean get_source test build_spec run_spec build_sightglass run_sightglass build_sightglass_nocet run_sightglass_nocet
 
 .DEFAULT_GOAL := build
 
@@ -137,14 +137,14 @@ test:
 	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build check
 	$(MAKE) -C sfi-spectre-testing test
 
-build_sightglass:
+build_sightglass: install_deps out/rust_build/bin/rustc
 	cd lucet-spectre && cargo build --release
 	cd lucet-spectre && \
 		CFLAGS="-fcf-protection=full" \
 		CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER="$(CURR_DIR)/rustc-cet/rust_cet_linker" \
 		CARGO_TARGET_DIR="${CURR_DIR}/lucet-spectre/target-cet" \
 		cargo +rust-cet build --release
-	REALLY_USE_CET=1 $(MAKE) -C lucet-spectre/benchmarks/shootout clean build
+	$(MAKE) -C lucet-spectre/benchmarks/shootout clean build
 
 run_sightglass:
 	if [ -x "$(shell command -v cpupower)" ]; then \
@@ -152,8 +152,19 @@ run_sightglass:
 	else \
 		sudo cpufreq-set -c $(LAST_CPU_CORE) --min 2700MHz --max 2700MHz; \
 	fi
+	REALLY_USE_CET=1 $(MAKE) -C lucet-spectre/benchmarks/shootout run
+
+build_sightglass_nocet: install_deps
+	cd lucet-spectre && cargo build --release
+	$(MAKE) -C lucet-spectre/benchmarks/shootout clean build
+
+run_sightglass_nocet:
+	if [ -x "$(shell command -v cpupower)" ]; then \
+		sudo cpupower -c $(LAST_CPU_CORE) frequency-set --min 2700MHz --max 2700MHz; \
+	else \
+		sudo cpufreq-set -c $(LAST_CPU_CORE) --min 2700MHz --max 2700MHz; \
+	fi
 	$(MAKE) -C lucet-spectre/benchmarks/shootout run
-	#$(MAKE) -C lucet-spectre/benchmarks/shootout run_sensitivity
 
 clean:
 	-cd lucet-spectre && cargo clean
