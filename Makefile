@@ -1,5 +1,5 @@
 .NOTPARALLEL:
-.PHONY : build min_build pull clean get_source test build_spec run_spec
+.PHONY : build min_build pull clean get_source test build_spec run_spec build_sightglass run_sightglass
 
 .DEFAULT_GOAL := build
 
@@ -125,7 +125,6 @@ build: install_deps out/rust_build/bin/rustc
 		cargo +rust-cet build
 	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build
 	$(MAKE) -C sfi-spectre-testing build
-	$(MAKE) -C lucet-spectre/benchmarks/shootout build
 
 min_build: $(MIN_DIRS)
 	mkdir -p ./out
@@ -136,7 +135,10 @@ test:
 	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build check
 	$(MAKE) -C sfi-spectre-testing test
 
-sightglass:
+build_sightglass:
+	$(MAKE) -C lucet-spectre/benchmarks/shootout clean build
+
+run_sightglass:
 	if [ -x "$(shell command -v cpupower)" ]; then \
 		sudo cpupower -c 1 frequency-set --min 2200MHz --max 2200MHz; \
 	else \
