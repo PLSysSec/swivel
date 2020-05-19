@@ -10,6 +10,8 @@ DIRS=rustc-cet lucet-spectre sfi-spectre-testing rlbox_spectre_sandboxing_api rl
 
 CURR_DIR := $(shell realpath ./)
 
+LAST_CPU_CORE := $(shell echo "$$(( $$(nproc --all) - 1 ))" )
+
 bootstrap:
 	if [ -x "$(shell command -v apt)" ]; then \
 		sudo apt -y install curl cmake msr-tools cpuid cpufrequtils; \
@@ -146,9 +148,9 @@ build_sightglass:
 
 run_sightglass:
 	if [ -x "$(shell command -v cpupower)" ]; then \
-		sudo cpupower -c 1 frequency-set --min 2700MHz --max 2700MHz; \
+		sudo cpupower -c $(LAST_CPU_CORE) frequency-set --min 2700MHz --max 2700MHz; \
 	else \
-		sudo cpufreq-set -c 1 --min 2700MHz --max 2700MHz; \
+		sudo cpufreq-set -c $(LAST_CPU_CORE) --min 2700MHz --max 2700MHz; \
 	fi
 	$(MAKE) -C lucet-spectre/benchmarks/shootout run
 	#$(MAKE) -C lucet-spectre/benchmarks/shootout run_sensitivity
