@@ -145,7 +145,7 @@ build_sightglass: install_deps out/rust_build/bin/rustc
 		CARGO_TARGET_DIR="${CURR_DIR}/lucet-spectre/target-cet" \
 		cargo +rust-cet build --release
 	$(MAKE) -C lucet-spectre/benchmarks/shootout clean
-	$(MAKE) -C lucet-spectre/benchmarks/shootout build
+	REALLY_USE_CET=1 $(MAKE) -C lucet-spectre/benchmarks/shootout build
 
 run_sightglass:
 	if [ -x "$(shell command -v cpupower)" ]; then \
