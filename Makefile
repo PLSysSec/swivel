@@ -136,7 +136,13 @@ test:
 	$(MAKE) -C sfi-spectre-testing test
 
 build_sightglass:
-	$(MAKE) -C lucet-spectre/benchmarks/shootout clean build
+	cd lucet-spectre && cargo build --release
+	cd lucet-spectre && \
+		CFLAGS="-fcf-protection=full" \
+		CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER="$(CURR_DIR)/rustc-cet/rust_cet_linker" \
+		CARGO_TARGET_DIR="${CURR_DIR}/lucet-spectre/target-cet" \
+		cargo +rust-cet build --release
+	REALLY_USE_CET=1 $(MAKE) -C lucet-spectre/benchmarks/shootout clean build
 
 run_sightglass:
 	if [ -x "$(shell command -v cpupower)" ]; then \
