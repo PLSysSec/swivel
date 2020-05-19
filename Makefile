@@ -125,6 +125,7 @@ build: install_deps out/rust_build/bin/rustc
 		cargo +rust-cet build
 	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build
 	$(MAKE) -C sfi-spectre-testing build
+	$(MAKE) -C lucet-spectre/benchmarks/shootout build
 
 min_build: $(MIN_DIRS)
 	mkdir -p ./out
@@ -141,7 +142,7 @@ sightglass:
 	else \
 		sudo cpufreq-set -c 1 --min 2200MHz --max 2200MHz; \
 	fi
-	$(MAKE) -C lucet-spectre/benchmarks/shootout
+	$(MAKE) -C lucet-spectre/benchmarks/shootout run
 	#$(MAKE) -C lucet-spectre/benchmarks/shootout run_sensitivity
 
 clean:
