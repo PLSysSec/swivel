@@ -105,7 +105,7 @@ build_spec: sfi-spectre-spec
 	runspec --config=wasm_blade.cfg --action=build oakland && \
 	runspec --config=wasm_blade.cfg --action=clobber oakland
 
-run_spec:
+run_spec: build_spec
 	sh cp_spec_data_into_tmp.sh 
 	cd sfi-spectre-spec && source shrc && cd config && \
 	runspec --config=wasm_lucet.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
