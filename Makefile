@@ -84,14 +84,14 @@ pull: $(DIRS)
 libnsl:
 	git clone https://github.com/thkukuk/libnsl
 
-libnsl/build/libnsl.so: libnsl
+libnsl/build/lib/libnsl.so: libnsl
 	cd ./libnsl && \
 	autoreconf -fi && \
 	./configure --prefix "$(CURR_DIR)/libnsl/build" && \
 	make -j8 build && \
 	make install
 
-libnsl/build/lib/libnsl.so.1: libnsl/build/libnsl.so
+libnsl/build/lib/libnsl.so.1: libnsl/build/lib/libnsl.so
 	cp $< $@
 
 sfi-spectre-spec: libnsl/build/lib/libnsl.so.1
