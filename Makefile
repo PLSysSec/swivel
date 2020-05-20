@@ -106,7 +106,7 @@ run_spec:
 	runspec --config=wasm_blade.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
 	runspec --config=wasm_sfi_noblade.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
 	runspec --config=wasm_cet_noblade.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
-	python3 sfi-spectre-testing/scripts/spec_stats.py sfi-spectre-spec/result 8 sfi-spectre-spec/result && \
+	python3 sfi-spectre-testing/scripts/spec_stats.py sfi-spectre-spec/result 8 sfi-spectre-spec/result
 	mv sfi-spectre-spec/result/ benchmarks/spec_$(shell date --iso=seconds)
 
 out/rust_build/bin/rustc:
