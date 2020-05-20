@@ -15,7 +15,7 @@ bootstrap:
 	if [ -x "$(shell command -v apt)" ]; then \
 		sudo apt -y install curl cmake msr-tools cpuid cpufrequtils; \
 	elif [ -x "$(shell command -v dnf)" ]; then \
-		sudo dnf -y install curl cmake msr-tools cpuid cpufrequtils; \
+		sudo dnf -y install curl cmake msr-tools cpuid cpufrequtils libtirpc-devel; \
 	else \
 		echo "Unknown installer. apt/dnf not found"; \
 		exit 1; \
@@ -81,9 +81,22 @@ pull: $(DIRS)
 	cd lucet-spectre && git pull --recurse-submodules
 	cd sfi-spectre-testing && git pull --recurse-submodules
 
-sfi-spectre-spec:
+libnsl:
+	git clone https://github.com/thkukuk/libnsl
+
+libnsl/build/libnsl.so: libnsl
+	cd ./libnsl && \
+	autoreconf -fi && \
+	./configure --prefix "./build" && \
+	make -j8 build && \
+	make install
+
+libnsl/build/lib/libnsl.so.1: libnsl/build/libnsl.so
+	cp $< $@
+
+sfi-spectre-spec: libnsl/build/lib/libnsl.so.1
 	git clone git@github.com:PLSysSec/sfi-spectre-spec.git
-	cd sfi-spectre-spec && SPEC_INSTALL_NOCHECK=1 SPEC_FORCE_INSTALL=1 sh install.sh -f
+	cd sfi-spectre-spec && LD_LIBRARY_PATH="$(CURR_DIR)/libnsl/build/lib/" SPEC_INSTALL_NOCHECK=1 SPEC_FORCE_INSTALL=1 sh install.sh -f
 
 build_spec: sfi-spectre-spec
 	cd sfi-spectre-spec && source shrc && \
@@ -112,10 +125,10 @@ run_spec: build_spec
 	runspec --config=wasm_loadlfence.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
 	runspec --config=wasm_strawman.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
 	runspec --config=wasm_sfi.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
-	runspec --config=wasm_cet.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
+	runspec --config=wasm_cet.cfg --iterations=1 --noreportable --size=ref --wasmcet oakland && \
 	runspec --config=wasm_blade.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
 	runspec --config=wasm_sfi_noblade.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
-	runspec --config=wasm_cet_noblade.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
+	runspec --config=wasm_cet_noblade.cfg --iterations=1 --noreportable --size=ref --wasmcet oakland && \
 	python3 sfi-spectre-testing/scripts/spec_stats.py sfi-spectre-spec/result 8 sfi-spectre-spec/result
 	mv sfi-spectre-spec/result/ benchmarks/spec_$(shell date --iso=seconds)
 
