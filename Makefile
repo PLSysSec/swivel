@@ -87,7 +87,7 @@ libnsl:
 libnsl/build/libnsl.so: libnsl
 	cd ./libnsl && \
 	autoreconf -fi && \
-	./configure --prefix "./build" && \
+	./configure --prefix "$(CURR_DIR)/libnsl/build" && \
 	make -j8 build && \
 	make install
 
