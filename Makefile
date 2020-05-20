@@ -1,11 +1,10 @@
 .NOTPARALLEL:
-.PHONY : build min_build pull clean get_source test build_spec run_spec build_sightglass run_sightglass build_sightglass_nocet run_sightglass_nocet
+.PHONY : build build_nocet pull clean get_source test test_nocet build_spec run_spec build_sightglass run_sightglass build_sightglass_nocet run_sightglass_nocet
 
 .DEFAULT_GOAL := build
 
 SHELL := /bin/bash
 
-MIN_DIRS=lucet-spectre sfi-spectre-testing
 DIRS=rustc-cet lucet-spectre sfi-spectre-testing rlbox_spectre_sandboxing_api rlbox_lucet_spectre_sandbox
 
 CURR_DIR := $(shell realpath ./)
@@ -82,11 +81,6 @@ pull: $(DIRS)
 	cd lucet-spectre && git pull --recurse-submodules
 	cd sfi-spectre-testing && git pull --recurse-submodules
 
-min_pull: $(MIN_DIRS)
-	git pull
-	cd lucet-spectre && git pull --recurse-submodules
-	cd sfi-spectre-testing && git pull --recurse-submodules
-
 sfi-spectre-spec:
 	git clone git@github.com:PLSysSec/sfi-spectre-spec.git
 	cd sfi-spectre-spec && SPEC_INSTALL_NOCHECK=1 SPEC_FORCE_INSTALL=1 sh install.sh -f
@@ -113,6 +107,7 @@ run_spec:
 	runspec --config=wasm_sfi_noblade.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
 	runspec --config=wasm_cet_noblade.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
 	python3 sfi-spectre-testing/scripts/spec_stats.py
+	mv sfi-spectre-spec/result/ benchmarks/spec_$(shell date --iso=seconds)
 
 out/rust_build/bin/rustc:
 	mkdir -p out/rust_build
@@ -128,14 +123,20 @@ build: install_deps out/rust_build/bin/rustc
 		CARGO_TARGET_DIR="${CURR_DIR}/lucet-spectre/target-cet" \
 		cargo +rust-cet build
 	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build
-	$(MAKE) -C sfi-spectre-testing build -j8
+	REALLY_USE_CET=1 $(MAKE) -C sfi-spectre-testing build -j8
 
-min_build: $(MIN_DIRS)
+build_nocet: install_deps
 	mkdir -p ./out
 	cd lucet-spectre && cargo build
+	cp -r lucet-spectre/target lucet-spectre/target-cet
+	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build
 	$(MAKE) -C sfi-spectre-testing build -j8
 
 test:
+	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build check
+	REALLY_USE_CET=1 $(MAKE) -C sfi-spectre-testing test
+
+test_nocet:
 	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build check
 	$(MAKE) -C sfi-spectre-testing test
 
