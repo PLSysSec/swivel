@@ -99,6 +99,7 @@ sfi-spectre-spec: libnsl/build/lib/libnsl.so.1
 	cd sfi-spectre-spec && LD_LIBRARY_PATH="$(CURR_DIR)/libnsl/build/lib/" SPEC_INSTALL_NOCHECK=1 SPEC_FORCE_INSTALL=1 sh install.sh -f
 
 build_spec: sfi-spectre-spec
+	export LD_LIBRARY_PATH="$(CURR_DIR)/libnsl/build/lib/" && \
 	cd sfi-spectre-spec && source shrc && \
 	cd config && \
 	runspec --config=wasm_lucet.cfg --action=clobber oakland && \
@@ -119,6 +120,7 @@ build_spec: sfi-spectre-spec
 	runspec --config=wasm_blade.cfg --action=clobber oakland
 
 run_spec: build_spec
+	export LD_LIBRARY_PATH="$(CURR_DIR)/libnsl/build/lib/" && \
 	sh cp_spec_data_into_tmp.sh 
 	cd sfi-spectre-spec && source shrc && cd config && \
 	runspec --config=wasm_lucet.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
