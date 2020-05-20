@@ -1,5 +1,5 @@
 .NOTPARALLEL:
-.PHONY : build min_build pull clean get_source test build_spec run_spec build_sightglass run_sightglass build_sightglass_nocet run_sightglass_nocet
+.PHONY : build min_build pull clean get_source test test_nocet build_spec run_spec build_sightglass run_sightglass build_sightglass_nocet run_sightglass_nocet
 
 .DEFAULT_GOAL := build
 
@@ -135,6 +135,10 @@ min_build: $(MIN_DIRS)
 	$(MAKE) -C sfi-spectre-testing build -j8
 
 test:
+	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build check
+	REALLY_USE_CET=1 $(MAKE) -C sfi-spectre-testing test
+
+test_nocet:
 	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build check
 	$(MAKE) -C sfi-spectre-testing test
 
