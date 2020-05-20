@@ -88,12 +88,22 @@ sfi-spectre-spec:
 build_spec: sfi-spectre-spec
 	cd sfi-spectre-spec && source shrc && \
 	cd config && \
+	runspec --config=wasm_lucet.cfg --action=clobber oakland && \
 	runspec --config=wasm_lucet.cfg --action=build oakland && \
+	runspec --config=wasm_loadlfence.cfg --action=clobber oakland && \
 	runspec --config=wasm_loadlfence.cfg --action=build oakland && \
 	runspec --config=wasm_strawman.cfg --action=build oakland && \
+	runspec --config=wasm_strawman.cfg --action=clobber oakland && \
 	runspec --config=wasm_sfi.cfg --action=build oakland && \
+	runspec --config=wasm_sfi.cfg --action=clobber oakland && \
 	runspec --config=wasm_cet.cfg --action=build oakland && \
-	runspec --config=wasm_blade.cfg --action=build oakland
+	runspec --config=wasm_cet.cfg --action=clobber oakland && \
+	runspec --config=wasm_sfi_noblade.cfg --action=build oakland && \
+	runspec --config=wasm_sfi_noblade.cfg --action=clobber oakland && \
+	runspec --config=wasm_cet_noblade.cfg --action=build oakland && \
+	runspec --config=wasm_cet_noblade.cfg --action=clobber oakland && \
+	runspec --config=wasm_blade.cfg --action=build oakland && \
+	runspec --config=wasm_blade.cfg --action=clobber oakland
 
 run_spec:
 	sh cp_spec_data_into_tmp.sh 
