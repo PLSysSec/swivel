@@ -15,7 +15,7 @@ bootstrap:
 	if [ -x "$(shell command -v apt)" ]; then \
 		sudo apt -y install curl cmake msr-tools cpuid cpufrequtils; \
 	elif [ -x "$(shell command -v dnf)" ]; then \
-		sudo dnf -y install curl cmake msr-tools cpuid cpufrequtils libtirpc-devel; \
+		sudo dnf -y install curl cmake msr-tools cpuid cpufrequtils; \
 	else \
 		echo "Unknown installer. apt/dnf not found"; \
 		exit 1; \
