@@ -5,11 +5,13 @@
 
 SHELL := /bin/bash
 
-DIRS=rustc-cet lucet-spectre sfi-spectre-testing rlbox_spectre_sandboxing_api rlbox_lucet_spectre_sandbox
+DIRS=rustc-cet lucet-spectre sfi-spectre-testing rlbox_spectre_sandboxing_api rlbox_lucet_spectre_sandbox btbflush-module
 
 CURR_DIR := $(shell realpath ./)
 
 LAST_CPU_CORE := $(shell echo "$$(( $$(nproc --all) - 1 ))" )
+
+FOUND_BTBMODULE := $(shell lsmod | grep "cool")
 
 bootstrap:
 	if [ -x "$(shell command -v apt)" ]; then \
@@ -68,6 +70,16 @@ rlbox_lucet_spectre_sandbox:
 rustc-cet:
 	git clone git@github.com:PLSysSec/rustc-cet.git $@
 	cd $@ && git submodule update --init --recursive
+
+btbflush-module:
+	git clone git@github.com:PLSysSec/btbflush-module.git $@
+
+install_btbflush: btbflush-module
+	# make -C does not work below
+	if [ -z "$(FOUND_BTBMODULE)" ]; then  \
+		echo "Installing BTB flush module" && \
+		cd ./btbflush-module/module && make && make insert; \
+	fi
 
 get_source: $(DIRS)
 
@@ -199,7 +211,7 @@ run_sightglass_nocet:
 build_transitions_benchmark:
 	$(MAKE) -C sfi-spectre-testing build_transitions -j8
 
-run_transitions_benchmark:
+run_transitions_benchmark: install_btbflush
 	$(MAKE) -C sfi-spectre-testing run_transitions
 
 clean:
