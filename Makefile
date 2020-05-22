@@ -1,5 +1,10 @@
 .NOTPARALLEL:
-.PHONY : build build_nocet pull clean get_source test test_nocet build_spec run_spec build_sightglass run_sightglass build_sightglass_nocet run_sightglass_nocet build_transitions_benchmark run_transitions_benchmark build_cdn_benchmark run_cdn_benchmark_server run_cdn_benchmark_client
+.PHONY : build build_nocet pull clean get_source \
+test test_nocet \
+build_spec run_spec \
+build_sightglass run_sightglass build_sightglass_nocet run_sightglass_nocet \
+build_transitions_benchmark run_transitions_benchmark \
+build_cdn_benchmark_nocet run_cdn_benchmark_server run_cdn_benchmark_client
 
 .DEFAULT_GOAL := build
 
@@ -226,8 +231,9 @@ build_transitions_benchmark:
 run_transitions_benchmark: install_btbflush
 	$(MAKE) -C sfi-spectre-testing run_transitions
 
-build_cdn_benchmark: wasm_compartments node_modules
-	cd ./wasm_compartments && cargo build && \
+build_cdn_benchmark_nocet: wasm_compartments node_modules
+	cd ./wasm_compartments && \
+	cargo build --release && \
 	make modules
 
 run_cdn_benchmark_server:
