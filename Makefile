@@ -1,5 +1,5 @@
 .NOTPARALLEL:
-.PHONY : build build_nocet pull clean get_source test test_nocet build_spec run_spec build_sightglass run_sightglass build_sightglass_nocet run_sightglass_nocet
+.PHONY : build build_nocet pull clean get_source test test_nocet build_spec run_spec build_sightglass run_sightglass build_sightglass_nocet run_sightglass_nocet build_transitions_benchmark run_transitions_benchmark
 
 .DEFAULT_GOAL := build
 
@@ -195,6 +195,12 @@ run_sightglass_nocet:
 		sudo cpufreq-set -c $(LAST_CPU_CORE) --min 2700MHz --max 2700MHz; \
 	fi
 	$(MAKE) -C lucet-spectre/benchmarks/shootout run
+
+build_transitions_benchmark:
+	$(MAKE) -C sfi-spectre-testing build_transitions -j8
+
+run_transitions_benchmark:
+	$(MAKE) -C sfi-spectre-testing run_transitions
 
 clean:
 	-cd lucet-spectre && cargo clean
