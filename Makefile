@@ -1,11 +1,11 @@
 .NOTPARALLEL:
-.PHONY : build build_nocet pull clean get_source test test_nocet build_spec run_spec build_sightglass run_sightglass build_sightglass_nocet run_sightglass_nocet build_transitions_benchmark run_transitions_benchmark
+.PHONY : build build_nocet pull clean get_source test test_nocet build_spec run_spec build_sightglass run_sightglass build_sightglass_nocet run_sightglass_nocet build_transitions_benchmark run_transitions_benchmark build_cdn_benchmark run_cdn_benchmark_server run_cdn_benchmark_client
 
 .DEFAULT_GOAL := build
 
 SHELL := /bin/bash
 
-DIRS=rustc-cet lucet-spectre sfi-spectre-testing rlbox_spectre_sandboxing_api rlbox_lucet_spectre_sandbox btbflush-module
+DIRS=rustc-cet lucet-spectre sfi-spectre-testing rlbox_spectre_sandboxing_api rlbox_lucet_spectre_sandbox btbflush-module wasm_compartments node_modules
 
 CURR_DIR := $(shell realpath ./)
 
@@ -15,9 +15,9 @@ FOUND_BTBMODULE := $(shell lsmod | grep "cool")
 
 bootstrap:
 	if [ -x "$(shell command -v apt)" ]; then \
-		sudo apt -y install curl cmake msr-tools cpuid cpufrequtils; \
+		sudo apt -y install curl cmake msr-tools cpuid cpufrequtils npm; \
 	elif [ -x "$(shell command -v dnf)" ]; then \
-		sudo dnf -y install curl cmake msr-tools cpuid cpufrequtils; \
+		sudo dnf -y install curl cmake msr-tools cpuid cpufrequtils npm; \
 	else \
 		echo "Unknown installer. apt/dnf not found"; \
 		exit 1; \
@@ -25,6 +25,7 @@ bootstrap:
 	if [ ! -x "$(shell command -v rustc)" ] ; then \
 		curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y; \
 	fi
+	rustup target add wasm32-wasi
 	if [ ! -d /opt/wasi-sdk/ ]; then \
 		wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-10/wasi-sdk-10.0-linux.tar.gz -P /tmp/ && \
 		tar -xzf /tmp/wasi-sdk-10.0-linux.tar.gz && \
@@ -36,6 +37,7 @@ bootstrap:
 		sudo tar -xzf /tmp/binaryen-version_90-x86_64-linux.tar.gz -C /opt/binaryen && \
 		sudo mv /opt/binaryen/binaryen-version_90 /opt/binaryen/bin; \
 	fi
+	npm install autocannon
 
 	@echo "--------------------------------------------------------------------------"
 	@echo "Attention!!!!!!:"
@@ -81,6 +83,13 @@ install_btbflush: btbflush-module
 		cd ./btbflush-module/module && make && make insert; \
 	fi
 
+wasm_compartments:
+	git clone git@github.com:PLSysSec/wasm_compartments.git $@
+	cd $@ && git submodule update --init --recursive
+
+node_modules:
+	npm install autocannon
+
 get_source: $(DIRS)
 
 install_deps: $(DIRS)
@@ -92,6 +101,9 @@ pull: $(DIRS)
 	cd rlbox_lucet_spectre_sandbox && git pull --recurse-submodules
 	cd lucet-spectre && git pull --recurse-submodules
 	cd sfi-spectre-testing && git pull --recurse-submodules
+	cd rustc-cet && git pull --recurse-submodules
+	cd btbflush-module && git pull
+	cd wasm_compartments && git pull --recurse-submodules
 
 libnsl:
 	git clone https://github.com/thkukuk/libnsl
@@ -213,6 +225,18 @@ build_transitions_benchmark:
 
 run_transitions_benchmark: install_btbflush
 	$(MAKE) -C sfi-spectre-testing run_transitions
+
+build_cdn_benchmark: wasm_compartments node_modules
+	cd ./wasm_compartments && cargo build && \
+	make modules
+
+run_cdn_benchmark_server:
+	cd ./wasm_compartments && cargo run
+
+run_cdn_benchmark_client:
+	node ./node_modules/autocannon/autocannon.js -j -i wasm_compartments/request.json http://127.0.0.1:3000 
+	# disable logging for now
+	# 2>&1 | tee ./benchmarks/cdn_$(shell date --iso=seconds)
 
 clean:
 	-cd lucet-spectre && cargo clean
