@@ -252,10 +252,10 @@ build_cdn_benchmark_nocet: wasm_compartments node_modules build_lucet_nocet
 run_cdn_benchmark_server:
 	cd ./wasm_compartments && \
 	CARGO_TARGET_DIR="${CURR_DIR}/wasm_compartments/target-cet" \
-	cargo run --release
+	./wasm_compartments/target-cet/release/server
 
 run_cdn_benchmark_server_nocet:
-	cd ./wasm_compartments && cargo run --release
+	./wasm_compartments/target/release/server
 
 run_cdn_benchmark_client:
 	./wasm_compartments/spectre_testfib.sh fib_c_spectre_cet
