@@ -261,7 +261,7 @@ run_cdn_benchmark_client:
 	./wasm_compartments/spectre_testfib.sh fib_c_spectre_cet
 	./wasm_compartments/spectre_testfib.sh fib_c_spectre_cet_no_cross_sbx
 	@echo "CET Server tests passed"
-	node ./node_modules/autocannon/autocannon.js -j -i wasm_compartments/request.json http://127.0.0.1:3000 
+	# node ./node_modules/autocannon/autocannon.js -j -i wasm_compartments/request.json http://127.0.0.1:3000 
 	# disable logging for now
 	# 2>&1 | tee ./benchmarks/cdn_$(shell date --iso=seconds)
 
