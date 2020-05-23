@@ -4,7 +4,8 @@ test test_nocet \
 build_spec run_spec \
 build_sightglass run_sightglass build_sightglass_nocet run_sightglass_nocet \
 build_transitions_benchmark run_transitions_benchmark \
-build_cdn_benchmark_nocet run_cdn_benchmark_server run_cdn_benchmark_client
+build_cdn_benchmark build_cdn_benchmark_nocet run_cdn_benchmark_server run_cdn_benchmark_server_nocet \
+run_cdn_benchmark_client run_cdn_benchmark_client_nocet
 
 .DEFAULT_GOAL := build
 
@@ -231,20 +232,39 @@ build_transitions_benchmark:
 run_transitions_benchmark: install_btbflush
 	$(MAKE) -C sfi-spectre-testing run_transitions
 
-build_cdn_benchmark_nocet: wasm_compartments node_modules
+build_cdn_benchmark: wasm_compartments node_modules
+	cd ./wasm_compartments && cargo build --release
 	cd ./wasm_compartments && \
-	cargo build --release && \
-	make modules
+		CFLAGS="-fcf-protection=full" \
+		CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER="$(CURR_DIR)/rustc-cet/rust_cet_linker" \
+		CARGO_TARGET_DIR="${CURR_DIR}/wasm_compartments/target-cet" \
+		cargo +rust-cet build --release
+	cd ./wasm_compartments && make modules
+
+build_cdn_benchmark_nocet: wasm_compartments node_modules
+	cd ./wasm_compartments && cargo build --release
+	cd ./wasm_compartments && make modules
 
 run_cdn_benchmark_server:
-	cd ./wasm_compartments && cargo run
+	cd ./wasm_compartments && cargo run --release
+
+run_cdn_benchmark_server_nocet:
+	cd ./wasm_compartments && \
+	CARGO_TARGET_DIR="${CURR_DIR}/wasm_compartments/target-cet" \
+	cargo run --release
 
 run_cdn_benchmark_client:
+	./wasm_compartments/spectre_testfib.sh fib_c_spectre_cet
+	./wasm_compartments/spectre_testfib.sh fib_c_spectre_cet_no_cross_sbx
+	@echo "CET Server tests passed"
+	node ./node_modules/autocannon/autocannon.js -j -i wasm_compartments/request.json http://127.0.0.1:3000 
+	# disable logging for now
+	# 2>&1 | tee ./benchmarks/cdn_$(shell date --iso=seconds)
+
+run_cdn_benchmark_client_nocet:
 	./wasm_compartments/spectre_testfib.sh fib_c_stock
 	./wasm_compartments/spectre_testfib.sh fib_c_spectre_sfi
 	./wasm_compartments/spectre_testfib.sh fib_c_spectre_sfi_no_cross_sbx
-	./wasm_compartments/spectre_testfib.sh fib_c_spectre_cet
-	./wasm_compartments/spectre_testfib.sh fib_c_spectre_cet_no_cross_sbx
 	@echo "Server tests passed"
 	node ./node_modules/autocannon/autocannon.js -j -i wasm_compartments/request.json http://127.0.0.1:3000 
 	# disable logging for now
