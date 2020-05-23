@@ -1,6 +1,7 @@
 .NOTPARALLEL:
 .PHONY : build build_nocet pull clean get_source \
 test test_nocet \
+build_lucet build_lucet_nocet \
 build_spec run_spec \
 build_sightglass run_sightglass build_sightglass_nocet run_sightglass_nocet \
 build_transitions_benchmark run_transitions_benchmark \
@@ -169,14 +170,24 @@ out/rust_build/bin/rustc:
 	cd ./rustc-cet && ./x.py build && ./x.py install
 	rustup toolchain link rust-cet ./out/rust_build
 
-build: install_deps out/rust_build/bin/rustc
-	mkdir -p ./out
+build_lucet_nocet:
 	cd lucet-spectre && cargo build
+	cd lucet-spectre && cargo build --release
+
+build_lucet: out/rust_build/bin/rustc build_lucet_nocet
 	cd lucet-spectre && \
 		CFLAGS="-fcf-protection=full" \
 		CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER="$(CURR_DIR)/rustc-cet/rust_cet_linker" \
 		CARGO_TARGET_DIR="${CURR_DIR}/lucet-spectre/target-cet" \
 		cargo +rust-cet build
+	cd lucet-spectre && \
+		CFLAGS="-fcf-protection=full" \
+		CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER="$(CURR_DIR)/rustc-cet/rust_cet_linker" \
+		CARGO_TARGET_DIR="${CURR_DIR}/lucet-spectre/target-cet" \
+		cargo +rust-cet build --release
+
+build: install_deps build_lucet
+	mkdir -p ./out
 	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build
 	REALLY_USE_CET=1 $(MAKE) -C sfi-spectre-testing build -j8
 
@@ -195,13 +206,7 @@ test_nocet:
 	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build check
 	$(MAKE) -C sfi-spectre-testing test
 
-build_sightglass: install_deps out/rust_build/bin/rustc
-	cd lucet-spectre && cargo build --release
-	cd lucet-spectre && \
-		CFLAGS="-fcf-protection=full" \
-		CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER="$(CURR_DIR)/rustc-cet/rust_cet_linker" \
-		CARGO_TARGET_DIR="${CURR_DIR}/lucet-spectre/target-cet" \
-		cargo +rust-cet build --release
+build_sightglass: install_deps build_lucet
 	$(MAKE) -C lucet-spectre/benchmarks/shootout clean
 	REALLY_USE_CET=1 $(MAKE) -C lucet-spectre/benchmarks/shootout build -j8
 
@@ -213,8 +218,7 @@ run_sightglass:
 	fi
 	REALLY_USE_CET=1 $(MAKE) -C lucet-spectre/benchmarks/shootout run
 
-build_sightglass_nocet: install_deps
-	cd lucet-spectre && cargo build --release
+build_sightglass_nocet: install_deps build_lucet_nocet
 	$(MAKE) -C lucet-spectre/benchmarks/shootout clean
 	$(MAKE) -C lucet-spectre/benchmarks/shootout build -j8
 
@@ -232,18 +236,18 @@ build_transitions_benchmark:
 run_transitions_benchmark: install_btbflush
 	$(MAKE) -C sfi-spectre-testing run_transitions
 
-build_cdn_benchmark: wasm_compartments node_modules
+build_cdn_benchmark: wasm_compartments node_modules build_lucet out/rust_build/bin/rustc
 	cd ./wasm_compartments && cargo build --release
 	cd ./wasm_compartments && \
 		CFLAGS="-fcf-protection=full" \
 		CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER="$(CURR_DIR)/rustc-cet/rust_cet_linker" \
 		CARGO_TARGET_DIR="${CURR_DIR}/wasm_compartments/target-cet" \
 		cargo +rust-cet build --release
-	cd ./wasm_compartments && make modules
+	cd ./wasm_compartments && make modules -j8
 
-build_cdn_benchmark_nocet: wasm_compartments node_modules
+build_cdn_benchmark_nocet: wasm_compartments node_modules build_lucet_nocet
 	cd ./wasm_compartments && cargo build --release
-	cd ./wasm_compartments && make modules
+	cd ./wasm_compartments && make modules -j8
 
 run_cdn_benchmark_server:
 	cd ./wasm_compartments && cargo run --release
