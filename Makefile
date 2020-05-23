@@ -28,7 +28,7 @@ bootstrap:
 		exit 1; \
 	fi
 	if [ ! -x "$(shell command -v rustc)" ] ; then \
-		curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y; \
+		curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y; \
 	fi
 	rustup target add wasm32-wasi
 	if [ ! -d /opt/wasi-sdk/ ]; then \
@@ -240,6 +240,12 @@ run_cdn_benchmark_server:
 	cd ./wasm_compartments && cargo run
 
 run_cdn_benchmark_client:
+	./wasm_compartments/spectre_testfib.sh fib_c_stock
+	./wasm_compartments/spectre_testfib.sh fib_c_spectre_sfi
+	./wasm_compartments/spectre_testfib.sh fib_c_spectre_sfi_no_cross_sbx
+	./wasm_compartments/spectre_testfib.sh fib_c_spectre_cet
+	./wasm_compartments/spectre_testfib.sh fib_c_spectre_cet_no_cross_sbx
+	@echo "Server tests passed"
 	node ./node_modules/autocannon/autocannon.js -j -i wasm_compartments/request.json http://127.0.0.1:3000 
 	# disable logging for now
 	# 2>&1 | tee ./benchmarks/cdn_$(shell date --iso=seconds)
