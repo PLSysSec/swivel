@@ -293,18 +293,20 @@ run_cdn_benchmark_client:
 	./wasm_compartments/spectre_testfib.sh fib_c_spectre_cet
 	./wasm_compartments/spectre_testfib.sh fib_c_spectre_cet_no_cross_sbx
 	@echo "CET Server tests passed"
-	# node ./node_modules/autocannon/autocannon.js -j -i wasm_compartments/request.json http://127.0.0.1:3000 
-	# disable logging for now
-	# 2>&1 | tee ./benchmarks/cdn_$(shell date --iso=seconds)
+	cd ./wasm_compartments && node request_spectre_test.js --cet
+	mkdir -p ./benchmarks/current_macro_cet
+	mv ./wasm_compartments/results.json ./benchmarks/current_macro_cet/cet_results.json
+	mv ./benchmarks/current_macro_cet ./benchmarks/macro_cet_$(shell date --iso=seconds)
 
 run_cdn_benchmark_client_nocet:
 	./wasm_compartments/spectre_testfib.sh fib_c_stock
 	./wasm_compartments/spectre_testfib.sh fib_c_spectre_sfi
 	./wasm_compartments/spectre_testfib.sh fib_c_spectre_sfi_no_cross_sbx
 	@echo "Server tests passed"
-	node ./node_modules/autocannon/autocannon.js -j -i wasm_compartments/request.json http://127.0.0.1:3000 
-	# disable logging for now
-	# 2>&1 | tee ./benchmarks/cdn_$(shell date --iso=seconds)
+	cd ./wasm_compartments && node request_spectre_test.js --nocet
+	mkdir -p ./benchmarks/current_macro_nocet
+	mv ./wasm_compartments/results.json ./benchmarks/current_macro_nocet/nocet_results.json
+	mv ./benchmarks/current_macro_nocet ./benchmarks/macro_nocet_$(shell date --iso=seconds)
 
 clean:
 	-cd lucet-spectre && cargo clean
