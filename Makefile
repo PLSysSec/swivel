@@ -3,6 +3,8 @@
 test test_nocet \
 build_lucet build_lucet_nocet \
 build_spec run_spec \
+build_spec2017 run_spec2017 \
+run_spec_all \
 build_sightglass run_sightglass build_sightglass_nocet run_sightglass_nocet \
 build_transitions_benchmark run_transitions_benchmark \
 build_cdn_benchmark build_cdn_benchmark_nocet run_cdn_benchmark_server run_cdn_benchmark_server_nocet \
@@ -196,6 +198,7 @@ run_spec2017: build_spec2017
 	runcpu --config=wasm_sfi_noblade.cfg --action=run --wasm --iterations=1 --noreportable --define cores=1 osdi && \
 	runcpu --config=wasm_cet_noblade.cfg --action=run --wasmcet --iterations=1 --noreportable --define cores=1 osdi
 
+run_spec_all: run_spec run_spec2017
 
 out/rust_build/bin/rustc:
 	mkdir -p out/rust_build
