@@ -165,6 +165,38 @@ run_spec: build_spec
 	python3 sfi-spectre-testing/scripts/spec_stats.py sfi-spectre-spec/result 8 sfi-spectre-spec/result
 	mv sfi-spectre-spec/result/ benchmarks/spec_$(shell date --iso=seconds)
 
+build_spec2017:
+	cd spec2017 && source shrc && cd config && \
+	runcpu --config=wasm_lucet.cfg --action=clobber --define cores=1 osdi && \
+	runcpu --config=wasm_loadlfence.cfg --action=clobber --define cores=1 osdi && \
+        runcpu --config=wasm_strawman.cfg --action=clobber --define cores=1 osdi && \
+        runcpu --config=wasm_sfi.cfg --action=clobber --define cores=1 osdi && \
+        runcpu --config=wasm_cet.cfg --action=clobber --define cores=1 osdi && \
+        runcpu --config=wasm_sfi_noblade.cfg --action=clobber --define cores=1 osdi && \
+        runcpu --config=wasm_cet_noblade.cfg --action=clobber --define cores=1 osdi && \
+        runcpu --config=wasm_blade.cfg --action=clobber --define cores=1 osdi && \
+	runcpu --config=wasm_lucet.cfg --action=build --define cores=1 osdi && \
+	runcpu --config=wasm_loadlfence.cfg --action=build --define cores=1 osdi && \
+        runcpu --config=wasm_strawman.cfg --action=build --define cores=1 osdi && \
+        runcpu --config=wasm_sfi.cfg --action=build --define cores=1 osdi && \
+        runcpu --config=wasm_cet.cfg --action=build --define cores=1 osdi && \
+        runcpu --config=wasm_sfi_noblade.cfg --action=build --define cores=1 osdi && \
+        runcpu --config=wasm_cet_noblade.cfg --action=build --define cores=1 osdi && \
+        runcpu --config=wasm_blade.cfg --action=build --define cores=1 osdi
+
+
+run_spec2017: build_spec2017
+	cd spec2017 && source shrc && cd config && \
+	runcpu --config=wasm_lucet.cfg --action=run --wasm --iterations=1 --noreportable --define cores=1 osdi && \
+	runcpu --config=wasm_loadlfence.cfg --action=run --wasm --iterations=1 --noreportable --define cores=1 osdi && \
+	runcpu --config=wasm_strawman.cfg --action=run --wasm --iterations=1 --noreportable --define cores=1 osdi && \
+	runcpu --config=wasm_sfi.cfg --action=run --wasm --iterations=1 --noreportable --define cores=1 osdi && \
+	runcpu --config=wasm_cet.cfg --action=run --wasmcet --iterations=1 --noreportable --define cores=1 osdi && \
+	runcpu --config=wasm_blade.cfg --action=run --wasm --iterations=1 --noreportable --define cores=1 osdi && \
+	runcpu --config=wasm_sfi_noblade.cfg --action=run --wasm --iterations=1 --noreportable --define cores=1 osdi && \
+	runcpu --config=wasm_cet_noblade.cfg --action=run --wasmcet --iterations=1 --noreportable --define cores=1 osdi
+
+
 out/rust_build/bin/rustc:
 	mkdir -p out/rust_build
 	cd ./rustc-cet && ./x.py build && ./x.py install
