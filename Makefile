@@ -7,14 +7,14 @@ build_spec2017 run_spec2017 \
 run_spec_all \
 build_sightglass run_sightglass build_sightglass_nocet run_sightglass_nocet \
 build_transitions_benchmark run_transitions_benchmark \
-build_cdn_benchmark build_cdn_benchmark_nocet run_cdn_benchmark_server run_cdn_benchmark_server_nocet \
-run_cdn_benchmark_client run_cdn_benchmark_client_nocet
+build_macro_benchmark build_macro_benchmark_nocet run_macro_benchmark_server run_macro_benchmark_server_nocet \
+run_macro_benchmark_client run_macro_benchmark_client_nocet
 
 .DEFAULT_GOAL := build
 
 SHELL := /bin/bash
 
-DIRS=rustc-cet lucet-spectre sfi-spectre-testing rlbox_spectre_sandboxing_api rlbox_lucet_spectre_sandbox btbflush-module wasm_compartments node_modules
+DIRS=rustc-cet lucet-spectre sfi-spectre-testing rlbox_spectre_sandboxing_api rlbox_lucet_spectre_sandbox btbflush-module spectresfi_webserver node_modules
 
 CURR_DIR := $(shell realpath ./)
 
@@ -92,9 +92,8 @@ install_btbflush: btbflush-module
 		cd ./btbflush-module/module && make && make insert; \
 	fi
 
-wasm_compartments:
-	git clone git@github.com:PLSysSec/wasm_compartments.git $@
-	cd $@ && git submodule update --init --recursive
+spectresfi_webserver:
+	git clone git@github.com:PLSysSec/spectresfi_webserver.git $@
 
 node_modules:
 	npm install autocannon
@@ -112,7 +111,7 @@ pull: $(DIRS)
 	cd sfi-spectre-testing && git pull --recurse-submodules
 	cd rustc-cet && git pull --recurse-submodules
 	cd btbflush-module && git pull
-	cd wasm_compartments && git pull --recurse-submodules
+	cd spectresfi_webserver && git pull
 
 libnsl:
 	git clone https://github.com/thkukuk/libnsl
@@ -271,44 +270,44 @@ build_transitions_benchmark:
 run_transitions_benchmark: install_btbflush
 	$(MAKE) -C sfi-spectre-testing run_transitions
 
-build_cdn_benchmark: wasm_compartments node_modules build_lucet out/rust_build/bin/rustc
-	cd ./wasm_compartments && cargo build --release
-	cd ./wasm_compartments && \
+build_macro_benchmark: spectresfi_webserver node_modules build_lucet out/rust_build/bin/rustc
+	cd ./spectresfi_webserver && cargo build --release
+	cd ./spectresfi_webserver && \
 		CFLAGS="-fcf-protection=full" \
 		CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER="$(CURR_DIR)/rustc-cet/rust_cet_linker" \
-		CARGO_TARGET_DIR="${CURR_DIR}/wasm_compartments/target-cet" \
+		CARGO_TARGET_DIR="${CURR_DIR}/spectresfi_webserver/target-cet" \
 		cargo +rust-cet build --release
-	cd ./wasm_compartments && make modules -j8
+	cd ./spectresfi_webserver/modules && make -j8
 
-build_cdn_benchmark_nocet: wasm_compartments node_modules build_lucet_nocet
-	cd ./wasm_compartments && cargo build --release
-	cd ./wasm_compartments && make modules -j8
+build_macro_benchmark_nocet: spectresfi_webserver node_modules build_lucet_nocet
+	cd ./spectresfi_webserver && cargo build --release
+	cd ./spectresfi_webserver/modules && make -j8
 
-run_cdn_benchmark_server:
-	cd ./wasm_compartments && \
-	CARGO_TARGET_DIR="${CURR_DIR}/wasm_compartments/target-cet"
-	./wasm_compartments/target-cet/release/server
+run_macro_benchmark_server:
+	cd ./spectresfi_webserver && \
+	CARGO_TARGET_DIR="${CURR_DIR}/spectresfi_webserver/target-cet"
+	./spectresfi_webserver/target-cet/release/spectresfi_webserver
 
-run_cdn_benchmark_server_nocet:
-	./wasm_compartments/target/release/server
+run_macro_benchmark_server_nocet:
+	./spectresfi_webserver/target/release/spectresfi_webserver
 
-run_cdn_benchmark_client:
-	./wasm_compartments/spectre_testfib.sh fib_c_spectre_cet
-	./wasm_compartments/spectre_testfib.sh fib_c_spectre_cet_no_cross_sbx
+run_macro_benchmark_client:
+	./spectresfi_webserver/spectre_testfib.sh spectre_cet
+	./spectresfi_webserver/spectre_testfib.sh spectre_cet_no_cross_sbx
 	@echo "CET Server tests passed"
-	cd ./wasm_compartments && node request_spectre_test.js --cet
+	cd ./spectresfi_webserver && node request_spectre_test.js --cet
 	mkdir -p ./benchmarks/current_macro_cet
-	mv ./wasm_compartments/results.json ./benchmarks/current_macro_cet/cet_results.json
+	mv ./spectresfi_webserver/results.json ./benchmarks/current_macro_cet/cet_results.json
 	mv ./benchmarks/current_macro_cet ./benchmarks/macro_cet_$(shell date --iso=seconds)
 
-run_cdn_benchmark_client_nocet:
-	./wasm_compartments/spectre_testfib.sh fib_c_stock
-	./wasm_compartments/spectre_testfib.sh fib_c_spectre_sfi
-	./wasm_compartments/spectre_testfib.sh fib_c_spectre_sfi_no_cross_sbx
+run_macro_benchmark_client_nocet:
+	./spectresfi_webserver/spectre_testfib.sh stock
+	./spectresfi_webserver/spectre_testfib.sh spectre_sfi
+	./spectresfi_webserver/spectre_testfib.sh spectre_sfi_no_cross_sbx
 	@echo "Server tests passed"
-	cd ./wasm_compartments && node request_spectre_test.js --nocet
+	cd ./spectresfi_webserver && node request_spectre_test.js --nocet
 	mkdir -p ./benchmarks/current_macro_nocet
-	mv ./wasm_compartments/results.json ./benchmarks/current_macro_nocet/nocet_results.json
+	mv ./spectresfi_webserver/results.json ./benchmarks/current_macro_nocet/nocet_results.json
 	mv ./benchmarks/current_macro_nocet ./benchmarks/macro_nocet_$(shell date --iso=seconds)
 
 clean:
