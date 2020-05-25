@@ -151,7 +151,7 @@ build_spec: sfi-spectre-spec
 	runspec --config=wasm_blade.cfg --action=build oakland && \
 	runspec --config=wasm_blade.cfg --action=clobber oakland
 
-run_spec: build_spec
+run_spec: build_spec install_btbflush
 	export LD_LIBRARY_PATH="$(CURR_DIR)/libnsl/build/lib/" && \
 	sh cp_spec_data_into_tmp.sh && \
 	cd sfi-spectre-spec && source shrc && cd config && \
@@ -186,7 +186,7 @@ build_spec2017:
         runcpu --config=wasm_blade.cfg --action=build --define cores=1 osdi
 
 
-run_spec2017: build_spec2017
+run_spec2017: build_spec2017 install_btbflush
 	cd spec2017 && source shrc && cd config && \
 	runcpu --config=wasm_lucet.cfg --action=run --wasm --iterations=1 --noreportable --define cores=1 osdi && \
 	runcpu --config=wasm_loadlfence.cfg --action=run --wasm --iterations=1 --noreportable --define cores=1 osdi && \
@@ -288,7 +288,7 @@ run_macro_benchmark_server:
 	CARGO_TARGET_DIR="${CURR_DIR}/spectresfi_webserver/target-cet"
 	./spectresfi_webserver/target-cet/release/spectresfi_webserver
 
-run_macro_benchmark_server_nocet:
+run_macro_benchmark_server_nocet: install_btbflush
 	./spectresfi_webserver/target/release/spectresfi_webserver
 
 run_macro_benchmark_client:
