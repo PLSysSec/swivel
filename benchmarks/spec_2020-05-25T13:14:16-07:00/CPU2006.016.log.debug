@@ -1,0 +1,3028 @@
+==============================================================================
+Debug log for CPU2006.  This file contains very detailed debugging
+output from the CPU2006 tools (as if "--verbose 99" had been specified) and is
+typically useful only to developers of the CPU2006 toolset.   
+
+For a successful run, this debug log will be removed automatically, unless you
+specify "--keeptmp" on the command line, or "keeptmp=1" in your config file.
+
+If you file a support request with cpu2006support@spec.org, you may be
+asked to submit this file.
+------------------------------------------------------------------------------
+
+Environment variables that should have been set or changed by shrc:
+SPEC: /home/ucsd/SpectreSandboxing/sfi-spectre-spec
+PATH: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin:/home/ucsd/.cargo/bin:/home/ucsd/.local/bin:/home/ucsd/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+SPECPERLLIB: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin:/home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/lib
+LD_LIBRARY_PATH: /home/ucsd/SpectreSandboxing/libnsl/build/lib/
+DYLD_LIBRARY_PATH: 
+LC_ALL: C
+LC_LANG: C
+SPECDB_PWD: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/config
+------------------------------------------------------------------------------
+
+Runspec's verbose version output:
+                 This is the SPEC CPU2006 benchmark tools suite.
+
+Version summary:
+    CPU2006 version: 1.1
+ Benchmarks version: 110
+      Tools version: 111
+    runspec version: 6152 ($Id: runspec 6152 2008-05-07 05:25:30Z cloyce $)
+
+Tools information:
+ Tools package installed: linux-suse101-AMD64
+ File locking method: fcntl(2) (probably network-safe)
+Mode |  UID  |  GID  |   Size  |    Modified Date   | Name
+0755 | 1004  | 1004  |  197376 | 17-May-2007 10:05:18 | specmake
+0755 | 1004  | 1004  | 1269511 | 17-May-2007 10:05:18 | specperl
+0755 | 1004  | 1004  |   25160 | 17-May-2007 10:05:18 | specinvoke
+0755 | 1004  | 1004  |   28176 | 17-May-2007 10:05:18 | specinvoke_pm
+0755 | 1004  | 1004  |   87352 | 17-May-2007 10:05:18 | specbzip2
+0755 | 1004  | 1004  |   20056 | 17-May-2007 10:05:18 | specmd5sum
+0755 | 1004  | 1004  |    7645 | 20-May-2020 23:47:26 | specdiff
+0755 | 1004  | 1004  |   86553 | 20-May-2020 23:47:26 | specpp
+0755 | 1004  | 1004  |  264960 | 17-May-2007 10:05:18 | specrxp
+0755 | 1004  | 1004  |  121915 | 20-May-2020 23:47:26 | runspec
+
+Version info for specinvoke (specinvoke): Version: 5000
+Version info for specmake (specmake): GNU Make 3.81
+Version info for specbzip2 (/home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specbzip2): bzip2 v1.0.3, 15-Feb-2005
+Version info for specpp (/home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specperl): filepp version 1.7.1SPEC
+Version info for specperl (/home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specperl): This is specperl, v5.8.8 built for x86_64-linux
+                           For more detail on specperl, say 'specperl -V'
+
+==============================================================================
+
+1590018815.66: runspec v6152 started at Wed May 20 16:53:34 2020 on "tigerlake1-ravi"
+1590018815.66: runspec is: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/runspec
+1590018815.66: runspec: runspec --config=wasm_strawman.cfg --action=build oakland
+1590018815.66: toolset: linux-suse101-AMD64
+
+1590018815.66(0.03s): Locating benchmarks...Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU(?:=\S*)?(?=\s|$)' for DSPEC_CPU in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1590018815.69: Created default regexp '(?:^|(?<=\s))[-/]USPEC_CPU(?:=\S*)?(?=\s|$)' for USPEC_CPU in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1590018815.69: Created default regexp '(?:^|(?<=\s))[-/]DNDEBUG(?:=\S*)?(?=\s|$)' for DNDEBUG in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1590018815.69: Created default regexp '(?:^|(?<=\s))[-/]UNDEBUG(?:=\S*)?(?=\s|$)' for UNDEBUG in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1590018815.69: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_WINDOWS(?:=\S*)?(?=\s|$)' for DSPEC_CPU_WINDOWS in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1590018815.69: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_ILP32(?:=\S*)?(?=\s|$)' for DSPEC_CPU_ILP32 in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1590018815.69: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_P64(?:=\S*)?(?=\s|$)' for DSPEC_CPU_P64 in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1590018815.69: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_LP64(?:=\S*)?(?=\s|$)' for DSPEC_CPU_LP64 in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1590018815.69: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_ILP64(?:=\S*)?(?=\s|$)' for DSPEC_CPU_ILP64 in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1590018815.70: Reading suite directory for 'flags-mandatory.xml', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec'
+1590018815.70: Reading suite directory for 'CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec'
+1590018815.70:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '459.GemsFDTD'
+1590018815.70:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/459.GemsFDTD/Spec/object.pm in 0.000239849s
+1590018815.70:     Instantiated Spec::Benchmark::GemsFDTD459 in 0.000158072s
+1590018815.70:     Finding src.alts took 0.000043869s
+1590018815.70:   Setting up GemsFDTD took 0.000642061s
+
+1590018815.70:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', 'all_mixed.bset'
+1590018815.70:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '403.gcc'
+1590018815.70:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/403.gcc/Spec/object.pm in 0.000181913s
+1590018815.70:     Instantiated Spec::Benchmark::gcc403 in 0.000103951s
+1590018815.70:     Finding src.alts took 0.000033855s
+1590018815.70:   Setting up gcc took 0.000482082s
+
+1590018815.70:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '473.astar'
+1590018815.70:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/473.astar/Spec/object.pm in 0.000200033s
+1590018815.70:     Instantiated Spec::Benchmark::astar473 in 0.000073195s
+1590018815.70:     Finding src.alts took 0.000030994s
+1590018815.70:   Setting up astar took 0.000473022s
+
+1590018815.70:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '433.milc'
+1590018815.70:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/Spec/object.pm in 0.000183105s
+1590018815.70:     Instantiated Spec::Benchmark::milc433 in 0.000103951s
+1590018815.70:     Finding src.alts took 0.000029087s
+1590018815.70:   Setting up milc took 0.000485897s
+
+1590018815.70:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '482.sphinx3'
+1590018815.70:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/482.sphinx3/Spec/object.pm in 0.000413179s
+1590018815.70:     Instantiated Spec::Benchmark::sphinx3482 in 0.000095844s
+1590018815.70:     Finding src.alts took 0.000033140s
+1590018815.70:   Setting up sphinx3 took 0.000719070s
+
+1590018815.70:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', 'CINT2006.bset'
+1590018815.70:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '435.gromacs'
+1590018815.70:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/435.gromacs/Spec/object.pm in 0.000174046s
+1590018815.70:     Instantiated Spec::Benchmark::gromacs435 in 0.000089884s
+1590018815.70:     Finding src.alts took 0.000032902s
+1590018815.70:   Setting up gromacs took 0.000464201s
+
+1590018815.70:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '465.tonto'
+1590018815.70:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/465.tonto/Spec/object.pm in 0.000823021s
+1590018815.70:     Instantiated Spec::Benchmark::tonto465 in 0.000138044s
+1590018815.70:     Finding src.alts took 0.000035048s
+1590018815.70:   Setting up tonto took 0.001174927s
+
+1590018815.70:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '462.libquantum'
+1590018815.70:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/462.libquantum/Spec/object.pm in 0.000147104s
+1590018815.70:     Instantiated Spec::Benchmark::libquantum462 in 0.000068188s
+1590018815.70:     Finding src.alts took 0.000029802s
+1590018815.70:   Setting up libquantum took 0.000410795s
+
+1590018815.70:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', 'CFP2006.bset'
+1590018815.70:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', 'all_c.bset'
+1590018815.70:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '998.specrand'
+1590018815.70:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/998.specrand/Spec/object.pm in 0.000115156s
+1590018815.70:     Instantiated Spec::Benchmark::specrand998 in 0.000063181s
+1590018815.70:     Finding src.alts took 0.000028133s
+1590018815.70:   Setting up specrand took 0.000352859s
+
+1590018815.70:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', 'all_fortran.bset'
+1590018815.70:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '410.bwaves'
+1590018815.70:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/410.bwaves/Spec/object.pm in 0.000099897s
+1590018815.70:     Instantiated Spec::Benchmark::bwaves410 in 0.000077963s
+1590018815.70:     Finding src.alts took 0.000025988s
+1590018815.70:   Setting up bwaves took 0.000343800s
+
+1590018815.70:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '401.bzip2'
+1590018815.70:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/Spec/object.pm in 0.000130177s
+1590018815.70:     Instantiated Spec::Benchmark::bzip2401 in 0.000072956s
+1590018815.70:     Finding src.alts took 0.000025034s
+1590018815.70:   Setting up bzip2 took 0.000375032s
+
+1590018815.70:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '434.zeusmp'
+1590018815.70:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/434.zeusmp/Spec/object.pm in 0.000131130s
+1590018815.70:     Instantiated Spec::Benchmark::zeusmp434 in 0.000074148s
+1590018815.70:     Finding src.alts took 0.000025034s
+1590018815.70:   Setting up zeusmp took 0.000370979s
+
+1590018815.70:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '437.leslie3d'
+1590018815.70:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/437.leslie3d/Spec/object.pm in 0.000138044s
+1590018815.70:     Instantiated Spec::Benchmark::leslie3d437 in 0.000065088s
+1590018815.70:     Finding src.alts took 0.000026941s
+1590018815.70:   Setting up leslie3d took 0.000388145s
+
+1590018815.70:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '429.mcf'
+1590018815.70:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/Spec/object.pm in 0.000146151s
+1590018815.70:     Instantiated Spec::Benchmark::mcf429 in 0.000068903s
+1590018815.70:     Finding src.alts took 0.000031948s
+1590018815.70:   Setting up mcf took 0.000389099s
+
+1590018815.70:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '400.perlbench'
+1590018815.71:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/400.perlbench/Spec/object.pm in 0.000655890s
+1590018815.71:     Instantiated Spec::Benchmark::perlbench400 in 0.000082016s
+1590018815.71:     Finding src.alts took 0.000032187s
+1590018815.71:   Setting up perlbench took 0.000926971s
+
+1590018815.71:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '416.gamess'
+1590018815.71:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/416.gamess/Spec/object.pm in 0.000193834s
+1590018815.71:     Instantiated Spec::Benchmark::gamess416 in 0.000081062s
+1590018815.71:     Finding src.alts took 0.000028133s
+1590018815.71:   Setting up gamess took 0.000472069s
+
+1590018815.71:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', 'oakland.bset'
+1590018815.71:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '450.soplex'
+1590018815.71:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/450.soplex/Spec/object.pm in 0.000225067s
+1590018815.71:     Instantiated Spec::Benchmark::soplex450 in 0.000061035s
+1590018815.71:     Finding src.alts took 0.000027895s
+1590018815.71:   Setting up soplex took 0.000469208s
+
+1590018815.71:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '453.povray'
+1590018815.71:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/453.povray/Spec/object.pm in 0.000206947s
+1590018815.71:     Instantiated Spec::Benchmark::povray453 in 0.000087023s
+1590018815.71:     Finding src.alts took 0.000032187s
+1590018815.71:   Setting up povray took 0.000473022s
+
+1590018815.71:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '481.wrf'
+1590018815.71:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/481.wrf/Spec/object.pm in 0.001112938s
+1590018815.71:     Instantiated Spec::Benchmark::wrf481 in 0.000154972s
+1590018815.71:     Finding src.alts took 0.000039101s
+1590018815.71:   Setting up wrf took 0.001474142s
+
+1590018815.71:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '445.gobmk'
+1590018815.71:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/445.gobmk/Spec/object.pm in 0.000174999s
+1590018815.71:     Instantiated Spec::Benchmark::gobmk445 in 0.000066042s
+1590018815.71:     Finding src.alts took 0.000025988s
+1590018815.71:   Setting up gobmk took 0.000406981s
+
+1590018815.71:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '470.lbm'
+1590018815.71:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/470.lbm/Spec/object.pm in 0.000119925s
+1590018815.71:     Instantiated Spec::Benchmark::lbm470 in 0.000063896s
+1590018815.71:     Finding src.alts took 0.000025988s
+1590018815.71:   Setting up lbm took 0.000370026s
+
+1590018815.71:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '444.namd'
+1590018815.71:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/444.namd/Spec/object.pm in 0.000241995s
+1590018815.71:     Instantiated Spec::Benchmark::namd444 in 0.000121832s
+1590018815.71:     Finding src.alts took 0.000041962s
+1590018815.71:   Setting up namd took 0.000642061s
+
+1590018815.71:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '456.hmmer'
+1590018815.71:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/456.hmmer/Spec/object.pm in 0.000304937s
+1590018815.71:     Instantiated Spec::Benchmark::hmmer456 in 0.000108004s
+1590018815.71:     Finding src.alts took 0.000050068s
+1590018815.71:   Setting up hmmer took 0.000705004s
+
+1590018815.71:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '471.omnetpp'
+1590018815.71:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/471.omnetpp/Spec/object.pm in 0.000247002s
+1590018815.71:     Instantiated Spec::Benchmark::omnetpp471 in 0.000108957s
+1590018815.71:     Finding src.alts took 0.000052929s
+1590018815.71:   Setting up omnetpp took 0.000630856s
+
+1590018815.71:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '454.calculix'
+1590018815.71:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/454.calculix/Spec/object.pm in 0.000605106s
+1590018815.71:     Instantiated Spec::Benchmark::calculix454 in 0.000191927s
+1590018815.71:     Finding src.alts took 0.000047922s
+1590018815.71:   Setting up calculix took 0.001093864s
+
+1590018815.71:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '999.specrand'
+1590018815.71:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/999.specrand/Spec/object.pm in 0.000215054s
+1590018815.71:     Instantiated Spec::Benchmark::specrand999 in 0.000093937s
+1590018815.71:     Finding src.alts took 0.000039101s
+1590018815.71:   Setting up specrand took 0.000566006s
+
+1590018815.71:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', 'extra.bset'
+1590018815.71:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '458.sjeng'
+1590018815.71:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/458.sjeng/Spec/object.pm in 0.000219107s
+1590018815.71:     Instantiated Spec::Benchmark::sjeng458 in 0.000120878s
+1590018815.72:     Finding src.alts took 0.000041008s
+1590018815.72:   Setting up sjeng took 0.000623941s
+
+1590018815.72:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', 'all_cpp.bset'
+1590018815.72:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '447.dealII'
+1590018815.72:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/447.dealII/Spec/object.pm in 0.000687838s
+1590018815.72:     Instantiated Spec::Benchmark::dealII447 in 0.000099182s
+1590018815.72:     Finding src.alts took 0.000031948s
+1590018815.72:   Setting up dealII took 0.001007080s
+
+1590018815.72:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '464.h264ref'
+1590018815.72:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/464.h264ref/Spec/object.pm in 0.000207186s
+1590018815.72:     Instantiated Spec::Benchmark::h264ref464 in 0.000066042s
+1590018815.72:     Finding src.alts took 0.000025988s
+1590018815.72:   Setting up h264ref took 0.000440121s
+
+1590018815.72:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '436.cactusADM'
+1590018815.72:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/436.cactusADM/Spec/object.pm in 0.000290871s
+1590018815.72:     Instantiated Spec::Benchmark::cactusADM436 in 0.000102997s
+1590018815.72:     Finding src.alts took 0.000025988s
+1590018815.72:   Setting up cactusADM took 0.000572205s
+
+1590018815.72:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '483.xalancbmk'
+1590018815.72:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/483.xalancbmk/Spec/object.pm in 0.000540972s
+1590018815.72:     Instantiated Spec::Benchmark::xalancbmk483 in 0.000144958s
+1590018815.72:     Finding src.alts took 0.000030041s
+1590018815.72:   Setting up xalancbmk took 0.000859022s
+
+1590018815.72: Setting up suite took 0.023219109s
+1590018815.72: Reading suite directory for 'Makefile.defaults', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec'
+1590018815.72: Reading suite directory for 'version.txt', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec'
+1590018815.72: found 31 benchmarks in 8 benchsets.
+1590018815.72: Reading config file '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/config/wasm_strawman.cfg'
+
+1590018815.74:   '401.bzip2' added
+1590018815.74:   '429.mcf' added
+1590018815.74:   '433.milc' added
+1590018815.74:   '444.namd' added
+1590018815.74:   '445.gobmk' added
+1590018815.74:   '458.sjeng' added
+1590018815.74:   '462.libquantum' added
+1590018815.74:   '464.h264ref' added
+1590018815.74:   '470.lbm' added
+1590018815.74:   '473.astar' added
+1590018815.74(0.16s): Loading "http://www.spec.org/auto/cpu2006/current_version" for version check: OK
+
+1590018815.90: NOTICE: There is a newer version of the suite available from SPEC.
+1590018815.90:   Version 1.200 was released on Tue Aug 16 18:10:33 2011
+
+1590018815.90:                        ----------------------------------
+1590018815.90:                        The run will continue in 5 seconds
+1590018815.90:                        ----------------------------------
+
+1590018820.91: Verbosity = 5
+1590018820.91: Action    = build
+1590018820.91: Tune      = base
+1590018820.91: Ext       = wasm_strawman
+1590018820.91: Size      = ref
+1590018820.91: Machine   = default
+1590018820.91: benchmarks= 401.bzip2,429.mcf,433.milc,444.namd,445.gobmk,458.sjeng,462.libquantum,464.h264ref,470.lbm,473.astar
+1590018820.91: outputs   = asc
+1590018820.91: username  = ucsd
+1590018820.91: Benchmarks selected: 401.bzip2, 429.mcf, 433.milc, 444.namd, 445.gobmk, 458.sjeng, 462.libquantum, 464.h264ref, 470.lbm, 473.astar
+1590018820.93: Compiling Binaries
+
+1590018820.93: ------------------------------------------------------------------------
+1590018820.93: When checking options for /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/exe/bzip2_base.wasm_strawman, no MD5 sums were
+1590018820.93:   found in the config file.  They will be installed after build.
+1590018820.93:   Building 401.bzip2 base wasm_strawman default: (build_base_wasm_strawman.0000)
+1590018820.93: Comparing MD5 hashes:
+1590018820.93:   d84b4ba86f793c8e9c8f2eb4dcb7b461 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/src/Makefile
+1590018820.93:   d84b4ba86f793c8e9c8f2eb4dcb7b461 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/build/build_base_wasm_strawman.0000/Makefile
+1590018820.94: Wrote to makefile '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/build/build_base_wasm_strawman.0000/Makefile.deps':
+
+1590018820.94: # These are the build dependencies
+
+1590018820.94: # End dependencies
+1590018820.94: Wrote to makefile '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/build/build_base_wasm_strawman.0000/Makefile.spec':
+1590018820.94: TUNE=base
+1590018820.94: EXT=wasm_strawman
+1590018820.94: NUMBER=401
+1590018820.94: NAME=bzip2
+1590018820.94: SOURCES= spec.c blocksort.c bzip2.c bzlib.c compress.c crctable.c \
+1590018820.94: 	 decompress.c huffman.c randtable.c
+1590018820.94: EXEBASE=bzip2
+1590018820.94: NEED_MATH=
+1590018820.94: BENCHLANG=C
+1590018820.94: ONESTEP=
+1590018820.94: CONESTEP=
+
+1590018820.94: CC               = /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all
+1590018820.94: COPTIMIZE        = -O2
+1590018820.94: CXX              = /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions
+1590018820.94: CXXOPTIMIZE      = -O2
+1590018820.94: FC               = /usr/bin/gfortran
+1590018820.94: FOPTIMIZE        = -O2
+1590018820.94: FPBASE           = yes
+1590018820.94: LUCET_TYPE       = strawman
+1590018820.94: OS               = unix
+1590018820.94: PORTABILITY      = -DSPEC_CPU_LP64
+1590018820.94: absolutely_no_locking = 0
+1590018820.94: abstol           = 
+1590018820.94: action           = build
+1590018820.94: allow_extension_override = 0
+1590018820.94: backup_config    = 1
+1590018820.94: baseexe          = bzip2
+1590018820.94: basepeak         = 0
+1590018820.94: benchdir         = benchspec
+1590018820.94: benchmark        = 401.bzip2
+1590018820.94: binary           = 
+1590018820.94: bindir           = exe
+1590018820.94: build_in_build_dir = 1
+1590018820.94: builddir         = build
+1590018820.94: bundleaction     = 
+1590018820.94: bundlename       = 
+1590018820.94: calctol          = 0
+1590018820.94: changedmd5       = 0
+1590018820.94: check_integrity  = 1
+1590018820.94: check_md5        = 1
+1590018820.94: check_version    = 1
+1590018820.94: command_add_redirect = 0
+1590018820.94: commanderrfile   = speccmds.err
+1590018820.94: commandexe       = bzip2_base.wasm_strawman
+1590018820.94: commandfile      = speccmds.cmd
+1590018820.94: commandoutfile   = speccmds.out
+1590018820.94: commandstdoutfile = speccmds.stdout
+1590018820.94: compareerrfile   = compare.err
+1590018820.94: comparefile      = compare.cmd
+1590018820.94: compareoutfile   = compare.out
+1590018820.94: comparestdoutfile = compare.stdout
+1590018820.94: compile_error    = 0
+1590018820.94: compwhite        = 
+1590018820.94: configdir        = config
+1590018820.94: configpath       = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/config/wasm_strawman.cfg
+1590018820.94: copies           = 1
+1590018820.94: datadir          = data
+1590018820.94: delay            = 0
+1590018820.94: deletebinaries   = 0
+1590018820.94: deletework       = 0
+1590018820.94: difflines        = 10
+1590018820.94: dirprot          = 511
+1590018820.94: endian           = 12345678
+1590018820.94: env_vars         = 0
+1590018820.94: exitvals         = spec_exit
+1590018820.94: expand_notes     = 0
+1590018820.94: expid            = 
+1590018820.94: ext              = wasm_strawman
+1590018820.94: fake             = 0
+1590018820.94: feedback         = 1
+1590018820.94: flag_url_base    = http://www.spec.org/auto/cpu2006/flags/
+1590018820.94: floatcompare     = 
+1590018820.94: help             = 0
+1590018820.94: http_proxy       = 
+1590018820.94: http_timeout     = 30
+1590018820.94: hw_avail         = Dec-9999
+1590018820.94: hw_cpu_char      = 
+1590018820.94: hw_cpu_mhz       = 3000
+1590018820.94: hw_cpu_name      = AMD Opteron 256
+1590018820.94: hw_disk          = SATA
+1590018820.94: hw_fpu           = Integrated
+1590018820.94: hw_memory        = 2 GB (2 x 1GB DDR333 CL2.5)
+1590018820.94: hw_model         = Tyan Thunder KKQS Pro (S4882)
+1590018820.94: hw_nchips        = 1
+1590018820.94: hw_ncores        = 1
+1590018820.94: hw_ncoresperchip = 1
+1590018820.94: hw_ncpuorder     = 1 chip
+1590018820.94: hw_nthreadspercore = 1
+1590018820.94: hw_ocache        = None
+1590018820.94: hw_pcache        = 64 KB I + 64 KB D on chip per chip
+1590018820.94: hw_scache        = 1 MB I+D on chip per chip
+1590018820.94: hw_tcache        = None
+1590018820.94: hw_vendor        = Tyan
+1590018820.94: ignore_errors    = yes
+1590018820.94: ignore_sigint    = 0
+1590018820.94: ignorecase       = 
+1590018820.94: info_wrap_columns = 50
+1590018820.94: inputdir         = input
+1590018820.94: iteration        = -1
+1590018820.94: iterations       = 3
+1590018820.94: keeptmp          = 0
+1590018820.94: license_num      = 0
+1590018820.94: line_width       = 0
+1590018820.94: locking          = 1
+1590018820.94: log              = CPU2006
+1590018820.94: log_line_width   = 0
+1590018820.94: log_timestamp    = 0
+1590018820.94: logname          = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/result/CPU2006.016.log
+1590018820.94: lognum           = 016
+1590018820.94: mach             = default
+1590018820.94: mail_reports     = all
+1590018820.94: mailcompress     = 0
+1590018820.94: mailmethod       = smtp
+1590018820.94: mailport         = 25
+1590018820.94: mailserver       = 127.0.0.1
+1590018820.94: mailto           = 
+1590018820.94: make             = specmake
+1590018820.94: make_no_clobber  = 0
+1590018820.94: makeflags        = 
+1590018820.94: max_active_compares = 0
+1590018820.94: mean_anyway      = 0
+1590018820.94: min_report_runs  = 3
+1590018820.94: minimize_builddirs = 0
+1590018820.94: minimize_rundirs = 0
+1590018820.94: name             = bzip2
+1590018820.94: need_math        = 
+1590018820.94: no_input_handler = close
+1590018820.94: no_monitor       = 
+1590018820.94: note_preenv      = 0
+1590018820.94: notes0100        =  C base flags: -O2
+1590018820.94: notes0110        =  C++ base flags: -O2
+1590018820.94: notes0120        =  Fortran base flags: -O2
+1590018820.94: notes25          =  PORTABILITY=-DSPEC_CPU_LP64 is applied to all benchmarks in base.
+1590018820.94: notes_wrap_columns = 0
+1590018820.94: notes_wrap_indent =   
+1590018820.94: num              = 401
+1590018820.94: obiwan           = 
+1590018820.94: os_exe_ext       = 
+1590018820.94: output           = asc
+1590018820.94: output_format    = asc
+1590018820.94: output_root      = 
+1590018820.94: outputdir        = output
+1590018820.94: parallel_setup   = 1
+1590018820.94: parallel_setup_prefork = 
+1590018820.94: parallel_setup_type = fork
+1590018820.94: parallel_test    = 0
+1590018820.94: parallel_test_submit = 0
+1590018820.94: path             = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2
+1590018820.94: plain_train      = 1
+1590018820.94: preenv           = 1
+1590018820.94: prefix           = 
+1590018820.94: prepared_by      = 
+1590018820.94: ranks            = 1
+1590018820.94: rate             = 0
+1590018820.94: realuser         = your name here
+1590018820.94: rebuild          = 0
+1590018820.94: reftime          = reftime
+1590018820.94: reltol           = 
+1590018820.94: reportable       = 1
+1590018820.94: resultdir        = result
+1590018820.94: review           = 0
+1590018820.94: run              = all
+1590018820.94: rundir           = run
+1590018820.94: runspec          = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/runspec --config=wasm_strawman.cfg --action=build oakland
+1590018820.94: safe_eval        = 1
+1590018820.94: section_specifier_fatal = 1
+1590018820.94: sendmail         = /usr/sbin/sendmail
+1590018820.94: setpgrp_enabled  = 1
+1590018820.94: setprocgroup     = 1
+1590018820.94: shrate           = 0
+1590018820.94: sigint           = 2
+1590018820.94: size             = ref
+1590018820.94: size_class       = ref
+1590018820.94: skipabstol       = 
+1590018820.94: skipobiwan       = 
+1590018820.94: skipreltol       = 
+1590018820.94: skiptol          = 
+1590018820.94: smarttune        = base
+1590018820.94: specdiff         = specdiff
+1590018820.94: specmake         = Makefile.YYYtArGeTYYYspec
+1590018820.94: specrun          = specinvoke
+1590018820.94: speed            = 0
+1590018820.94: srcalt           = 
+1590018820.94: srcdir           = src
+1590018820.94: stagger          = 10
+1590018820.94: strict_rundir_verify = 1
+1590018820.94: sw_avail         = Dec-9999
+1590018820.94: sw_base_ptrsize  = 64-bit
+1590018820.94: sw_compiler      = clang , clang++ & gfortran 4.1.0 (for AMD64)
+1590018820.94: sw_file          = ext3
+1590018820.94: sw_os            = SUSE SLES9 (for AMD64)
+1590018820.94: sw_other         = None
+1590018820.94: sw_peak_ptrsize  = Not Applicable
+1590018820.94: sw_state         = runlevel 3
+1590018820.94: sysinfo_program  = 
+1590018820.94: table            = 1
+1590018820.94: teeout           = yes
+1590018820.94: teerunout        = yes
+1590018820.94: test_date        = May-2020
+1590018820.94: test_sponsor     = Turbo Computers
+1590018820.94: tester           = 
+1590018820.94: top              = /home/ucsd/SpectreSandboxing/sfi-spectre-spec
+1590018820.94: train_with       = train
+1590018820.94: tune             = base
+1590018820.94: uid              = 1004
+1590018820.94: unbuffer         = 1
+1590018820.94: update-flags     = 0
+1590018820.94: use_submit_for_speed = 0
+1590018820.94: username         = ucsd
+1590018820.94: vendor           = anon
+1590018820.94: vendor_makefiles = 0
+1590018820.94: verbose          = 5
+1590018820.94: version          = 0
+1590018820.94: version_url      = http://www.spec.org/auto/cpu2006/current_version
+1590018820.94: worklist         = list
+1590018820.94: OUTPUT_RMFILES   = byoudoin.jpg.out input.combined.out input.program.out
+1590018820.94:   Compile for '401.bzip2' started at: Wed May 20 16:53:40 2020 (1590018820)
+1590018820.94: Issuing make.clean command 'specmake clean'
+1590018820.94: specmake clean 2> make.clean.err | tee make.clean.out
+1590018820.94: Start make.clean command: Wed May 20 16:53:40 2020 (1590018820)
+1590018820.95: specmake[1]: Entering directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/build/build_base_wasm_strawman.0000'
+1590018820.95: rm -rf bzip2
+1590018821.16: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018821.16: rm -rf bzip2.exe
+1590018821.37: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018821.37: rm -rf *.o  byoudoin.jpg.out input.combined.out input.program.out
+1590018821.59: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018821.59: find . \( -name \*.o -o -name '*.fppized.f*' \) -print | xargs rm -rf
+1590018821.80: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018821.80: rm -rf core
+1590018822.02: specmake[1]: *** [clean] Segmentation fault (core dumped)
+1590018822.02: rm -rf 
+1590018822.22: specmake[1]: *** [clean] Segmentation fault (core dumped)
+1590018822.22: specmake[1]: Leaving directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/build/build_base_wasm_strawman.0000'
+1590018822.22: Tee child 48117 exited with code 0 (exit code=0, signal=0)
+1590018822.22: Stop make.clean command: Wed May 20 16:53:42 2020 (1590018822)
+1590018822.22: Elapsed time for make.clean command: 00:00:02 (2)
+1590018822.22: Issuing make command 'specmake build'
+1590018822.22: specmake build 2> make.err | tee make.out
+1590018822.22: Start make command: Wed May 20 16:53:42 2020 (1590018822)
+1590018822.23: specmake[1]: Entering directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/build/build_base_wasm_strawman.0000'
+1590018822.23: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -c -o spec.o -DSPEC_CPU -DNDEBUG    -O2       -DSPEC_CPU_LP64         spec.c
+1590018822.44: specmake[1]: *** [spec.o] Segmentation fault (core dumped)
+1590018822.44: specmake[1]: Leaving directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/build/build_base_wasm_strawman.0000'
+1590018822.44: Tee child 48244 exited with code 512 (exit code=2, signal=0)
+1590018822.44: Stop make command: Wed May 20 16:53:42 2020 (1590018822)
+1590018822.44: Elapsed time for make command: 00:00:00 (0)
+1590018822.44: Error with make 'specmake build': check file '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/build/build_base_wasm_strawman.0000/make.err'
+1590018822.44:   Command returned exit code 2
+1590018822.44:   Error with make!
+1590018822.45:   Compile for '401.bzip2' ended at: Wed May 20 16:53:42 2020 (1590018822)
+1590018822.45:   Elapsed compile for '401.bzip2': 00:00:02 (2)
+1590018822.45: *** Error building 401.bzip2
+
+1590018822.45: ------------------------------------------------------------------------
+1590018822.45: When checking options for /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/exe/mcf_base.wasm_strawman, no MD5 sums were
+1590018822.45:   found in the config file.  They will be installed after build.
+1590018822.45:   Building 429.mcf base wasm_strawman default: (build_base_wasm_strawman.0000)
+1590018822.45: Comparing MD5 hashes:
+1590018822.45:   d84b4ba86f793c8e9c8f2eb4dcb7b461 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/src/Makefile
+1590018822.45:   d84b4ba86f793c8e9c8f2eb4dcb7b461 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/build/build_base_wasm_strawman.0000/Makefile
+1590018822.46: Wrote to makefile '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/build/build_base_wasm_strawman.0000/Makefile.deps':
+
+1590018822.46: # These are the build dependencies
+
+1590018822.46: # End dependencies
+1590018822.47: Wrote to makefile '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/build/build_base_wasm_strawman.0000/Makefile.spec':
+1590018822.47: TUNE=base
+1590018822.47: EXT=wasm_strawman
+1590018822.47: NUMBER=429
+1590018822.47: NAME=mcf
+1590018822.47: SOURCES= mcf.c mcfutil.c readmin.c implicit.c pstart.c output.c treeup.c \
+1590018822.47: 	 pbla.c pflowup.c psimplex.c pbeampp.c
+1590018822.47: EXEBASE=mcf
+1590018822.47: NEED_MATH=yes
+1590018822.47: BENCHLANG=C
+1590018822.47: ONESTEP=
+1590018822.47: CONESTEP=
+
+1590018822.47: BENCH_CFLAGS     = -DWANT_STDC_PROTO
+1590018822.47: CC               = /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all
+1590018822.47: COPTIMIZE        = -O2
+1590018822.47: CXX              = /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions
+1590018822.47: CXXOPTIMIZE      = -O2
+1590018822.47: FC               = /usr/bin/gfortran
+1590018822.47: FOPTIMIZE        = -O2
+1590018822.47: FPBASE           = yes
+1590018822.47: LUCET_TYPE       = strawman
+1590018822.47: OS               = unix
+1590018822.47: PORTABILITY      = -DSPEC_CPU_LP64
+1590018822.47: absolutely_no_locking = 0
+1590018822.47: abstol           = 
+1590018822.47: action           = build
+1590018822.47: allow_extension_override = 0
+1590018822.47: backup_config    = 1
+1590018822.47: baseexe          = mcf
+1590018822.47: basepeak         = 0
+1590018822.47: benchdir         = benchspec
+1590018822.47: benchmark        = 429.mcf
+1590018822.47: binary           = 
+1590018822.47: bindir           = exe
+1590018822.47: build_in_build_dir = 1
+1590018822.47: builddir         = build
+1590018822.47: bundleaction     = 
+1590018822.47: bundlename       = 
+1590018822.47: calctol          = 0
+1590018822.47: changedmd5       = 0
+1590018822.47: check_integrity  = 1
+1590018822.47: check_md5        = 1
+1590018822.47: check_version    = 1
+1590018822.47: command_add_redirect = 0
+1590018822.47: commanderrfile   = speccmds.err
+1590018822.47: commandexe       = mcf_base.wasm_strawman
+1590018822.47: commandfile      = speccmds.cmd
+1590018822.47: commandoutfile   = speccmds.out
+1590018822.47: commandstdoutfile = speccmds.stdout
+1590018822.47: compareerrfile   = compare.err
+1590018822.47: comparefile      = compare.cmd
+1590018822.47: compareoutfile   = compare.out
+1590018822.47: comparestdoutfile = compare.stdout
+1590018822.47: compile_error    = 0
+1590018822.47: compwhite        = 
+1590018822.47: configdir        = config
+1590018822.47: configpath       = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/config/wasm_strawman.cfg
+1590018822.47: copies           = 1
+1590018822.47: datadir          = data
+1590018822.47: delay            = 0
+1590018822.47: deletebinaries   = 0
+1590018822.47: deletework       = 0
+1590018822.47: difflines        = 10
+1590018822.47: dirprot          = 511
+1590018822.47: endian           = 12345678
+1590018822.47: env_vars         = 0
+1590018822.47: exitvals         = spec_exit
+1590018822.47: expand_notes     = 0
+1590018822.47: expid            = 
+1590018822.47: ext              = wasm_strawman
+1590018822.47: fake             = 0
+1590018822.47: feedback         = 1
+1590018822.47: flag_url_base    = http://www.spec.org/auto/cpu2006/flags/
+1590018822.47: floatcompare     = 
+1590018822.47: help             = 0
+1590018822.47: http_proxy       = 
+1590018822.47: http_timeout     = 30
+1590018822.47: hw_avail         = Dec-9999
+1590018822.47: hw_cpu_char      = 
+1590018822.47: hw_cpu_mhz       = 3000
+1590018822.47: hw_cpu_name      = AMD Opteron 256
+1590018822.47: hw_disk          = SATA
+1590018822.47: hw_fpu           = Integrated
+1590018822.47: hw_memory        = 2 GB (2 x 1GB DDR333 CL2.5)
+1590018822.47: hw_model         = Tyan Thunder KKQS Pro (S4882)
+1590018822.47: hw_nchips        = 1
+1590018822.47: hw_ncores        = 1
+1590018822.47: hw_ncoresperchip = 1
+1590018822.47: hw_ncpuorder     = 1 chip
+1590018822.47: hw_nthreadspercore = 1
+1590018822.47: hw_ocache        = None
+1590018822.47: hw_pcache        = 64 KB I + 64 KB D on chip per chip
+1590018822.47: hw_scache        = 1 MB I+D on chip per chip
+1590018822.47: hw_tcache        = None
+1590018822.47: hw_vendor        = Tyan
+1590018822.47: ignore_errors    = yes
+1590018822.47: ignore_sigint    = 0
+1590018822.47: ignorecase       = 
+1590018822.47: info_wrap_columns = 50
+1590018822.47: inputdir         = input
+1590018822.47: iteration        = -1
+1590018822.47: iterations       = 3
+1590018822.47: keeptmp          = 0
+1590018822.47: license_num      = 0
+1590018822.47: line_width       = 0
+1590018822.47: locking          = 1
+1590018822.47: log              = CPU2006
+1590018822.47: log_line_width   = 0
+1590018822.47: log_timestamp    = 0
+1590018822.47: logname          = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/result/CPU2006.016.log
+1590018822.47: lognum           = 016
+1590018822.47: mach             = default
+1590018822.47: mail_reports     = all
+1590018822.47: mailcompress     = 0
+1590018822.47: mailmethod       = smtp
+1590018822.47: mailport         = 25
+1590018822.47: mailserver       = 127.0.0.1
+1590018822.47: mailto           = 
+1590018822.47: make             = specmake
+1590018822.47: make_no_clobber  = 0
+1590018822.47: makeflags        = 
+1590018822.47: max_active_compares = 0
+1590018822.47: mean_anyway      = 0
+1590018822.47: min_report_runs  = 3
+1590018822.47: minimize_builddirs = 0
+1590018822.47: minimize_rundirs = 0
+1590018822.47: name             = mcf
+1590018822.47: need_math        = yes
+1590018822.47: no_input_handler = close
+1590018822.47: no_monitor       = 
+1590018822.47: note_preenv      = 0
+1590018822.47: notes0100        =  C base flags: -O2
+1590018822.47: notes0110        =  C++ base flags: -O2
+1590018822.47: notes0120        =  Fortran base flags: -O2
+1590018822.47: notes25          =  PORTABILITY=-DSPEC_CPU_LP64 is applied to all benchmarks in base.
+1590018822.47: notes_wrap_columns = 0
+1590018822.47: notes_wrap_indent =   
+1590018822.47: num              = 429
+1590018822.47: obiwan           = 
+1590018822.47: os_exe_ext       = 
+1590018822.47: output           = asc
+1590018822.47: output_format    = asc
+1590018822.47: output_root      = 
+1590018822.47: outputdir        = output
+1590018822.47: parallel_setup   = 1
+1590018822.47: parallel_setup_prefork = 
+1590018822.47: parallel_setup_type = fork
+1590018822.47: parallel_test    = 0
+1590018822.47: parallel_test_submit = 0
+1590018822.47: path             = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf
+1590018822.47: plain_train      = 1
+1590018822.47: preenv           = 1
+1590018822.47: prefix           = 
+1590018822.47: prepared_by      = 
+1590018822.47: ranks            = 1
+1590018822.47: rate             = 0
+1590018822.47: realuser         = your name here
+1590018822.47: rebuild          = 0
+1590018822.47: reftime          = reftime
+1590018822.47: reltol           = 
+1590018822.47: reportable       = 1
+1590018822.47: resultdir        = result
+1590018822.47: review           = 0
+1590018822.47: run              = all
+1590018822.47: rundir           = run
+1590018822.47: runspec          = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/runspec --config=wasm_strawman.cfg --action=build oakland
+1590018822.47: safe_eval        = 1
+1590018822.47: section_specifier_fatal = 1
+1590018822.47: sendmail         = /usr/sbin/sendmail
+1590018822.47: setpgrp_enabled  = 1
+1590018822.47: setprocgroup     = 1
+1590018822.47: shrate           = 0
+1590018822.47: sigint           = 2
+1590018822.47: size             = ref
+1590018822.47: size_class       = ref
+1590018822.47: skipabstol       = 
+1590018822.47: skipobiwan       = 
+1590018822.47: skipreltol       = 
+1590018822.47: skiptol          = 
+1590018822.47: smarttune        = base
+1590018822.47: specdiff         = specdiff
+1590018822.47: specmake         = Makefile.YYYtArGeTYYYspec
+1590018822.47: specrun          = specinvoke
+1590018822.47: speed            = 0
+1590018822.47: srcalt           = 
+1590018822.47: srcdir           = src
+1590018822.47: stagger          = 10
+1590018822.47: strict_rundir_verify = 1
+1590018822.47: sw_avail         = Dec-9999
+1590018822.47: sw_base_ptrsize  = 64-bit
+1590018822.47: sw_compiler      = clang , clang++ & gfortran 4.1.0 (for AMD64)
+1590018822.47: sw_file          = ext3
+1590018822.47: sw_os            = SUSE SLES9 (for AMD64)
+1590018822.47: sw_other         = None
+1590018822.47: sw_peak_ptrsize  = Not Applicable
+1590018822.47: sw_state         = runlevel 3
+1590018822.47: sysinfo_program  = 
+1590018822.47: table            = 1
+1590018822.47: teeout           = yes
+1590018822.47: teerunout        = yes
+1590018822.47: test_date        = May-2020
+1590018822.47: test_sponsor     = Turbo Computers
+1590018822.47: tester           = 
+1590018822.47: top              = /home/ucsd/SpectreSandboxing/sfi-spectre-spec
+1590018822.47: train_with       = train
+1590018822.47: tune             = base
+1590018822.47: uid              = 1004
+1590018822.47: unbuffer         = 1
+1590018822.47: update-flags     = 0
+1590018822.47: use_submit_for_speed = 0
+1590018822.47: username         = ucsd
+1590018822.47: vendor           = anon
+1590018822.47: vendor_makefiles = 0
+1590018822.47: verbose          = 5
+1590018822.47: version          = 0
+1590018822.47: version_url      = http://www.spec.org/auto/cpu2006/current_version
+1590018822.47: worklist         = list
+1590018822.47: OUTPUT_RMFILES   = inp.out mcf.out
+1590018822.47:   Compile for '429.mcf' started at: Wed May 20 16:53:42 2020 (1590018822)
+1590018822.47: Issuing make.clean command 'specmake clean'
+1590018822.47: specmake clean 2> make.clean.err | tee make.clean.out
+1590018822.47: Start make.clean command: Wed May 20 16:53:42 2020 (1590018822)
+1590018822.47: specmake[1]: Entering directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/build/build_base_wasm_strawman.0000'
+1590018822.47: rm -rf mcf
+1590018822.69: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018822.69: rm -rf mcf.exe
+1590018822.91: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018822.91: rm -rf *.o  inp.out mcf.out
+1590018823.12: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018823.12: find . \( -name \*.o -o -name '*.fppized.f*' \) -print | xargs rm -rf
+1590018823.35: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018823.35: rm -rf core
+1590018823.57: specmake[1]: *** [clean] Segmentation fault (core dumped)
+1590018823.57: rm -rf 
+1590018823.79: specmake[1]: *** [clean] Segmentation fault (core dumped)
+1590018823.79: specmake[1]: Leaving directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/build/build_base_wasm_strawman.0000'
+1590018823.79: Tee child 48293 exited with code 0 (exit code=0, signal=0)
+1590018823.79: Stop make.clean command: Wed May 20 16:53:43 2020 (1590018823)
+1590018823.79: Elapsed time for make.clean command: 00:00:01 (1)
+1590018823.79: Issuing make command 'specmake build'
+1590018823.79: specmake build 2> make.err | tee make.out
+1590018823.79: Start make command: Wed May 20 16:53:43 2020 (1590018823)
+1590018823.79: specmake[1]: Entering directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/build/build_base_wasm_strawman.0000'
+1590018823.79: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -c -o mcf.o -DSPEC_CPU -DNDEBUG  -DWANT_STDC_PROTO  -O2       -DSPEC_CPU_LP64         mcf.c
+1590018824.01: specmake[1]: *** [mcf.o] Segmentation fault (core dumped)
+1590018824.01: specmake[1]: Leaving directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/build/build_base_wasm_strawman.0000'
+1590018824.01: Tee child 48489 exited with code 512 (exit code=2, signal=0)
+1590018824.01: Stop make command: Wed May 20 16:53:44 2020 (1590018824)
+1590018824.01: Elapsed time for make command: 00:00:01 (1)
+1590018824.01: Error with make 'specmake build': check file '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/build/build_base_wasm_strawman.0000/make.err'
+1590018824.01:   Command returned exit code 2
+1590018824.01:   Error with make!
+1590018824.01:   Compile for '429.mcf' ended at: Wed May 20 16:53:44 2020 (1590018824)
+1590018824.01:   Elapsed compile for '429.mcf': 00:00:02 (2)
+1590018824.01: *** Error building 429.mcf
+
+1590018824.01: ------------------------------------------------------------------------
+1590018824.02: When checking options for /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/exe/milc_base.wasm_strawman, no MD5 sums were
+1590018824.02:   found in the config file.  They will be installed after build.
+1590018824.02:   Building 433.milc base wasm_strawman default: (build_base_wasm_strawman.0000)
+1590018824.04: Comparing MD5 hashes:
+1590018824.04:   d84b4ba86f793c8e9c8f2eb4dcb7b461 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/src/Makefile
+1590018824.04:   d84b4ba86f793c8e9c8f2eb4dcb7b461 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/build/build_base_wasm_strawman.0000/Makefile
+1590018824.05: Wrote to makefile '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/build/build_base_wasm_strawman.0000/Makefile.deps':
+
+1590018824.05: # These are the build dependencies
+
+1590018824.05: # End dependencies
+1590018824.05: Wrote to makefile '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/build/build_base_wasm_strawman.0000/Makefile.spec':
+1590018824.05: TUNE=base
+1590018824.05: EXT=wasm_strawman
+1590018824.05: NUMBER=433
+1590018824.05: NAME=milc
+1590018824.05: SOURCES= control.c f_meas.c gauge_info.c setup.c update.c update_h.c \
+1590018824.05: 	 update_u.c layout_hyper.c check_unitarity.c d_plaq4.c gaugefix2.c \
+1590018824.05: 	 io_helpers.c io_lat4.c make_lattice.c path_product.c ploop3.c ranmom.c \
+1590018824.05: 	 ranstuff.c reunitarize2.c gauge_stuff.c grsource_imp.c mat_invert.c \
+1590018824.05: 	 quark_stuff.c rephase.c cmplx.c addmat.c addvec.c clear_mat.c clearvec.c \
+1590018824.05: 	 m_amatvec.c m_mat_an.c m_mat_na.c m_mat_nn.c m_matvec.c make_ahmat.c \
+1590018824.05: 	 rand_ahmat.c realtr.c s_m_a_mat.c s_m_a_vec.c s_m_s_mat.c s_m_vec.c \
+1590018824.05: 	 s_m_mat.c su3_adjoint.c su3_dot.c su3_rdot.c su3_proj.c su3mat_copy.c \
+1590018824.05: 	 submat.c subvec.c trace_su3.c uncmp_ahmat.c msq_su3vec.c sub4vecs.c \
+1590018824.05: 	 m_amv_4dir.c m_amv_4vec.c m_mv_s_4dir.c m_su2_mat_vec_n.c l_su2_hit_n.c \
+1590018824.05: 	 r_su2_hit_a.c m_su2_mat_vec_a.c gaussrand.c byterevn.c m_mat_hwvec.c \
+1590018824.05: 	 m_amat_hwvec.c dslash_fn2.c d_congrad5_fn.c com_vanilla.c io_nonansi.c
+1590018824.05: EXEBASE=milc
+1590018824.05: NEED_MATH=yes
+1590018824.05: BENCHLANG=C
+1590018824.05: ONESTEP=
+1590018824.05: CONESTEP=
+
+1590018824.05: BENCH_FLAGS      = -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS
+1590018824.05: CC               = /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all
+1590018824.05: COPTIMIZE        = -O2
+1590018824.05: CXX              = /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions
+1590018824.05: CXXOPTIMIZE      = -O2
+1590018824.05: FC               = /usr/bin/gfortran
+1590018824.05: FOPTIMIZE        = -O2
+1590018824.05: FPBASE           = yes
+1590018824.05: LUCET_TYPE       = strawman
+1590018824.05: OS               = unix
+1590018824.05: PORTABILITY      = -DSPEC_CPU_LP64
+1590018824.05: absolutely_no_locking = 0
+1590018824.05: action           = build
+1590018824.05: allow_extension_override = 0
+1590018824.05: backup_config    = 1
+1590018824.05: baseexe          = milc
+1590018824.05: basepeak         = 0
+1590018824.05: benchdir         = benchspec
+1590018824.05: benchmark        = 433.milc
+1590018824.05: binary           = 
+1590018824.05: bindir           = exe
+1590018824.05: build_in_build_dir = 1
+1590018824.05: builddir         = build
+1590018824.05: bundleaction     = 
+1590018824.05: bundlename       = 
+1590018824.05: calctol          = 0
+1590018824.05: changedmd5       = 0
+1590018824.05: check_integrity  = 1
+1590018824.05: check_md5        = 1
+1590018824.05: check_version    = 1
+1590018824.05: command_add_redirect = 0
+1590018824.05: commanderrfile   = speccmds.err
+1590018824.05: commandexe       = milc_base.wasm_strawman
+1590018824.05: commandfile      = speccmds.cmd
+1590018824.05: commandoutfile   = speccmds.out
+1590018824.05: commandstdoutfile = speccmds.stdout
+1590018824.05: compareerrfile   = compare.err
+1590018824.05: comparefile      = compare.cmd
+1590018824.05: compareoutfile   = compare.out
+1590018824.05: comparestdoutfile = compare.stdout
+1590018824.05: compile_error    = 0
+1590018824.05: compwhite        = 
+1590018824.05: configdir        = config
+1590018824.05: configpath       = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/config/wasm_strawman.cfg
+1590018824.05: copies           = 1
+1590018824.05: datadir          = data
+1590018824.05: delay            = 0
+1590018824.05: deletebinaries   = 0
+1590018824.05: deletework       = 0
+1590018824.05: difflines        = 10
+1590018824.05: dirprot          = 511
+1590018824.05: endian           = 12345678
+1590018824.05: env_vars         = 0
+1590018824.05: exitvals         = spec_exit
+1590018824.05: expand_notes     = 0
+1590018824.05: expid            = 
+1590018824.05: ext              = wasm_strawman
+1590018824.05: fake             = 0
+1590018824.05: feedback         = 1
+1590018824.05: flag_url_base    = http://www.spec.org/auto/cpu2006/flags/
+1590018824.05: floatcompare     = 
+1590018824.05: help             = 0
+1590018824.05: http_proxy       = 
+1590018824.05: http_timeout     = 30
+1590018824.05: hw_avail         = Dec-9999
+1590018824.05: hw_cpu_char      = 
+1590018824.05: hw_cpu_mhz       = 3000
+1590018824.05: hw_cpu_name      = AMD Opteron 256
+1590018824.05: hw_disk          = SATA
+1590018824.05: hw_fpu           = Integrated
+1590018824.05: hw_memory        = 2 GB (2 x 1GB DDR333 CL2.5)
+1590018824.05: hw_model         = Tyan Thunder KKQS Pro (S4882)
+1590018824.05: hw_nchips        = 1
+1590018824.05: hw_ncores        = 1
+1590018824.05: hw_ncoresperchip = 1
+1590018824.05: hw_ncpuorder     = 1 chip
+1590018824.05: hw_nthreadspercore = 1
+1590018824.05: hw_ocache        = None
+1590018824.05: hw_pcache        = 64 KB I + 64 KB D on chip per chip
+1590018824.05: hw_scache        = 1 MB I+D on chip per chip
+1590018824.05: hw_tcache        = None
+1590018824.05: hw_vendor        = Tyan
+1590018824.05: ignore_errors    = yes
+1590018824.05: ignore_sigint    = 0
+1590018824.05: ignorecase       = 
+1590018824.05: info_wrap_columns = 50
+1590018824.05: inputdir         = input
+1590018824.05: iteration        = -1
+1590018824.05: iterations       = 3
+1590018824.05: keeptmp          = 0
+1590018824.05: license_num      = 0
+1590018824.05: line_width       = 0
+1590018824.05: locking          = 1
+1590018824.05: log              = CPU2006
+1590018824.05: log_line_width   = 0
+1590018824.05: log_timestamp    = 0
+1590018824.05: logname          = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/result/CPU2006.016.log
+1590018824.05: lognum           = 016
+1590018824.05: mach             = default
+1590018824.05: mail_reports     = all
+1590018824.05: mailcompress     = 0
+1590018824.05: mailmethod       = smtp
+1590018824.05: mailport         = 25
+1590018824.05: mailserver       = 127.0.0.1
+1590018824.05: mailto           = 
+1590018824.05: make             = specmake
+1590018824.05: make_no_clobber  = 0
+1590018824.05: makeflags        = 
+1590018824.05: max_active_compares = 0
+1590018824.05: mean_anyway      = 0
+1590018824.05: min_report_runs  = 3
+1590018824.05: minimize_builddirs = 0
+1590018824.05: minimize_rundirs = 0
+1590018824.05: name             = milc
+1590018824.05: need_math        = yes
+1590018824.05: no_input_handler = close
+1590018824.05: no_monitor       = 
+1590018824.05: note_preenv      = 0
+1590018824.05: notes0100        =  C base flags: -O2
+1590018824.05: notes0110        =  C++ base flags: -O2
+1590018824.05: notes0120        =  Fortran base flags: -O2
+1590018824.05: notes25          =  PORTABILITY=-DSPEC_CPU_LP64 is applied to all benchmarks in base.
+1590018824.05: notes_wrap_columns = 0
+1590018824.05: notes_wrap_indent =   
+1590018824.05: num              = 433
+1590018824.05: obiwan           = 
+1590018824.05: os_exe_ext       = 
+1590018824.05: output           = asc
+1590018824.05: output_format    = asc
+1590018824.05: output_root      = 
+1590018824.05: outputdir        = output
+1590018824.05: parallel_setup   = 1
+1590018824.05: parallel_setup_prefork = 
+1590018824.05: parallel_setup_type = fork
+1590018824.05: parallel_test    = 0
+1590018824.05: parallel_test_submit = 0
+1590018824.05: path             = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc
+1590018824.05: plain_train      = 1
+1590018824.05: preenv           = 1
+1590018824.05: prefix           = 
+1590018824.05: prepared_by      = 
+1590018824.05: ranks            = 1
+1590018824.05: rate             = 0
+1590018824.05: realuser         = your name here
+1590018824.05: rebuild          = 0
+1590018824.05: reftime          = reftime
+1590018824.05: reportable       = 1
+1590018824.05: resultdir        = result
+1590018824.05: review           = 0
+1590018824.05: run              = all
+1590018824.05: rundir           = run
+1590018824.05: runspec          = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/runspec --config=wasm_strawman.cfg --action=build oakland
+1590018824.05: safe_eval        = 1
+1590018824.05: section_specifier_fatal = 1
+1590018824.05: sendmail         = /usr/sbin/sendmail
+1590018824.05: setpgrp_enabled  = 1
+1590018824.05: setprocgroup     = 1
+1590018824.05: shrate           = 0
+1590018824.05: sigint           = 2
+1590018824.05: size             = ref
+1590018824.05: size_class       = ref
+1590018824.05: skipabstol       = 
+1590018824.05: skipobiwan       = 
+1590018824.05: skipreltol       = 
+1590018824.05: skiptol          = 
+1590018824.05: smarttune        = base
+1590018824.05: specdiff         = specdiff
+1590018824.05: specmake         = Makefile.YYYtArGeTYYYspec
+1590018824.05: specrun          = specinvoke
+1590018824.05: speed            = 0
+1590018824.05: srcalt           = 
+1590018824.05: srcdir           = src
+1590018824.05: stagger          = 10
+1590018824.05: strict_rundir_verify = 1
+1590018824.05: sw_avail         = Dec-9999
+1590018824.05: sw_base_ptrsize  = 64-bit
+1590018824.05: sw_compiler      = clang , clang++ & gfortran 4.1.0 (for AMD64)
+1590018824.05: sw_file          = ext3
+1590018824.05: sw_os            = SUSE SLES9 (for AMD64)
+1590018824.05: sw_other         = None
+1590018824.05: sw_peak_ptrsize  = Not Applicable
+1590018824.05: sw_state         = runlevel 3
+1590018824.05: sysinfo_program  = 
+1590018824.05: table            = 1
+1590018824.05: teeout           = yes
+1590018824.05: teerunout        = yes
+1590018824.05: test_date        = May-2020
+1590018824.05: test_sponsor     = Turbo Computers
+1590018824.05: tester           = 
+1590018824.05: top              = /home/ucsd/SpectreSandboxing/sfi-spectre-spec
+1590018824.05: train_with       = train
+1590018824.05: tune             = base
+1590018824.05: uid              = 1004
+1590018824.05: unbuffer         = 1
+1590018824.05: update-flags     = 0
+1590018824.05: use_submit_for_speed = 0
+1590018824.05: username         = ucsd
+1590018824.05: vendor           = anon
+1590018824.05: vendor_makefiles = 0
+1590018824.05: verbose          = 5
+1590018824.05: version          = 0
+1590018824.05: version_url      = http://www.spec.org/auto/cpu2006/current_version
+1590018824.05: worklist         = list
+1590018824.05: OUTPUT_RMFILES   = su3imp.out
+1590018824.05:   Compile for '433.milc' started at: Wed May 20 16:53:44 2020 (1590018824)
+1590018824.05: Issuing make.clean command 'specmake clean'
+1590018824.05: specmake clean 2> make.clean.err | tee make.clean.out
+1590018824.05: Start make.clean command: Wed May 20 16:53:44 2020 (1590018824)
+1590018824.05: specmake[1]: Entering directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/build/build_base_wasm_strawman.0000'
+1590018824.05: rm -rf milc
+1590018824.27: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018824.27: rm -rf milc.exe
+1590018824.49: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018824.49: rm -rf *.o  su3imp.out
+1590018824.69: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018824.69: find . \( -name \*.o -o -name '*.fppized.f*' \) -print | xargs rm -rf
+1590018824.90: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018824.90: rm -rf core
+1590018825.13: specmake[1]: *** [clean] Segmentation fault (core dumped)
+1590018825.13: rm -rf 
+1590018825.35: specmake[1]: *** [clean] Segmentation fault (core dumped)
+1590018825.35: specmake[1]: Leaving directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/build/build_base_wasm_strawman.0000'
+1590018825.35: Tee child 48531 exited with code 0 (exit code=0, signal=0)
+1590018825.35: Stop make.clean command: Wed May 20 16:53:45 2020 (1590018825)
+1590018825.35: Elapsed time for make.clean command: 00:00:01 (1)
+1590018825.35: Issuing make command 'specmake build'
+1590018825.35: specmake build 2> make.err | tee make.out
+1590018825.35: Start make command: Wed May 20 16:53:45 2020 (1590018825)
+1590018825.36: specmake[1]: Entering directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/build/build_base_wasm_strawman.0000'
+1590018825.36: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -c -o control.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         control.c
+1590018825.57: specmake[1]: *** [control.o] Segmentation fault (core dumped)
+1590018825.57: specmake[1]: Leaving directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/build/build_base_wasm_strawman.0000'
+1590018825.57: Tee child 48681 exited with code 512 (exit code=2, signal=0)
+1590018825.57: Stop make command: Wed May 20 16:53:45 2020 (1590018825)
+1590018825.57: Elapsed time for make command: 00:00:00 (0)
+1590018825.58: Error with make 'specmake build': check file '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/build/build_base_wasm_strawman.0000/make.err'
+1590018825.58:   Command returned exit code 2
+1590018825.58:   Error with make!
+1590018825.58:   Compile for '433.milc' ended at: Wed May 20 16:53:45 2020 (1590018825)
+1590018825.58:   Elapsed compile for '433.milc': 00:00:01 (1)
+1590018825.58: *** Error building 433.milc
+
+1590018825.58: ------------------------------------------------------------------------
+1590018825.58: When checking options for /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/444.namd/exe/namd_base.wasm_strawman, no MD5 sums were
+1590018825.58:   found in the config file.  They will be installed after build.
+1590018825.58:   Building 444.namd base wasm_strawman default: (build_base_wasm_strawman.0000)
+1590018825.59: Comparing MD5 hashes:
+1590018825.59:   d84b4ba86f793c8e9c8f2eb4dcb7b461 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/444.namd/src/Makefile
+1590018825.59:   d84b4ba86f793c8e9c8f2eb4dcb7b461 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/444.namd/build/build_base_wasm_strawman.0000/Makefile
+1590018825.60: Wrote to makefile '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/444.namd/build/build_base_wasm_strawman.0000/Makefile.deps':
+
+1590018825.60: # These are the build dependencies
+
+1590018825.60: # End dependencies
+1590018825.60: Wrote to makefile '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/444.namd/build/build_base_wasm_strawman.0000/Makefile.spec':
+1590018825.60: TUNE=base
+1590018825.60: EXT=wasm_strawman
+1590018825.60: NUMBER=444
+1590018825.60: NAME=namd
+1590018825.60: SOURCES= Compute.C ComputeList.C ComputeNonbondedUtil.C LJTable.C \
+1590018825.60: 	 Molecule.C Patch.C PatchList.C ResultSet.C SimParameters.C erf.C \
+1590018825.60: 	 spec_namd.C
+1590018825.60: EXEBASE=namd
+1590018825.60: NEED_MATH=yes
+1590018825.60: BENCHLANG=CXX
+1590018825.60: ONESTEP=
+1590018825.60: CXXONESTEP=
+
+1590018825.60: CC               = /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all
+1590018825.60: COPTIMIZE        = -O2
+1590018825.60: CXX              = /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions
+1590018825.60: CXXOPTIMIZE      = -O2
+1590018825.60: FC               = /usr/bin/gfortran
+1590018825.60: FOPTIMIZE        = -O2
+1590018825.60: FPBASE           = yes
+1590018825.60: LUCET_TYPE       = strawman
+1590018825.60: OS               = unix
+1590018825.60: PORTABILITY      = -DSPEC_CPU_LP64
+1590018825.60: absolutely_no_locking = 0
+1590018825.60: action           = build
+1590018825.60: allow_extension_override = 0
+1590018825.60: backup_config    = 1
+1590018825.60: baseexe          = namd
+1590018825.60: basepeak         = 0
+1590018825.60: benchdir         = benchspec
+1590018825.60: benchmark        = 444.namd
+1590018825.60: binary           = 
+1590018825.60: bindir           = exe
+1590018825.60: build_in_build_dir = 1
+1590018825.60: builddir         = build
+1590018825.60: bundleaction     = 
+1590018825.60: bundlename       = 
+1590018825.60: calctol          = 0
+1590018825.60: changedmd5       = 0
+1590018825.60: check_integrity  = 1
+1590018825.60: check_md5        = 1
+1590018825.60: check_version    = 1
+1590018825.60: command_add_redirect = 0
+1590018825.60: commanderrfile   = speccmds.err
+1590018825.60: commandexe       = namd_base.wasm_strawman
+1590018825.60: commandfile      = speccmds.cmd
+1590018825.60: commandoutfile   = speccmds.out
+1590018825.60: commandstdoutfile = speccmds.stdout
+1590018825.60: compareerrfile   = compare.err
+1590018825.60: comparefile      = compare.cmd
+1590018825.60: compareoutfile   = compare.out
+1590018825.60: comparestdoutfile = compare.stdout
+1590018825.60: compile_error    = 0
+1590018825.60: compwhite        = 
+1590018825.60: configdir        = config
+1590018825.60: configpath       = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/config/wasm_strawman.cfg
+1590018825.60: copies           = 1
+1590018825.60: datadir          = data
+1590018825.60: delay            = 0
+1590018825.60: deletebinaries   = 0
+1590018825.60: deletework       = 0
+1590018825.60: difflines        = 10
+1590018825.60: dirprot          = 511
+1590018825.60: endian           = 12345678
+1590018825.60: env_vars         = 0
+1590018825.60: exitvals         = spec_exit
+1590018825.60: expand_notes     = 0
+1590018825.60: expid            = 
+1590018825.60: ext              = wasm_strawman
+1590018825.60: fake             = 0
+1590018825.60: feedback         = 1
+1590018825.60: flag_url_base    = http://www.spec.org/auto/cpu2006/flags/
+1590018825.60: floatcompare     = 
+1590018825.60: help             = 0
+1590018825.60: http_proxy       = 
+1590018825.60: http_timeout     = 30
+1590018825.60: hw_avail         = Dec-9999
+1590018825.60: hw_cpu_char      = 
+1590018825.60: hw_cpu_mhz       = 3000
+1590018825.60: hw_cpu_name      = AMD Opteron 256
+1590018825.60: hw_disk          = SATA
+1590018825.60: hw_fpu           = Integrated
+1590018825.60: hw_memory        = 2 GB (2 x 1GB DDR333 CL2.5)
+1590018825.60: hw_model         = Tyan Thunder KKQS Pro (S4882)
+1590018825.60: hw_nchips        = 1
+1590018825.60: hw_ncores        = 1
+1590018825.60: hw_ncoresperchip = 1
+1590018825.60: hw_ncpuorder     = 1 chip
+1590018825.60: hw_nthreadspercore = 1
+1590018825.60: hw_ocache        = None
+1590018825.60: hw_pcache        = 64 KB I + 64 KB D on chip per chip
+1590018825.60: hw_scache        = 1 MB I+D on chip per chip
+1590018825.60: hw_tcache        = None
+1590018825.60: hw_vendor        = Tyan
+1590018825.60: ignore_errors    = yes
+1590018825.60: ignore_sigint    = 0
+1590018825.60: ignorecase       = 
+1590018825.60: info_wrap_columns = 50
+1590018825.60: inputdir         = input
+1590018825.60: iteration        = -1
+1590018825.60: iterations       = 3
+1590018825.60: keeptmp          = 0
+1590018825.60: license_num      = 0
+1590018825.60: line_width       = 0
+1590018825.60: locking          = 1
+1590018825.60: log              = CPU2006
+1590018825.60: log_line_width   = 0
+1590018825.60: log_timestamp    = 0
+1590018825.60: logname          = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/result/CPU2006.016.log
+1590018825.60: lognum           = 016
+1590018825.60: mach             = default
+1590018825.60: mail_reports     = all
+1590018825.60: mailcompress     = 0
+1590018825.60: mailmethod       = smtp
+1590018825.60: mailport         = 25
+1590018825.60: mailserver       = 127.0.0.1
+1590018825.60: mailto           = 
+1590018825.60: make             = specmake
+1590018825.60: make_no_clobber  = 0
+1590018825.60: makeflags        = 
+1590018825.60: max_active_compares = 0
+1590018825.60: mean_anyway      = 0
+1590018825.60: min_report_runs  = 3
+1590018825.60: minimize_builddirs = 0
+1590018825.60: minimize_rundirs = 0
+1590018825.60: name             = namd
+1590018825.60: need_math        = yes
+1590018825.60: no_input_handler = close
+1590018825.60: no_monitor       = 
+1590018825.60: note_preenv      = 0
+1590018825.60: notes0100        =  C base flags: -O2
+1590018825.60: notes0110        =  C++ base flags: -O2
+1590018825.60: notes0120        =  Fortran base flags: -O2
+1590018825.60: notes25          =  PORTABILITY=-DSPEC_CPU_LP64 is applied to all benchmarks in base.
+1590018825.60: notes_wrap_columns = 0
+1590018825.60: notes_wrap_indent =   
+1590018825.60: num              = 444
+1590018825.60: obiwan           = 
+1590018825.60: os_exe_ext       = 
+1590018825.60: output           = asc
+1590018825.60: output_format    = asc
+1590018825.60: output_root      = 
+1590018825.60: outputdir        = output
+1590018825.60: parallel_setup   = 1
+1590018825.60: parallel_setup_prefork = 
+1590018825.60: parallel_setup_type = fork
+1590018825.60: parallel_test    = 0
+1590018825.60: parallel_test_submit = 0
+1590018825.60: path             = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/444.namd
+1590018825.60: plain_train      = 1
+1590018825.60: preenv           = 1
+1590018825.60: prefix           = 
+1590018825.60: prepared_by      = 
+1590018825.60: ranks            = 1
+1590018825.60: rate             = 0
+1590018825.60: realuser         = your name here
+1590018825.60: rebuild          = 0
+1590018825.60: reftime          = reftime
+1590018825.60: reportable       = 1
+1590018825.60: resultdir        = result
+1590018825.60: review           = 0
+1590018825.60: run              = all
+1590018825.60: rundir           = run
+1590018825.60: runspec          = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/runspec --config=wasm_strawman.cfg --action=build oakland
+1590018825.60: safe_eval        = 1
+1590018825.60: section_specifier_fatal = 1
+1590018825.60: sendmail         = /usr/sbin/sendmail
+1590018825.60: setpgrp_enabled  = 1
+1590018825.60: setprocgroup     = 1
+1590018825.60: shrate           = 0
+1590018825.60: sigint           = 2
+1590018825.60: size             = ref
+1590018825.60: size_class       = ref
+1590018825.60: skipabstol       = 
+1590018825.60: skipobiwan       = 
+1590018825.60: skipreltol       = 
+1590018825.60: skiptol          = 
+1590018825.60: smarttune        = base
+1590018825.60: specdiff         = specdiff
+1590018825.60: specmake         = Makefile.YYYtArGeTYYYspec
+1590018825.60: specrun          = specinvoke
+1590018825.60: speed            = 0
+1590018825.60: srcalt           = 
+1590018825.60: srcdir           = src
+1590018825.60: stagger          = 10
+1590018825.60: strict_rundir_verify = 1
+1590018825.60: sw_avail         = Dec-9999
+1590018825.60: sw_base_ptrsize  = 64-bit
+1590018825.60: sw_compiler      = clang , clang++ & gfortran 4.1.0 (for AMD64)
+1590018825.60: sw_file          = ext3
+1590018825.60: sw_os            = SUSE SLES9 (for AMD64)
+1590018825.60: sw_other         = None
+1590018825.60: sw_peak_ptrsize  = Not Applicable
+1590018825.60: sw_state         = runlevel 3
+1590018825.60: sysinfo_program  = 
+1590018825.60: table            = 1
+1590018825.60: teeout           = yes
+1590018825.60: teerunout        = yes
+1590018825.60: test_date        = May-2020
+1590018825.60: test_sponsor     = Turbo Computers
+1590018825.60: tester           = 
+1590018825.60: top              = /home/ucsd/SpectreSandboxing/sfi-spectre-spec
+1590018825.60: train_with       = train
+1590018825.60: tune             = base
+1590018825.60: uid              = 1004
+1590018825.60: unbuffer         = 1
+1590018825.60: update-flags     = 0
+1590018825.60: use_submit_for_speed = 0
+1590018825.60: username         = ucsd
+1590018825.60: vendor           = anon
+1590018825.60: vendor_makefiles = 0
+1590018825.60: verbose          = 5
+1590018825.60: version          = 0
+1590018825.60: version_url      = http://www.spec.org/auto/cpu2006/current_version
+1590018825.60: worklist         = list
+1590018825.60: OUTPUT_RMFILES   = namd.out
+1590018825.60:   Compile for '444.namd' started at: Wed May 20 16:53:45 2020 (1590018825)
+1590018825.60: Issuing make.clean command 'specmake clean'
+1590018825.60: specmake clean 2> make.clean.err | tee make.clean.out
+1590018825.60: Start make.clean command: Wed May 20 16:53:45 2020 (1590018825)
+1590018825.61: specmake[1]: Entering directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/444.namd/build/build_base_wasm_strawman.0000'
+1590018825.61: rm -rf namd
+1590018825.82: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018825.82: rm -rf namd.exe
+1590018826.04: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018826.04: rm -rf *.o  namd.out
+1590018826.27: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018826.27: find . \( -name \*.o -o -name '*.fppized.f*' \) -print | xargs rm -rf
+1590018826.49: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018826.49: rm -rf core
+1590018826.71: specmake[1]: *** [clean] Segmentation fault (core dumped)
+1590018826.71: rm -rf 
+1590018826.92: specmake[1]: *** [clean] Segmentation fault (core dumped)
+1590018826.93: specmake[1]: Leaving directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/444.namd/build/build_base_wasm_strawman.0000'
+1590018826.93: Tee child 48725 exited with code 0 (exit code=0, signal=0)
+1590018826.93: Stop make.clean command: Wed May 20 16:53:46 2020 (1590018826)
+1590018826.93: Elapsed time for make.clean command: 00:00:01 (1)
+1590018826.93: Issuing make command 'specmake build'
+1590018826.93: specmake build 2> make.err | tee make.out
+1590018826.93: Start make command: Wed May 20 16:53:46 2020 (1590018826)
+1590018826.93: specmake[1]: Entering directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/444.namd/build/build_base_wasm_strawman.0000'
+1590018826.93: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o Compute.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64       Compute.C
+1590018827.15: specmake[1]: *** [Compute.o] Segmentation fault (core dumped)
+1590018827.15: specmake[1]: Leaving directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/444.namd/build/build_base_wasm_strawman.0000'
+1590018827.15: Tee child 48925 exited with code 512 (exit code=2, signal=0)
+1590018827.15: Stop make command: Wed May 20 16:53:47 2020 (1590018827)
+1590018827.15: Elapsed time for make command: 00:00:01 (1)
+1590018827.15: Error with make 'specmake build': check file '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/444.namd/build/build_base_wasm_strawman.0000/make.err'
+1590018827.15:   Command returned exit code 2
+1590018827.15:   Error with make!
+1590018827.16:   Compile for '444.namd' ended at: Wed May 20 16:53:47 2020 (1590018827)
+1590018827.16:   Elapsed compile for '444.namd': 00:00:02 (2)
+1590018827.16: *** Error building 444.namd
+
+1590018827.16: ------------------------------------------------------------------------
+1590018827.16: When checking options for /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/445.gobmk/exe/gobmk_base.wasm_strawman, no MD5 sums were
+1590018827.16:   found in the config file.  They will be installed after build.
+1590018827.16:   Building 445.gobmk base wasm_strawman default: (build_base_wasm_strawman.0000)
+1590018827.19: Comparing MD5 hashes:
+1590018827.19:   d84b4ba86f793c8e9c8f2eb4dcb7b461 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/445.gobmk/src/Makefile
+1590018827.19:   d84b4ba86f793c8e9c8f2eb4dcb7b461 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/445.gobmk/build/build_base_wasm_strawman.0000/Makefile
+1590018827.20: Wrote to makefile '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/445.gobmk/build/build_base_wasm_strawman.0000/Makefile.deps':
+
+1590018827.20: # These are the build dependencies
+
+1590018827.20: # End dependencies
+1590018827.20: Wrote to makefile '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/445.gobmk/build/build_base_wasm_strawman.0000/Makefile.spec':
+1590018827.20: TUNE=base
+1590018827.20: EXT=wasm_strawman
+1590018827.20: NUMBER=445
+1590018827.20: NAME=gobmk
+1590018827.20: SOURCES= sgf/sgf_utils.c sgf/sgftree.c sgf/sgfnode.c engine/aftermath.c \
+1590018827.20: 	 engine/board.c engine/cache.c engine/combination.c engine/dragon.c \
+1590018827.20: 	 engine/filllib.c engine/fuseki.c engine/genmove.c engine/hash.c \
+1590018827.20: 	 engine/influence.c engine/interface.c engine/matchpat.c \
+1590018827.20: 	 engine/move_reasons.c engine/movelist.c engine/optics.c engine/owl.c \
+1590018827.20: 	 engine/printutils.c engine/readconnect.c engine/reading.c engine/score.c \
+1590018827.20: 	 engine/semeai.c engine/sgfdecide.c engine/sgffile.c engine/shapes.c \
+1590018827.20: 	 engine/showbord.c engine/utils.c engine/value_moves.c engine/worm.c \
+1590018827.20: 	 engine/globals.c engine/persistent.c engine/handicap.c engine/surround.c \
+1590018827.20: 	 interface/gtp.c interface/main.c interface/play_ascii.c \
+1590018827.20: 	 interface/play_gtp.c interface/play_solo.c interface/play_test.c \
+1590018827.20: 	 patterns/connections.c patterns/dfa.c patterns/helpers.c \
+1590018827.20: 	 patterns/transform.c patterns/owl_attackpat.c patterns/conn.c \
+1590018827.20: 	 patterns/patterns.c patterns/apatterns.c patterns/dpatterns.c \
+1590018827.20: 	 patterns/owl_vital_apat.c patterns/eyes.c patterns/influence.c \
+1590018827.20: 	 patterns/barriers.c patterns/endgame.c patterns/aa_attackpat.c \
+1590018827.20: 	 patterns/owl_defendpat.c patterns/fusekipat.c patterns/fuseki9.c \
+1590018827.20: 	 patterns/fuseki13.c patterns/fuseki19.c patterns/josekidb.c \
+1590018827.20: 	 patterns/handipat.c utils/getopt.c utils/getopt1.c utils/gg_utils.c \
+1590018827.20: 	 utils/random.c
+1590018827.20: EXEBASE=gobmk
+1590018827.20: NEED_MATH=yes
+1590018827.20: BENCHLANG=C
+1590018827.20: ONESTEP=
+1590018827.20: CONESTEP=
+
+1590018827.20: BENCH_FLAGS      = -DHAVE_CONFIG_H -I. -I.. -I../include -I./include
+1590018827.20: CC               = /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all
+1590018827.20: COPTIMIZE        = -O2
+1590018827.20: CXX              = /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions
+1590018827.20: CXXOPTIMIZE      = -O2
+1590018827.20: FC               = /usr/bin/gfortran
+1590018827.20: FOPTIMIZE        = -O2
+1590018827.20: FPBASE           = yes
+1590018827.20: LUCET_TYPE       = strawman
+1590018827.20: OS               = unix
+1590018827.20: PORTABILITY      = -DSPEC_CPU_LP64
+1590018827.20: absolutely_no_locking = 0
+1590018827.20: abstol           = 
+1590018827.20: action           = build
+1590018827.20: allow_extension_override = 0
+1590018827.20: backup_config    = 1
+1590018827.20: baseexe          = gobmk
+1590018827.20: basepeak         = 0
+1590018827.20: benchdir         = benchspec
+1590018827.20: benchmark        = 445.gobmk
+1590018827.20: binary           = 
+1590018827.20: bindir           = exe
+1590018827.20: build_in_build_dir = 1
+1590018827.20: builddir         = build
+1590018827.20: bundleaction     = 
+1590018827.20: bundlename       = 
+1590018827.20: calctol          = 0
+1590018827.20: changedmd5       = 0
+1590018827.20: check_integrity  = 1
+1590018827.20: check_md5        = 1
+1590018827.20: check_version    = 1
+1590018827.20: command_add_redirect = 0
+1590018827.20: commanderrfile   = speccmds.err
+1590018827.20: commandexe       = gobmk_base.wasm_strawman
+1590018827.20: commandfile      = speccmds.cmd
+1590018827.20: commandoutfile   = speccmds.out
+1590018827.20: commandstdoutfile = speccmds.stdout
+1590018827.20: compareerrfile   = compare.err
+1590018827.20: comparefile      = compare.cmd
+1590018827.20: compareoutfile   = compare.out
+1590018827.20: comparestdoutfile = compare.stdout
+1590018827.20: compile_error    = 0
+1590018827.20: compwhite        = 
+1590018827.20: configdir        = config
+1590018827.20: configpath       = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/config/wasm_strawman.cfg
+1590018827.20: copies           = 1
+1590018827.20: datadir          = data
+1590018827.20: delay            = 0
+1590018827.20: deletebinaries   = 0
+1590018827.20: deletework       = 0
+1590018827.20: difflines        = 10
+1590018827.20: dirprot          = 511
+1590018827.20: endian           = 12345678
+1590018827.20: env_vars         = 0
+1590018827.20: exitvals         = spec_exit
+1590018827.20: expand_notes     = 0
+1590018827.20: expid            = 
+1590018827.20: ext              = wasm_strawman
+1590018827.20: fake             = 0
+1590018827.20: feedback         = 1
+1590018827.20: flag_url_base    = http://www.spec.org/auto/cpu2006/flags/
+1590018827.20: floatcompare     = 
+1590018827.20: help             = 0
+1590018827.20: http_proxy       = 
+1590018827.20: http_timeout     = 30
+1590018827.20: hw_avail         = Dec-9999
+1590018827.20: hw_cpu_char      = 
+1590018827.20: hw_cpu_mhz       = 3000
+1590018827.20: hw_cpu_name      = AMD Opteron 256
+1590018827.20: hw_disk          = SATA
+1590018827.20: hw_fpu           = Integrated
+1590018827.20: hw_memory        = 2 GB (2 x 1GB DDR333 CL2.5)
+1590018827.20: hw_model         = Tyan Thunder KKQS Pro (S4882)
+1590018827.20: hw_nchips        = 1
+1590018827.20: hw_ncores        = 1
+1590018827.20: hw_ncoresperchip = 1
+1590018827.20: hw_ncpuorder     = 1 chip
+1590018827.20: hw_nthreadspercore = 1
+1590018827.20: hw_ocache        = None
+1590018827.20: hw_pcache        = 64 KB I + 64 KB D on chip per chip
+1590018827.20: hw_scache        = 1 MB I+D on chip per chip
+1590018827.20: hw_tcache        = None
+1590018827.20: hw_vendor        = Tyan
+1590018827.20: ignore_errors    = yes
+1590018827.20: ignore_sigint    = 0
+1590018827.20: ignorecase       = 
+1590018827.20: info_wrap_columns = 50
+1590018827.20: inputdir         = input
+1590018827.20: iteration        = -1
+1590018827.20: iterations       = 3
+1590018827.20: keeptmp          = 0
+1590018827.20: license_num      = 0
+1590018827.20: line_width       = 0
+1590018827.20: locking          = 1
+1590018827.20: log              = CPU2006
+1590018827.20: log_line_width   = 0
+1590018827.20: log_timestamp    = 0
+1590018827.20: logname          = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/result/CPU2006.016.log
+1590018827.20: lognum           = 016
+1590018827.20: mach             = default
+1590018827.20: mail_reports     = all
+1590018827.20: mailcompress     = 0
+1590018827.20: mailmethod       = smtp
+1590018827.20: mailport         = 25
+1590018827.20: mailserver       = 127.0.0.1
+1590018827.20: mailto           = 
+1590018827.20: make             = specmake
+1590018827.20: make_no_clobber  = 0
+1590018827.20: makeflags        = 
+1590018827.20: max_active_compares = 0
+1590018827.20: mean_anyway      = 0
+1590018827.20: min_report_runs  = 3
+1590018827.20: minimize_builddirs = 0
+1590018827.20: minimize_rundirs = 0
+1590018827.20: name             = gobmk
+1590018827.20: need_math        = yes
+1590018827.20: no_input_handler = close
+1590018827.20: no_monitor       = 
+1590018827.20: note_preenv      = 0
+1590018827.20: notes0100        =  C base flags: -O2
+1590018827.20: notes0110        =  C++ base flags: -O2
+1590018827.20: notes0120        =  Fortran base flags: -O2
+1590018827.20: notes25          =  PORTABILITY=-DSPEC_CPU_LP64 is applied to all benchmarks in base.
+1590018827.20: notes_wrap_columns = 0
+1590018827.20: notes_wrap_indent =   
+1590018827.20: num              = 445
+1590018827.20: obiwan           = 
+1590018827.20: os_exe_ext       = 
+1590018827.20: output           = asc
+1590018827.20: output_format    = asc
+1590018827.20: output_root      = 
+1590018827.20: outputdir        = output
+1590018827.20: parallel_setup   = 1
+1590018827.20: parallel_setup_prefork = 
+1590018827.20: parallel_setup_type = fork
+1590018827.20: parallel_test    = 0
+1590018827.20: parallel_test_submit = 0
+1590018827.20: path             = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/445.gobmk
+1590018827.20: plain_train      = 1
+1590018827.20: preenv           = 1
+1590018827.20: prefix           = 
+1590018827.20: prepared_by      = 
+1590018827.20: ranks            = 1
+1590018827.20: rate             = 0
+1590018827.20: realuser         = your name here
+1590018827.20: rebuild          = 0
+1590018827.20: reftime          = reftime
+1590018827.20: reltol           = 
+1590018827.20: reportable       = 1
+1590018827.20: resultdir        = result
+1590018827.20: review           = 0
+1590018827.20: run              = all
+1590018827.20: rundir           = run
+1590018827.20: runspec          = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/runspec --config=wasm_strawman.cfg --action=build oakland
+1590018827.20: safe_eval        = 1
+1590018827.20: section_specifier_fatal = 1
+1590018827.20: sendmail         = /usr/sbin/sendmail
+1590018827.20: setpgrp_enabled  = 1
+1590018827.20: setprocgroup     = 1
+1590018827.20: shrate           = 0
+1590018827.20: sigint           = 2
+1590018827.20: size             = ref
+1590018827.20: size_class       = ref
+1590018827.20: skipabstol       = 
+1590018827.20: skipobiwan       = 
+1590018827.20: skipreltol       = 
+1590018827.20: skiptol          = 
+1590018827.20: smarttune        = base
+1590018827.20: specdiff         = specdiff
+1590018827.20: specmake         = Makefile.YYYtArGeTYYYspec
+1590018827.20: specrun          = specinvoke
+1590018827.20: speed            = 0
+1590018827.20: srcalt           = 
+1590018827.20: srcdir           = src
+1590018827.20: stagger          = 10
+1590018827.20: strict_rundir_verify = 1
+1590018827.20: sw_avail         = Dec-9999
+1590018827.20: sw_base_ptrsize  = 64-bit
+1590018827.20: sw_compiler      = clang , clang++ & gfortran 4.1.0 (for AMD64)
+1590018827.20: sw_file          = ext3
+1590018827.20: sw_os            = SUSE SLES9 (for AMD64)
+1590018827.20: sw_other         = None
+1590018827.20: sw_peak_ptrsize  = Not Applicable
+1590018827.20: sw_state         = runlevel 3
+1590018827.20: sysinfo_program  = 
+1590018827.20: table            = 1
+1590018827.20: teeout           = yes
+1590018827.20: teerunout        = yes
+1590018827.20: test_date        = May-2020
+1590018827.20: test_sponsor     = Turbo Computers
+1590018827.20: tester           = 
+1590018827.20: top              = /home/ucsd/SpectreSandboxing/sfi-spectre-spec
+1590018827.20: train_with       = train
+1590018827.20: tune             = base
+1590018827.20: uid              = 1004
+1590018827.20: unbuffer         = 1
+1590018827.20: update-flags     = 0
+1590018827.20: use_submit_for_speed = 0
+1590018827.20: username         = ucsd
+1590018827.20: vendor           = anon
+1590018827.20: vendor_makefiles = 0
+1590018827.20: verbose          = 5
+1590018827.20: version          = 0
+1590018827.20: version_url      = http://www.spec.org/auto/cpu2006/current_version
+1590018827.20: worklist         = list
+1590018827.20: OUTPUT_RMFILES   = arb.out arend.out arion.out atari_atari.out blunder.out buzco.out nicklas2.out nicklas4.out
+1590018827.20:   Compile for '445.gobmk' started at: Wed May 20 16:53:47 2020 (1590018827)
+1590018827.20: Issuing make.clean command 'specmake clean'
+1590018827.20: specmake clean 2> make.clean.err | tee make.clean.out
+1590018827.20: Start make.clean command: Wed May 20 16:53:47 2020 (1590018827)
+1590018827.21: specmake[1]: Entering directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/445.gobmk/build/build_base_wasm_strawman.0000'
+1590018827.21: rm -rf gobmk
+1590018827.42: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018827.42: rm -rf gobmk.exe
+1590018827.63: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018827.63: rm -rf *.o  arb.out arend.out arion.out atari_atari.out blunder.out buzco.out nicklas2.out nicklas4.out
+1590018827.84: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018827.84: find . \( -name \*.o -o -name '*.fppized.f*' \) -print | xargs rm -rf
+1590018828.05: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018828.05: rm -rf core
+1590018828.27: specmake[1]: *** [clean] Segmentation fault (core dumped)
+1590018828.27: rm -rf 
+1590018828.48: specmake[1]: *** [clean] Segmentation fault (core dumped)
+1590018828.48: specmake[1]: Leaving directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/445.gobmk/build/build_base_wasm_strawman.0000'
+1590018828.48: Tee child 48969 exited with code 0 (exit code=0, signal=0)
+1590018828.48: Stop make.clean command: Wed May 20 16:53:48 2020 (1590018828)
+1590018828.48: Elapsed time for make.clean command: 00:00:01 (1)
+1590018828.48: Issuing make command 'specmake build'
+1590018828.48: specmake build 2> make.err | tee make.out
+1590018828.48: Start make command: Wed May 20 16:53:48 2020 (1590018828)
+1590018828.48: specmake[1]: Entering directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/445.gobmk/build/build_base_wasm_strawman.0000'
+1590018828.48: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -c -o sgf/sgf_utils.o -DSPEC_CPU -DNDEBUG -DHAVE_CONFIG_H -I. -I.. -I../include -I./include   -O2       -DSPEC_CPU_LP64         sgf/sgf_utils.c
+1590018828.69: specmake[1]: *** [sgf/sgf_utils.o] Segmentation fault (core dumped)
+1590018828.69: specmake[1]: Leaving directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/445.gobmk/build/build_base_wasm_strawman.0000'
+1590018828.69: Tee child 49119 exited with code 512 (exit code=2, signal=0)
+1590018828.69: Stop make command: Wed May 20 16:53:48 2020 (1590018828)
+1590018828.69: Elapsed time for make command: 00:00:00 (0)
+1590018828.69: Error with make 'specmake build': check file '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/445.gobmk/build/build_base_wasm_strawman.0000/make.err'
+1590018828.69:   Command returned exit code 2
+1590018828.69:   Error with make!
+1590018828.69:   Compile for '445.gobmk' ended at: Wed May 20 16:53:48 2020 (1590018828)
+1590018828.69:   Elapsed compile for '445.gobmk': 00:00:01 (1)
+1590018828.69: *** Error building 445.gobmk
+
+1590018828.69: ------------------------------------------------------------------------
+1590018828.69: When checking options for /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/458.sjeng/exe/sjeng_base.wasm_strawman, no MD5 sums were
+1590018828.69:   found in the config file.  They will be installed after build.
+1590018828.69:   Building 458.sjeng base wasm_strawman default: (build_base_wasm_strawman.0000)
+1590018828.70: Comparing MD5 hashes:
+1590018828.70:   d84b4ba86f793c8e9c8f2eb4dcb7b461 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/458.sjeng/src/Makefile
+1590018828.70:   d84b4ba86f793c8e9c8f2eb4dcb7b461 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/458.sjeng/build/build_base_wasm_strawman.0000/Makefile
+1590018828.71: Wrote to makefile '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/458.sjeng/build/build_base_wasm_strawman.0000/Makefile.deps':
+
+1590018828.71: # These are the build dependencies
+
+1590018828.71: # End dependencies
+1590018828.71: Wrote to makefile '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/458.sjeng/build/build_base_wasm_strawman.0000/Makefile.spec':
+1590018828.71: TUNE=base
+1590018828.71: EXT=wasm_strawman
+1590018828.71: NUMBER=458
+1590018828.71: NAME=sjeng
+1590018828.71: SOURCES= attacks.c book.c crazy.c draw.c ecache.c epd.c eval.c leval.c \
+1590018828.71: 	 moves.c neval.c partner.c proof.c rcfile.c search.c see.c seval.c \
+1590018828.71: 	 sjeng.c ttable.c utils.c
+1590018828.71: EXEBASE=sjeng
+1590018828.71: NEED_MATH=
+1590018828.71: BENCHLANG=C
+1590018828.71: ONESTEP=
+1590018828.71: CONESTEP=
+
+1590018828.71: CC               = /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all
+1590018828.71: COPTIMIZE        = -O2
+1590018828.71: CXX              = /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions
+1590018828.71: CXXOPTIMIZE      = -O2
+1590018828.71: FC               = /usr/bin/gfortran
+1590018828.71: FOPTIMIZE        = -O2
+1590018828.71: FPBASE           = yes
+1590018828.71: LUCET_TYPE       = strawman
+1590018828.71: OS               = unix
+1590018828.71: PORTABILITY      = -DSPEC_CPU_LP64
+1590018828.71: absolutely_no_locking = 0
+1590018828.71: abstol           = 
+1590018828.71: action           = build
+1590018828.71: allow_extension_override = 0
+1590018828.71: backup_config    = 1
+1590018828.71: baseexe          = sjeng
+1590018828.71: basepeak         = 0
+1590018828.71: benchdir         = benchspec
+1590018828.71: benchmark        = 458.sjeng
+1590018828.71: binary           = 
+1590018828.71: bindir           = exe
+1590018828.71: build_in_build_dir = 1
+1590018828.71: builddir         = build
+1590018828.71: bundleaction     = 
+1590018828.71: bundlename       = 
+1590018828.71: calctol          = 0
+1590018828.71: changedmd5       = 0
+1590018828.71: check_integrity  = 1
+1590018828.71: check_md5        = 1
+1590018828.71: check_version    = 1
+1590018828.71: command_add_redirect = 0
+1590018828.71: commanderrfile   = speccmds.err
+1590018828.71: commandexe       = sjeng_base.wasm_strawman
+1590018828.71: commandfile      = speccmds.cmd
+1590018828.71: commandoutfile   = speccmds.out
+1590018828.71: commandstdoutfile = speccmds.stdout
+1590018828.71: compareerrfile   = compare.err
+1590018828.71: comparefile      = compare.cmd
+1590018828.71: compareoutfile   = compare.out
+1590018828.71: comparestdoutfile = compare.stdout
+1590018828.71: compile_error    = 0
+1590018828.71: compwhite        = 
+1590018828.71: configdir        = config
+1590018828.71: configpath       = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/config/wasm_strawman.cfg
+1590018828.71: copies           = 1
+1590018828.71: datadir          = data
+1590018828.71: delay            = 0
+1590018828.71: deletebinaries   = 0
+1590018828.71: deletework       = 0
+1590018828.71: difflines        = 10
+1590018828.71: dirprot          = 511
+1590018828.71: endian           = 12345678
+1590018828.71: env_vars         = 0
+1590018828.71: exitvals         = spec_exit
+1590018828.71: expand_notes     = 0
+1590018828.71: expid            = 
+1590018828.71: ext              = wasm_strawman
+1590018828.71: fake             = 0
+1590018828.71: feedback         = 1
+1590018828.71: flag_url_base    = http://www.spec.org/auto/cpu2006/flags/
+1590018828.71: floatcompare     = 
+1590018828.71: help             = 0
+1590018828.71: http_proxy       = 
+1590018828.71: http_timeout     = 30
+1590018828.71: hw_avail         = Dec-9999
+1590018828.71: hw_cpu_char      = 
+1590018828.71: hw_cpu_mhz       = 3000
+1590018828.71: hw_cpu_name      = AMD Opteron 256
+1590018828.71: hw_disk          = SATA
+1590018828.71: hw_fpu           = Integrated
+1590018828.71: hw_memory        = 2 GB (2 x 1GB DDR333 CL2.5)
+1590018828.71: hw_model         = Tyan Thunder KKQS Pro (S4882)
+1590018828.71: hw_nchips        = 1
+1590018828.71: hw_ncores        = 1
+1590018828.71: hw_ncoresperchip = 1
+1590018828.71: hw_ncpuorder     = 1 chip
+1590018828.71: hw_nthreadspercore = 1
+1590018828.71: hw_ocache        = None
+1590018828.71: hw_pcache        = 64 KB I + 64 KB D on chip per chip
+1590018828.71: hw_scache        = 1 MB I+D on chip per chip
+1590018828.71: hw_tcache        = None
+1590018828.71: hw_vendor        = Tyan
+1590018828.71: ignore_errors    = yes
+1590018828.71: ignore_sigint    = 0
+1590018828.71: ignorecase       = 
+1590018828.71: info_wrap_columns = 50
+1590018828.71: inputdir         = input
+1590018828.71: iteration        = -1
+1590018828.71: iterations       = 3
+1590018828.71: keeptmp          = 0
+1590018828.71: license_num      = 0
+1590018828.71: line_width       = 0
+1590018828.71: locking          = 1
+1590018828.71: log              = CPU2006
+1590018828.71: log_line_width   = 0
+1590018828.71: log_timestamp    = 0
+1590018828.71: logname          = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/result/CPU2006.016.log
+1590018828.71: lognum           = 016
+1590018828.71: mach             = default
+1590018828.71: mail_reports     = all
+1590018828.71: mailcompress     = 0
+1590018828.71: mailmethod       = smtp
+1590018828.71: mailport         = 25
+1590018828.71: mailserver       = 127.0.0.1
+1590018828.71: mailto           = 
+1590018828.71: make             = specmake
+1590018828.71: make_no_clobber  = 0
+1590018828.71: makeflags        = 
+1590018828.71: max_active_compares = 0
+1590018828.71: mean_anyway      = 0
+1590018828.71: min_report_runs  = 3
+1590018828.71: minimize_builddirs = 0
+1590018828.71: minimize_rundirs = 0
+1590018828.71: name             = sjeng
+1590018828.71: need_math        = 
+1590018828.71: no_input_handler = close
+1590018828.71: no_monitor       = 
+1590018828.71: note_preenv      = 0
+1590018828.71: notes0100        =  C base flags: -O2
+1590018828.71: notes0110        =  C++ base flags: -O2
+1590018828.71: notes0120        =  Fortran base flags: -O2
+1590018828.71: notes25          =  PORTABILITY=-DSPEC_CPU_LP64 is applied to all benchmarks in base.
+1590018828.71: notes_wrap_columns = 0
+1590018828.71: notes_wrap_indent =   
+1590018828.71: num              = 458
+1590018828.71: obiwan           = 
+1590018828.71: os_exe_ext       = 
+1590018828.71: output           = asc
+1590018828.71: output_format    = asc
+1590018828.71: output_root      = 
+1590018828.71: outputdir        = output
+1590018828.71: parallel_setup   = 1
+1590018828.71: parallel_setup_prefork = 
+1590018828.71: parallel_setup_type = fork
+1590018828.71: parallel_test    = 0
+1590018828.71: parallel_test_submit = 0
+1590018828.71: path             = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/458.sjeng
+1590018828.71: plain_train      = 1
+1590018828.71: preenv           = 1
+1590018828.71: prefix           = 
+1590018828.71: prepared_by      = 
+1590018828.71: ranks            = 1
+1590018828.71: rate             = 0
+1590018828.71: realuser         = your name here
+1590018828.71: rebuild          = 0
+1590018828.71: reftime          = reftime
+1590018828.71: reltol           = 
+1590018828.71: reportable       = 1
+1590018828.71: resultdir        = result
+1590018828.71: review           = 0
+1590018828.71: run              = all
+1590018828.71: rundir           = run
+1590018828.71: runspec          = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/runspec --config=wasm_strawman.cfg --action=build oakland
+1590018828.71: safe_eval        = 1
+1590018828.71: section_specifier_fatal = 1
+1590018828.71: sendmail         = /usr/sbin/sendmail
+1590018828.71: setpgrp_enabled  = 1
+1590018828.71: setprocgroup     = 1
+1590018828.71: shrate           = 0
+1590018828.71: sigint           = 2
+1590018828.71: size             = ref
+1590018828.71: size_class       = ref
+1590018828.71: skipabstol       = 
+1590018828.71: skipobiwan       = 
+1590018828.71: skipreltol       = 
+1590018828.71: skiptol          = 
+1590018828.71: smarttune        = base
+1590018828.71: specdiff         = specdiff
+1590018828.71: specmake         = Makefile.YYYtArGeTYYYspec
+1590018828.71: specrun          = specinvoke
+1590018828.71: speed            = 0
+1590018828.71: srcalt           = 
+1590018828.71: srcdir           = src
+1590018828.71: stagger          = 10
+1590018828.71: strict_rundir_verify = 1
+1590018828.71: sw_avail         = Dec-9999
+1590018828.71: sw_base_ptrsize  = 64-bit
+1590018828.71: sw_compiler      = clang , clang++ & gfortran 4.1.0 (for AMD64)
+1590018828.71: sw_file          = ext3
+1590018828.71: sw_os            = SUSE SLES9 (for AMD64)
+1590018828.71: sw_other         = None
+1590018828.71: sw_peak_ptrsize  = Not Applicable
+1590018828.71: sw_state         = runlevel 3
+1590018828.71: sysinfo_program  = 
+1590018828.71: table            = 1
+1590018828.71: teeout           = yes
+1590018828.71: teerunout        = yes
+1590018828.71: test_date        = May-2020
+1590018828.71: test_sponsor     = Turbo Computers
+1590018828.71: tester           = 
+1590018828.71: top              = /home/ucsd/SpectreSandboxing/sfi-spectre-spec
+1590018828.71: train_with       = train
+1590018828.71: tune             = base
+1590018828.71: uid              = 1004
+1590018828.71: unbuffer         = 1
+1590018828.71: update-flags     = 0
+1590018828.71: use_submit_for_speed = 0
+1590018828.71: username         = ucsd
+1590018828.71: vendor           = anon
+1590018828.71: vendor_makefiles = 0
+1590018828.71: verbose          = 5
+1590018828.71: version          = 0
+1590018828.71: version_url      = http://www.spec.org/auto/cpu2006/current_version
+1590018828.71: worklist         = list
+1590018828.71: OUTPUT_RMFILES   = train.out
+1590018828.71:   Compile for '458.sjeng' started at: Wed May 20 16:53:48 2020 (1590018828)
+1590018828.71: Issuing make.clean command 'specmake clean'
+1590018828.71: specmake clean 2> make.clean.err | tee make.clean.out
+1590018828.71: Start make.clean command: Wed May 20 16:53:48 2020 (1590018828)
+1590018828.72: specmake[1]: Entering directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/458.sjeng/build/build_base_wasm_strawman.0000'
+1590018828.72: rm -rf sjeng
+1590018828.93: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018828.93: rm -rf sjeng.exe
+1590018829.14: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018829.14: rm -rf *.o  train.out
+1590018829.36: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018829.36: find . \( -name \*.o -o -name '*.fppized.f*' \) -print | xargs rm -rf
+1590018829.58: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018829.58: rm -rf core
+1590018829.80: specmake[1]: *** [clean] Segmentation fault (core dumped)
+1590018829.80: rm -rf 
+1590018830.01: specmake[1]: *** [clean] Segmentation fault (core dumped)
+1590018830.01: specmake[1]: Leaving directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/458.sjeng/build/build_base_wasm_strawman.0000'
+1590018830.01: Tee child 49138 exited with code 0 (exit code=0, signal=0)
+1590018830.01: Stop make.clean command: Wed May 20 16:53:50 2020 (1590018830)
+1590018830.01: Elapsed time for make.clean command: 00:00:02 (2)
+1590018830.01: Issuing make command 'specmake build'
+1590018830.01: specmake build 2> make.err | tee make.out
+1590018830.01: Start make command: Wed May 20 16:53:50 2020 (1590018830)
+1590018830.02: specmake[1]: Entering directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/458.sjeng/build/build_base_wasm_strawman.0000'
+1590018830.02: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -c -o attacks.o -DSPEC_CPU -DNDEBUG    -O2       -DSPEC_CPU_LP64         attacks.c
+1590018830.24: specmake[1]: *** [attacks.o] Segmentation fault (core dumped)
+1590018830.24: specmake[1]: Leaving directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/458.sjeng/build/build_base_wasm_strawman.0000'
+1590018830.24: Tee child 49337 exited with code 512 (exit code=2, signal=0)
+1590018830.24: Stop make command: Wed May 20 16:53:50 2020 (1590018830)
+1590018830.24: Elapsed time for make command: 00:00:00 (0)
+1590018830.24: Error with make 'specmake build': check file '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/458.sjeng/build/build_base_wasm_strawman.0000/make.err'
+1590018830.24:   Command returned exit code 2
+1590018830.24:   Error with make!
+1590018830.25:   Compile for '458.sjeng' ended at: Wed May 20 16:53:50 2020 (1590018830)
+1590018830.25:   Elapsed compile for '458.sjeng': 00:00:02 (2)
+1590018830.25: *** Error building 458.sjeng
+
+1590018830.25: ------------------------------------------------------------------------
+1590018830.25: When checking options for /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/462.libquantum/exe/libquantum_base.wasm_strawman, no MD5 sums were
+1590018830.25:   found in the config file.  They will be installed after build.
+1590018830.25:   Building 462.libquantum base wasm_strawman default: (build_base_wasm_strawman.0000)
+1590018830.25: Comparing MD5 hashes:
+1590018830.25:   d84b4ba86f793c8e9c8f2eb4dcb7b461 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/462.libquantum/src/Makefile
+1590018830.25:   d84b4ba86f793c8e9c8f2eb4dcb7b461 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/462.libquantum/build/build_base_wasm_strawman.0000/Makefile
+1590018830.27: Wrote to makefile '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/462.libquantum/build/build_base_wasm_strawman.0000/Makefile.deps':
+
+1590018830.27: # These are the build dependencies
+
+1590018830.27: # End dependencies
+1590018830.27: Wrote to makefile '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/462.libquantum/build/build_base_wasm_strawman.0000/Makefile.spec':
+1590018830.27: TUNE=base
+1590018830.27: EXT=wasm_strawman
+1590018830.27: NUMBER=462
+1590018830.27: NAME=libquantum
+1590018830.27: SOURCES= classic.c complex.c decoherence.c expn.c gates.c matrix.c \
+1590018830.27: 	 measure.c oaddn.c objcode.c omuln.c qec.c qft.c qureg.c shor.c version.c \
+1590018830.27: 	 specrand.c
+1590018830.27: EXEBASE=libquantum
+1590018830.27: NEED_MATH=yes
+1590018830.27: BENCHLANG=C
+1590018830.27: ONESTEP=
+1590018830.27: CONESTEP=
+
+1590018830.27: CC               = /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all
+1590018830.27: COPTIMIZE        = -O2
+1590018830.27: CPORTABILITY     = -DSPEC_CPU_LINUX
+1590018830.27: CXX              = /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions
+1590018830.27: CXXOPTIMIZE      = -O2
+1590018830.27: FC               = /usr/bin/gfortran
+1590018830.27: FOPTIMIZE        = -O2
+1590018830.27: FPBASE           = yes
+1590018830.27: LUCET_TYPE       = strawman
+1590018830.27: OS               = unix
+1590018830.27: PORTABILITY      = -DSPEC_CPU_LP64
+1590018830.27: absolutely_no_locking = 0
+1590018830.27: abstol           = 
+1590018830.27: action           = build
+1590018830.27: allow_extension_override = 0
+1590018830.27: backup_config    = 1
+1590018830.27: baseexe          = libquantum
+1590018830.27: basepeak         = 0
+1590018830.27: benchdir         = benchspec
+1590018830.27: benchmark        = 462.libquantum
+1590018830.27: binary           = 
+1590018830.27: bindir           = exe
+1590018830.27: build_in_build_dir = 1
+1590018830.27: builddir         = build
+1590018830.27: bundleaction     = 
+1590018830.27: bundlename       = 
+1590018830.27: calctol          = 0
+1590018830.27: changedmd5       = 0
+1590018830.27: check_integrity  = 1
+1590018830.27: check_md5        = 1
+1590018830.27: check_version    = 1
+1590018830.27: command_add_redirect = 0
+1590018830.27: commanderrfile   = speccmds.err
+1590018830.27: commandexe       = libquantum_base.wasm_strawman
+1590018830.27: commandfile      = speccmds.cmd
+1590018830.27: commandoutfile   = speccmds.out
+1590018830.27: commandstdoutfile = speccmds.stdout
+1590018830.27: compareerrfile   = compare.err
+1590018830.27: comparefile      = compare.cmd
+1590018830.27: compareoutfile   = compare.out
+1590018830.27: comparestdoutfile = compare.stdout
+1590018830.27: compile_error    = 0
+1590018830.27: compwhite        = 
+1590018830.27: configdir        = config
+1590018830.27: configpath       = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/config/wasm_strawman.cfg
+1590018830.27: copies           = 1
+1590018830.27: datadir          = data
+1590018830.27: delay            = 0
+1590018830.27: deletebinaries   = 0
+1590018830.27: deletework       = 0
+1590018830.27: difflines        = 10
+1590018830.27: dirprot          = 511
+1590018830.27: endian           = 12345678
+1590018830.27: env_vars         = 0
+1590018830.27: exitvals         = spec_exit
+1590018830.27: expand_notes     = 0
+1590018830.27: expid            = 
+1590018830.27: ext              = wasm_strawman
+1590018830.27: fake             = 0
+1590018830.27: feedback         = 1
+1590018830.27: flag_url_base    = http://www.spec.org/auto/cpu2006/flags/
+1590018830.27: floatcompare     = 
+1590018830.27: help             = 0
+1590018830.27: http_proxy       = 
+1590018830.27: http_timeout     = 30
+1590018830.27: hw_avail         = Dec-9999
+1590018830.27: hw_cpu_char      = 
+1590018830.27: hw_cpu_mhz       = 3000
+1590018830.27: hw_cpu_name      = AMD Opteron 256
+1590018830.27: hw_disk          = SATA
+1590018830.27: hw_fpu           = Integrated
+1590018830.27: hw_memory        = 2 GB (2 x 1GB DDR333 CL2.5)
+1590018830.27: hw_model         = Tyan Thunder KKQS Pro (S4882)
+1590018830.27: hw_nchips        = 1
+1590018830.27: hw_ncores        = 1
+1590018830.27: hw_ncoresperchip = 1
+1590018830.27: hw_ncpuorder     = 1 chip
+1590018830.27: hw_nthreadspercore = 1
+1590018830.27: hw_ocache        = None
+1590018830.27: hw_pcache        = 64 KB I + 64 KB D on chip per chip
+1590018830.27: hw_scache        = 1 MB I+D on chip per chip
+1590018830.27: hw_tcache        = None
+1590018830.27: hw_vendor        = Tyan
+1590018830.27: ignore_errors    = yes
+1590018830.27: ignore_sigint    = 0
+1590018830.27: ignorecase       = 
+1590018830.27: info_wrap_columns = 50
+1590018830.27: inputdir         = input
+1590018830.27: iteration        = -1
+1590018830.27: iterations       = 3
+1590018830.27: keeptmp          = 0
+1590018830.27: license_num      = 0
+1590018830.27: line_width       = 0
+1590018830.27: locking          = 1
+1590018830.27: log              = CPU2006
+1590018830.27: log_line_width   = 0
+1590018830.27: log_timestamp    = 0
+1590018830.27: logname          = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/result/CPU2006.016.log
+1590018830.27: lognum           = 016
+1590018830.27: mach             = default
+1590018830.27: mail_reports     = all
+1590018830.27: mailcompress     = 0
+1590018830.27: mailmethod       = smtp
+1590018830.27: mailport         = 25
+1590018830.27: mailserver       = 127.0.0.1
+1590018830.27: mailto           = 
+1590018830.27: make             = specmake
+1590018830.27: make_no_clobber  = 0
+1590018830.27: makeflags        = 
+1590018830.27: max_active_compares = 0
+1590018830.27: mean_anyway      = 0
+1590018830.27: min_report_runs  = 3
+1590018830.27: minimize_builddirs = 0
+1590018830.27: minimize_rundirs = 0
+1590018830.27: name             = libquantum
+1590018830.27: need_math        = yes
+1590018830.27: no_input_handler = close
+1590018830.27: no_monitor       = 
+1590018830.27: note_preenv      = 0
+1590018830.27: notes0100        =  C base flags: -O2
+1590018830.27: notes0110        =  C++ base flags: -O2
+1590018830.27: notes0120        =  Fortran base flags: -O2
+1590018830.27: notes25          =  PORTABILITY=-DSPEC_CPU_LP64 is applied to all benchmarks in base.
+1590018830.27: notes60          =  462.libquantum: -DSPEC_CPU_LINUX
+1590018830.27: notes_wrap_columns = 0
+1590018830.27: notes_wrap_indent =   
+1590018830.27: num              = 462
+1590018830.27: obiwan           = 1
+1590018830.27: os_exe_ext       = 
+1590018830.27: output           = asc
+1590018830.27: output_format    = asc
+1590018830.27: output_root      = 
+1590018830.27: outputdir        = output
+1590018830.27: parallel_setup   = 1
+1590018830.27: parallel_setup_prefork = 
+1590018830.27: parallel_setup_type = fork
+1590018830.27: parallel_test    = 0
+1590018830.27: parallel_test_submit = 0
+1590018830.27: path             = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/462.libquantum
+1590018830.27: plain_train      = 1
+1590018830.27: preenv           = 1
+1590018830.27: prefix           = 
+1590018830.27: prepared_by      = 
+1590018830.27: ranks            = 1
+1590018830.27: rate             = 0
+1590018830.27: realuser         = your name here
+1590018830.27: rebuild          = 0
+1590018830.27: reftime          = reftime
+1590018830.27: reltol           = 
+1590018830.27: reportable       = 1
+1590018830.27: resultdir        = result
+1590018830.27: review           = 0
+1590018830.27: run              = all
+1590018830.27: rundir           = run
+1590018830.27: runspec          = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/runspec --config=wasm_strawman.cfg --action=build oakland
+1590018830.27: safe_eval        = 1
+1590018830.27: section_specifier_fatal = 1
+1590018830.27: sendmail         = /usr/sbin/sendmail
+1590018830.27: setpgrp_enabled  = 1
+1590018830.27: setprocgroup     = 1
+1590018830.27: shrate           = 0
+1590018830.27: sigint           = 2
+1590018830.27: size             = ref
+1590018830.27: size_class       = ref
+1590018830.27: skipabstol       = 
+1590018830.27: skipobiwan       = 
+1590018830.27: skipreltol       = 
+1590018830.27: skiptol          = 
+1590018830.27: smarttune        = base
+1590018830.27: specdiff         = specdiff
+1590018830.27: specmake         = Makefile.YYYtArGeTYYYspec
+1590018830.27: specrun          = specinvoke
+1590018830.27: speed            = 0
+1590018830.27: srcalt           = 
+1590018830.27: srcdir           = src
+1590018830.27: stagger          = 10
+1590018830.27: strict_rundir_verify = 1
+1590018830.27: sw_avail         = Dec-9999
+1590018830.27: sw_base_ptrsize  = 64-bit
+1590018830.27: sw_compiler      = clang , clang++ & gfortran 4.1.0 (for AMD64)
+1590018830.27: sw_file          = ext3
+1590018830.27: sw_os            = SUSE SLES9 (for AMD64)
+1590018830.27: sw_other         = None
+1590018830.27: sw_peak_ptrsize  = Not Applicable
+1590018830.27: sw_state         = runlevel 3
+1590018830.27: sysinfo_program  = 
+1590018830.27: table            = 1
+1590018830.27: teeout           = yes
+1590018830.27: teerunout        = yes
+1590018830.27: test_date        = May-2020
+1590018830.27: test_sponsor     = Turbo Computers
+1590018830.27: tester           = 
+1590018830.27: top              = /home/ucsd/SpectreSandboxing/sfi-spectre-spec
+1590018830.27: train_with       = train
+1590018830.27: tune             = base
+1590018830.27: uid              = 1004
+1590018830.27: unbuffer         = 1
+1590018830.27: update-flags     = 0
+1590018830.27: use_submit_for_speed = 0
+1590018830.27: username         = ucsd
+1590018830.27: vendor           = anon
+1590018830.27: vendor_makefiles = 0
+1590018830.27: verbose          = 5
+1590018830.27: version          = 0
+1590018830.27: version_url      = http://www.spec.org/auto/cpu2006/current_version
+1590018830.27: worklist         = list
+1590018830.27: OUTPUT_RMFILES   = train.out
+1590018830.27:   Compile for '462.libquantum' started at: Wed May 20 16:53:50 2020 (1590018830)
+1590018830.27: Issuing make.clean command 'specmake clean'
+1590018830.27: specmake clean 2> make.clean.err | tee make.clean.out
+1590018830.27: Start make.clean command: Wed May 20 16:53:50 2020 (1590018830)
+1590018830.27: specmake[1]: Entering directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/462.libquantum/build/build_base_wasm_strawman.0000'
+1590018830.27: rm -rf libquantum
+1590018830.49: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018830.49: rm -rf libquantum.exe
+1590018830.70: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018830.70: rm -rf *.o  train.out
+1590018830.92: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018830.92: find . \( -name \*.o -o -name '*.fppized.f*' \) -print | xargs rm -rf
+1590018831.14: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018831.14: rm -rf core
+1590018831.35: specmake[1]: *** [clean] Segmentation fault (core dumped)
+1590018831.35: rm -rf 
+1590018831.56: specmake[1]: *** [clean] Segmentation fault (core dumped)
+1590018831.56: specmake[1]: Leaving directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/462.libquantum/build/build_base_wasm_strawman.0000'
+1590018831.56: Tee child 49382 exited with code 0 (exit code=0, signal=0)
+1590018831.56: Stop make.clean command: Wed May 20 16:53:51 2020 (1590018831)
+1590018831.56: Elapsed time for make.clean command: 00:00:01 (1)
+1590018831.56: Issuing make command 'specmake build'
+1590018831.56: specmake build 2> make.err | tee make.out
+1590018831.56: Start make command: Wed May 20 16:53:51 2020 (1590018831)
+1590018831.56: specmake[1]: Entering directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/462.libquantum/build/build_base_wasm_strawman.0000'
+1590018831.56: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -c -o classic.o -DSPEC_CPU -DNDEBUG    -O2       -DSPEC_CPU_LP64 -DSPEC_CPU_LINUX        classic.c
+1590018831.78: specmake[1]: *** [classic.o] Segmentation fault (core dumped)
+1590018831.78: specmake[1]: Leaving directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/462.libquantum/build/build_base_wasm_strawman.0000'
+1590018831.78: Tee child 49557 exited with code 512 (exit code=2, signal=0)
+1590018831.78: Stop make command: Wed May 20 16:53:51 2020 (1590018831)
+1590018831.78: Elapsed time for make command: 00:00:00 (0)
+1590018831.78: Error with make 'specmake build': check file '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/462.libquantum/build/build_base_wasm_strawman.0000/make.err'
+1590018831.78:   Command returned exit code 2
+1590018831.78:   Error with make!
+1590018831.79:   Compile for '462.libquantum' ended at: Wed May 20 16:53:51 2020 (1590018831)
+1590018831.79:   Elapsed compile for '462.libquantum': 00:00:01 (1)
+1590018831.79: *** Error building 462.libquantum
+
+1590018831.79: ------------------------------------------------------------------------
+1590018831.79: When checking options for /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/464.h264ref/exe/h264ref_base.wasm_strawman, no MD5 sums were
+1590018831.79:   found in the config file.  They will be installed after build.
+1590018831.79:   Building 464.h264ref base wasm_strawman default: (build_base_wasm_strawman.0000)
+1590018831.81: Comparing MD5 hashes:
+1590018831.81:   d84b4ba86f793c8e9c8f2eb4dcb7b461 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/464.h264ref/src/Makefile
+1590018831.81:   d84b4ba86f793c8e9c8f2eb4dcb7b461 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/464.h264ref/build/build_base_wasm_strawman.0000/Makefile
+1590018831.82: Wrote to makefile '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/464.h264ref/build/build_base_wasm_strawman.0000/Makefile.deps':
+
+1590018831.82: # These are the build dependencies
+
+1590018831.82: # End dependencies
+1590018831.82: Wrote to makefile '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/464.h264ref/build/build_base_wasm_strawman.0000/Makefile.spec':
+1590018831.82: TUNE=base
+1590018831.82: EXT=wasm_strawman
+1590018831.82: NUMBER=464
+1590018831.82: NAME=h264ref
+1590018831.82: SOURCES= annexb.c biariencode.c block.c cabac.c configfile.c context_ini.c \
+1590018831.82: 	 decoder.c explicit_gop.c fast_me.c filehandle.c fmo.c header.c image.c \
+1590018831.82: 	 intrarefresh.c leaky_bucket.c lencod.c loopFilter.c macroblock.c \
+1590018831.82: 	 mb_access.c mbuffer.c memalloc.c mv-search.c nal.c nalu.c nalucommon.c \
+1590018831.82: 	 output.c parset.c parsetcommon.c q_matrix.c q_offsets.c ratectl.c \
+1590018831.82: 	 rdopt.c rdopt_coding_state.c rdpicdecision.c refbuf.c rtp.c sei.c \
+1590018831.82: 	 slice.c transform8x8.c vlc.c weighted_prediction.c specrand.c
+1590018831.82: EXEBASE=h264ref
+1590018831.82: NEED_MATH=1
+1590018831.82: BENCHLANG=C
+1590018831.82: ONESTEP=
+1590018831.82: CONESTEP=
+
+1590018831.82: CC               = /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all
+1590018831.82: COPTIMIZE        = -O2
+1590018831.82: CXX              = /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions
+1590018831.82: CXXOPTIMIZE      = -O2
+1590018831.82: FC               = /usr/bin/gfortran
+1590018831.82: FOPTIMIZE        = -O2
+1590018831.82: FPBASE           = yes
+1590018831.82: LUCET_TYPE       = strawman
+1590018831.82: OS               = unix
+1590018831.82: PORTABILITY      = -DSPEC_CPU_LP64
+1590018831.82: absolutely_no_locking = 0
+1590018831.82: abstol           = 
+1590018831.82: action           = build
+1590018831.82: allow_extension_override = 0
+1590018831.82: backup_config    = 1
+1590018831.82: baseexe          = h264ref
+1590018831.82: basepeak         = 0
+1590018831.82: benchdir         = benchspec
+1590018831.82: benchmark        = 464.h264ref
+1590018831.82: bindir           = exe
+1590018831.82: build_in_build_dir = 1
+1590018831.82: builddir         = build
+1590018831.82: bundleaction     = 
+1590018831.82: bundlename       = 
+1590018831.82: calctol          = 0
+1590018831.82: changedmd5       = 0
+1590018831.82: check_integrity  = 1
+1590018831.82: check_md5        = 1
+1590018831.82: check_version    = 1
+1590018831.82: command_add_redirect = 0
+1590018831.82: commanderrfile   = speccmds.err
+1590018831.82: commandexe       = h264ref_base.wasm_strawman
+1590018831.82: commandfile      = speccmds.cmd
+1590018831.82: commandoutfile   = speccmds.out
+1590018831.82: commandstdoutfile = speccmds.stdout
+1590018831.82: compareerrfile   = compare.err
+1590018831.82: comparefile      = compare.cmd
+1590018831.82: compareoutfile   = compare.out
+1590018831.82: comparestdoutfile = compare.stdout
+1590018831.82: compile_error    = 0
+1590018831.82: compwhite        = 1
+1590018831.82: configdir        = config
+1590018831.82: configpath       = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/config/wasm_strawman.cfg
+1590018831.82: copies           = 1
+1590018831.82: datadir          = data
+1590018831.82: delay            = 0
+1590018831.82: deletebinaries   = 0
+1590018831.82: deletework       = 0
+1590018831.82: difflines        = 10
+1590018831.82: dirprot          = 511
+1590018831.82: endian           = 12345678
+1590018831.82: env_vars         = 0
+1590018831.82: exitvals         = spec_exit
+1590018831.82: expand_notes     = 0
+1590018831.82: expid            = 
+1590018831.82: ext              = wasm_strawman
+1590018831.82: fake             = 0
+1590018831.82: feedback         = 1
+1590018831.82: flag_url_base    = http://www.spec.org/auto/cpu2006/flags/
+1590018831.82: floatcompare     = 1
+1590018831.82: help             = 0
+1590018831.82: http_proxy       = 
+1590018831.82: http_timeout     = 30
+1590018831.82: hw_avail         = Dec-9999
+1590018831.82: hw_cpu_char      = 
+1590018831.82: hw_cpu_mhz       = 3000
+1590018831.82: hw_cpu_name      = AMD Opteron 256
+1590018831.82: hw_disk          = SATA
+1590018831.82: hw_fpu           = Integrated
+1590018831.82: hw_memory        = 2 GB (2 x 1GB DDR333 CL2.5)
+1590018831.82: hw_model         = Tyan Thunder KKQS Pro (S4882)
+1590018831.82: hw_nchips        = 1
+1590018831.82: hw_ncores        = 1
+1590018831.82: hw_ncoresperchip = 1
+1590018831.82: hw_ncpuorder     = 1 chip
+1590018831.82: hw_nthreadspercore = 1
+1590018831.82: hw_ocache        = None
+1590018831.82: hw_pcache        = 64 KB I + 64 KB D on chip per chip
+1590018831.82: hw_scache        = 1 MB I+D on chip per chip
+1590018831.82: hw_tcache        = None
+1590018831.82: hw_vendor        = Tyan
+1590018831.82: ignore_errors    = yes
+1590018831.82: ignore_sigint    = 0
+1590018831.82: ignorecase       = 
+1590018831.82: info_wrap_columns = 50
+1590018831.82: inputdir         = input
+1590018831.82: iteration        = -1
+1590018831.82: iterations       = 3
+1590018831.82: keeptmp          = 0
+1590018831.82: license_num      = 0
+1590018831.82: line_width       = 0
+1590018831.82: locking          = 1
+1590018831.82: log              = CPU2006
+1590018831.82: log_line_width   = 0
+1590018831.82: log_timestamp    = 0
+1590018831.82: logname          = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/result/CPU2006.016.log
+1590018831.82: lognum           = 016
+1590018831.82: mach             = default
+1590018831.82: mail_reports     = all
+1590018831.82: mailcompress     = 0
+1590018831.82: mailmethod       = smtp
+1590018831.82: mailport         = 25
+1590018831.82: mailserver       = 127.0.0.1
+1590018831.82: mailto           = 
+1590018831.82: make             = specmake
+1590018831.82: make_no_clobber  = 0
+1590018831.82: makeflags        = 
+1590018831.82: max_active_compares = 0
+1590018831.82: mean_anyway      = 0
+1590018831.82: min_report_runs  = 3
+1590018831.82: minimize_builddirs = 0
+1590018831.82: minimize_rundirs = 0
+1590018831.82: name             = h264ref
+1590018831.82: need_math        = 1
+1590018831.82: no_input_handler = close
+1590018831.82: no_monitor       = 
+1590018831.82: note_preenv      = 0
+1590018831.82: notes0100        =  C base flags: -O2
+1590018831.82: notes0110        =  C++ base flags: -O2
+1590018831.82: notes0120        =  Fortran base flags: -O2
+1590018831.82: notes25          =  PORTABILITY=-DSPEC_CPU_LP64 is applied to all benchmarks in base.
+1590018831.82: notes_wrap_columns = 0
+1590018831.82: notes_wrap_indent =   
+1590018831.82: num              = 464
+1590018831.82: obiwan           = 
+1590018831.82: os_exe_ext       = 
+1590018831.82: output           = asc
+1590018831.82: output_format    = asc
+1590018831.82: output_root      = 
+1590018831.82: outputdir        = output
+1590018831.82: parallel_setup   = 1
+1590018831.82: parallel_setup_prefork = 
+1590018831.82: parallel_setup_type = fork
+1590018831.82: parallel_test    = 0
+1590018831.82: parallel_test_submit = 0
+1590018831.82: path             = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/464.h264ref
+1590018831.82: plain_train      = 1
+1590018831.82: preenv           = 1
+1590018831.82: prefix           = 
+1590018831.82: prepared_by      = 
+1590018831.82: ranks            = 1
+1590018831.82: rate             = 0
+1590018831.82: realuser         = your name here
+1590018831.82: rebuild          = 0
+1590018831.82: reftime          = reftime
+1590018831.82: reltol           = 
+1590018831.82: reportable       = 1
+1590018831.82: resultdir        = result
+1590018831.82: review           = 0
+1590018831.82: run              = all
+1590018831.82: rundir           = run
+1590018831.82: runspec          = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/runspec --config=wasm_strawman.cfg --action=build oakland
+1590018831.82: safe_eval        = 1
+1590018831.82: section_specifier_fatal = 1
+1590018831.82: sendmail         = /usr/sbin/sendmail
+1590018831.82: setpgrp_enabled  = 1
+1590018831.82: setprocgroup     = 1
+1590018831.82: shrate           = 0
+1590018831.82: sigint           = 2
+1590018831.82: size             = ref
+1590018831.82: size_class       = ref
+1590018831.82: skipabstol       = 
+1590018831.82: skipobiwan       = 
+1590018831.82: skipreltol       = 
+1590018831.82: skiptol          = 
+1590018831.82: smarttune        = base
+1590018831.82: specdiff         = specdiff
+1590018831.82: specmake         = Makefile.YYYtArGeTYYYspec
+1590018831.82: specrun          = specinvoke
+1590018831.82: speed            = 0
+1590018831.82: srcalt           = 
+1590018831.82: srcdir           = src
+1590018831.82: stagger          = 10
+1590018831.82: strict_rundir_verify = 1
+1590018831.82: sw_avail         = Dec-9999
+1590018831.82: sw_base_ptrsize  = 64-bit
+1590018831.82: sw_compiler      = clang , clang++ & gfortran 4.1.0 (for AMD64)
+1590018831.82: sw_file          = ext3
+1590018831.82: sw_os            = SUSE SLES9 (for AMD64)
+1590018831.82: sw_other         = None
+1590018831.82: sw_peak_ptrsize  = Not Applicable
+1590018831.82: sw_state         = runlevel 3
+1590018831.82: sysinfo_program  = 
+1590018831.82: table            = 1
+1590018831.82: teeout           = yes
+1590018831.82: teerunout        = yes
+1590018831.82: test_date        = May-2020
+1590018831.82: test_sponsor     = Turbo Computers
+1590018831.82: tester           = 
+1590018831.82: top              = /home/ucsd/SpectreSandboxing/sfi-spectre-spec
+1590018831.82: train_with       = train
+1590018831.82: tune             = base
+1590018831.82: uid              = 1004
+1590018831.82: unbuffer         = 1
+1590018831.82: update-flags     = 0
+1590018831.82: use_submit_for_speed = 0
+1590018831.82: username         = ucsd
+1590018831.82: vendor           = anon
+1590018831.82: vendor_makefiles = 0
+1590018831.82: verbose          = 5
+1590018831.82: version          = 0
+1590018831.82: version_url      = http://www.spec.org/auto/cpu2006/current_version
+1590018831.82: worklist         = list
+1590018831.82: OUTPUT_RMFILES   = foreman_train_baseline_encodelog.out foreman_train_baseline_leakybucketparam.cfg
+1590018831.82:   Compile for '464.h264ref' started at: Wed May 20 16:53:51 2020 (1590018831)
+1590018831.82: Issuing make.clean command 'specmake clean'
+1590018831.82: specmake clean 2> make.clean.err | tee make.clean.out
+1590018831.82: Start make.clean command: Wed May 20 16:53:51 2020 (1590018831)
+1590018831.82: specmake[1]: Entering directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/464.h264ref/build/build_base_wasm_strawman.0000'
+1590018831.82: rm -rf h264ref
+1590018832.04: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018832.04: rm -rf h264ref.exe
+1590018832.25: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018832.25: rm -rf *.o  foreman_train_baseline_encodelog.out foreman_train_baseline_leakybucketparam.cfg
+1590018832.47: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018832.47: find . \( -name \*.o -o -name '*.fppized.f*' \) -print | xargs rm -rf
+1590018832.68: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018832.68: rm -rf core
+1590018832.90: specmake[1]: *** [clean] Segmentation fault (core dumped)
+1590018832.90: rm -rf 
+1590018833.12: specmake[1]: *** [clean] Segmentation fault (core dumped)
+1590018833.12: specmake[1]: Leaving directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/464.h264ref/build/build_base_wasm_strawman.0000'
+1590018833.12: Tee child 49578 exited with code 0 (exit code=0, signal=0)
+1590018833.12: Stop make.clean command: Wed May 20 16:53:53 2020 (1590018833)
+1590018833.12: Elapsed time for make.clean command: 00:00:02 (2)
+1590018833.12: Issuing make command 'specmake build'
+1590018833.12: specmake build 2> make.err | tee make.out
+1590018833.12: Start make command: Wed May 20 16:53:53 2020 (1590018833)
+1590018833.12: specmake[1]: Entering directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/464.h264ref/build/build_base_wasm_strawman.0000'
+1590018833.12: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -c -o annexb.o -DSPEC_CPU -DNDEBUG    -O2       -DSPEC_CPU_LP64         annexb.c
+1590018833.34: specmake[1]: *** [annexb.o] Segmentation fault (core dumped)
+1590018833.34: specmake[1]: Leaving directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/464.h264ref/build/build_base_wasm_strawman.0000'
+1590018833.34: Tee child 49777 exited with code 512 (exit code=2, signal=0)
+1590018833.34: Stop make command: Wed May 20 16:53:53 2020 (1590018833)
+1590018833.34: Elapsed time for make command: 00:00:00 (0)
+1590018833.34: Error with make 'specmake build': check file '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/464.h264ref/build/build_base_wasm_strawman.0000/make.err'
+1590018833.34:   Command returned exit code 2
+1590018833.34:   Error with make!
+1590018833.34:   Compile for '464.h264ref' ended at: Wed May 20 16:53:53 2020 (1590018833)
+1590018833.34:   Elapsed compile for '464.h264ref': 00:00:02 (2)
+1590018833.34: *** Error building 464.h264ref
+
+1590018833.34: ------------------------------------------------------------------------
+1590018833.34: When checking options for /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/470.lbm/exe/lbm_base.wasm_strawman, no MD5 sums were
+1590018833.34:   found in the config file.  They will be installed after build.
+1590018833.34:   Building 470.lbm base wasm_strawman default: (build_base_wasm_strawman.0000)
+1590018833.35: Comparing MD5 hashes:
+1590018833.35:   d84b4ba86f793c8e9c8f2eb4dcb7b461 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/470.lbm/src/Makefile
+1590018833.35:   d84b4ba86f793c8e9c8f2eb4dcb7b461 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/470.lbm/build/build_base_wasm_strawman.0000/Makefile
+1590018833.36: Wrote to makefile '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/470.lbm/build/build_base_wasm_strawman.0000/Makefile.deps':
+
+1590018833.36: # These are the build dependencies
+
+1590018833.36: # End dependencies
+1590018833.36: Wrote to makefile '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/470.lbm/build/build_base_wasm_strawman.0000/Makefile.spec':
+1590018833.36: TUNE=base
+1590018833.36: EXT=wasm_strawman
+1590018833.36: NUMBER=470
+1590018833.36: NAME=lbm
+1590018833.36: SOURCES= lbm.c main.c
+1590018833.36: EXEBASE=lbm
+1590018833.36: NEED_MATH=yes
+1590018833.36: BENCHLANG=C
+1590018833.36: ONESTEP=
+1590018833.36: CONESTEP=
+
+1590018833.36: CC               = /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all
+1590018833.36: COPTIMIZE        = -O2
+1590018833.36: CXX              = /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions
+1590018833.36: CXXOPTIMIZE      = -O2
+1590018833.36: FC               = /usr/bin/gfortran
+1590018833.36: FOPTIMIZE        = -O2
+1590018833.36: FPBASE           = yes
+1590018833.36: LUCET_TYPE       = strawman
+1590018833.36: OS               = unix
+1590018833.36: PORTABILITY      = -DSPEC_CPU_LP64
+1590018833.36: absolutely_no_locking = 0
+1590018833.36: abstol           = 1e-07
+1590018833.36: action           = build
+1590018833.36: allow_extension_override = 0
+1590018833.36: backup_config    = 1
+1590018833.36: baseexe          = lbm
+1590018833.36: basepeak         = 0
+1590018833.36: benchdir         = benchspec
+1590018833.36: benchmark        = 470.lbm
+1590018833.36: binary           = 
+1590018833.36: bindir           = exe
+1590018833.36: build_in_build_dir = 1
+1590018833.36: builddir         = build
+1590018833.36: bundleaction     = 
+1590018833.36: bundlename       = 
+1590018833.36: calctol          = 0
+1590018833.36: changedmd5       = 0
+1590018833.36: check_integrity  = 1
+1590018833.36: check_md5        = 1
+1590018833.36: check_version    = 1
+1590018833.36: command_add_redirect = 0
+1590018833.36: commanderrfile   = speccmds.err
+1590018833.36: commandexe       = lbm_base.wasm_strawman
+1590018833.36: commandfile      = speccmds.cmd
+1590018833.36: commandoutfile   = speccmds.out
+1590018833.36: commandstdoutfile = speccmds.stdout
+1590018833.36: compareerrfile   = compare.err
+1590018833.36: comparefile      = compare.cmd
+1590018833.36: compareoutfile   = compare.out
+1590018833.36: comparestdoutfile = compare.stdout
+1590018833.36: compile_error    = 0
+1590018833.36: compwhite        = 
+1590018833.36: configdir        = config
+1590018833.36: configpath       = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/config/wasm_strawman.cfg
+1590018833.36: copies           = 1
+1590018833.36: datadir          = data
+1590018833.36: delay            = 0
+1590018833.36: deletebinaries   = 0
+1590018833.36: deletework       = 0
+1590018833.36: difflines        = 10
+1590018833.36: dirprot          = 511
+1590018833.36: endian           = 12345678
+1590018833.36: env_vars         = 0
+1590018833.36: exitvals         = spec_exit
+1590018833.36: expand_notes     = 0
+1590018833.36: expid            = 
+1590018833.36: ext              = wasm_strawman
+1590018833.36: fake             = 0
+1590018833.36: feedback         = 1
+1590018833.36: flag_url_base    = http://www.spec.org/auto/cpu2006/flags/
+1590018833.36: floatcompare     = 
+1590018833.36: help             = 0
+1590018833.36: http_proxy       = 
+1590018833.36: http_timeout     = 30
+1590018833.36: hw_avail         = Dec-9999
+1590018833.36: hw_cpu_char      = 
+1590018833.36: hw_cpu_mhz       = 3000
+1590018833.36: hw_cpu_name      = AMD Opteron 256
+1590018833.36: hw_disk          = SATA
+1590018833.36: hw_fpu           = Integrated
+1590018833.36: hw_memory        = 2 GB (2 x 1GB DDR333 CL2.5)
+1590018833.36: hw_model         = Tyan Thunder KKQS Pro (S4882)
+1590018833.36: hw_nchips        = 1
+1590018833.36: hw_ncores        = 1
+1590018833.36: hw_ncoresperchip = 1
+1590018833.36: hw_ncpuorder     = 1 chip
+1590018833.36: hw_nthreadspercore = 1
+1590018833.36: hw_ocache        = None
+1590018833.36: hw_pcache        = 64 KB I + 64 KB D on chip per chip
+1590018833.36: hw_scache        = 1 MB I+D on chip per chip
+1590018833.36: hw_tcache        = None
+1590018833.36: hw_vendor        = Tyan
+1590018833.36: ignore_errors    = yes
+1590018833.36: ignore_sigint    = 0
+1590018833.36: ignorecase       = 
+1590018833.36: info_wrap_columns = 50
+1590018833.36: inputdir         = input
+1590018833.36: iteration        = -1
+1590018833.36: iterations       = 3
+1590018833.36: keeptmp          = 0
+1590018833.36: license_num      = 0
+1590018833.36: line_width       = 0
+1590018833.36: locking          = 1
+1590018833.36: log              = CPU2006
+1590018833.36: log_line_width   = 0
+1590018833.36: log_timestamp    = 0
+1590018833.36: logname          = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/result/CPU2006.016.log
+1590018833.36: lognum           = 016
+1590018833.36: mach             = default
+1590018833.36: mail_reports     = all
+1590018833.36: mailcompress     = 0
+1590018833.36: mailmethod       = smtp
+1590018833.36: mailport         = 25
+1590018833.36: mailserver       = 127.0.0.1
+1590018833.36: mailto           = 
+1590018833.36: make             = specmake
+1590018833.36: make_no_clobber  = 0
+1590018833.36: makeflags        = 
+1590018833.36: max_active_compares = 0
+1590018833.36: mean_anyway      = 0
+1590018833.36: min_report_runs  = 3
+1590018833.36: minimize_builddirs = 0
+1590018833.36: minimize_rundirs = 0
+1590018833.36: name             = lbm
+1590018833.36: need_math        = yes
+1590018833.36: no_input_handler = close
+1590018833.36: no_monitor       = 
+1590018833.36: note_preenv      = 0
+1590018833.36: notes0100        =  C base flags: -O2
+1590018833.36: notes0110        =  C++ base flags: -O2
+1590018833.36: notes0120        =  Fortran base flags: -O2
+1590018833.36: notes25          =  PORTABILITY=-DSPEC_CPU_LP64 is applied to all benchmarks in base.
+1590018833.36: notes_wrap_columns = 0
+1590018833.36: notes_wrap_indent =   
+1590018833.36: num              = 470
+1590018833.36: obiwan           = 
+1590018833.36: os_exe_ext       = 
+1590018833.36: output           = asc
+1590018833.36: output_format    = asc
+1590018833.36: output_root      = 
+1590018833.36: outputdir        = output
+1590018833.36: parallel_setup   = 1
+1590018833.36: parallel_setup_prefork = 
+1590018833.36: parallel_setup_type = fork
+1590018833.36: parallel_test    = 0
+1590018833.36: parallel_test_submit = 0
+1590018833.36: path             = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/470.lbm
+1590018833.36: plain_train      = 1
+1590018833.36: preenv           = 1
+1590018833.36: prefix           = 
+1590018833.36: prepared_by      = 
+1590018833.36: ranks            = 1
+1590018833.36: rate             = 0
+1590018833.36: realuser         = your name here
+1590018833.36: rebuild          = 0
+1590018833.36: reftime          = reftime
+1590018833.36: reltol           = 
+1590018833.36: reportable       = 1
+1590018833.36: resultdir        = result
+1590018833.36: review           = 0
+1590018833.36: run              = all
+1590018833.36: rundir           = run
+1590018833.36: runspec          = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/runspec --config=wasm_strawman.cfg --action=build oakland
+1590018833.36: safe_eval        = 1
+1590018833.36: section_specifier_fatal = 1
+1590018833.36: sendmail         = /usr/sbin/sendmail
+1590018833.36: setpgrp_enabled  = 1
+1590018833.36: setprocgroup     = 1
+1590018833.36: shrate           = 0
+1590018833.36: sigint           = 2
+1590018833.36: size             = ref
+1590018833.36: size_class       = ref
+1590018833.36: skipabstol       = 
+1590018833.36: skipobiwan       = 
+1590018833.36: skipreltol       = 
+1590018833.36: skiptol          = 
+1590018833.36: smarttune        = base
+1590018833.36: specdiff         = specdiff
+1590018833.36: specmake         = Makefile.YYYtArGeTYYYspec
+1590018833.36: specrun          = specinvoke
+1590018833.36: speed            = 0
+1590018833.36: srcalt           = 
+1590018833.36: srcdir           = src
+1590018833.36: stagger          = 10
+1590018833.36: strict_rundir_verify = 1
+1590018833.36: sw_avail         = Dec-9999
+1590018833.36: sw_base_ptrsize  = 64-bit
+1590018833.36: sw_compiler      = clang , clang++ & gfortran 4.1.0 (for AMD64)
+1590018833.36: sw_file          = ext3
+1590018833.36: sw_os            = SUSE SLES9 (for AMD64)
+1590018833.36: sw_other         = None
+1590018833.36: sw_peak_ptrsize  = Not Applicable
+1590018833.36: sw_state         = runlevel 3
+1590018833.36: sysinfo_program  = 
+1590018833.36: table            = 1
+1590018833.36: teeout           = yes
+1590018833.36: teerunout        = yes
+1590018833.36: test_date        = May-2020
+1590018833.36: test_sponsor     = Turbo Computers
+1590018833.36: tester           = 
+1590018833.36: top              = /home/ucsd/SpectreSandboxing/sfi-spectre-spec
+1590018833.36: train_with       = train
+1590018833.36: tune             = base
+1590018833.36: uid              = 1004
+1590018833.36: unbuffer         = 1
+1590018833.36: update-flags     = 0
+1590018833.36: use_submit_for_speed = 0
+1590018833.36: username         = ucsd
+1590018833.36: vendor           = anon
+1590018833.36: vendor_makefiles = 0
+1590018833.36: verbose          = 5
+1590018833.36: version          = 0
+1590018833.36: version_url      = http://www.spec.org/auto/cpu2006/current_version
+1590018833.36: worklist         = list
+1590018833.36: OUTPUT_RMFILES   = lbm.out
+1590018833.36:   Compile for '470.lbm' started at: Wed May 20 16:53:53 2020 (1590018833)
+1590018833.36: Issuing make.clean command 'specmake clean'
+1590018833.36: specmake clean 2> make.clean.err | tee make.clean.out
+1590018833.36: Start make.clean command: Wed May 20 16:53:53 2020 (1590018833)
+1590018833.37: specmake[1]: Entering directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/470.lbm/build/build_base_wasm_strawman.0000'
+1590018833.37: rm -rf lbm
+1590018833.58: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018833.58: rm -rf lbm.exe
+1590018833.80: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018833.80: rm -rf *.o  lbm.out
+1590018834.02: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018834.02: find . \( -name \*.o -o -name '*.fppized.f*' \) -print | xargs rm -rf
+1590018834.23: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018834.24: rm -rf core
+1590018834.45: specmake[1]: *** [clean] Segmentation fault (core dumped)
+1590018834.45: rm -rf 
+1590018834.67: specmake[1]: *** [clean] Segmentation fault (core dumped)
+1590018834.67: specmake[1]: Leaving directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/470.lbm/build/build_base_wasm_strawman.0000'
+1590018834.67: Tee child 49817 exited with code 0 (exit code=0, signal=0)
+1590018834.67: Stop make.clean command: Wed May 20 16:53:54 2020 (1590018834)
+1590018834.67: Elapsed time for make.clean command: 00:00:01 (1)
+1590018834.67: Issuing make command 'specmake build'
+1590018834.67: specmake build 2> make.err | tee make.out
+1590018834.67: Start make command: Wed May 20 16:53:54 2020 (1590018834)
+1590018834.68: specmake[1]: Entering directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/470.lbm/build/build_base_wasm_strawman.0000'
+1590018834.68: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -c -o lbm.o -DSPEC_CPU -DNDEBUG    -O2       -DSPEC_CPU_LP64         lbm.c
+1590018834.89: specmake[1]: *** [lbm.o] Segmentation fault (core dumped)
+1590018834.89: specmake[1]: Leaving directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/470.lbm/build/build_base_wasm_strawman.0000'
+1590018834.89: Tee child 50000 exited with code 512 (exit code=2, signal=0)
+1590018834.89: Stop make command: Wed May 20 16:53:54 2020 (1590018834)
+1590018834.89: Elapsed time for make command: 00:00:00 (0)
+1590018834.90: Error with make 'specmake build': check file '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/470.lbm/build/build_base_wasm_strawman.0000/make.err'
+1590018834.90:   Command returned exit code 2
+1590018834.90:   Error with make!
+1590018834.90:   Compile for '470.lbm' ended at: Wed May 20 16:53:54 2020 (1590018834)
+1590018834.90:   Elapsed compile for '470.lbm': 00:00:01 (1)
+1590018834.90: *** Error building 470.lbm
+
+1590018834.90: ------------------------------------------------------------------------
+1590018834.90: When checking options for /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/473.astar/exe/astar_base.wasm_strawman, no MD5 sums were
+1590018834.90:   found in the config file.  They will be installed after build.
+1590018834.90:   Building 473.astar base wasm_strawman default: (build_base_wasm_strawman.0000)
+1590018834.91: Comparing MD5 hashes:
+1590018834.91:   d84b4ba86f793c8e9c8f2eb4dcb7b461 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/473.astar/src/Makefile
+1590018834.91:   d84b4ba86f793c8e9c8f2eb4dcb7b461 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/473.astar/build/build_base_wasm_strawman.0000/Makefile
+1590018834.92: Wrote to makefile '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/473.astar/build/build_base_wasm_strawman.0000/Makefile.deps':
+
+1590018834.92: # These are the build dependencies
+
+1590018834.92: # End dependencies
+1590018834.92: Wrote to makefile '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/473.astar/build/build_base_wasm_strawman.0000/Makefile.spec':
+1590018834.92: TUNE=base
+1590018834.92: EXT=wasm_strawman
+1590018834.92: NUMBER=473
+1590018834.92: NAME=astar
+1590018834.92: SOURCES= CreateWay_.cpp Places_.cpp RegBounds_.cpp RegMng_.cpp Way2_.cpp \
+1590018834.92: 	 WayInit_.cpp Library.cpp Random.cpp Region_.cpp RegWay_.cpp Way_.cpp
+1590018834.92: EXEBASE=astar
+1590018834.92: NEED_MATH=yes
+1590018834.92: BENCHLANG=CXX
+1590018834.92: ONESTEP=
+1590018834.92: CXXONESTEP=
+
+1590018834.92: BENCH_FLAGS      = -DSPEC_CPU_LITTLE_ENDIAN
+1590018834.92: CC               = /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all
+1590018834.92: COPTIMIZE        = -O2
+1590018834.92: CXX              = /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions
+1590018834.92: CXXOPTIMIZE      = -O2
+1590018834.92: CXXPORTABILITY   = -std=c++11
+1590018834.92: FC               = /usr/bin/gfortran
+1590018834.92: FOPTIMIZE        = -O2
+1590018834.92: FPBASE           = yes
+1590018834.92: LUCET_TYPE       = strawman
+1590018834.92: OS               = unix
+1590018834.92: PORTABILITY      = -DSPEC_CPU_LP64
+1590018834.92: absolutely_no_locking = 0
+1590018834.92: abstol           = 
+1590018834.92: action           = build
+1590018834.92: allow_extension_override = 0
+1590018834.92: backup_config    = 1
+1590018834.92: baseexe          = astar
+1590018834.92: basepeak         = 0
+1590018834.92: benchdir         = benchspec
+1590018834.92: benchmark        = 473.astar
+1590018834.92: binary           = 
+1590018834.92: bindir           = exe
+1590018834.92: build_in_build_dir = 1
+1590018834.92: builddir         = build
+1590018834.92: bundleaction     = 
+1590018834.92: bundlename       = 
+1590018834.92: calctol          = 0
+1590018834.92: changedmd5       = 0
+1590018834.92: check_integrity  = 1
+1590018834.92: check_md5        = 1
+1590018834.92: check_version    = 1
+1590018834.92: command_add_redirect = 0
+1590018834.92: commanderrfile   = speccmds.err
+1590018834.92: commandexe       = astar_base.wasm_strawman
+1590018834.92: commandfile      = speccmds.cmd
+1590018834.92: commandoutfile   = speccmds.out
+1590018834.92: commandstdoutfile = speccmds.stdout
+1590018834.92: compareerrfile   = compare.err
+1590018834.92: comparefile      = compare.cmd
+1590018834.92: compareoutfile   = compare.out
+1590018834.92: comparestdoutfile = compare.stdout
+1590018834.92: compile_error    = 0
+1590018834.92: compwhite        = 
+1590018834.92: configdir        = config
+1590018834.92: configpath       = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/config/wasm_strawman.cfg
+1590018834.92: copies           = 1
+1590018834.92: datadir          = data
+1590018834.92: delay            = 0
+1590018834.92: deletebinaries   = 0
+1590018834.92: deletework       = 0
+1590018834.92: difflines        = 10
+1590018834.92: dirprot          = 511
+1590018834.92: endian           = 12345678
+1590018834.92: env_vars         = 0
+1590018834.92: exitvals         = spec_exit
+1590018834.92: expand_notes     = 0
+1590018834.92: expid            = 
+1590018834.92: ext              = wasm_strawman
+1590018834.92: fake             = 0
+1590018834.92: feedback         = 1
+1590018834.92: flag_url_base    = http://www.spec.org/auto/cpu2006/flags/
+1590018834.92: floatcompare     = 
+1590018834.92: help             = 0
+1590018834.92: http_proxy       = 
+1590018834.92: http_timeout     = 30
+1590018834.92: hw_avail         = Dec-9999
+1590018834.92: hw_cpu_char      = 
+1590018834.92: hw_cpu_mhz       = 3000
+1590018834.92: hw_cpu_name      = AMD Opteron 256
+1590018834.92: hw_disk          = SATA
+1590018834.92: hw_fpu           = Integrated
+1590018834.92: hw_memory        = 2 GB (2 x 1GB DDR333 CL2.5)
+1590018834.92: hw_model         = Tyan Thunder KKQS Pro (S4882)
+1590018834.92: hw_nchips        = 1
+1590018834.92: hw_ncores        = 1
+1590018834.92: hw_ncoresperchip = 1
+1590018834.92: hw_ncpuorder     = 1 chip
+1590018834.92: hw_nthreadspercore = 1
+1590018834.92: hw_ocache        = None
+1590018834.92: hw_pcache        = 64 KB I + 64 KB D on chip per chip
+1590018834.92: hw_scache        = 1 MB I+D on chip per chip
+1590018834.92: hw_tcache        = None
+1590018834.92: hw_vendor        = Tyan
+1590018834.92: ignore_errors    = yes
+1590018834.92: ignore_sigint    = 0
+1590018834.92: ignorecase       = 
+1590018834.92: info_wrap_columns = 50
+1590018834.92: inputdir         = input
+1590018834.92: iteration        = -1
+1590018834.92: iterations       = 3
+1590018834.92: keeptmp          = 0
+1590018834.92: license_num      = 0
+1590018834.92: line_width       = 0
+1590018834.92: locking          = 1
+1590018834.92: log              = CPU2006
+1590018834.92: log_line_width   = 0
+1590018834.92: log_timestamp    = 0
+1590018834.92: logname          = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/result/CPU2006.016.log
+1590018834.92: lognum           = 016
+1590018834.92: mach             = default
+1590018834.92: mail_reports     = all
+1590018834.92: mailcompress     = 0
+1590018834.92: mailmethod       = smtp
+1590018834.92: mailport         = 25
+1590018834.92: mailserver       = 127.0.0.1
+1590018834.92: mailto           = 
+1590018834.92: make             = specmake
+1590018834.92: make_no_clobber  = 0
+1590018834.92: makeflags        = 
+1590018834.92: max_active_compares = 0
+1590018834.92: mean_anyway      = 0
+1590018834.92: min_report_runs  = 3
+1590018834.92: minimize_builddirs = 0
+1590018834.92: minimize_rundirs = 0
+1590018834.92: name             = astar
+1590018834.92: need_math        = yes
+1590018834.92: no_input_handler = close
+1590018834.92: no_monitor       = 
+1590018834.92: note_preenv      = 0
+1590018834.92: notes0100        =  C base flags: -O2
+1590018834.92: notes0110        =  C++ base flags: -O2
+1590018834.92: notes0120        =  Fortran base flags: -O2
+1590018834.92: notes25          =  PORTABILITY=-DSPEC_CPU_LP64 is applied to all benchmarks in base.
+1590018834.92: notes_wrap_columns = 0
+1590018834.92: notes_wrap_indent =   
+1590018834.92: num              = 473
+1590018834.92: obiwan           = 
+1590018834.92: os_exe_ext       = 
+1590018834.92: output           = asc
+1590018834.92: output_format    = asc
+1590018834.92: output_root      = 
+1590018834.92: outputdir        = output
+1590018834.92: parallel_setup   = 1
+1590018834.92: parallel_setup_prefork = 
+1590018834.92: parallel_setup_type = fork
+1590018834.92: parallel_test    = 0
+1590018834.92: parallel_test_submit = 0
+1590018834.92: path             = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/473.astar
+1590018834.92: plain_train      = 1
+1590018834.92: preenv           = 1
+1590018834.92: prefix           = 
+1590018834.92: prepared_by      = 
+1590018834.92: ranks            = 1
+1590018834.92: rate             = 0
+1590018834.92: realuser         = your name here
+1590018834.92: rebuild          = 0
+1590018834.92: reftime          = reftime
+1590018834.92: reltol           = 0.001
+1590018834.92: reportable       = 1
+1590018834.92: resultdir        = result
+1590018834.92: review           = 0
+1590018834.92: run              = all
+1590018834.92: rundir           = run
+1590018834.92: runspec          = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/runspec --config=wasm_strawman.cfg --action=build oakland
+1590018834.92: safe_eval        = 1
+1590018834.92: section_specifier_fatal = 1
+1590018834.92: sendmail         = /usr/sbin/sendmail
+1590018834.92: setpgrp_enabled  = 1
+1590018834.92: setprocgroup     = 1
+1590018834.92: shrate           = 0
+1590018834.92: sigint           = 2
+1590018834.92: size             = ref
+1590018834.92: size_class       = ref
+1590018834.92: skipabstol       = 
+1590018834.92: skipobiwan       = 
+1590018834.92: skipreltol       = 
+1590018834.92: skiptol          = 
+1590018834.92: smarttune        = base
+1590018834.92: specdiff         = specdiff
+1590018834.92: specmake         = Makefile.YYYtArGeTYYYspec
+1590018834.92: specrun          = specinvoke
+1590018834.92: speed            = 0
+1590018834.92: srcalt           = 
+1590018834.92: srcdir           = src
+1590018834.92: stagger          = 10
+1590018834.92: strict_rundir_verify = 1
+1590018834.92: sw_avail         = Dec-9999
+1590018834.92: sw_base_ptrsize  = 64-bit
+1590018834.92: sw_compiler      = clang , clang++ & gfortran 4.1.0 (for AMD64)
+1590018834.92: sw_file          = ext3
+1590018834.92: sw_os            = SUSE SLES9 (for AMD64)
+1590018834.92: sw_other         = None
+1590018834.92: sw_peak_ptrsize  = Not Applicable
+1590018834.92: sw_state         = runlevel 3
+1590018834.92: sysinfo_program  = 
+1590018834.92: table            = 1
+1590018834.92: teeout           = yes
+1590018834.92: teerunout        = yes
+1590018834.92: test_date        = May-2020
+1590018834.92: test_sponsor     = Turbo Computers
+1590018834.92: tester           = 
+1590018834.92: top              = /home/ucsd/SpectreSandboxing/sfi-spectre-spec
+1590018834.92: train_with       = train
+1590018834.92: tune             = base
+1590018834.92: uid              = 1004
+1590018834.92: unbuffer         = 1
+1590018834.92: update-flags     = 0
+1590018834.92: use_submit_for_speed = 0
+1590018834.92: username         = ucsd
+1590018834.92: vendor           = anon
+1590018834.92: vendor_makefiles = 0
+1590018834.92: verbose          = 5
+1590018834.92: version          = 0
+1590018834.92: version_url      = http://www.spec.org/auto/cpu2006/current_version
+1590018834.92: worklist         = list
+1590018834.92: OUTPUT_RMFILES   = BigLakes1024.out rivers1.out
+1590018834.92:   Compile for '473.astar' started at: Wed May 20 16:53:54 2020 (1590018834)
+1590018834.92: Issuing make.clean command 'specmake clean'
+1590018834.92: specmake clean 2> make.clean.err | tee make.clean.out
+1590018834.92: Start make.clean command: Wed May 20 16:53:54 2020 (1590018834)
+1590018834.92: specmake[1]: Entering directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/473.astar/build/build_base_wasm_strawman.0000'
+1590018834.92: rm -rf astar
+1590018835.14: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018835.14: rm -rf astar.exe
+1590018835.35: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018835.35: rm -rf *.o  BigLakes1024.out rivers1.out
+1590018835.56: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018835.56: find . \( -name \*.o -o -name '*.fppized.f*' \) -print | xargs rm -rf
+1590018835.77: specmake[1]: *** [fdoclean] Segmentation fault (core dumped)
+1590018835.77: rm -rf core
+1590018836.00: specmake[1]: *** [clean] Segmentation fault (core dumped)
+1590018836.00: rm -rf 
+1590018836.22: specmake[1]: *** [clean] Segmentation fault (core dumped)
+1590018836.22: specmake[1]: Leaving directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/473.astar/build/build_base_wasm_strawman.0000'
+1590018836.22: Tee child 50048 exited with code 0 (exit code=0, signal=0)
+1590018836.22: Stop make.clean command: Wed May 20 16:53:56 2020 (1590018836)
+1590018836.22: Elapsed time for make.clean command: 00:00:02 (2)
+1590018836.22: Issuing make command 'specmake build'
+1590018836.22: specmake build 2> make.err | tee make.out
+1590018836.22: Start make command: Wed May 20 16:53:56 2020 (1590018836)
+1590018836.23: specmake[1]: Entering directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/473.astar/build/build_base_wasm_strawman.0000'
+1590018836.23: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o CreateWay_.o -DSPEC_CPU -DNDEBUG -DSPEC_CPU_LITTLE_ENDIAN   -O2   -DSPEC_CPU_LP64 -std=c++11      CreateWay_.cpp
+1590018836.45: specmake[1]: *** [CreateWay_.o] Segmentation fault (core dumped)
+1590018836.45: specmake[1]: Leaving directory `/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/473.astar/build/build_base_wasm_strawman.0000'
+1590018836.45: Tee child 50217 exited with code 512 (exit code=2, signal=0)
+1590018836.45: Stop make command: Wed May 20 16:53:56 2020 (1590018836)
+1590018836.45: Elapsed time for make command: 00:00:00 (0)
+1590018836.45: Error with make 'specmake build': check file '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/473.astar/build/build_base_wasm_strawman.0000/make.err'
+1590018836.45:   Command returned exit code 2
+1590018836.45:   Error with make!
+1590018836.45:   Compile for '473.astar' ended at: Wed May 20 16:53:56 2020 (1590018836)
+1590018836.45:   Elapsed compile for '473.astar': 00:00:02 (2)
+1590018836.45: *** Error building 473.astar
+
+1590018836.45: Build errors: 401.bzip2(base; CE), 429.mcf(base; CE), 433.milc(base; CE), 444.namd(base; CE), 445.gobmk(base; CE), 458.sjeng(base; CE), 462.libquantum(base; CE), 464.h264ref(base; CE), 470.lbm(base; CE), 473.astar(base; CE)
+
+1590018836.45: Build Complete
+
+1590018836.45: The log for this run is in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/result/CPU2006.016.log
+1590018836.45: The debug log for this run is in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/result/CPU2006.016.log.debug
+
+1590018836.45: runspec finished at Wed May 20 16:53:56 2020; 22 total seconds elapsed
