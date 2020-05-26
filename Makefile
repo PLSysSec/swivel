@@ -130,26 +130,26 @@ sfi-spectre-spec: libnsl/build/lib/libnsl.so.1
 	git clone git@github.com:PLSysSec/sfi-spectre-spec.git
 	cd sfi-spectre-spec && LD_LIBRARY_PATH="$(CURR_DIR)/libnsl/build/lib/" SPEC_INSTALL_NOCHECK=1 SPEC_FORCE_INSTALL=1 sh install.sh -f
 
-build_spec: sfi-spectre-spec
+build_spec: sfi-spectre-spec build_lucet_nocet
 	export LD_LIBRARY_PATH="$(CURR_DIR)/libnsl/build/lib/" && \
 	cd sfi-spectre-spec && source shrc && \
 	cd config && \
 	runspec --config=wasm_lucet.cfg --action=clobber oakland && \
-	runspec --config=wasm_lucet.cfg --action=build oakland && \
 	runspec --config=wasm_loadlfence.cfg --action=clobber oakland && \
+	runspec --config=wasm_strawman.cfg --action=clobber oakland && \
+	runspec --config=wasm_sfi.cfg --action=clobber oakland && \
+	runspec --config=wasm_cet.cfg --action=clobber oakland && \
+	runspec --config=wasm_sfi_noblade.cfg --action=clobber oakland && \
+	runspec --config=wasm_cet_noblade.cfg --action=clobber oakland && \
+	runspec --config=wasm_blade.cfg --action=clobber oakland && \
+	runspec --config=wasm_lucet.cfg --action=build oakland && \
 	runspec --config=wasm_loadlfence.cfg --action=build oakland && \
 	runspec --config=wasm_strawman.cfg --action=build oakland && \
-	runspec --config=wasm_strawman.cfg --action=clobber oakland && \
 	runspec --config=wasm_sfi.cfg --action=build oakland && \
-	runspec --config=wasm_sfi.cfg --action=clobber oakland && \
 	runspec --config=wasm_cet.cfg --action=build oakland && \
-	runspec --config=wasm_cet.cfg --action=clobber oakland && \
 	runspec --config=wasm_sfi_noblade.cfg --action=build oakland && \
-	runspec --config=wasm_sfi_noblade.cfg --action=clobber oakland && \
 	runspec --config=wasm_cet_noblade.cfg --action=build oakland && \
-	runspec --config=wasm_cet_noblade.cfg --action=clobber oakland && \
-	runspec --config=wasm_blade.cfg --action=build oakland && \
-	runspec --config=wasm_blade.cfg --action=clobber oakland
+	runspec --config=wasm_blade.cfg --action=build oakland
 
 run_spec: build_spec install_btbflush
 	export LD_LIBRARY_PATH="$(CURR_DIR)/libnsl/build/lib/" && \
@@ -167,24 +167,24 @@ run_spec: build_spec install_btbflush
 	python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre/spec/result --usePercent --filter \"sfi-spectre/spec/spec_results_sbx_only=wasm_sfi_noblade:sfi_noblade,wasm_cet_noblade:cet_noblade\" -n 8
 	mv sfi-spectre-spec/result/ benchmarks/spec_$(shell date --iso=seconds)
 
-build_spec2017:
+build_spec2017: build_lucet_nocet
 	cd spec2017 && source shrc && cd config && \
 	runcpu --config=wasm_lucet.cfg --action=clobber --define cores=1 osdi && \
 	runcpu --config=wasm_loadlfence.cfg --action=clobber --define cores=1 osdi && \
-        runcpu --config=wasm_strawman.cfg --action=clobber --define cores=1 osdi && \
-        runcpu --config=wasm_sfi.cfg --action=clobber --define cores=1 osdi && \
-        runcpu --config=wasm_cet.cfg --action=clobber --define cores=1 osdi && \
-        runcpu --config=wasm_sfi_noblade.cfg --action=clobber --define cores=1 osdi && \
-        runcpu --config=wasm_cet_noblade.cfg --action=clobber --define cores=1 osdi && \
-        runcpu --config=wasm_blade.cfg --action=clobber --define cores=1 osdi && \
+	runcpu --config=wasm_strawman.cfg --action=clobber --define cores=1 osdi && \
+	runcpu --config=wasm_sfi.cfg --action=clobber --define cores=1 osdi && \
+	runcpu --config=wasm_cet.cfg --action=clobber --define cores=1 osdi && \
+	runcpu --config=wasm_sfi_noblade.cfg --action=clobber --define cores=1 osdi && \
+	runcpu --config=wasm_cet_noblade.cfg --action=clobber --define cores=1 osdi && \
+	runcpu --config=wasm_blade.cfg --action=clobber --define cores=1 osdi && \
 	runcpu --config=wasm_lucet.cfg --action=build --define cores=1 osdi && \
 	runcpu --config=wasm_loadlfence.cfg --action=build --define cores=1 osdi && \
-        runcpu --config=wasm_strawman.cfg --action=build --define cores=1 osdi && \
-        runcpu --config=wasm_sfi.cfg --action=build --define cores=1 osdi && \
-        runcpu --config=wasm_cet.cfg --action=build --define cores=1 osdi && \
-        runcpu --config=wasm_sfi_noblade.cfg --action=build --define cores=1 osdi && \
-        runcpu --config=wasm_cet_noblade.cfg --action=build --define cores=1 osdi && \
-        runcpu --config=wasm_blade.cfg --action=build --define cores=1 osdi
+	runcpu --config=wasm_strawman.cfg --action=build --define cores=1 osdi && \
+	runcpu --config=wasm_sfi.cfg --action=build --define cores=1 osdi && \
+	runcpu --config=wasm_cet.cfg --action=build --define cores=1 osdi && \
+	runcpu --config=wasm_sfi_noblade.cfg --action=build --define cores=1 osdi && \
+	runcpu --config=wasm_cet_noblade.cfg --action=build --define cores=1 osdi && \
+	runcpu --config=wasm_blade.cfg --action=build --define cores=1 osdi
 
 
 run_spec2017: build_spec2017 install_btbflush
