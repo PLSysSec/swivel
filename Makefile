@@ -182,7 +182,7 @@ run_spec_blade_test:
 	cd sfi-spectre-spec && source shrc && cd config && \
 	runspec --config=wasm_lucet.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
 	runspec --config=wasm_blade.cfg --iterations=1 --noreportable --size=ref --wasm oakland
-	python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre/spec/result --usePercent --filter \"sfi-spectre/spec/spec_results_sbx_only=wasm_blade:de,wasm_cet_noblade:cet_noblade\" -n 8
+	python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre/spec/result --usePercent --filter \"sfi-spectre/spec/spec_results_blade=wasm_blade:blade\" -n 8
 	mv sfi-spectre-spec/result/ benchmarks/spec_$(shell date --iso=seconds)
 
 build_spec2017: build_lucet_nocet
