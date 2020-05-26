@@ -1,0 +1,832 @@
+==============================================================================
+Debug log for CPU2006.  This file contains very detailed debugging
+output from the CPU2006 tools (as if "--verbose 99" had been specified) and is
+typically useful only to developers of the CPU2006 toolset.   
+
+For a successful run, this debug log will be removed automatically, unless you
+specify "--keeptmp" on the command line, or "keeptmp=1" in your config file.
+
+If you file a support request with cpu2006support@spec.org, you may be
+asked to submit this file.
+------------------------------------------------------------------------------
+
+Environment variables that should have been set or changed by shrc:
+SPEC: /home/ucsd/SpectreSandboxing/sfi-spectre-spec
+PATH: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin:/home/ucsd/.cargo/bin:/home/ucsd/.local/bin:/home/ucsd/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+SPECPERLLIB: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin:/home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/lib
+LD_LIBRARY_PATH: :/home/ucsd/SpectreSandboxing/libnsl/build/lib/
+DYLD_LIBRARY_PATH: 
+LC_ALL: C
+LC_LANG: C
+SPECDB_PWD: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/config
+------------------------------------------------------------------------------
+
+Runspec's verbose version output:
+                 This is the SPEC CPU2006 benchmark tools suite.
+
+Version summary:
+    CPU2006 version: 1.1
+ Benchmarks version: 110
+      Tools version: 111
+    runspec version: 6152 ($Id: runspec 6152 2008-05-07 05:25:30Z cloyce $)
+
+Tools information:
+ Tools package installed: linux-suse101-AMD64
+ File locking method: fcntl(2) (probably network-safe)
+Mode |  UID  |  GID  |   Size  |    Modified Date   | Name
+0755 | 1004  | 1004  |  197376 | 17-May-2007 10:05:18 | specmake
+0755 | 1004  | 1004  | 1269511 | 17-May-2007 10:05:18 | specperl
+0755 | 1004  | 1004  |   25160 | 17-May-2007 10:05:18 | specinvoke
+0755 | 1004  | 1004  |   28176 | 17-May-2007 10:05:18 | specinvoke_pm
+0755 | 1004  | 1004  |   87352 | 17-May-2007 10:05:18 | specbzip2
+0755 | 1004  | 1004  |   20056 | 17-May-2007 10:05:18 | specmd5sum
+0755 | 1004  | 1004  |    7645 | 24-May-2020 18:37:54 | specdiff
+0755 | 1004  | 1004  |   86553 | 24-May-2020 18:37:54 | specpp
+0755 | 1004  | 1004  |  264960 | 17-May-2007 10:05:18 | specrxp
+0755 | 1004  | 1004  |  121915 | 24-May-2020 18:37:54 | runspec
+
+Version info for specinvoke (specinvoke): Version: 5000
+Version info for specmake (specmake): GNU Make 3.81
+Version info for specbzip2 (/home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specbzip2): bzip2 v1.0.3, 15-Feb-2005
+Version info for specpp (/home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specperl): filepp version 1.7.1SPEC
+Version info for specperl (/home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specperl): This is specperl, v5.8.8 built for x86_64-linux
+                           For more detail on specperl, say 'specperl -V'
+
+==============================================================================
+
+1590350872.84: runspec v6152 started at Sun May 24 13:07:51 2020 on "tigerlake1-ravi"
+1590350872.84: runspec is: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/runspec
+1590350872.84: runspec: runspec --config=wasm_lucet --iterations=1 --noreportable --wasm soplex
+1590350872.84: toolset: linux-suse101-AMD64
+
+1590350872.84(0.03s): Locating benchmarks...Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU(?:=\S*)?(?=\s|$)' for DSPEC_CPU in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1590350872.87: Created default regexp '(?:^|(?<=\s))[-/]USPEC_CPU(?:=\S*)?(?=\s|$)' for USPEC_CPU in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1590350872.87: Created default regexp '(?:^|(?<=\s))[-/]DNDEBUG(?:=\S*)?(?=\s|$)' for DNDEBUG in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1590350872.87: Created default regexp '(?:^|(?<=\s))[-/]UNDEBUG(?:=\S*)?(?=\s|$)' for UNDEBUG in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1590350872.87: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_WINDOWS(?:=\S*)?(?=\s|$)' for DSPEC_CPU_WINDOWS in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1590350872.87: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_ILP32(?:=\S*)?(?=\s|$)' for DSPEC_CPU_ILP32 in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1590350872.87: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_P64(?:=\S*)?(?=\s|$)' for DSPEC_CPU_P64 in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1590350872.87: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_LP64(?:=\S*)?(?=\s|$)' for DSPEC_CPU_LP64 in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1590350872.87: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_ILP64(?:=\S*)?(?=\s|$)' for DSPEC_CPU_ILP64 in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1590350872.87: Reading suite directory for 'flags-mandatory.xml', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec'
+1590350872.87: Reading suite directory for 'CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec'
+1590350872.87:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '459.GemsFDTD'
+1590350872.87:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/459.GemsFDTD/Spec/object.pm in 0.000236988s
+1590350872.87:     Instantiated Spec::Benchmark::GemsFDTD459 in 0.000146866s
+1590350872.87:     Finding src.alts took 0.000034094s
+1590350872.87:   Setting up GemsFDTD took 0.000555992s
+
+1590350872.87:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', 'all_mixed.bset'
+1590350872.87:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '403.gcc'
+1590350872.87:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/403.gcc/Spec/object.pm in 0.000175953s
+1590350872.87:     Instantiated Spec::Benchmark::gcc403 in 0.000087976s
+1590350872.87:     Finding src.alts took 0.000023127s
+1590350872.87:   Setting up gcc took 0.000395060s
+
+1590350872.87:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '473.astar'
+1590350872.87:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/473.astar/Spec/object.pm in 0.000189066s
+1590350872.87:     Instantiated Spec::Benchmark::astar473 in 0.000063896s
+1590350872.87:     Finding src.alts took 0.000020027s
+1590350872.87:   Setting up astar took 0.000380039s
+
+1590350872.87:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '433.milc'
+1590350872.87:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/Spec/object.pm in 0.000160933s
+1590350872.87:     Instantiated Spec::Benchmark::milc433 in 0.000088930s
+1590350872.87:     Finding src.alts took 0.000019073s
+1590350872.87:   Setting up milc took 0.000370979s
+
+1590350872.87:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '482.sphinx3'
+1590350872.87:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/482.sphinx3/Spec/object.pm in 0.000371933s
+1590350872.87:     Instantiated Spec::Benchmark::sphinx3482 in 0.000076056s
+1590350872.87:     Finding src.alts took 0.000021935s
+1590350872.87:   Setting up sphinx3 took 0.000589132s
+
+1590350872.87:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', 'CINT2006.bset'
+1590350872.87:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '435.gromacs'
+1590350872.87:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/435.gromacs/Spec/object.pm in 0.000159025s
+1590350872.87:     Instantiated Spec::Benchmark::gromacs435 in 0.000068903s
+1590350872.87:     Finding src.alts took 0.000020981s
+1590350872.87:   Setting up gromacs took 0.000355005s
+
+1590350872.87:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '465.tonto'
+1590350872.87:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/465.tonto/Spec/object.pm in 0.000881195s
+1590350872.87:     Instantiated Spec::Benchmark::tonto465 in 0.000086069s
+1590350872.87:     Finding src.alts took 0.000028849s
+1590350872.87:   Setting up tonto took 0.001118183s
+
+1590350872.87:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '462.libquantum'
+1590350872.87:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/462.libquantum/Spec/object.pm in 0.000169039s
+1590350872.87:     Instantiated Spec::Benchmark::libquantum462 in 0.000056982s
+1590350872.87:     Finding src.alts took 0.000020027s
+1590350872.87:   Setting up libquantum took 0.000368118s
+
+1590350872.87:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', 'CFP2006.bset'
+1590350872.87:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', 'all_c.bset'
+1590350872.87:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '998.specrand'
+1590350872.87:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/998.specrand/Spec/object.pm in 0.000104904s
+1590350872.87:     Instantiated Spec::Benchmark::specrand998 in 0.000049114s
+1590350872.87:     Finding src.alts took 0.000019073s
+1590350872.87:   Setting up specrand took 0.000283003s
+
+1590350872.87:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', 'all_fortran.bset'
+1590350872.87:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '410.bwaves'
+1590350872.87:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/410.bwaves/Spec/object.pm in 0.000082016s
+1590350872.87:     Instantiated Spec::Benchmark::bwaves410 in 0.000063896s
+1590350872.87:     Finding src.alts took 0.000017881s
+1590350872.87:   Setting up bwaves took 0.000273943s
+
+1590350872.87:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '401.bzip2'
+1590350872.87:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/Spec/object.pm in 0.000126839s
+1590350872.87:     Instantiated Spec::Benchmark::bzip2401 in 0.000050068s
+1590350872.87:     Finding src.alts took 0.000020027s
+1590350872.87:   Setting up bzip2 took 0.000297070s
+
+1590350872.87:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '434.zeusmp'
+1590350872.87:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/434.zeusmp/Spec/object.pm in 0.000117064s
+1590350872.87:     Instantiated Spec::Benchmark::zeusmp434 in 0.000061035s
+1590350872.87:     Finding src.alts took 0.000019073s
+1590350872.87:   Setting up zeusmp took 0.000302076s
+
+1590350872.87:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '437.leslie3d'
+1590350872.87:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/437.leslie3d/Spec/object.pm in 0.000118017s
+1590350872.87:     Instantiated Spec::Benchmark::leslie3d437 in 0.000051975s
+1590350872.87:     Finding src.alts took 0.000018120s
+1590350872.87:   Setting up leslie3d took 0.000295877s
+
+1590350872.87:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '429.mcf'
+1590350872.87:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/Spec/object.pm in 0.000113010s
+1590350872.87:     Instantiated Spec::Benchmark::mcf429 in 0.000050068s
+1590350872.87:     Finding src.alts took 0.000015974s
+1590350872.87:   Setting up mcf took 0.000277042s
+
+1590350872.87:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '400.perlbench'
+1590350872.88:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/400.perlbench/Spec/object.pm in 0.000621796s
+1590350872.88:     Instantiated Spec::Benchmark::perlbench400 in 0.000073910s
+1590350872.88:     Finding src.alts took 0.000025034s
+1590350872.88:   Setting up perlbench took 0.000840902s
+
+1590350872.88:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '416.gamess'
+1590350872.88:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/416.gamess/Spec/object.pm in 0.000182152s
+1590350872.88:     Instantiated Spec::Benchmark::gamess416 in 0.000086069s
+1590350872.88:     Finding src.alts took 0.000019073s
+1590350872.88:   Setting up gamess took 0.000394106s
+
+1590350872.88:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', 'oakland.bset'
+1590350872.88:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '450.soplex'
+1590350872.88:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/450.soplex/Spec/object.pm in 0.000215054s
+1590350872.88:     Instantiated Spec::Benchmark::soplex450 in 0.000059843s
+1590350872.88:     Finding src.alts took 0.000021935s
+1590350872.88:   Setting up soplex took 0.000400066s
+
+1590350872.88:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '453.povray'
+1590350872.88:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/453.povray/Spec/object.pm in 0.000179052s
+1590350872.88:     Instantiated Spec::Benchmark::povray453 in 0.000070095s
+1590350872.88:     Finding src.alts took 0.000019789s
+1590350872.88:   Setting up povray took 0.000373125s
+
+1590350872.88:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '481.wrf'
+1590350872.88:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/481.wrf/Spec/object.pm in 0.001158953s
+1590350872.88:     Instantiated Spec::Benchmark::wrf481 in 0.000120878s
+1590350872.88:     Finding src.alts took 0.000026941s
+1590350872.88:   Setting up wrf took 0.001431942s
+
+1590350872.88:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '445.gobmk'
+1590350872.88:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/445.gobmk/Spec/object.pm in 0.000158072s
+1590350872.88:     Instantiated Spec::Benchmark::gobmk445 in 0.000056028s
+1590350872.88:     Finding src.alts took 0.000020027s
+1590350872.88:   Setting up gobmk took 0.000346899s
+
+1590350872.88:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '470.lbm'
+1590350872.88:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/470.lbm/Spec/object.pm in 0.000110865s
+1590350872.88:     Instantiated Spec::Benchmark::lbm470 in 0.000049829s
+1590350872.88:     Finding src.alts took 0.000016928s
+1590350872.88:   Setting up lbm took 0.000275850s
+
+1590350872.88:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '444.namd'
+1590350872.88:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/444.namd/Spec/object.pm in 0.000132084s
+1590350872.88:     Instantiated Spec::Benchmark::namd444 in 0.000064135s
+1590350872.88:     Finding src.alts took 0.000018120s
+1590350872.88:   Setting up namd took 0.000314951s
+
+1590350872.88:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '456.hmmer'
+1590350872.88:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/456.hmmer/Spec/object.pm in 0.000177860s
+1590350872.88:     Instantiated Spec::Benchmark::hmmer456 in 0.000054836s
+1590350872.88:     Finding src.alts took 0.000019073s
+1590350872.88:   Setting up hmmer took 0.000370026s
+
+1590350872.88:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '471.omnetpp'
+1590350872.88:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/471.omnetpp/Spec/object.pm in 0.000133991s
+1590350872.88:     Instantiated Spec::Benchmark::omnetpp471 in 0.000055075s
+1590350872.88:     Finding src.alts took 0.000016212s
+1590350872.88:   Setting up omnetpp took 0.000304937s
+
+1590350872.88:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '454.calculix'
+1590350872.88:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/454.calculix/Spec/object.pm in 0.000352144s
+1590350872.88:     Instantiated Spec::Benchmark::calculix454 in 0.000088930s
+1590350872.88:     Finding src.alts took 0.000020027s
+1590350872.88:   Setting up calculix took 0.000559807s
+
+1590350872.88:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '999.specrand'
+1590350872.88:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/999.specrand/Spec/object.pm in 0.000118017s
+1590350872.88:     Instantiated Spec::Benchmark::specrand999 in 0.000047922s
+1590350872.88:     Finding src.alts took 0.000017881s
+1590350872.88:   Setting up specrand took 0.000290155s
+
+1590350872.88:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', 'extra.bset'
+1590350872.88:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '458.sjeng'
+1590350872.88:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/458.sjeng/Spec/object.pm in 0.000118971s
+1590350872.88:     Instantiated Spec::Benchmark::sjeng458 in 0.000053167s
+1590350872.88:     Finding src.alts took 0.000020027s
+1590350872.88:   Setting up sjeng took 0.000293970s
+
+1590350872.88:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', 'all_cpp.bset'
+1590350872.88:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '447.dealII'
+1590350872.88:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/447.dealII/Spec/object.pm in 0.000483036s
+1590350872.88:     Instantiated Spec::Benchmark::dealII447 in 0.000077963s
+1590350872.88:     Finding src.alts took 0.000025034s
+1590350872.88:   Setting up dealII took 0.000700951s
+
+1590350872.88:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '464.h264ref'
+1590350872.88:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/464.h264ref/Spec/object.pm in 0.000201941s
+1590350872.88:     Instantiated Spec::Benchmark::h264ref464 in 0.000053167s
+1590350872.88:     Finding src.alts took 0.000020981s
+1590350872.88:   Setting up h264ref took 0.000379086s
+
+1590350872.88:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '436.cactusADM'
+1590350872.88:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/436.cactusADM/Spec/object.pm in 0.000292778s
+1590350872.88:     Instantiated Spec::Benchmark::cactusADM436 in 0.000091076s
+1590350872.88:     Finding src.alts took 0.000021935s
+1590350872.88:   Setting up cactusADM took 0.000514984s
+
+1590350872.88:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '483.xalancbmk'
+1590350872.88:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/483.xalancbmk/Spec/object.pm in 0.000586033s
+1590350872.88:     Instantiated Spec::Benchmark::xalancbmk483 in 0.000108004s
+1590350872.88:     Finding src.alts took 0.000025988s
+1590350872.88:   Setting up xalancbmk took 0.000837803s
+
+1590350872.88: Setting up suite took 0.017439842s
+1590350872.88: Reading suite directory for 'Makefile.defaults', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec'
+1590350872.88: Reading suite directory for 'version.txt', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec'
+1590350872.88: found 31 benchmarks in 8 benchsets.
+1590350872.89: Reading config file '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/config/wasm_lucet.cfg'
+
+1590350872.90:   '450.soplex' added
+1590350872.91: Verbosity = 5
+1590350872.91: Action    = validate
+1590350872.91: Tune      = base
+1590350872.91: Ext       = wasm_lucet
+1590350872.91: Size      = ref
+1590350872.91: Machine   = default
+1590350872.91: benchmarks= 450.soplex
+1590350872.91: outputs   = asc
+1590350872.91: username  = ucsd
+1590350872.91: Benchmarks selected: 450.soplex
+1590350872.91: Compiling Binaries
+
+1590350872.91: ------------------------------------------------------------------------
+1590350872.91: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/450.soplex/exe/soplex_base.wasm_lucet does not exist
+1590350872.91:   Building 450.soplex base wasm_lucet default: (build_base_wasm_lucet.0000)
+1590350872.93: Comparing MD5 hashes:
+1590350872.93:   d84b4ba86f793c8e9c8f2eb4dcb7b461 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/450.soplex/src/Makefile
+1590350872.93:   d84b4ba86f793c8e9c8f2eb4dcb7b461 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/450.soplex/build/build_base_wasm_lucet.0000/Makefile
+1590350872.94: Wrote to makefile '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/450.soplex/build/build_base_wasm_lucet.0000/Makefile.deps':
+
+1590350872.94: # These are the build dependencies
+
+1590350872.94: # End dependencies
+1590350872.94: Wrote to makefile '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/450.soplex/build/build_base_wasm_lucet.0000/Makefile.spec':
+1590350872.94: TUNE=base
+1590350872.94: EXT=wasm_lucet
+1590350872.94: NUMBER=450
+1590350872.94: NAME=soplex
+1590350872.94: SOURCES= changesoplex.cc didxset.cc dsvector.cc dvector.cc enter.cc \
+1590350872.94: 	 example.cc factor.cc forest.cc idxset.cc leave.cc lpcolset.cc lprow.cc \
+1590350872.94: 	 lprowset.cc message.cc mpsinput.cc nameset.cc slufactor.cc solve.cc \
+1590350872.94: 	 soplex.cc spxaggregatesm.cc spxbasis.cc spxbounds.cc spxchangebasis.cc \
+1590350872.94: 	 spxdefaultpr.cc spxdefaultrt.cc spxdefines.cc spxdesc.cc spxdevexpr.cc \
+1590350872.94: 	 spxequilisc.cc spxfastrt.cc spxgeneralsm.cc spxharrisrt.cc \
+1590350872.94: 	 spxhybridpr.cc spxid.cc spxio.cc spxlp.cc spxlpfread.cc spxmpsread.cc \
+1590350872.94: 	 spxmpswrite.cc spxparmultpr.cc spxquality.cc spxredundantsm.cc \
+1590350872.94: 	 spxrem1sm.cc spxscaler.cc spxshift.cc spxsolve.cc spxsolver.cc \
+1590350872.94: 	 spxstarter.cc spxsteeppr.cc spxsumst.cc spxvecs.cc spxvectorst.cc \
+1590350872.94: 	 spxweightpr.cc spxweightst.cc ssvector.cc svector.cc svset.cc timer.cc \
+1590350872.94: 	 unitvector.cc update.cc updatevector.cc vector.cc vsolve.cc
+1590350872.94: EXEBASE=soplex
+1590350872.94: NEED_MATH=yes
+1590350872.94: BENCHLANG=CXX
+1590350872.94: ONESTEP=
+1590350872.94: CXXONESTEP=
+
+1590350872.94: CC               = /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all
+1590350872.94: COPTIMIZE        = -O2
+1590350872.94: CXX              = /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions
+1590350872.94: CXXOPTIMIZE      = -O2
+1590350872.94: CXXPORTABILITY   = -std=c++11
+1590350872.94: FC               = /usr/bin/gfortran
+1590350872.94: FOPTIMIZE        = -O2
+1590350872.94: FPBASE           = yes
+1590350872.94: LUCET_TYPE       = lucet
+1590350872.94: OS               = unix
+1590350872.94: PORTABILITY      = -DSPEC_CPU_LP64
+1590350872.94: absolutely_no_locking = 0
+1590350872.94: action           = validate
+1590350872.94: allow_extension_override = 0
+1590350872.94: backup_config    = 1
+1590350872.94: baseexe          = soplex
+1590350872.94: basepeak         = 0
+1590350872.94: benchdir         = benchspec
+1590350872.94: benchmark        = 450.soplex
+1590350872.94: binary           = 
+1590350872.94: bindir           = exe
+1590350872.94: build_in_build_dir = 1
+1590350872.94: builddir         = build
+1590350872.94: bundleaction     = 
+1590350872.94: bundlename       = 
+1590350872.94: calctol          = 0
+1590350872.94: changedmd5       = 0
+1590350872.94: check_integrity  = 1
+1590350872.94: check_md5        = 1
+1590350872.94: check_version    = 1
+1590350872.94: command_add_redirect = 0
+1590350872.94: commanderrfile   = speccmds.err
+1590350872.94: commandexe       = soplex_base.wasm_lucet
+1590350872.94: commandfile      = speccmds.cmd
+1590350872.94: commandoutfile   = speccmds.out
+1590350872.94: commandstdoutfile = speccmds.stdout
+1590350872.94: compareerrfile   = compare.err
+1590350872.94: comparefile      = compare.cmd
+1590350872.94: compareoutfile   = compare.out
+1590350872.94: comparestdoutfile = compare.stdout
+1590350872.94: compile_error    = 0
+1590350872.94: compwhite        = 
+1590350872.94: configdir        = config
+1590350872.94: configpath       = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/config/wasm_lucet.cfg
+1590350872.94: copies           = 1
+1590350872.94: datadir          = data
+1590350872.94: delay            = 0
+1590350872.94: deletebinaries   = 0
+1590350872.94: deletework       = 0
+1590350872.94: difflines        = 10
+1590350872.94: dirprot          = 511
+1590350872.94: endian           = 12345678
+1590350872.94: env_vars         = 0
+1590350872.94: exitvals         = spec_exit
+1590350872.94: expand_notes     = 0
+1590350872.94: expid            = 
+1590350872.94: ext              = wasm_lucet
+1590350872.94: fake             = 0
+1590350872.94: feedback         = 1
+1590350872.94: flag_url_base    = http://www.spec.org/auto/cpu2006/flags/
+1590350872.94: floatcompare     = 
+1590350872.94: help             = 0
+1590350872.94: http_proxy       = 
+1590350872.94: http_timeout     = 30
+1590350872.94: hw_avail         = Dec-9999
+1590350872.94: hw_cpu_char      = 
+1590350872.94: hw_cpu_mhz       = 3000
+1590350872.94: hw_cpu_name      = AMD Opteron 256
+1590350872.94: hw_disk          = SATA
+1590350872.94: hw_fpu           = Integrated
+1590350872.94: hw_memory        = 2 GB (2 x 1GB DDR333 CL2.5)
+1590350872.94: hw_model         = Tyan Thunder KKQS Pro (S4882)
+1590350872.94: hw_nchips        = 1
+1590350872.94: hw_ncores        = 1
+1590350872.94: hw_ncoresperchip = 1
+1590350872.94: hw_ncpuorder     = 1 chip
+1590350872.94: hw_nthreadspercore = 1
+1590350872.94: hw_ocache        = None
+1590350872.94: hw_pcache        = 64 KB I + 64 KB D on chip per chip
+1590350872.94: hw_scache        = 1 MB I+D on chip per chip
+1590350872.94: hw_tcache        = None
+1590350872.94: hw_vendor        = Tyan
+1590350872.94: ignore_errors    = yes
+1590350872.94: ignore_sigint    = 0
+1590350872.94: ignorecase       = 
+1590350872.94: info_wrap_columns = 50
+1590350872.94: inputdir         = input
+1590350872.94: iteration        = -1
+1590350872.94: iterations       = 1
+1590350872.94: keeptmp          = 0
+1590350872.94: license_num      = 0
+1590350872.94: line_width       = 0
+1590350872.94: locking          = 1
+1590350872.94: log              = CPU2006
+1590350872.94: log_line_width   = 0
+1590350872.94: log_timestamp    = 0
+1590350872.94: logname          = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/result/CPU2006.055.log
+1590350872.94: lognum           = 055
+1590350872.94: mach             = default
+1590350872.94: mail_reports     = all
+1590350872.94: mailcompress     = 0
+1590350872.94: mailmethod       = smtp
+1590350872.94: mailport         = 25
+1590350872.94: mailserver       = 127.0.0.1
+1590350872.94: mailto           = 
+1590350872.94: make             = specmake
+1590350872.94: make_no_clobber  = 0
+1590350872.94: makeflags        = 
+1590350872.94: max_active_compares = 0
+1590350872.94: mean_anyway      = 0
+1590350872.94: min_report_runs  = 3
+1590350872.94: minimize_builddirs = 0
+1590350872.94: minimize_rundirs = 0
+1590350872.94: name             = soplex
+1590350872.94: need_math        = yes
+1590350872.94: no_input_handler = close
+1590350872.94: no_monitor       = 
+1590350872.94: note_preenv      = 0
+1590350872.94: notes0100        =  C base flags: -O2
+1590350872.94: notes0110        =  C++ base flags: -O2
+1590350872.94: notes0120        =  Fortran base flags: -O2
+1590350872.94: notes25          =  PORTABILITY=-DSPEC_CPU_LP64 is applied to all benchmarks in base.
+1590350872.94: notes_wrap_columns = 0
+1590350872.94: notes_wrap_indent =   
+1590350872.94: num              = 450
+1590350872.94: obiwan           = 1
+1590350872.94: os_exe_ext       = 
+1590350872.94: output           = asc
+1590350872.94: output_format    = asc
+1590350872.94: output_root      = 
+1590350872.94: outputdir        = output
+1590350872.94: parallel_setup   = 1
+1590350872.94: parallel_setup_prefork = 
+1590350872.94: parallel_setup_type = fork
+1590350872.94: parallel_test    = 0
+1590350872.94: parallel_test_submit = 0
+1590350872.94: path             = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/450.soplex
+1590350872.94: plain_train      = 1
+1590350872.94: preenv           = 1
+1590350872.94: prefix           = 
+1590350872.94: prepared_by      = 
+1590350872.94: ranks            = 1
+1590350872.94: rate             = 0
+1590350872.94: realuser         = your name here
+1590350872.94: rebuild          = 0
+1590350872.94: reftime          = reftime
+1590350872.94: reportable       = 0
+1590350872.94: resultdir        = result
+1590350872.94: review           = 0
+1590350872.94: run              = all
+1590350872.94: rundir           = run
+1590350872.94: runspec          = /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/runspec --config=wasm_lucet --iterations=1 --noreportable --wasm soplex
+1590350872.94: safe_eval        = 1
+1590350872.94: section_specifier_fatal = 1
+1590350872.94: sendmail         = /usr/sbin/sendmail
+1590350872.94: setpgrp_enabled  = 1
+1590350872.94: setprocgroup     = 1
+1590350872.94: shrate           = 0
+1590350872.94: sigint           = 2
+1590350872.94: size             = ref
+1590350872.94: size_class       = ref
+1590350872.94: skipabstol       = 
+1590350872.94: skipobiwan       = 
+1590350872.94: skipreltol       = 
+1590350872.94: skiptol          = 
+1590350872.94: smarttune        = base
+1590350872.94: specdiff         = specdiff
+1590350872.94: specmake         = Makefile.YYYtArGeTYYYspec
+1590350872.94: specrun          = specinvoke
+1590350872.94: speed            = 0
+1590350872.94: srcalt           = 
+1590350872.94: srcdir           = src
+1590350872.94: stagger          = 10
+1590350872.94: strict_rundir_verify = 1
+1590350872.94: sw_avail         = Dec-9999
+1590350872.94: sw_base_ptrsize  = 64-bit
+1590350872.94: sw_compiler      = clang , clang++ & gfortran 4.1.0 (for AMD64)
+1590350872.94: sw_file          = ext3
+1590350872.94: sw_os            = SUSE SLES9 (for AMD64)
+1590350872.94: sw_other         = None
+1590350872.94: sw_peak_ptrsize  = Not Applicable
+1590350872.94: sw_state         = runlevel 3
+1590350872.94: sysinfo_program  = 
+1590350872.94: table            = 1
+1590350872.94: teeout           = yes
+1590350872.94: teerunout        = yes
+1590350872.94: test_date        = May-2020
+1590350872.94: test_sponsor     = Turbo Computers
+1590350872.94: tester           = 
+1590350872.94: top              = /home/ucsd/SpectreSandboxing/sfi-spectre-spec
+1590350872.94: train_with       = train
+1590350872.94: tune             = base
+1590350872.94: uid              = 1004
+1590350872.94: unbuffer         = 1
+1590350872.94: update-flags     = 0
+1590350872.94: use_submit_for_speed = 0
+1590350872.94: username         = ucsd
+1590350872.94: vendor           = anon
+1590350872.94: vendor_makefiles = 0
+1590350872.94: verbose          = 5
+1590350872.94: version          = 0
+1590350872.94: version_url      = http://www.spec.org/auto/cpu2006/current_version
+1590350872.94: worklist         = list
+1590350872.94: OUTPUT_RMFILES   = 
+1590350872.94:   Compile for '450.soplex' started at: Sun May 24 13:07:52 2020 (1590350872)
+1590350872.94: Issuing make.clean command 'specmake clean'
+1590350872.94: specmake clean 2> make.clean.err | tee make.clean.out
+1590350872.94: Start make.clean command: Sun May 24 13:07:52 2020 (1590350872)
+1590350872.94: rm -rf soplex
+1590350872.94: rm -rf soplex.exe
+1590350872.95: rm -rf *.o  
+1590350872.95: find . \( -name \*.o -o -name '*.fppized.f*' \) -print | xargs rm -rf
+1590350872.95: rm -rf core
+1590350872.95: rm -rf 
+1590350873.20: Tee child 162943 exited with code 0 (exit code=0, signal=0)
+1590350873.20: Stop make.clean command: Sun May 24 13:07:53 2020 (1590350873)
+1590350873.20: Elapsed time for make.clean command: 00:00:01 (1)
+1590350873.20: Issuing make command 'specmake build'
+1590350873.20: specmake build 2> make.err | tee make.out
+1590350873.20: Start make command: Sun May 24 13:07:53 2020 (1590350873)
+1590350873.21: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o changesoplex.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      changesoplex.cc
+1590350873.21: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350873.21: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350874.88: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o didxset.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      didxset.cc
+1590350874.88: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350874.88: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350875.96: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o dsvector.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      dsvector.cc
+1590350875.96: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350875.96: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350877.08: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o dvector.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      dvector.cc
+1590350877.08: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350877.08: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350878.24: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o enter.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      enter.cc
+1590350878.24: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350878.24: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350879.76: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o example.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      example.cc
+1590350879.76: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350879.76: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350880.75: example.cc:544:7: warning: delete called on 'soplex::SPxSimplifier' that is abstract but has non-virtual destructor [-Wdelete-abstract-non-virtual-dtor]
+1590350880.75:       delete simplifier;
+1590350880.75:       ^
+1590350881.47: 1 warning generated.
+1590350881.47: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o factor.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      factor.cc
+1590350881.48: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350881.48: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350883.55: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o forest.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      forest.cc
+1590350883.55: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350883.55: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350884.85: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o idxset.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      idxset.cc
+1590350884.85: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350884.85: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350884.90: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o leave.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      leave.cc
+1590350884.90: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350884.90: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350886.29: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o lpcolset.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      lpcolset.cc
+1590350886.29: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350886.29: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350887.47: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o lprow.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      lprow.cc
+1590350887.47: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350887.47: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350888.56: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o lprowset.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      lprowset.cc
+1590350888.57: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350888.57: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350889.74: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o message.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      message.cc
+1590350889.75: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350889.75: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350890.48: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o mpsinput.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      mpsinput.cc
+1590350890.49: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350890.49: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350891.39: mpsinput.cc:168:13: warning: add explicit braces to avoid dangling else [-Wdangling-else]
+1590350891.39:             else if (!strcmp(m_f3, "'INTEND'"))
+1590350891.39:             ^
+1590350891.39: mpsinput.cc:184:13: warning: add explicit braces to avoid dangling else [-Wdangling-else]
+1590350891.39:             else if (!strcmp(m_f4, "'INTEND'"))
+1590350891.39:             ^
+1590350891.64: 2 warnings generated.
+1590350891.64: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o nameset.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      nameset.cc
+1590350891.65: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350891.65: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350893.05: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o slufactor.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      slufactor.cc
+1590350893.05: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350893.05: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350894.34: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o solve.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      solve.cc
+1590350894.35: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350894.35: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350895.93: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o soplex.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      soplex.cc
+1590350895.94: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350895.94: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350897.77: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxaggregatesm.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxaggregatesm.cc
+1590350897.77: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350897.77: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350899.10: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxbasis.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxbasis.cc
+1590350899.10: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350899.10: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350900.63: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxbounds.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxbounds.cc
+1590350900.63: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350900.63: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350901.92: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxchangebasis.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxchangebasis.cc
+1590350901.92: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350901.92: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350903.25: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxdefaultpr.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxdefaultpr.cc
+1590350903.26: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350903.26: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350904.41: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxdefaultrt.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxdefaultrt.cc
+1590350904.42: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350904.42: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350905.67: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxdefines.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxdefines.cc
+1590350905.68: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350905.68: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350906.68: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxdesc.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxdesc.cc
+1590350906.68: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350906.68: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350907.85: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxdevexpr.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxdevexpr.cc
+1590350907.85: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350907.85: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350909.08: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxequilisc.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxequilisc.cc
+1590350909.08: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350909.08: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350910.23: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxfastrt.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxfastrt.cc
+1590350910.24: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350910.24: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350911.79: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxgeneralsm.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxgeneralsm.cc
+1590350911.80: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350911.80: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350912.94: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxharrisrt.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxharrisrt.cc
+1590350912.95: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350912.95: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350914.39: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxhybridpr.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxhybridpr.cc
+1590350914.40: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350914.40: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350915.60: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxid.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxid.cc
+1590350915.61: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350915.61: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350915.63: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxio.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxio.cc
+1590350915.63: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350915.63: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350916.83: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxlp.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxlp.cc
+1590350916.83: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350916.83: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350918.53: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxlpfread.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxlpfread.cc
+1590350918.54: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350918.54: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350920.13: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxmpsread.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxmpsread.cc
+1590350920.13: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350920.13: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350921.58: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxmpswrite.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxmpswrite.cc
+1590350921.59: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350921.59: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350922.88: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxparmultpr.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxparmultpr.cc
+1590350922.89: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350922.89: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350924.19: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxquality.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxquality.cc
+1590350924.20: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350924.20: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350925.36: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxredundantsm.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxredundantsm.cc
+1590350925.37: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350925.37: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350926.66: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxrem1sm.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxrem1sm.cc
+1590350926.66: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350926.66: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350927.92: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxscaler.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxscaler.cc
+1590350927.92: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350927.92: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350929.20: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxshift.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxshift.cc
+1590350929.21: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350929.21: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350930.73: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxsolve.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxsolve.cc
+1590350930.73: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350930.73: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350932.15: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxsolver.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxsolver.cc
+1590350932.15: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350932.15: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350933.48: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxstarter.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxstarter.cc
+1590350933.48: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350933.48: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350934.63: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxsteeppr.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxsteeppr.cc
+1590350934.63: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350934.63: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350936.13: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxsumst.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxsumst.cc
+1590350936.13: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350936.13: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350937.30: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxvecs.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxvecs.cc
+1590350937.31: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350937.31: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350938.63: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxvectorst.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxvectorst.cc
+1590350938.64: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350938.64: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350939.79: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxweightpr.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxweightpr.cc
+1590350939.80: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350939.80: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350941.09: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o spxweightst.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      spxweightst.cc
+1590350941.09: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350941.09: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350942.59: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o ssvector.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      ssvector.cc
+1590350942.60: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350942.60: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350944.01: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o svector.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      svector.cc
+1590350944.01: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350944.01: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350945.18: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o svset.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      svset.cc
+1590350945.18: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350945.18: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350946.68: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o timer.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      timer.cc
+1590350946.68: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350946.68: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350947.72: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o unitvector.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      unitvector.cc
+1590350947.73: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350947.73: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350948.74: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o update.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      update.cc
+1590350948.74: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350948.74: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350949.79: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o updatevector.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      updatevector.cc
+1590350949.80: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350949.80: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350950.82: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o vector.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      vector.cc
+1590350950.83: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350950.83: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350951.97: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o vsolve.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      vsolve.cc
+1590350951.97: clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1590350951.97: clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+1590350953.67: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions   -O2  -DSPEC_CPU_LP64 -std=c++11       changesoplex.o didxset.o dsvector.o dvector.o enter.o example.o factor.o forest.o idxset.o leave.o lpcolset.o lprow.o lprowset.o message.o mpsinput.o nameset.o slufactor.o solve.o soplex.o spxaggregatesm.o spxbasis.o spxbounds.o spxchangebasis.o spxdefaultpr.o spxdefaultrt.o spxdefines.o spxdesc.o spxdevexpr.o spxequilisc.o spxfastrt.o spxgeneralsm.o spxharrisrt.o spxhybridpr.o spxid.o spxio.o spxlp.o spxlpfread.o spxmpsread.o spxmpswrite.o spxparmultpr.o spxquality.o spxredundantsm.o spxrem1sm.o spxscaler.o spxshift.o spxsolve.o spxsolver.o spxstarter.o spxsteeppr.o spxsumst.o spxvecs.o spxvectorst.o spxweightpr.o spxweightst.o ssvector.o svector.o svset.o timer.o unitvector.o update.o updatevector.o vector.o vsolve.o                     -o soplex
+1590350953.72: file soplex
+1590350953.73: soplex: WebAssembly (wasm) binary module version 0x1 (MVP)
+1590350953.73: echo ">>>>>> soplex <<<<<<"
+1590350953.73: >>>>>> soplex <<<<<<
+1590350953.73: ../../../../../../lucet-spectre/target/release/lucetc  --bindings ../../../../../../lucet-spectre/lucet-wasi/bindings.json --guard-size "4GiB" --min-reserved-size "4GiB" --max-reserved-size "4GiB"  soplex -o soplex
+1590350957.22: file soplex
+1590350957.22: soplex: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), statically linked, not stripped
+1590350957.47: Tee child 162953 exited with code 0 (exit code=0, signal=0)
+1590350957.47: Stop make command: Sun May 24 13:09:17 2020 (1590350957)
+1590350957.47: Elapsed time for make command: 00:01:24 (84)
+1590350957.47: Issuing options command 'specmake options'
+1590350957.47: specmake options 2> options.err | tee options.out
+1590350957.47: Start options command: Sun May 24 13:09:17 2020 (1590350957)
+1590350957.48: COMP: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions -c -o options.o -DSPEC_CPU -DNDEBUG    -O2   -DSPEC_CPU_LP64 -std=c++11      <source>
+1590350957.48: C: CXXC="/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions"
+1590350957.48: C: CXXOBJOPT="-c -o options"
+1590350957.48: P: CPUFLAGS="-DSPEC_CPU -DNDEBUG"
+1590350957.48: P: BENCH_FLAGS=""
+1590350957.48: P: BENCH_CXXFLAGS=""
+1590350957.49: O: OPTIMIZE=""
+1590350957.49: O: CXXOPTIMIZE="-O2"
+1590350957.49: P: PORTABILITY="-DSPEC_CPU_LP64"
+1590350957.49: P: CXXPORTABILITY="-std=c++11"
+1590350957.49: O: EXTRA_CXXFLAGS=""
+1590350957.49: O: EXTRA_OPTIMIZE=""
+1590350957.49: O: EXTRA_CXXOPTIMIZE=""
+1590350957.49: P: EXTRA_PORTABILITY=""
+1590350957.49: P: EXTRA_CXXPORTABILITY=""
+1590350957.50: LINK: /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions   -O2  -DSPEC_CPU_LP64 -std=c++11       <objects>           -o options
+1590350957.50: C: LD="/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions"
+1590350957.50: O: CXXOPTIMIZE="-O2"
+1590350957.50: P: PORTABILITY="-DSPEC_CPU_LP64"
+1590350957.50: #@echo "=====> soplex ====  changesoplex.cc didxset.cc dsvector.cc dvector.cc enter.cc example.cc factor.cc forest.cc idxset.cc leave.cc lpcolset.cc lprow.cc lprowset.cc message.cc mpsinput.cc nameset.cc slufactor.cc solve.cc soplex.cc spxaggregatesm.cc spxbasis.cc spxbounds.cc spxchangebasis.cc spxdefaultpr.cc spxdefaultrt.cc spxdefines.cc spxdesc.cc spxdevexpr.cc spxequilisc.cc spxfastrt.cc spxgeneralsm.cc spxharrisrt.cc spxhybridpr.cc spxid.cc spxio.cc spxlp.cc spxlpfread.cc spxmpsread.cc spxmpswrite.cc spxparmultpr.cc spxquality.cc spxredundantsm.cc spxrem1sm.cc spxscaler.cc spxshift.cc spxsolve.cc spxsolver.cc spxstarter.cc spxsteeppr.cc spxsumst.cc spxvecs.cc spxvectorst.cc spxweightpr.cc spxweightst.cc ssvector.cc svector.cc svset.cc timer.cc unitvector.cc update.cc updatevector.cc vector.cc vsolve.cc === /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -fno-exceptions === lucet"
+1590350957.50: #@echo "========> \""
+1590350957.50: #ifeq (lucet,spectre)
+1590350957.50: #	@echo "==|=|=|=|= spectre \""
+1590350957.50: #endif
+1590350957.51: P: CXXPORTABILITY="-std=c++11"
+1590350957.51: C: LDOUT="-o options"
+1590350957.76: Tee child 163040 exited with code 0 (exit code=0, signal=0)
+1590350957.76: Stop options command: Sun May 24 13:09:17 2020 (1590350957)
+1590350957.76: Elapsed time for options command: 00:00:00 (0)
+1590350957.76:   Compile for '450.soplex' ended at: Sun May 24 13:09:17 2020 (1590350957)
+1590350957.76:   Elapsed compile for '450.soplex': 00:01:25 (85)
+1590350957.79: Comparing MD5 hashes:
+1590350957.79:   1c84fb8043c5ff23ed00be1dd2971e75 soplex
+1590350957.79:   1c84fb8043c5ff23ed00be1dd2971e75 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/450.soplex/exe/soplex_base.wasm_lucet
+1590350958.10: Tee child 163068 exited with code 0 (exit code=0, signal=0)
+1590350958.11: update_config_md5(Spec::Config=HASH(0x40df4a0), wasm_lucet, default) called
+1590350958.11: Found new MD5 signature for 450.soplex=base=wasm_lucet=default
+1590350958.11: Updating config file /home/ucsd/SpectreSandboxing/sfi-spectre-spec/config/wasm_lucet.cfg
+1590350958.11: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/config/wasm_lucet.cfg will be saved as /home/ucsd/SpectreSandboxing/sfi-spectre-spec/config/wasm_lucet.cfg.2020-05-24_1309
+
+1590350958.11: Build successes: 450.soplex(base)
+
+1590350958.11: Setting Up Run Directories
+1590350958.11(0.10s):   Setting up 450.soplex ref base wasm_lucet default: Comparing MD5 hashes:
+1590350958.21:   014bb791aa74e58f0b9c4a45beef646d /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/450.soplex/data/ref/input/pds-50.mps
+1590350958.21:   014bb791aa74e58f0b9c4a45beef646d /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/450.soplex/run/run_base_ref_wasm_lucet.0000/pds-50.mps
+1590350959.06: Comparing MD5 hashes:
+1590350959.06:   cbbdc65c01742b76fe7533f51b44eee1 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/450.soplex/data/ref/input/ref.mps
+1590350959.06:   cbbdc65c01742b76fe7533f51b44eee1 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/450.soplex/run/run_base_ref_wasm_lucet.0000/ref.mps
+1590350959.08: Comparing MD5 hashes:
+1590350959.08:   1c84fb8043c5ff23ed00be1dd2971e75 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/450.soplex/exe/soplex_base.wasm_lucet
+1590350959.08:   1c84fb8043c5ff23ed00be1dd2971e75 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/450.soplex/run/run_base_ref_wasm_lucet.0000/soplex_base.wasm_lucet
+1590350959.08: created (run_base_ref_wasm_lucet.0000)
+
+1590350959.08: -----------------------------------
+1590350959.08: Running Benchmarks
+
+1590350959.09: -----------------------------------
+1590350959.11: Comparing MD5 hashes:
+1590350959.11:   1c84fb8043c5ff23ed00be1dd2971e75 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/450.soplex/exe/soplex_base.wasm_lucet
+1590350959.11:   1c84fb8043c5ff23ed00be1dd2971e75 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/450.soplex/run/run_base_ref_wasm_lucet.0000/soplex_base.wasm_lucet
+1590350959.11: REAPER(check, ) called
+1590350959.12:   Running 450.soplex ref base wasm_lucet default
+1590350959.12: Commands to run:
+1590350959.12:     -C /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/450.soplex/run/run_base_ref_wasm_lucet.0000
+1590350959.12:     -o /tmp/spec/soplex_pds-50.mps.out -e /tmp/spec/soplex_pds-50.mps.stderr ../../../../../../lucet-spectre/target/release/lucet-wasi --heap-address-space "8GiB" --max-heap-size "4GiB" --stack-size "8MiB" --dir /:/ -- ../run_base_ref_wasm_lucet.0000/soplex_base.wasm_lucet -s1 -e -m45000 /tmp/spec/soplex_pds-50.mps (timed)
+1590350959.12:     -o /tmp/spec/soplex_ref.out -e /tmp/spec/soplex_ref.stderr ../../../../../../lucet-spectre/target/release/lucet-wasi --heap-address-space "8GiB" --max-heap-size "4GiB" --stack-size "8MiB" --dir /:/ -- ../run_base_ref_wasm_lucet.0000/soplex_base.wasm_lucet -m3500 /tmp/spec/soplex_ref.mps (timed)
+1590350959.13: Specinvoke: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specinvoke -d /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/450.soplex/run/run_base_ref_wasm_lucet.0000 -e speccmds.err -o speccmds.stdout -f speccmds.cmd -C
+1590350959.13: Issuing command '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specinvoke -d /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/450.soplex/run/run_base_ref_wasm_lucet.0000 -e speccmds.err -o speccmds.stdout -f speccmds.cmd -C'
+1590350959.13: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specinvoke -d /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/450.soplex/run/run_base_ref_wasm_lucet.0000 -e speccmds.err -o speccmds.stdout -f speccmds.cmd -C
+1590350959.13: Start command: Sun May 24 13:09:19 2020 (1590350959)
+1590351242.79: Tee child 163096 exited with code 0 (exit code=0, signal=0)
+1590351242.79: Stop command: Sun May 24 13:14:02 2020 (1590351242)
+1590351242.79: Elapsed time for command: 00:04:43 (283)
+1590351242.80: Workload elapsed time (0:1) = 152.497108 seconds
+1590351242.80: Workload elapsed time (0:2) = 123.162383 seconds
+1590351242.80: Copy 0 of 450.soplex (base ref) run 1 finished at Sun May 24 13:13:54 2020.  Total elapsed time: 275.659491
+1590351242.80: comparing files in '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/450.soplex/run/run_base_ref_wasm_lucet.0000'
+1590351242.81: build_tree_hash: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/450.soplex/data/ref/output/pds-50.mps.out not found in MD5 sum list
