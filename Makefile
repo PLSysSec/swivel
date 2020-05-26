@@ -93,7 +93,7 @@ install_btbflush: btbflush-module
 	fi
 
 spectresfi_webserver:
-	git clone git@github.com:PLSysSec/spectresfi_webserver.git $@
+	git clone git@github.com:PLSysSec/sfispectre_webserver.git $@
 
 node_modules:
 	npm install autocannon
