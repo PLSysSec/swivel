@@ -167,6 +167,15 @@ run_spec: build_spec install_btbflush
 	python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre/spec/result --usePercent --filter \"sfi-spectre/spec/spec_results_sbx_only=wasm_sfi_noblade:sfi_noblade,wasm_cet_noblade:cet_noblade\" -n 8
 	mv sfi-spectre-spec/result/ benchmarks/spec_$(shell date --iso=seconds)
 
+build_spec_blade_test: sfi-spectre-spec build_lucet_nocet
+	export LD_LIBRARY_PATH="$(CURR_DIR)/libnsl/build/lib/" && \
+	cd sfi-spectre-spec && source shrc && \
+	cd config && \
+	runspec --config=wasm_lucet.cfg --action=clobber oakland && \
+	runspec --config=wasm_blade.cfg --action=clobber oakland && \
+	runspec --config=wasm_lucet.cfg --action=build oakland && \
+	runspec --config=wasm_blade.cfg --action=build oakland
+
 run_spec_blade_test:
 	export LD_LIBRARY_PATH="$(CURR_DIR)/libnsl/build/lib/" && \
 	sh cp_spec_data_into_tmp.sh && \
