@@ -1,0 +1,711 @@
+runcpu v5825 started at 2020-05-23 17:54:20 on "tigerlake1-ravi"
+runcpu is: /home/ucsd/SpectreSandboxing/spec2017/bin/harness/runcpu
+runcpu: runcpu --config=wasm_lucet --action=run --wasm --define cores=1 641
+toolset: linux-x86_64
+
+Locating benchmarks...found 47 benchmarks in 55 benchsets.
+Reading config file '/home/ucsd/SpectreSandboxing/spec2017/config/wasm_lucet.cfg'
+
+1 configuration selected:
+
+ Action    Run Mode   Workload      Report Type      Benchmarks
+--------   --------   --------   -----------------   --------------------------
+validate   speed      refspeed   SPECspeed2017_int   641.leela_s               
+-------------------------------------------------------------------------------
+
+Setting up environment for running 641.leela_s...
+Starting runcpu for 641.leela_s...
+Running "specperl /home/ucsd/SpectreSandboxing/spec2017/bin/sysinfo" to gather system information.
+sysinfo: r5797 of 2017-06-14 (96c45e4568ad54c135fd618bcc091c0f)
+sysinfo: Getting system information for Linux...
+sysinfo: ...getting CPU info
+sysinfo: ...getting info from numactl
+sysinfo: ...getting memory info
+sysinfo: ...getting OS info
+sysinfo: ...getting disk info
+sysinfo: ...trying to get DIMM info from dmidecode
+Retrieving flags file (gcc.xml)...
+Verbosity = 5
+Action    = validate
+Tune      = base
+Label     = wasm_lucet
+Size      = refspeed
+benchmarks= 641.leela_s
+outputs   = txt,cfg,pdf,csv
+username  = ucsd
+Environment settings:
+KMP_AFFINITY = "granularity=fine,compact"
+LD_LIBRARY_PATH = "/home/ucsd/SpectreSandboxing/spec2017/lib/ia32:/home/ucsd/SpectreSandboxing/spec2017/lib/intel64"
+OMP_STACKSIZE = "192M"
+
+Benchmarks selected: 641.leela_s
+Compiling Binaries
+------------------------------------------------------------------------
+COMP: "/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o options.o -DSPEC -DNDEBUG -I.    -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP        -DSPEC_LP64  <source>"
+C: CXXC="/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/"
+C: CXXOBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-I."
+P: BENCH_CXXFLAGS=""
+O: OPTIMIZE=""
+O: CXXOPTIMIZE=" -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP"
+P: PORTABILITY=""
+P: CXXPORTABILITY=""
+O: EXTRA_CXXFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_CXXOPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_CXXPORTABILITY=""
+LINK: "/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/   -Wl,-z,muldefs     -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP         <objects>            -o options  "
+C: LD="/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/"
+O: EXTRA_LDFLAGS="-Wl,-z,muldefs"
+O: CXXOPTIMIZE=" -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP"
+C: LDOUT="-o options"
+ CXXC_VERSION_OPTION:
+clang version 10.0.0 (https://github.com/llvm/llvm-project d32170dbd5b0d54436537b6b75beaf44324e0c28)
+Target: wasm32-unknown-wasi
+Thread model: posix
+InstalledDir: /opt/wasi-sdk/bin
+Checksum mismatch for options (stored: a9bec8dfe5de64a423664c22b4ad428391a6fbbdeb78952da7c5380a3d6fa011)
+Notice: Unusable path detected in build directory list file at
+        /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/641.leela_s/build/list
+        The list file references one or more paths which will be
+        ignored because they are not subdirectories of the directory
+        where the list file resides.  This condition may be a result of
+        having moved your SPEC CPU2017 benchmark tree.  If that's what
+        happened, and if you don't need the old build directories, you
+        can just remove them, along with the list file.  (Usually it's
+        safe to delete old build directories, as they are automatically
+        re-created when needed.)
+  Building 641.leela_s base wasm_lucet: (build_base_wasm_lucet.0000) [2020-05-23 17:54:22]
+Wrote to makefile '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/641.leela_s/build/build_base_wasm_lucet.0000/Makefile.deps':
+# End dependencies
+# These are the build dependencies
+Wrote to makefile '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/641.leela_s/build/build_base_wasm_lucet.0000/Makefile.spec':
+TUNE=base
+LABEL=wasm_lucet
+NUMBER=641
+NAME=leela_s
+SOURCES= FullBoard.cpp KoState.cpp Playout.cpp TimeControl.cpp \
+	 UCTSearch.cpp GameState.cpp Leela.cpp SGFParser.cpp Timing.cpp Utils.cpp \
+	 FastBoard.cpp Matcher.cpp SGFTree.cpp TTable.cpp Zobrist.cpp \
+	 FastState.cpp GTP.cpp MCOTable.cpp Random.cpp SMP.cpp UCTNode.cpp
+EXEBASE=leela_s
+NEED_MATH=
+BENCHLANG=CXX
+BENCH_FLAGS      = -I.
+CC               = /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -I/opt/wasi-sdk/lib/clang/10.0.0/include/
+CC_VERSION_OPTION = --version
+COPTIMIZE        = $(FAST_NO_STATIC)  -DSPEC_SUPPRESS_OPENMP
+CXX              = /opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/
+CXXOPTIMIZE      = $(FAST_NO_STATIC) -DSPEC_SUPPRESS_OPENMP
+CXX_VERSION_OPTION = --version
+EXTRA_LDFLAGS    = -Wl,-z,muldefs
+EXTRA_PORTABILITY = -DSPEC_LP64
+FAST             = $(SSE) $(OPT_ROOT) -static
+FAST_NO_STATIC   = $(SSE) $(OPT_ROOT)
+FC               = /bin/gfortran -m64 -I/include -I/usr/include
+FC_VERSION_OPTION = --version
+FOPTIMIZE        = $(FORT_FAST_NO_STATIC)
+FORT_FAST        = $(SSE) $(OPT_ROOT) -static
+FORT_FAST_NO_STATIC = $(SSE) $(OPT_ROOT)
+LUCET_TYPE       = lucet
+OPT_ROOT         = -O2 -fno-strict-aliasing
+OS               = unix
+SSE              = 
+absolutely_no_locking = 0
+abstol           = 
+action           = validate
+allow_label_override = 0
+backup_config    = 1
+baseexe          = leela_s
+basepeak         = 0
+bench_post_setup = sync
+benchdir         = benchspec
+benchmark        = 641.leela_s
+binary           = 
+bindir           = exe
+builddir         = build
+bundleaction     = 
+bundlename       = 
+calctol          = 1
+changedhash      = 0
+check_version    = 0
+clean_between_builds = no
+command_add_redirect = 1
+commanderrfile   = speccmds.err
+commandexe       = leela_s_base.wasm_lucet
+commandfile      = speccmds.cmd
+commandoutfile   = speccmds.out
+commandstdoutfile = speccmds.stdout
+comparedir       = compare
+compareerrfile   = compare.err
+comparefile      = compare.cmd
+compareoutfile   = compare.out
+comparestdoutfile = compare.stdout
+compile_error    = 0
+compwhite        = 
+configdir        = config
+configfile       = wasm_lucet
+configpath       = /home/ucsd/SpectreSandboxing/spec2017/config/wasm_lucet.cfg
+copies           = 1
+current_range    = 
+datadir          = data
+default_size     = ref
+default_submit   = $command
+delay            = 0
+deletebinaries   = 0
+deletework       = 0
+dependent_workloads = 0
+device           = 
+difflines        = 10
+dirprot          = 511
+discard_power_samples = 0
+enable_monitor   = 1
+endian           = 12345678
+env_vars         = 0
+expand_notes     = 0
+expid            = 
+exthash_bits     = 256
+fail_build       = 0
+failflags        = 0
+fake             = 0
+feedback         = 1
+flag_url_base    = https://www.spec.org/auto/cpu2017/Docs/benchmarks/flags/
+floatcompare     = 
+force_monitor    = 0
+from_runcpu      = 2
+hostname         = tigerlake1-ravi
+http_proxy       = 
+http_timeout     = 30
+hw_avail         = 
+hw_cpu_max_mhz   = 
+hw_cpu_name      = Genuine Intel 0000
+hw_cpu_nominal_mhz = 
+hw_disk          = 391 GB  add more disk info here
+hw_memory001     = 15.428 GB fixme: If using DDR3, format is:
+hw_memory002     = 'N GB (M x N GB nRxn PCn-nnnnnR-n, ECC)'
+hw_model         = 
+hw_nchips        = 1
+hw_ncores        = 
+hw_ncpuorder     = 
+hw_nthreadspercore = 
+hw_ocache        = 
+hw_other         = 
+hw_pcache        = 
+hw_scache        = 
+hw_tcache        = 
+hw_vendor        = My Corporation
+idle_current_range = 
+idledelay        = 10
+idleduration     = 60
+ignore_errors    = 0
+ignore_sigint    = 0
+ignorecase       = 
+info_wrap_columns = 50
+inputdir         = input
+inputgenerrfile  = inputgen.err
+inputgenfile     = inputgen.cmd
+inputgenoutfile  = inputgen.out
+inputgenstdoutfile = inputgen.stdout
+iteration        = -1
+iterations       = 3
+keeptmp          = 0
+label            = wasm_lucet
+license_num      = 13
+line_width       = 1020
+link_input_files = 1
+locking          = 1
+log              = CPU2017
+log_line_width   = 1020
+log_timestamp    = 0
+logfile          = /home/ucsd/SpectreSandboxing/spec2017/tmp/CPU2017.155/templogs/preenv.intspeed.155.0
+logname          = /home/ucsd/SpectreSandboxing/spec2017/tmp/CPU2017.155/templogs/preenv.intspeed.155.0
+lognum           = 155.0
+mail_reports     = all
+mailcompress     = 0
+mailmethod       = smtp
+mailport         = 25
+mailserver       = 127.0.0.1
+mailto           = 
+make             = specmake
+make_no_clobber  = 0
+makefile_template = Makefile.YYYtArGeTYYYspec
+makeflags        = -j8
+max_average_uncertainty = 1
+max_hum_limit    = 0
+max_report_runs  = 3
+max_unknown_uncertainty = 1
+mean_anyway      = 1
+meter_connect_timeout = 30
+meter_errors_default = 5
+meter_errors_percentage = 5
+min_report_runs  = 2
+min_temp_limit   = 20
+minimize_builddirs = 0
+minimize_rundirs = 0
+name             = leela_s
+nansupport       = 
+need_math        = 
+no_input_handler = close
+no_monitor       = 
+noratios         = 0
+note_preenv      = 1
+notes_001        =  Binaries compiled on a system with Intel(R) Core(TM) i9-7900X CPU + 32GB RAM
+notes_002        =  memory using Redhat Enterprise Linux 7.5
+notes_200        =  Transparent Huge Pages enabled by default
+notes_os_010     =  Stack size set to unlimited using "ulimit -s unlimited"
+notes_plat_sysinfo_000 =  Sysinfo program /home/ucsd/SpectreSandboxing/spec2017/bin/sysinfo
+notes_plat_sysinfo_005 =  Rev: r5797 of 2017-06-14 96c45e4568ad54c135fd618bcc091c0f
+notes_plat_sysinfo_010 =  running on tigerlake1-ravi Sat May 23 17:54:21 2020
+notes_plat_sysinfo_015 = 
+notes_plat_sysinfo_020 =  SUT (System Under Test) info as seen by some common utilities.
+notes_plat_sysinfo_025 =  For more information on this section, see
+notes_plat_sysinfo_030 =     https://www.spec.org/cpu2017/Docs/config.html\#sysinfo
+notes_plat_sysinfo_035 = 
+notes_plat_sysinfo_040 =  From /proc/cpuinfo
+notes_plat_sysinfo_045 =     model name : Genuine Intel(R) CPU 0000 @ 2.30GHz
+notes_plat_sysinfo_050 =        1  "physical id"s (chips)
+notes_plat_sysinfo_055 =        8 "processors"
+notes_plat_sysinfo_060 =     cores, siblings (Caution: counting these is hw and system dependent. The following
+notes_plat_sysinfo_065 =     excerpts from /proc/cpuinfo might not be reliable.  Use with caution.)
+notes_plat_sysinfo_070 =        cpu cores : 4
+notes_plat_sysinfo_075 =        siblings  : 8
+notes_plat_sysinfo_080 =        physical 0: cores 0 1 2 3
+notes_plat_sysinfo_085 = 
+notes_plat_sysinfo_090 =  From lscpu:
+notes_plat_sysinfo_095 =       Architecture:                    x86_64
+notes_plat_sysinfo_100 =       CPU op-mode(s):                  32-bit, 64-bit
+notes_plat_sysinfo_105 =       Byte Order:                      Little Endian
+notes_plat_sysinfo_110 =       Address sizes:                   39 bits physical, 48 bits virtual
+notes_plat_sysinfo_115 =       CPU(s):                          8
+notes_plat_sysinfo_120 =       On-line CPU(s) list:             0-7
+notes_plat_sysinfo_125 =       Thread(s) per core:              2
+notes_plat_sysinfo_130 =       Core(s) per socket:              4
+notes_plat_sysinfo_135 =       Socket(s):                       1
+notes_plat_sysinfo_140 =       NUMA node(s):                    1
+notes_plat_sysinfo_145 =       Vendor ID:                       GenuineIntel
+notes_plat_sysinfo_150 =       CPU family:                      6
+notes_plat_sysinfo_155 =       Model:                           140
+notes_plat_sysinfo_160 =       Model name:                      Genuine Intel(R) CPU 0000 @ 2.30GHz
+notes_plat_sysinfo_165 =       Stepping:                        0
+notes_plat_sysinfo_170 =       CPU MHz:                         2700.000
+notes_plat_sysinfo_175 =       CPU max MHz:                     4200.0000
+notes_plat_sysinfo_180 =       CPU min MHz:                     400.0000
+notes_plat_sysinfo_185 =       BogoMIPS:                        4608.00
+notes_plat_sysinfo_190 =       Virtualization:                  VT-x
+notes_plat_sysinfo_195 =       L1d cache:                       192 KiB
+notes_plat_sysinfo_200 =       L1i cache:                       128 KiB
+notes_plat_sysinfo_205 =       L2 cache:                        5 MiB
+notes_plat_sysinfo_210 =       L3 cache:                        12 MiB
+notes_plat_sysinfo_215 =       NUMA node0 CPU(s):               0-7
+notes_plat_sysinfo_220 =       Vulnerability Itlb multihit:     KVM: Mitigation: Split huge pages
+notes_plat_sysinfo_225 =       Vulnerability L1tf:              Not affected
+notes_plat_sysinfo_230 =       Vulnerability Mds:               Vulnerable: Clear CPU buffers attempted, no
+notes_plat_sysinfo_235 =       microcode; SMT vulnerable
+notes_plat_sysinfo_240 =       Vulnerability Meltdown:          Not affected
+notes_plat_sysinfo_245 =       Vulnerability Spec store bypass: Mitigation; Speculative Store Bypass disabled via
+notes_plat_sysinfo_250 =       prctl and seccomp
+notes_plat_sysinfo_255 =       Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user
+notes_plat_sysinfo_260 =       pointer sanitization
+notes_plat_sysinfo_265 =       Vulnerability Spectre v2:        Mitigation; Enhanced IBRS, IBPB conditional, RSB
+notes_plat_sysinfo_270 =       filling
+notes_plat_sysinfo_275 =       Vulnerability Tsx async abort:   Not affected
+notes_plat_sysinfo_280 =       Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr
+notes_plat_sysinfo_285 =       pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx
+notes_plat_sysinfo_290 =       pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology
+notes_plat_sysinfo_295 =       nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx
+notes_plat_sysinfo_300 =       smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt
+notes_plat_sysinfo_305 =       tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault
+notes_plat_sysinfo_310 =       epb invpcid_single ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow vnmi flexpriority
+notes_plat_sysinfo_315 =       ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid avx512f
+notes_plat_sysinfo_320 =       avx512dq rdseed adx smap avx512ifma clflushopt clwb intel_pt avx512cd sha_ni
+notes_plat_sysinfo_325 =       avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hwp
+notes_plat_sysinfo_330 =       hwp_notify hwp_act_window hwp_epp hwp_pkg_req avx512vbmi umip pku ospke avx512_vbmi2
+notes_plat_sysinfo_335 =       shstk gfni vaes vpclmulqdq avx512_vnni avx512_bitalg tme avx512_vpopcntdq rdpid
+notes_plat_sysinfo_340 =       movdiri movdir64b fsrm avx512_vp2intersect ibt flush_l1d arch_capabilities
+notes_plat_sysinfo_345 = 
+notes_plat_sysinfo_350 =  /proc/cpuinfo cache data
+notes_plat_sysinfo_355 =     cache size : 12288 KB
+notes_plat_sysinfo_360 = 
+notes_plat_sysinfo_365 =  From numactl --hardware  WARNING: a numactl 'node' might or might not correspond to a
+notes_plat_sysinfo_370 =  physical chip.
+notes_plat_sysinfo_375 = 
+notes_plat_sysinfo_380 =  From /proc/meminfo
+notes_plat_sysinfo_385 =     MemTotal:       16177588 kB
+notes_plat_sysinfo_390 =     HugePages_Total:       0
+notes_plat_sysinfo_395 =     Hugepagesize:       2048 kB
+notes_plat_sysinfo_400 = 
+notes_plat_sysinfo_405 =  From /etc/*release* /etc/*version*
+notes_plat_sysinfo_410 =     fedora-release: Fedora release 32 (Thirty Two)
+notes_plat_sysinfo_415 =     os-release:
+notes_plat_sysinfo_420 =        NAME=Fedora
+notes_plat_sysinfo_425 =        VERSION="32 (Workstation Edition)"
+notes_plat_sysinfo_430 =        ID=fedora
+notes_plat_sysinfo_435 =        VERSION_ID=32
+notes_plat_sysinfo_440 =        VERSION_CODENAME=""
+notes_plat_sysinfo_445 =        PLATFORM_ID="platform:f32"
+notes_plat_sysinfo_450 =        PRETTY_NAME="Fedora 32 (Workstation Edition)"
+notes_plat_sysinfo_455 =        ANSI_COLOR="0;34"
+notes_plat_sysinfo_460 =     redhat-release: Fedora release 32 (Thirty Two)
+notes_plat_sysinfo_465 =     system-release: Fedora release 32 (Thirty Two)
+notes_plat_sysinfo_470 =     system-release-cpe: cpe:/o:fedoraproject:fedora:32
+notes_plat_sysinfo_475 = 
+notes_plat_sysinfo_480 =  uname -a:
+notes_plat_sysinfo_485 =     Linux tigerlake1-ravi 5.7.0-0.rc6.1.1.cet.fc32.x86_64 \#1 SMP Mon May 18 17:21:34 PDT
+notes_plat_sysinfo_490 =     2020 x86_64 x86_64 x86_64 GNU/Linux
+notes_plat_sysinfo_495 = 
+notes_plat_sysinfo_500 =  run-level 3 May 21 18:49
+notes_plat_sysinfo_505 = 
+notes_plat_sysinfo_510 =  SPEC is set to: /home/ucsd/SpectreSandboxing/spec2017
+notes_plat_sysinfo_515 =     Filesystem                              Type  Size  Used Avail Use% Mounted on
+notes_plat_sysinfo_520 =     /dev/mapper/fedora_localhost--live-home ext4  391G  125G  247G  34% /home
+notes_plat_sysinfo_525 = 
+notes_plat_sysinfo_530 =  Additional information from dmidecode follows.  WARNING: Use caution when you interpret
+notes_plat_sysinfo_535 =  this section. The 'dmidecode' program reads system data which is "intended to allow
+notes_plat_sysinfo_540 =  hardware to be accurately determined", but the intent may not be met, as there are
+notes_plat_sysinfo_545 =  frequent changes to hardware, firmware, and the "DMTF SMBIOS" standard.
+notes_plat_sysinfo_550 = 
+notes_plat_sysinfo_555 =  (End of data from sysinfo program)
+notes_wrap_columns = 0
+notes_wrap_indent =   
+num              = 641
+obiwan           = 
+os_exe_ext       = 
+output_format    = txt,cfg,pdf,csv
+output_root      = 
+outputdir        = output
+parallel_test    = 1
+parallel_test_submit = 0
+parallel_test_workloads = 
+path             = /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/641.leela_s
+plain_train      = 1
+platform         = 
+power            = 0
+preENV_KMP_AFFINITY = granularity=fine,compact
+preENV_LD_LIBRARY_PATH = /home/ucsd/SpectreSandboxing/spec2017/lib/ia32:/home/ucsd/SpectreSandboxing/spec2017/lib/intel64
+preENV_OMP_STACKSIZE = 192M
+preenv           = 0
+prefix           = 
+prepared_by      = Intel Corporation
+ranks            = 1
+rawhash_bits     = 256
+rebuild          = 0
+reftime          = reftime
+reltol           = 
+reportable       = 0
+resultdir        = result
+review           = 0
+run              = all
+runcpu           = /home/ucsd/SpectreSandboxing/spec2017/bin/harness/runcpu --configfile wasm_lucet --action run --wasm --define cores=1 --noreportable --nopower --runmode speed --tune base --size refspeed 641.leela_s --nopreenv --note-preenv --logfile /home/ucsd/SpectreSandboxing/spec2017/tmp/CPU2017.155/templogs/preenv.intspeed.155.0 --lognum 155.0 --from_runcpu 2
+rundir           = run
+runmode          = speed
+safe_eval        = 1
+save_build_files = 
+section_specifier_fatal = 1
+setprocgroup     = 1
+setup_error      = 0
+sigint           = 2
+size             = refspeed
+size_class       = ref
+skipabstol       = 
+skipobiwan       = 
+skipreltol       = 
+skiptol          = 
+smarttune        = base
+specdiff         = specdiff
+specrun          = specinvoke
+srcalt           = 
+srcdir           = src
+srcsource        = /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/541.leela_r/src
+stagger          = 10
+strict_rundir_verify = 0
+sw_avail         = Sep-2017
+sw_base_ptrsize  = 64-bit
+sw_compiler001   = C/C++: Version 8.1.0 of GNU C/C++
+sw_compiler002   = Compiler for Linux;
+sw_compiler003   = Fortran: Version 8.1.0 of GNU Fortran
+sw_compiler004   = Compiler for Linux
+sw_file          = ext4
+sw_os001         = Fedora release 32 (Thirty Two)
+sw_os002         = 5.7.0-0.rc6.1.1.cet.fc32.x86_64
+sw_state         = Run level 3 (add definition here)
+sysinfo_hash_bits = 256
+sysinfo_program  = specperl /home/ucsd/SpectreSandboxing/spec2017/bin/sysinfo
+sysinfo_program_hash = sysinfo:SHA:ecd2bef08f316af97f5a7768b641e2a3307c1b4b68efb5a57fa76367d790d233
+table            = 1
+teeout           = 0
+test_date        = May-2020
+test_sponsor     = Intel Corporation
+tester           = Intel Corporation
+threads          = 1
+top              = /home/ucsd/SpectreSandboxing/spec2017
+train_single_thread = 0
+train_with       = train
+tune             = base
+uid              = 1004
+unbuffer         = 1
+uncertainty_exception = 5
+update           = 0
+update_url       = http://www.spec.org/auto/cpu2017/updates/
+use_submit_for_compare = 0
+use_submit_for_speed = 0
+username         = ucsd
+verbose          = 5
+verify_binaries  = 1
+version          = 0.905000
+version_url      = http://www.spec.org/auto/cpu2017/current_version
+voltage_range    = 
+wasm             = 1
+worklist         = list
+OUTPUT_RMFILES   = train.out
+  Compile for '641.leela_s' started at: 2020-05-23 17:54:22 (1590281662)
+Issuing make.clean command 'specmake --output-sync -j8 clean'
+Start make.clean command: 2020-05-23 17:54:22 (1590281662.78659)
+rm -rf *.o  train.out
+find . \( -name \*.o -o -name '*.fppized.f*' -o -name '*.i' -o -name '*.mod' \) -print | xargs rm -rf
+rm -rf leela_s
+rm -rf leela_s.exe
+rm -rf core
+Stop make.clean command: 2020-05-23 17:54:22 (1590281662.95249)
+Elapsed time for make.clean command: 00:00:00 (0.165901899337769)
+Issuing make command 'specmake --output-sync -j8 build'
+Start make command: 2020-05-23 17:54:22 (1590281662.9534)
+/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o TimeControl.o -DSPEC -DNDEBUG -I.    -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP        -DSPEC_LP64  TimeControl.cpp
+clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o Timing.o -DSPEC -DNDEBUG -I.    -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP        -DSPEC_LP64  Timing.cpp
+clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o FullBoard.o -DSPEC -DNDEBUG -I.    -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP        -DSPEC_LP64  FullBoard.cpp
+clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o Playout.o -DSPEC -DNDEBUG -I.    -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP        -DSPEC_LP64  Playout.cpp
+clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o KoState.o -DSPEC -DNDEBUG -I.    -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP        -DSPEC_LP64  KoState.cpp
+clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o UCTSearch.o -DSPEC -DNDEBUG -I.    -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP        -DSPEC_LP64  UCTSearch.cpp
+clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o Leela.o -DSPEC -DNDEBUG -I.    -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP        -DSPEC_LP64  Leela.cpp
+clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+Leela.cpp:46:10: warning: 'auto_ptr<Random>' is deprecated [-Wdeprecated-declarations]
+    std::auto_ptr<Random> rng(new Random(5489UL));          
+         ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/memory:2130:28: note: 'auto_ptr<Random>' has been explicitly marked deprecated here
+class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX11 auto_ptr
+                           ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/__config:1008:39: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX11'
+#  define _LIBCPP_DEPRECATED_IN_CXX11 _LIBCPP_DEPRECATED
+                                      ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/__config:997:48: note: expanded from macro '_LIBCPP_DEPRECATED'
+#    define _LIBCPP_DEPRECATED __attribute__ ((deprecated))
+                                               ^
+Leela.cpp:51:10: warning: 'auto_ptr<GameState>' is deprecated [-Wdeprecated-declarations]
+    std::auto_ptr<GameState> maingame(new GameState);                
+         ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/memory:2130:28: note: 'auto_ptr<GameState>' has been explicitly marked deprecated here
+class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX11 auto_ptr
+                           ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/__config:1008:39: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX11'
+#  define _LIBCPP_DEPRECATED_IN_CXX11 _LIBCPP_DEPRECATED
+                                      ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/__config:997:48: note: expanded from macro '_LIBCPP_DEPRECATED'
+#    define _LIBCPP_DEPRECATED __attribute__ ((deprecated))
+                                               ^
+Leela.cpp:57:18: warning: 'auto_ptr<SGFTree>' is deprecated [-Wdeprecated-declarations]
+            std::auto_ptr<SGFTree> sgftree(new SGFTree);
+                 ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/memory:2130:28: note: 'auto_ptr<SGFTree>' has been explicitly marked deprecated here
+class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX11 auto_ptr
+                           ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/__config:1008:39: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX11'
+#  define _LIBCPP_DEPRECATED_IN_CXX11 _LIBCPP_DEPRECATED
+                                      ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/__config:997:48: note: expanded from macro '_LIBCPP_DEPRECATED'
+#    define _LIBCPP_DEPRECATED __attribute__ ((deprecated))
+                                               ^
+Leela.cpp:64:22: warning: 'auto_ptr<UCTSearch>' is deprecated [-Wdeprecated-declarations]
+                std::auto_ptr<UCTSearch> search(new UCTSearch(*maingame));
+                     ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/memory:2130:28: note: 'auto_ptr<UCTSearch>' has been explicitly marked deprecated here
+class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX11 auto_ptr
+                           ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/__config:1008:39: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX11'
+#  define _LIBCPP_DEPRECATED_IN_CXX11 _LIBCPP_DEPRECATED
+                                      ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/__config:997:48: note: expanded from macro '_LIBCPP_DEPRECATED'
+#    define _LIBCPP_DEPRECATED __attribute__ ((deprecated))
+                                               ^
+4 warnings generated.
+/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o Utils.o -DSPEC -DNDEBUG -I.    -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP        -DSPEC_LP64  Utils.cpp
+clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o GameState.o -DSPEC -DNDEBUG -I.    -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP        -DSPEC_LP64  GameState.cpp
+clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+GameState.cpp:265:14: warning: 'auto_ptr<UCTSearch>' is deprecated [-Wdeprecated-declarations]
+        std::auto_ptr<UCTSearch> search(new UCTSearch(*this));
+             ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/memory:2130:28: note: 'auto_ptr<UCTSearch>' has been explicitly marked deprecated here
+class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX11 auto_ptr
+                           ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/__config:1008:39: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX11'
+#  define _LIBCPP_DEPRECATED_IN_CXX11 _LIBCPP_DEPRECATED
+                                      ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/__config:997:48: note: expanded from macro '_LIBCPP_DEPRECATED'
+#    define _LIBCPP_DEPRECATED __attribute__ ((deprecated))
+                                               ^
+1 warning generated.
+/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o TTable.o -DSPEC -DNDEBUG -I.    -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP        -DSPEC_LP64  TTable.cpp
+clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o Matcher.o -DSPEC -DNDEBUG -I.    -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP        -DSPEC_LP64  Matcher.cpp
+clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o Random.o -DSPEC -DNDEBUG -I.    -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP        -DSPEC_LP64  Random.cpp
+clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o SMP.o -DSPEC -DNDEBUG -I.    -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP        -DSPEC_LP64  SMP.cpp
+clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o Zobrist.o -DSPEC -DNDEBUG -I.    -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP        -DSPEC_LP64  Zobrist.cpp
+clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o SGFParser.o -DSPEC -DNDEBUG -I.    -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP        -DSPEC_LP64  SGFParser.cpp
+clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+SGFParser.cpp:161:18: warning: 'auto_ptr<SGFTree>' is deprecated [-Wdeprecated-declarations]
+            std::auto_ptr<SGFTree> newnode(new SGFTree);
+                 ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/memory:2130:28: note: 'auto_ptr<SGFTree>' has been explicitly marked deprecated here
+class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX11 auto_ptr
+                           ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/__config:1008:39: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX11'
+#  define _LIBCPP_DEPRECATED_IN_CXX11 _LIBCPP_DEPRECATED
+                                      ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/__config:997:48: note: expanded from macro '_LIBCPP_DEPRECATED'
+#    define _LIBCPP_DEPRECATED __attribute__ ((deprecated))
+                                               ^
+SGFParser.cpp:178:18: warning: 'auto_ptr<SGFTree>' is deprecated [-Wdeprecated-declarations]
+            std::auto_ptr<SGFTree> newnode(new SGFTree);
+                 ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/memory:2130:28: note: 'auto_ptr<SGFTree>' has been explicitly marked deprecated here
+class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX11 auto_ptr
+                           ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/__config:1008:39: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX11'
+#  define _LIBCPP_DEPRECATED_IN_CXX11 _LIBCPP_DEPRECATED
+                                      ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/__config:997:48: note: expanded from macro '_LIBCPP_DEPRECATED'
+#    define _LIBCPP_DEPRECATED __attribute__ ((deprecated))
+                                               ^
+2 warnings generated.
+/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o FastState.o -DSPEC -DNDEBUG -I.    -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP        -DSPEC_LP64  FastState.cpp
+clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o MCOTable.o -DSPEC -DNDEBUG -I.    -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP        -DSPEC_LP64  MCOTable.cpp
+clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o UCTNode.o -DSPEC -DNDEBUG -I.    -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP        -DSPEC_LP64  UCTNode.cpp
+clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o SGFTree.o -DSPEC -DNDEBUG -I.    -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP        -DSPEC_LP64  SGFTree.cpp
+clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o FastBoard.o -DSPEC -DNDEBUG -I.    -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP        -DSPEC_LP64  FastBoard.cpp
+clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o GTP.o -DSPEC -DNDEBUG -I.    -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP        -DSPEC_LP64  GTP.cpp
+clang-10: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+clang-10: warning: -Z-reserved-lib-stdc++: 'linker' input unused [-Wunused-command-line-argument]
+GTP.cpp:250:22: warning: 'auto_ptr<UCTSearch>' is deprecated [-Wdeprecated-declarations]
+                std::auto_ptr<UCTSearch> search(new UCTSearch(game));
+                     ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/memory:2130:28: note: 'auto_ptr<UCTSearch>' has been explicitly marked deprecated here
+class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX11 auto_ptr
+                           ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/__config:1008:39: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX11'
+#  define _LIBCPP_DEPRECATED_IN_CXX11 _LIBCPP_DEPRECATED
+                                      ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/__config:997:48: note: expanded from macro '_LIBCPP_DEPRECATED'
+#    define _LIBCPP_DEPRECATED __attribute__ ((deprecated))
+                                               ^
+GTP.cpp:290:18: warning: 'auto_ptr<UCTSearch>' is deprecated [-Wdeprecated-declarations]
+            std::auto_ptr<UCTSearch> search(new UCTSearch(game));
+                 ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/memory:2130:28: note: 'auto_ptr<UCTSearch>' has been explicitly marked deprecated here
+class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX11 auto_ptr
+                           ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/__config:1008:39: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX11'
+#  define _LIBCPP_DEPRECATED_IN_CXX11 _LIBCPP_DEPRECATED
+                                      ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/__config:997:48: note: expanded from macro '_LIBCPP_DEPRECATED'
+#    define _LIBCPP_DEPRECATED __attribute__ ((deprecated))
+                                               ^
+GTP.cpp:399:18: warning: 'auto_ptr<UCTSearch>' is deprecated [-Wdeprecated-declarations]
+            std::auto_ptr<UCTSearch> search(new UCTSearch(game));
+                 ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/memory:2130:28: note: 'auto_ptr<UCTSearch>' has been explicitly marked deprecated here
+class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX11 auto_ptr
+                           ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/__config:1008:39: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX11'
+#  define _LIBCPP_DEPRECATED_IN_CXX11 _LIBCPP_DEPRECATED
+                                      ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/__config:997:48: note: expanded from macro '_LIBCPP_DEPRECATED'
+#    define _LIBCPP_DEPRECATED __attribute__ ((deprecated))
+                                               ^
+GTP.cpp:412:14: warning: 'auto_ptr<UCTSearch>' is deprecated [-Wdeprecated-declarations]
+        std::auto_ptr<UCTSearch> search(new UCTSearch(game));
+             ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/memory:2130:28: note: 'auto_ptr<UCTSearch>' has been explicitly marked deprecated here
+class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX11 auto_ptr
+                           ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/__config:1008:39: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX11'
+#  define _LIBCPP_DEPRECATED_IN_CXX11 _LIBCPP_DEPRECATED
+                                      ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/__config:997:48: note: expanded from macro '_LIBCPP_DEPRECATED'
+#    define _LIBCPP_DEPRECATED __attribute__ ((deprecated))
+                                               ^
+GTP.cpp:491:14: warning: 'auto_ptr<SGFTree>' is deprecated [-Wdeprecated-declarations]
+        std::auto_ptr<SGFTree> sgftree(new SGFTree);
+             ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/memory:2130:28: note: 'auto_ptr<SGFTree>' has been explicitly marked deprecated here
+class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX11 auto_ptr
+                           ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/__config:1008:39: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX11'
+#  define _LIBCPP_DEPRECATED_IN_CXX11 _LIBCPP_DEPRECATED
+                                      ^
+/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1/__config:997:48: note: expanded from macro '_LIBCPP_DEPRECATED'
+#    define _LIBCPP_DEPRECATED __attribute__ ((deprecated))
+                                               ^
+5 warnings generated.
+/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/   -Wl,-z,muldefs     -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP         FullBoard.o KoState.o Playout.o TimeControl.o UCTSearch.o GameState.o Leela.o SGFParser.o Timing.o Utils.o FastBoard.o Matcher.o SGFTree.o TTable.o Zobrist.o FastState.o GTP.o MCOTable.o Random.o SMP.o UCTNode.o                      -o leela_s  
+wasm-ld: error: GameState.o: undefined symbol: __cxa_begin_catch
+clang-10: error: linker command failed with exit code 1 (use -v to see invocation)
+specmake: *** [/home/ucsd/SpectreSandboxing/spec2017/benchspec/Makefile.defaults:342: leela_s] Error 1
+Stop make command: 2020-05-23 17:54:29 (1590281669.67497)
+Elapsed time for make command: 00:00:06 (6.72157406806946)
+Error with make 'specmake --output-sync -j8 build':
+  ----------------------------------------------------------------------------
+  Please review this file:
+    "/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/641.leela_s/build/build_base_wasm_lucet.0000/make.out"
+  ----------------------------------------------------------------------------
+  Command returned exit code 2
+  Error with make!
+  Compile for '641.leela_s' ended at: 2020-05-23 17:54:29 (1590281669)
+  Elapsed compile for '641.leela_s': 00:00:07 (7)
+*** Error building 641.leela_s base
+If you wish to ignore this error, please use '-I' or ignore errors.
+runcpu finished at 2020-05-23 17:54:29; 8 total seconds elapsed
+The log for this run is in /home/ucsd/SpectreSandboxing/spec2017/result/CPU2017.155.log
+The debug log for this run is in /home/ucsd/SpectreSandboxing/spec2017/result/CPU2017.155.log.debug
+*
+* Temporary files were NOT deleted; keeping temporaries such as
+* /home/ucsd/SpectreSandboxing/spec2017/result/CPU2017.155.log.debug and
+* /home/ucsd/SpectreSandboxing/spec2017/tmp/CPU2017.155
+* (These may be large!)
+*
+runcpu finished at 2020-05-23 17:54:29; 9 total seconds elapsed

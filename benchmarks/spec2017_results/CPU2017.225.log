@@ -1,0 +1,426 @@
+runcpu v5825 started at 2020-05-24 13:20:25 on "tigerlake1-ravi"
+runcpu is: /home/ucsd/SpectreSandboxing/spec2017/bin/harness/runcpu
+runcpu: runcpu --config=wasm_lucet.cfg --action=run --wasm --iterations=1 --noreportable --define cores=1 osdi
+toolset: linux-x86_64
+
+Locating benchmarks...found 47 benchmarks in 55 benchsets.
+Reading config file '/home/ucsd/SpectreSandboxing/spec2017/config/wasm_lucet.cfg'
+
+3 configurations selected:
+
+ Action    Run Mode   Workload      Report Type      Benchmarks
+--------   --------   --------   -----------------   --------------------------
+validate   rate       refrate    SPECrate2017_fp     508.namd_r                
+validate   speed      refspeed   SPECspeed2017_int   605.mcf_s                 
+validate   speed      refspeed   SPECspeed2017_fp    619.lbm_s                 
+-------------------------------------------------------------------------------
+
+Setting up environment for running 508.namd_r...
+Starting runcpu for 508.namd_r...
+Running "specperl /home/ucsd/SpectreSandboxing/spec2017/bin/sysinfo" to gather system information.
+sysinfo: r5797 of 2017-06-14 (96c45e4568ad54c135fd618bcc091c0f)
+sysinfo: Getting system information for Linux...
+sysinfo: ...getting CPU info
+sysinfo: ...getting info from numactl
+sysinfo: ...getting memory info
+sysinfo: ...getting OS info
+sysinfo: ...getting disk info
+sysinfo: ...trying to get DIMM info from dmidecode
+Retrieving flags file (gcc.xml)...
+Verbosity = 5
+Action    = validate
+Tune      = base
+Label     = wasm_lucet
+Size      = refrate
+benchmarks= 508.namd_r
+outputs   = txt,cfg,pdf,csv
+username  = ucsd
+Environment settings:
+KMP_AFFINITY = "granularity=fine,compact"
+LD_LIBRARY_PATH = "/home/ucsd/SpectreSandboxing/spec2017/lib/ia32:/home/ucsd/SpectreSandboxing/spec2017/lib/intel64"
+OMP_STACKSIZE = "192M"
+
+Benchmarks selected: 508.namd_r
+Compiling Binaries
+------------------------------------------------------------------------
+COMP: "/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o options.o -DSPEC -DNDEBUG  -DNAMD_DISABLE_SSE -DSPEC_AUTO_SUPPRESS_OPENMP     -fno-exceptions     -DSPEC_LP64  <source>"
+C: CXXC="/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/"
+C: CXXOBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS=""
+P: BENCH_CXXFLAGS="-DNAMD_DISABLE_SSE -DSPEC_AUTO_SUPPRESS_OPENMP"
+O: OPTIMIZE=""
+O: CXXOPTIMIZE=""
+P: PORTABILITY="-fno-exceptions"
+P: CXXPORTABILITY=""
+O: EXTRA_CXXFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_CXXOPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_CXXPORTABILITY=""
+LINK: "/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/           -fno-exceptions     <objects>            -o options  "
+C: LD="/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/"
+P: PORTABILITY="-fno-exceptions"
+C: LDOUT="-o options"
+ CXXC_VERSION_OPTION:
+clang version 10.0.0 (https://github.com/llvm/llvm-project d32170dbd5b0d54436537b6b75beaf44324e0c28)
+Target: wasm32-unknown-wasi
+Thread model: posix
+InstalledDir: /opt/wasi-sdk/bin
+  Up to date 508.namd_r base wasm_lucet
+
+
+Setting Up Run Directories
+  Setting up 508.namd_r refrate (ref) base wasm_lucet (1 copy): run_base_refrate_wasm_lucet.0000
+Issuing command 'sync'
+Start command: 2020-05-24 13:20:27 (1590351627.47365)
+Stop command: 2020-05-24 13:20:27 (1590351627.63072)
+Elapsed time for command: 00:00:00 (0.157077789306641)
+-----------------------------------
+Running Benchmarks
+-----------------------------------
+  Running 508.namd_r refrate (ref) base wasm_lucet (1 copy) [2020-05-24 13:20:27]
+OpenMP environment variables removed: OMP_STACKSIZE
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_STACKSIZE' removed (value was '192M')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+Commands to run (specinvoke command file):
+    -r
+    -N C
+    -C /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/508.namd_r/run/run_base_refrate_wasm_lucet.0000
+    -o namd.out -e namd.err ../../../../../../lucet-spectre/target/release/lucet-wasi --heap-address-space "16GiB" --max-heap-size "8GiB" --stack-size "64MiB" --dir ./:./ -- ../run_base_refrate_wasm_lucet.0000/namd_r_base.wasm_lucet --input apoa1.input --output apoa1.ref.output --iterations 65 > namd.out 2>> namd.err (timed)
+**WARNING: environment variable 'BASH_FUNC__module_raw%%' contains embedded CR or LF; they will be converted to spaces
+**WARNING: environment variable 'BASH_FUNC_module%%' contains embedded CR or LF; they will be converted to spaces
+**WARNING: environment variable 'BASH_FUNC_scl%%' contains embedded CR or LF; they will be converted to spaces
+**WARNING: environment variable 'BASH_FUNC_switchml%%' contains embedded CR or LF; they will be converted to spaces
+Specinvoke: /home/ucsd/SpectreSandboxing/spec2017/bin/specinvoke -d /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/508.namd_r/run/run_base_refrate_wasm_lucet.0000 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout
+Issuing command '/home/ucsd/SpectreSandboxing/spec2017/bin/specinvoke -d /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/508.namd_r/run/run_base_refrate_wasm_lucet.0000 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout'
+Start command: 2020-05-24 13:20:27 (1590351627.72163)
+Stop command: 2020-05-24 13:38:05 (1590352685.22477)
+Elapsed time for command: 00:17:37 (1057.50313615799)
+Workload elapsed time (copy 0 workload 1) = 1057.347621 seconds
+Copy 0 of 508.namd_r (base refrate) run 1 finished at 2020-05-24 13:38:05.  Total elapsed time: 1057.347621
+OpenMP environment variables removed: OMP_STACKSIZE
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_STACKSIZE' removed (value was '192M')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+comparing 'apoa1.ref.output' with abstol=5e-05
+Specinvoke: /home/ucsd/SpectreSandboxing/spec2017/bin/specinvoke -d /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/508.namd_r/run/run_base_refrate_wasm_lucet.0000 -f compare.cmd -E -e compare.err -o compare.stdout
+Issuing command '/home/ucsd/SpectreSandboxing/spec2017/bin/specinvoke -d /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/508.namd_r/run/run_base_refrate_wasm_lucet.0000 -f compare.cmd -E -e compare.err -o compare.stdout'
+Start command: 2020-05-24 13:38:05 (1590352685.26697)
+Stop command: 2020-05-24 13:38:05 (1590352685.5946)
+Elapsed time for command: 00:00:00 (0.327635049819946)
+Benchmark Times:
+  Run Start:    2020-05-24 13:20:27 (1590351627)
+  Rate Start:   2020-05-24 13:20:27 (1590351627.72476)
+  Rate End:     2020-05-24 13:38:05 (1590352685.07238)
+  Run Stop:     2020-05-24 13:38:05 (1590352685)
+  Run Elapsed:  00:17:38 (1058)
+  Run Reported: 00:17:37 (1057 347620964 1057.347621)
+ Success 508.namd_r base refrate ratio=0.90, runtime=1057.347621, copies=1, threads=1, power=0.00W, temp=0.00 degC, humidity=0.00%
+Success: 1x508.namd_r
+Producing Raw Reports
+ label: wasm_lucet
+  workload: refrate (ref)
+   benchset: intspeed
+   benchset: intrate
+   benchset: fpspeed
+   benchset: fprate
+   metric: SPECrate2017_fp_base
+    format: raw -> /home/ucsd/SpectreSandboxing/spec2017/result/CPU2017.225.fprate.refrate.rsf
+Parsing flags for 508.namd_r base: done
+Doing flag reduction: done
+    format: flags -> /home/ucsd/SpectreSandboxing/spec2017/result/CPU2017.225.fprate.refrate.flags.html
+    format: cfg -> /home/ucsd/SpectreSandboxing/spec2017/result/CPU2017.225.fprate.refrate.cfg, /home/ucsd/SpectreSandboxing/spec2017/result/CPU2017.225.fprate.refrate.orig.cfg
+    format: CSV -> /home/ucsd/SpectreSandboxing/spec2017/result/CPU2017.225.fprate.refrate.csv
+    format: PDF -> /home/ucsd/SpectreSandboxing/spec2017/result/CPU2017.225.fprate.refrate.pdf
+    format: Text -> /home/ucsd/SpectreSandboxing/spec2017/result/CPU2017.225.fprate.refrate.txt
+runcpu finished at 2020-05-24 13:38:08; 1062 total seconds elapsed
+Info: file_tail(163518): file '/home/ucsd/SpectreSandboxing/spec2017/tmp/CPU2017.225/templogs/preenv.fprate.225.0.debug' was removed and will no longer be followed.  No action is required.
+-------------------------------------------------------------------------------
+
+Setting up environment for running 605.mcf_s...
+Starting runcpu for 605.mcf_s...
+Running "specperl /home/ucsd/SpectreSandboxing/spec2017/bin/sysinfo" to gather system information.
+sysinfo: r5797 of 2017-06-14 (96c45e4568ad54c135fd618bcc091c0f)
+sysinfo: Getting system information for Linux...
+sysinfo: ...getting CPU info
+sysinfo: ...getting info from numactl
+sysinfo: ...getting memory info
+sysinfo: ...getting OS info
+sysinfo: ...getting disk info
+sysinfo: ...trying to get DIMM info from dmidecode
+Read 122 info lines from the sysinfo program.
+Retrieving flags file (gcc.xml)...
+Verbosity = 5
+Action    = validate
+Tune      = base
+Label     = wasm_lucet
+Size      = refspeed
+benchmarks= 605.mcf_s
+outputs   = txt,cfg,pdf,csv
+username  = ucsd
+Environment settings:
+KMP_AFFINITY = "granularity=fine,compact"
+LD_LIBRARY_PATH = "/home/ucsd/SpectreSandboxing/spec2017/lib/ia32:/home/ucsd/SpectreSandboxing/spec2017/lib/intel64"
+OMP_STACKSIZE = "192M"
+
+Benchmarks selected: 605.mcf_s
+Compiling Binaries
+------------------------------------------------------------------------
+COMP: "/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o options.o -DSPEC -DNDEBUG  -Ispec_qsort -DSPEC_AUTO_SUPPRESS_OPENMP   -O2 -fno-strict-aliasing  -DSPEC_SUPPRESS_OPENMP              -DSPEC_LP64  <source>"
+C: CC="/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -I/opt/wasi-sdk/lib/clang/10.0.0/include/"
+C: COBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS=""
+P: BENCH_CFLAGS="-Ispec_qsort -DSPEC_AUTO_SUPPRESS_OPENMP"
+O: OPTIMIZE=""
+O: COPTIMIZE=" -O2 -fno-strict-aliasing  -DSPEC_SUPPRESS_OPENMP"
+P: PORTABILITY=""
+P: CPORTABILITY=""
+O: EXTRA_CFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_COPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_CPORTABILITY=""
+LINK: "/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -I/opt/wasi-sdk/lib/clang/10.0.0/include/   -Wl,-z,muldefs     -O2 -fno-strict-aliasing  -DSPEC_SUPPRESS_OPENMP         <objects>   -lm         -o options  "
+C: LD="/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -I/opt/wasi-sdk/lib/clang/10.0.0/include/"
+O: EXTRA_LDFLAGS="-Wl,-z,muldefs"
+O: COPTIMIZE=" -O2 -fno-strict-aliasing  -DSPEC_SUPPRESS_OPENMP"
+C: MATH_LIBS="-lm"
+C: LDOUT="-o options"
+ CC_VERSION_OPTION:
+clang version 10.0.0 (https://github.com/llvm/llvm-project d32170dbd5b0d54436537b6b75beaf44324e0c28)
+Target: wasm32-unknown-wasi
+Thread model: posix
+InstalledDir: /opt/wasi-sdk/bin
+  Up to date 605.mcf_s base wasm_lucet
+
+
+Setting Up Run Directories
+  Setting up 605.mcf_s refspeed (ref) base wasm_lucet: run_base_refspeed_wasm_lucet.0000
+Issuing command 'sync'
+Start command: 2020-05-24 13:38:10 (1590352690.53394)
+Stop command: 2020-05-24 13:38:10 (1590352690.69238)
+Elapsed time for command: 00:00:00 (0.158445119857788)
+-----------------------------------
+Running Benchmarks
+-----------------------------------
+  Running 605.mcf_s refspeed (ref) base wasm_lucet [2020-05-24 13:38:10]
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+	OMP_STACKSIZE	=> '192M'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+Commands to run (specinvoke command file):
+    -r
+    -N C
+    -C /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/605.mcf_s/run/run_base_refspeed_wasm_lucet.0000
+    -o inp.out -e inp.err ../../../../../../lucet-spectre/target/release/lucet-wasi --heap-address-space "16GiB" --max-heap-size "8GiB" --stack-size "64MiB" --dir ./:./ -- ../run_base_refspeed_wasm_lucet.0000/mcf_s_base.wasm_lucet inp.in  > inp.out 2>> inp.err (timed)
+**WARNING: environment variable 'BASH_FUNC__module_raw%%' contains embedded CR or LF; they will be converted to spaces
+**WARNING: environment variable 'BASH_FUNC_module%%' contains embedded CR or LF; they will be converted to spaces
+**WARNING: environment variable 'BASH_FUNC_scl%%' contains embedded CR or LF; they will be converted to spaces
+**WARNING: environment variable 'BASH_FUNC_switchml%%' contains embedded CR or LF; they will be converted to spaces
+Specinvoke: /home/ucsd/SpectreSandboxing/spec2017/bin/specinvoke -d /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/605.mcf_s/run/run_base_refspeed_wasm_lucet.0000 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout
+Issuing command '/home/ucsd/SpectreSandboxing/spec2017/bin/specinvoke -d /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/605.mcf_s/run/run_base_refspeed_wasm_lucet.0000 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout'
+Start command: 2020-05-24 13:38:10 (1590352690.7368)
+Stop command: 2020-05-24 13:54:21 (1590353661.472)
+Elapsed time for command: 00:16:10 (970.735194921494)
+Workload elapsed time (copy 0 workload 1) = 970.578607 seconds
+Copy 0 of 605.mcf_s (base refspeed) run 1 finished at 2020-05-24 13:54:21.  Total elapsed time: 970.578607
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+	OMP_STACKSIZE	=> '192M'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+comparing 'inp.out' with 
+comparing 'mcf.out' with 
+Specinvoke: /home/ucsd/SpectreSandboxing/spec2017/bin/specinvoke -d /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/605.mcf_s/run/run_base_refspeed_wasm_lucet.0000 -f compare.cmd -E -e compare.err -o compare.stdout
+Issuing command '/home/ucsd/SpectreSandboxing/spec2017/bin/specinvoke -d /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/605.mcf_s/run/run_base_refspeed_wasm_lucet.0000 -f compare.cmd -E -e compare.err -o compare.stdout'
+Start command: 2020-05-24 13:54:21 (1590353661.52224)
+Stop command: 2020-05-24 13:54:21 (1590353661.93937)
+Elapsed time for command: 00:00:00 (0.417134046554565)
+Benchmark Times:
+  Run Start:    2020-05-24 13:38:10 (1590352690)
+  Run Stop:     2020-05-24 13:54:21 (1590353661)
+  Run Elapsed:  00:16:11 (971)
+  Run Reported: 00:16:10 (970 578691000 970.578691)
+ Success 605.mcf_s base refspeed ratio=4.86, runtime=970.578691, copies=1, threads=1, power=0.00W, temp=0.00 degC, humidity=0.00%
+Success: 1x605.mcf_s
+Producing Raw Reports
+ label: wasm_lucet
+  workload: refspeed (ref)
+   benchset: intspeed
+   metric: SPECspeed2017_int_base
+    format: raw -> /home/ucsd/SpectreSandboxing/spec2017/result/CPU2017.225.intspeed.refspeed.rsf
+Parsing flags for 605.mcf_s base: done
+Doing flag reduction: done
+    format: flags -> /home/ucsd/SpectreSandboxing/spec2017/result/CPU2017.225.intspeed.refspeed.flags.html
+    format: cfg -> /home/ucsd/SpectreSandboxing/spec2017/result/CPU2017.225.intspeed.refspeed.cfg
+    format: CSV -> /home/ucsd/SpectreSandboxing/spec2017/result/CPU2017.225.intspeed.refspeed.csv
+    format: PDF -> /home/ucsd/SpectreSandboxing/spec2017/result/CPU2017.225.intspeed.refspeed.pdf
+    format: Text -> /home/ucsd/SpectreSandboxing/spec2017/result/CPU2017.225.intspeed.refspeed.txt
+   benchset: intrate
+   benchset: fpspeed
+   benchset: fprate
+runcpu finished at 2020-05-24 13:54:25; 976 total seconds elapsed
+Info: file_tail(163760): file '/home/ucsd/SpectreSandboxing/spec2017/tmp/CPU2017.225/templogs/preenv.intspeed.225.1.debug' was removed and will no longer be followed.  No action is required.
+-------------------------------------------------------------------------------
+
+Setting up environment for running 619.lbm_s...
+Starting runcpu for 619.lbm_s...
+Running "specperl /home/ucsd/SpectreSandboxing/spec2017/bin/sysinfo" to gather system information.
+sysinfo: r5797 of 2017-06-14 (96c45e4568ad54c135fd618bcc091c0f)
+sysinfo: Getting system information for Linux...
+sysinfo: ...getting CPU info
+sysinfo: ...getting info from numactl
+sysinfo: ...getting memory info
+sysinfo: ...getting OS info
+sysinfo: ...getting disk info
+sysinfo: ...trying to get DIMM info from dmidecode
+Retrieving flags file (gcc.xml)...
+Verbosity = 5
+Action    = validate
+Tune      = base
+Label     = wasm_lucet
+Size      = refspeed
+benchmarks= 619.lbm_s
+outputs   = txt,cfg,pdf,csv
+username  = ucsd
+Environment settings:
+KMP_AFFINITY = "granularity=fine,compact"
+LD_LIBRARY_PATH = "/home/ucsd/SpectreSandboxing/spec2017/lib/ia32:/home/ucsd/SpectreSandboxing/spec2017/lib/intel64"
+OMP_STACKSIZE = "192M"
+
+Benchmarks selected: 619.lbm_s
+Compiling Binaries
+------------------------------------------------------------------------
+COMP: "/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o options.o -DSPEC -DNDEBUG -DLARGE_WORKLOAD    -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP              -DSPEC_LP64  <source>"
+C: CC="/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -I/opt/wasi-sdk/lib/clang/10.0.0/include/"
+C: COBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS="-DLARGE_WORKLOAD"
+P: BENCH_CFLAGS=""
+O: OPTIMIZE=""
+O: COPTIMIZE=" -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP"
+P: PORTABILITY=""
+P: CPORTABILITY=""
+O: EXTRA_CFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_COPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_CPORTABILITY=""
+LINK: "/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -I/opt/wasi-sdk/lib/clang/10.0.0/include/        -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP         <objects>   -lm         -o options  "
+C: LD="/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -I/opt/wasi-sdk/lib/clang/10.0.0/include/"
+O: COPTIMIZE=" -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP"
+C: MATH_LIBS="-lm"
+C: LDOUT="-o options"
+ CC_VERSION_OPTION:
+clang version 10.0.0 (https://github.com/llvm/llvm-project d32170dbd5b0d54436537b6b75beaf44324e0c28)
+Target: wasm32-unknown-wasi
+Thread model: posix
+InstalledDir: /opt/wasi-sdk/bin
+  Up to date 619.lbm_s base wasm_lucet
+
+
+Setting Up Run Directories
+  Setting up 619.lbm_s refspeed (ref) base wasm_lucet: 
+Notice: Unusable path detected in run directory list file at
+        /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/619.lbm_s/run/list
+        The list file references one or more paths which will be
+        ignored because they are not subdirectories of the directory
+        where the list file resides.  This condition may be a result of
+        having moved your SPEC CPU2017 benchmark tree.  If that's what
+        happened, and if you don't need the old run directories, you
+        can just remove them, along with the list file.  (Usually it's
+        safe to delete old run directories, as they are automatically
+        re-created when needed.)
+run_base_refspeed_wasm_lucet.0001
+Issuing command 'sync'
+Start command: 2020-05-24 13:54:27 (1590353667.00303)
+Stop command: 2020-05-24 13:54:27 (1590353667.16146)
+Elapsed time for command: 00:00:00 (0.15843391418457)
+-----------------------------------
+Running Benchmarks
+-----------------------------------
+  Running 619.lbm_s refspeed (ref) base wasm_lucet [2020-05-24 13:54:27]
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+	OMP_STACKSIZE	=> '192M'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+Commands to run (specinvoke command file):
+    -r
+    -N C
+    -C /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/619.lbm_s/run/run_base_refspeed_wasm_lucet.0001
+    -o lbm.out -e lbm.err ../../../../../../lucet-spectre/target/release/lucet-wasi --heap-address-space "16GiB" --max-heap-size "8GiB" --stack-size "64MiB" --dir ./:./ -- ../run_base_refspeed_wasm_lucet.0001/lbm_s_base.wasm_lucet 2000 reference.dat 0 0 200_200_260_ldc.of > lbm.out 2>> lbm.err (timed)
+**WARNING: environment variable 'BASH_FUNC__module_raw%%' contains embedded CR or LF; they will be converted to spaces
+**WARNING: environment variable 'BASH_FUNC_module%%' contains embedded CR or LF; they will be converted to spaces
+**WARNING: environment variable 'BASH_FUNC_scl%%' contains embedded CR or LF; they will be converted to spaces
+**WARNING: environment variable 'BASH_FUNC_switchml%%' contains embedded CR or LF; they will be converted to spaces
+Specinvoke: /home/ucsd/SpectreSandboxing/spec2017/bin/specinvoke -d /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/619.lbm_s/run/run_base_refspeed_wasm_lucet.0001 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout
+Issuing command '/home/ucsd/SpectreSandboxing/spec2017/bin/specinvoke -d /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/619.lbm_s/run/run_base_refspeed_wasm_lucet.0001 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout'
+Start command: 2020-05-24 13:54:27 (1590353667.21005)
+Stop command: 2020-05-24 14:16:57 (1590355017.35139)
+Elapsed time for command: 00:22:30 (1350.14134407043)
+Workload elapsed time (copy 0 workload 1) = 1349.984631 seconds
+Copy 0 of 619.lbm_s (base refspeed) run 1 finished at 2020-05-24 14:16:57.  Total elapsed time: 1349.984631
+OpenMP environment variables removed: None
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+	OMP_STACKSIZE	=> '192M'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+comparing 'lbm.out' with abstol=1e-07
+Specinvoke: /home/ucsd/SpectreSandboxing/spec2017/bin/specinvoke -d /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/619.lbm_s/run/run_base_refspeed_wasm_lucet.0001 -f compare.cmd -E -e compare.err -o compare.stdout
+Issuing command '/home/ucsd/SpectreSandboxing/spec2017/bin/specinvoke -d /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/619.lbm_s/run/run_base_refspeed_wasm_lucet.0001 -f compare.cmd -E -e compare.err -o compare.stdout'
+Start command: 2020-05-24 14:16:57 (1590355017.39232)
+Stop command: 2020-05-24 14:16:57 (1590355017.67283)
+Elapsed time for command: 00:00:00 (0.280501127243042)
+Benchmark Times:
+  Run Start:    2020-05-24 13:54:27 (1590353667)
+  Run Stop:     2020-05-24 14:16:57 (1590355017)
+  Run Elapsed:  00:22:30 (1350)
+  Run Reported: 00:22:29 (1349 984710000 1349.98471)
+ Success 619.lbm_s base refspeed ratio=3.88, runtime=1349.984710, copies=1, threads=1, power=0.00W, temp=0.00 degC, humidity=0.00%
+Success: 1x619.lbm_s
+Producing Raw Reports
+ label: wasm_lucet
+  workload: refspeed (ref)
+   benchset: intspeed
+   benchset: intrate
+   benchset: fpspeed
+   metric: SPECspeed2017_fp_base
+    format: raw -> /home/ucsd/SpectreSandboxing/spec2017/result/CPU2017.225.fpspeed.refspeed.rsf
+Parsing flags for 619.lbm_s base: done
+Doing flag reduction: done
+    format: flags -> /home/ucsd/SpectreSandboxing/spec2017/result/CPU2017.225.fpspeed.refspeed.flags.html
+    format: cfg -> /home/ucsd/SpectreSandboxing/spec2017/result/CPU2017.225.fpspeed.refspeed.cfg
+    format: CSV -> /home/ucsd/SpectreSandboxing/spec2017/result/CPU2017.225.fpspeed.refspeed.csv
+    format: PDF -> /home/ucsd/SpectreSandboxing/spec2017/result/CPU2017.225.fpspeed.refspeed.pdf
+    format: Text -> /home/ucsd/SpectreSandboxing/spec2017/result/CPU2017.225.fpspeed.refspeed.txt
+   benchset: fprate
+runcpu finished at 2020-05-24 14:17:00; 1355 total seconds elapsed
+Info: file_tail(164010): file '/home/ucsd/SpectreSandboxing/spec2017/tmp/CPU2017.225/templogs/preenv.fpspeed.225.2.debug' was removed and will no longer be followed.  No action is required.
+The log for this run is in /home/ucsd/SpectreSandboxing/spec2017/result/CPU2017.225.log
+
+runcpu finished at 2020-05-24 14:17:00; 3395 total seconds elapsed
