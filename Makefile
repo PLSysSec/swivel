@@ -166,6 +166,10 @@ run_spec: build_spec install_btbflush
 	python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre/spec/result --usePercent --filter \"sfi-spectre/spec/spec_results_sbx_only=wasm_sfi_noblade:sfi_noblade,wasm_cet_noblade:cet_noblade\" -n 7
 	mv sfi-spectre-spec/result/ benchmarks/spec_$(shell date --iso=seconds)
 
+run_spec_stats: build_spec install_btbflush
+	python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre-spec/result --filter  \"sfi-spectre-spec/result/spec_results=wasm_loadlfence:loadlfence,wasm_strawman:strawman,wasm_sfi:sfi,wasm_cet:cet\" -n 7
+	python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre/spec/result --usePercent --filter \"sfi-spectre/spec/spec_results_sbx_only=wasm_sfi_noblade:sfi_noblade,wasm_cet_noblade:cet_noblade\" -n 7
+
 build_spec_blade_test: sfi-spectre-spec build_lucet_nocet
 	export LD_LIBRARY_PATH="$(CURR_DIR)/libnsl/build/lib/" && \
 	cd sfi-spectre-spec && source shrc && \
