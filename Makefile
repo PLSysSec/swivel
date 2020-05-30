@@ -162,8 +162,7 @@ run_spec: build_spec install_btbflush
 	runspec --config=wasm_cet.cfg --iterations=1 --noreportable --size=ref --wasmcet oakland && \
 	runspec --config=wasm_sfi_noblade.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
 	runspec --config=wasm_cet_noblade.cfg --iterations=1 --noreportable --size=ref --wasmcet oakland
-	#python3 sfi-spectre-testing/scripts/spec_stats.py sfi-spectre-spec/result 8 sfi-spectre-spec/result
-	python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre-spec/result --filter  \"sfi-spectre-spec/resul/spec_results=wasm_loadlfence:loadlfence,wasm_strawman:strawman,wasm_sfi:sfi,wasm_cet:cet\" -n 8
+	python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre-spec/result --filter  \"sfi-spectre-spec/result/spec_results=wasm_loadlfence:loadlfence,wasm_strawman:strawman,wasm_sfi:sfi,wasm_cet:cet\" -n 8
 	python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre/spec/result --usePercent --filter \"sfi-spectre/spec/spec_results_sbx_only=wasm_sfi_noblade:sfi_noblade,wasm_cet_noblade:cet_noblade\" -n 8
 	mv sfi-spectre-spec/result/ benchmarks/spec_$(shell date --iso=seconds)
 
