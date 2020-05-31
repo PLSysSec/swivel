@@ -221,8 +221,18 @@ run_spec2017: build_spec2017 install_btbflush
 	python3 sfi-spectre-testing/scripts/spec_stats.py --spec2017 -i spec2017/result --usePercent --filter "spec2017/result/spec_results_sbx_only=wasm_sfi_noblade:sfi_noblade,wasm_cet_noblade:cet_noblade" -n 7
 	mv spec2017/result/ benchmarks/spec17_$(shell date --iso=seconds)
 
-
 run_spec_all: run_spec run_spec2017
+
+run_spec_combine_stats:
+	echo "Spec2006 path?: "; \
+	read SPEC06_PATH; \
+	echo "Spec2017 path?: "; \
+	read SPEC17_PATH; \
+	mkdir -p ./benchmarks/speccombined_current; \
+	python3 ./sfi-spectre-testing/scripts/spec_stats.py -i "$$SPEC06_PATH" --extraSpec2017Path "$$SPEC17_PATH" --extraSpec2017n 7  --filter "./benchmarks/speccombined_current/speccombined=wasm_loadlfence:loadlfence,wasm_strawman:strawman,wasm_sfi:sfi,wasm_cet:cet" -n 7; \
+	python3 ./sfi-spectre-testing/scripts/spec_stats.py -i "$$SPEC06_PATH" --extraSpec2017Path "$$SPEC17_PATH" --extraSpec2017n 7  --filter "./benchmarks/speccombined_current/speccombined_noblade=wasm_sfi_noblade:sfi_noblade,wasm_cet_noblade:cet_noblade" -n 7; \
+	mv benchmarks/speccombined_current/ benchmarks/speccombined_$(shell date --iso=seconds)
+
 
 out/rust_build/bin/rustc:
 	mkdir -p out/rust_build
