@@ -1,0 +1,1514 @@
+==============================================================================
+Debug log for CPU2017.  This file contains very detailed debugging
+output from the CPU2017 tools (as if "--verbose 99" had been specified) and is
+typically useful only to developers of the CPU2017 toolset.
+
+For a successful run, this debug log will be removed automatically, unless you
+specify "--keeptmp" on the command line, or "keeptmp=1" in your config file.
+
+If you file a support request with cpu2017support@spec.org, you may be
+asked to submit this file.
+------------------------------------------------------------------------------
+
+Environment variables that may have been set or changed by shrc:
+SPEC: /home/rlsahita/spec2017
+PATH: /home/rlsahita/spec2017/bin:/home/rlsahita/.local/bin:/home/rlsahita/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/rlsahita/intel/sw_dev_tools/bin
+SPECPERLLIB: /home/rlsahita/spec2017/bin/lib:/home/rlsahita/spec2017/bin
+LD_LIBRARY_PATH: 
+DYLD_LIBRARY_PATH: 
+LC_ALL: C
+LC_LANG: C
+SPECDB_PWD: /home/rlsahita/spec2017
+------------------------------------------------------------------------------
+
+Runspec's verbose version output:
+                 This is the SPEC CPU2017 benchmark tools suite.
+
+Version summary:
+    CPU2017 version: 1.0.2
+ Benchmarks version: 1.0.2
+      Tools version: 1.0.2
+    runcpu version: v5825 ($Id: runcpu 5825 2017-06-28 16:13:35Z CloyceS $)
+
+Tools information:
+ Tools package installed: unknown
+ File locking method: fcntl(2) (probably network-safe)
+Mode |  UID  |  GID  |   Size  |   Modification Time  | Name
+0755 | 1001  | 1001  | 1963960 |  2020-04-08 18:13:53 | specperl
+0755 | 1001  | 1001  |  253616 |  2020-04-08 18:13:53 | specmake
+0755 | 1001  | 1001  |   43992 |  2020-04-08 18:13:53 | specinvoke
+0755 | 1001  | 1001  |  272664 |  2020-04-08 18:13:53 | specrxp
+0777 | 1001  | 20990 |    1577 |  2017-01-03 06:58:01 | runcpu
+0777 | 1001  | 20990 |  177367 |  2017-06-28 09:13:35 | harness/runcpu
+0777 | 1001  | 20990 |    1577 |  2017-01-03 06:58:01 | specpp
+0777 | 1001  | 20990 |   89993 |  2017-03-01 11:36:28 | harness/specpp
+0777 | 1001  | 20990 |    1577 |  2017-01-03 06:58:01 | specdiff
+0777 | 1001  | 20990 |    9806 |  2016-06-09 12:50:26 | harness/specdiff
+0755 | 1001  | 1001  |  269856 |  2020-04-08 18:13:53 | specxz
+0755 | 1001  | 1001  |   77056 |  2020-04-08 18:13:53 | specsha512sum
+
+Version info for specperl (specperl): This is specperl 5, version 24, subversion 0 (v5.24.0) built for x86_64-linux
+                                      Compiled at Apr  8 2020 18:03:45
+                                      For more detail on specperl, say 'specperl -V'
+Version info for specmake (specmake): GNU Make 4.2.1
+Version info for specinvoke (specinvoke): specinvoke r4356 (OS implementation r4356)
+Version info for specrxp ($SPEC/bin/specrxp): RXP 1.5.0 Copyright Richard Tobin, LTG, HCRC, University of Edinburgh
+                                              Modified for use in SPEC benchmarks - 14 April 2011
+Version info for specpp ($SPEC/bin/specpp): specpp version 1.8.0SPEC
+Version info for specxz ($SPEC/bin/specxz): xz (XZ Utils) 5.2.2
+Version info for specsha512sum ($SPEC/bin/specsha512sum): sha512sum (specsum) 1.3
+
+==============================================================================
+
+1587118322.36: runcpu v5825 started at 2020-04-17 03:12:02 on "tigerlake1-ravi"
+1587118322.36: runcpu is: /home/rlsahita/spec2017/bin/harness/runcpu
+1587118322.36: runcpu: runcpu -I --noreportable --config=no-cet-icc --define cores=1 intspeed
+1587118322.36: toolset: unknown
+
+1587118322.37: Locating benchmarks...Created default regexp '(?:^|(?<=\s))[-/]DSPEC(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.37: Created default regexp '(?:^|(?<=\s))[-/]USPEC(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for USPEC in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.37: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_CPU in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.37: Created default regexp '(?:^|(?<=\s))[-/]DNDEBUG(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DNDEBUG in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.37: Created default regexp '(?:^|(?<=\s))[-/]UNDEBUG(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for UNDEBUG in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.37: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_WINDOWS(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_WINDOWS in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.37: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_MEM_IO(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_MEM_IO in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.37: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_ILP32(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_ILP32 in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.37: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_P64(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_P64 in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.37: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_LP64(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_LP64 in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.37: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_ILP64(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_ILP64 in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.37: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_SUPPRESS_OPENMP(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_SUPPRESS_OPENMP in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.37: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_AUTO_SUPPRESS_OPENMP(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_AUTO_SUPPRESS_OPENMP in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.37: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_OPENMP(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_OPENMP in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.37: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_NO_AUTO_BYTEORDER(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_NO_AUTO_BYTEORDER in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.37: Reading suite directory for 'flags-mandatory.xml', '/home/rlsahita/spec2017/benchspec'
+1587118322.37: Reading suite directory for 'CPU', '/home/rlsahita/spec2017/benchspec'
+1587118322.37:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '557.xz_r'
+1587118322.38:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/557.xz_r/Spec/object.pm in 0.001072168s
+1587118322.38:     Instantiated Spec::Benchmark::xz_r557 in 0.000247002s
+1587118322.38:     Finding src.alts took 0.000025034s
+1587118322.38:   Setting up xz_r took 0.001501083s
+
+1587118322.38:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fprate_any_fortran.bset'
+1587118322.38:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '508.namd_r'
+1587118322.38:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/508.namd_r/Spec/object.pm in 0.000219107s
+1587118322.38:     Instantiated Spec::Benchmark::namd_r508 in 0.000144958s
+1587118322.38:     Finding src.alts took 0.000019073s
+1587118322.38:   Setting up namd_r took 0.000502110s
+
+1587118322.38:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '554.roms_r'
+1587118322.38:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/554.roms_r/Spec/object.pm in 0.000819921s
+1587118322.38:     Instantiated Spec::Benchmark::roms_r554 in 0.000174999s
+1587118322.38:     Finding src.alts took 0.000019073s
+1587118322.38:   Setting up roms_r took 0.001140118s
+
+1587118322.38:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intspeed_pure_cpp.bset'
+1587118322.38:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '996.specrand_fs'
+1587118322.38:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/996.specrand_fs/Spec/object.pm in 0.000212193s
+1587118322.38:     Instantiated Spec::Benchmark::specrand_fs996 in 0.000118971s
+1587118322.38:     Finding src.alts took 0.000014067s
+1587118322.38:   Setting up specrand_fs took 0.000459909s
+
+1587118322.38:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fprate_pure_cpp.bset'
+1587118322.38:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '500.perlbench_r'
+1587118322.38:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/500.perlbench_r/Spec/object.pm in 0.000715017s
+1587118322.38:     Instantiated Spec::Benchmark::perlbench_r500 in 0.000149965s
+1587118322.38:     Finding src.alts took 0.000017881s
+1587118322.38:   Setting up perlbench_r took 0.001009941s
+
+1587118322.38:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fprate_pure_c.bset'
+1587118322.38:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '519.lbm_r'
+1587118322.38:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/519.lbm_r/Spec/object.pm in 0.000193119s
+1587118322.38:     Instantiated Spec::Benchmark::lbm_r519 in 0.000113964s
+1587118322.38:     Finding src.alts took 0.000015020s
+1587118322.38:   Setting up lbm_r took 0.000432014s
+
+1587118322.38:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fprate_mixed.bset'
+1587118322.38:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fpspeed_any_c.bset'
+1587118322.38:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '627.cam4_s'
+1587118322.38:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/627.cam4_s/Spec/object.pm in 0.000280857s
+1587118322.38:     Instantiated Spec::Benchmark::cam4_s627 in 0.000145912s
+1587118322.38:     Finding src.alts took 0.000015020s
+1587118322.38:   Setting up cam4_s took 0.000559092s
+
+1587118322.38:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '548.exchange2_r'
+1587118322.38:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/548.exchange2_r/Spec/object.pm in 0.000191927s
+1587118322.38:     Instantiated Spec::Benchmark::exchange2_r548 in 0.000115156s
+1587118322.38:     Finding src.alts took 0.000013113s
+1587118322.38:   Setting up exchange2_r took 0.000426054s
+
+1587118322.38:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intopenmp.bset'
+1587118322.38:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '505.mcf_r'
+1587118322.38:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/505.mcf_r/Spec/object.pm in 0.000211000s
+1587118322.38:     Instantiated Spec::Benchmark::mcf_r505 in 0.000117064s
+1587118322.38:     Finding src.alts took 0.000014067s
+1587118322.38:   Setting up mcf_r took 0.000450134s
+
+1587118322.38:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fpspeed_mixed_c.bset'
+1587118322.39:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '538.imagick_r'
+1587118322.39:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/538.imagick_r/Spec/object.pm in 0.000477076s
+1587118322.39:     Instantiated Spec::Benchmark::imagick_r538 in 0.000123978s
+1587118322.39:     Finding src.alts took 0.000016928s
+1587118322.39:   Setting up imagick_r took 0.000739098s
+
+1587118322.39:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intspeed_pure_c.bset'
+1587118322.39:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fpspeed_any_cpp.bset'
+1587118322.39:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '502.gcc_r'
+1587118322.40:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/502.gcc_r/Spec/object.pm in 0.009147167s
+1587118322.40:     Instantiated Spec::Benchmark::gcc_r502 in 0.000271797s
+1587118322.40:     Finding src.alts took 0.000023127s
+1587118322.40:   Setting up gcc_r took 0.009598017s
+
+1587118322.40:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intrate_pure_cpp.bset'
+1587118322.40:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fpspeed_mixed_cpp.bset'
+1587118322.40:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'mixed_fortran.bset'
+1587118322.40:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intspeed_pure_fortran.bset'
+1587118322.40:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fprate_mixed_cpp.bset'
+1587118322.40:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '648.exchange2_s'
+1587118322.40:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/648.exchange2_s/Spec/object.pm in 0.000222921s
+1587118322.40:     Instantiated Spec::Benchmark::exchange2_s648 in 0.000118971s
+1587118322.40:     Finding src.alts took 0.000017166s
+1587118322.40:   Setting up exchange2_s took 0.000476122s
+
+1587118322.40:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '631.deepsjeng_s'
+1587118322.40:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/631.deepsjeng_s/Spec/object.pm in 0.000170946s
+1587118322.40:     Instantiated Spec::Benchmark::deepsjeng_s631 in 0.000104904s
+1587118322.40:     Finding src.alts took 0.000014067s
+1587118322.40:   Setting up deepsjeng_s took 0.000391006s
+
+1587118322.40:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'any_c.bset'
+1587118322.40:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'serial_speed.bset'
+1587118322.40:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '603.bwaves_s'
+1587118322.40:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/603.bwaves_s/Spec/object.pm in 0.000241041s
+1587118322.40:     Instantiated Spec::Benchmark::bwaves_s603 in 0.000140190s
+1587118322.40:     Finding src.alts took 0.000015020s
+1587118322.40:   Setting up bwaves_s took 0.000510931s
+
+1587118322.40:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'any_fortran.bset'
+1587118322.40:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intrate_any_c.bset'
+1587118322.40:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fpopenmp.bset'
+1587118322.40:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '523.xalancbmk_r'
+1587118322.40:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/523.xalancbmk_r/Spec/object.pm in 0.000516891s
+1587118322.40:     Instantiated Spec::Benchmark::xalancbmk_r523 in 0.000147104s
+1587118322.40:     Finding src.alts took 0.000019073s
+1587118322.40:   Setting up xalancbmk_r took 0.000815868s
+
+1587118322.40:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intrate_any_fortran.bset'
+1587118322.40:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fpspeed_any_fortran.bset'
+1587118322.40:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '654.roms_s'
+1587118322.41:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/654.roms_s/Spec/object.pm in 0.000494003s
+1587118322.41:     Instantiated Spec::Benchmark::roms_s654 in 0.000117779s
+1587118322.41:     Finding src.alts took 0.000015974s
+1587118322.41:   Setting up roms_s took 0.000751972s
+
+1587118322.41:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'pure_cpp.bset'
+1587118322.41:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fpspeed_pure_c.bset'
+1587118322.41:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'mixed_cpp.bset'
+1587118322.41:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '549.fotonik3d_r'
+1587118322.41:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/549.fotonik3d_r/Spec/object.pm in 0.000232935s
+1587118322.41:     Instantiated Spec::Benchmark::fotonik3d_r549 in 0.000109911s
+1587118322.41:     Finding src.alts took 0.000015020s
+1587118322.41:   Setting up fotonik3d_r took 0.000469923s
+
+1587118322.41:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'any_cpp.bset'
+1587118322.41:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fpspeed_pure_fortran.bset'
+1587118322.41:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'mixed.bset'
+1587118322.41:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'pure_c.bset'
+1587118322.41:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '625.x264_s'
+1587118322.41:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/625.x264_s/Spec/object.pm in 0.000496149s
+1587118322.41:     Instantiated Spec::Benchmark::x264_s625 in 0.000138998s
+1587118322.41:     Finding src.alts took 0.000015974s
+1587118322.41:   Setting up x264_s took 0.000774860s
+
+1587118322.41:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '511.povray_r'
+1587118322.41:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/511.povray_r/Spec/object.pm in 0.000294924s
+1587118322.41:     Instantiated Spec::Benchmark::povray_r511 in 0.000114918s
+1587118322.41:     Finding src.alts took 0.000015020s
+1587118322.41:   Setting up povray_r took 0.000532866s
+
+1587118322.41:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fprate_mixed_c.bset'
+1587118322.41:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fprate_mixed_fortran.bset'
+1587118322.41:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '600.perlbench_s'
+1587118322.41:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/600.perlbench_s/Spec/object.pm in 0.000345945s
+1587118322.41:     Instantiated Spec::Benchmark::perlbench_s600 in 0.000118017s
+1587118322.41:     Finding src.alts took 0.000015974s
+1587118322.41:   Setting up perlbench_s took 0.000599861s
+
+1587118322.41:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fprate.bset'
+1587118322.41:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '531.deepsjeng_r'
+1587118322.41:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/531.deepsjeng_r/Spec/object.pm in 0.000198126s
+1587118322.41:     Instantiated Spec::Benchmark::deepsjeng_r531 in 0.000113010s
+1587118322.41:     Finding src.alts took 0.000015974s
+1587118322.41:   Setting up deepsjeng_r took 0.000442028s
+
+1587118322.41:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'mixed_c.bset'
+1587118322.41:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '527.cam4_r'
+1587118322.42:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/527.cam4_r/Spec/object.pm in 0.002455950s
+1587118322.42:     Instantiated Spec::Benchmark::cam4_r527 in 0.000229120s
+1587118322.42:     Finding src.alts took 0.000020027s
+1587118322.42:   Setting up cam4_r took 0.002854824s
+
+1587118322.42:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intrate_pure_fortran.bset'
+1587118322.42:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '520.omnetpp_r'
+1587118322.42:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/520.omnetpp_r/Spec/object.pm in 0.000277042s
+1587118322.42:     Instantiated Spec::Benchmark::omnetpp_r520 in 0.000121117s
+1587118322.42:     Finding src.alts took 0.000015974s
+1587118322.42:   Setting up omnetpp_r took 0.000537872s
+
+1587118322.42:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '649.fotonik3d_s'
+1587118322.42:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/649.fotonik3d_s/Spec/object.pm in 0.000180960s
+1587118322.42:     Instantiated Spec::Benchmark::fotonik3d_s649 in 0.000106096s
+1587118322.42:     Finding src.alts took 0.000014067s
+1587118322.42:   Setting up fotonik3d_s took 0.000403166s
+
+1587118322.42:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '998.specrand_is'
+1587118322.42:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/998.specrand_is/Spec/object.pm in 0.000188112s
+1587118322.42:     Instantiated Spec::Benchmark::specrand_is998 in 0.000105858s
+1587118322.42:     Finding src.alts took 0.000012875s
+1587118322.42:   Setting up specrand_is took 0.000406027s
+
+1587118322.42:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '525.x264_r'
+1587118322.42:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/525.x264_r/Spec/object.pm in 0.000539064s
+1587118322.42:     Instantiated Spec::Benchmark::x264_r525 in 0.000126839s
+1587118322.42:     Finding src.alts took 0.000017881s
+1587118322.42:   Setting up x264_r took 0.000801086s
+
+1587118322.42:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intspeed.bset'
+1587118322.42:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '510.parest_r'
+1587118322.42:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/510.parest_r/Spec/object.pm in 0.000298977s
+1587118322.42:     Instantiated Spec::Benchmark::parest_r510 in 0.000121117s
+1587118322.42:     Finding src.alts took 0.000015974s
+1587118322.42:   Setting up parest_r took 0.000557899s
+
+1587118322.42:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'specrate.bset'
+1587118322.42:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fprate_any_cpp.bset'
+1587118322.42:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '638.imagick_s'
+1587118322.42:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/638.imagick_s/Spec/object.pm in 0.000379801s
+1587118322.43:     Instantiated Spec::Benchmark::imagick_s638 in 0.000115156s
+1587118322.43:     Finding src.alts took 0.000015974s
+1587118322.43:   Setting up imagick_s took 0.000640869s
+
+1587118322.43:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '619.lbm_s'
+1587118322.43:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/619.lbm_s/Spec/object.pm in 0.000202179s
+1587118322.43:     Instantiated Spec::Benchmark::lbm_s619 in 0.000112057s
+1587118322.43:     Finding src.alts took 0.000014067s
+1587118322.43:   Setting up lbm_s took 0.000437975s
+
+1587118322.43:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intspeed_any_fortran.bset'
+1587118322.43:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '541.leela_r'
+1587118322.43:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/541.leela_r/Spec/object.pm in 0.000191927s
+1587118322.43:     Instantiated Spec::Benchmark::leela_r541 in 0.000107050s
+1587118322.43:     Finding src.alts took 0.000015020s
+1587118322.43:   Setting up leela_r took 0.000422955s
+
+1587118322.43:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '507.cactuBSSN_r'
+1587118322.43:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/507.cactuBSSN_r/Spec/object.pm in 0.000411034s
+1587118322.43:     Instantiated Spec::Benchmark::cactuBSSN_r507 in 0.000143051s
+1587118322.43:     Finding src.alts took 0.000015974s
+1587118322.43:   Setting up cactuBSSN_r took 0.000692129s
+
+1587118322.43:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '526.blender_r'
+1587118322.43:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/526.blender_r/Spec/object.pm in 0.001147985s
+1587118322.43:     Instantiated Spec::Benchmark::blender_r526 in 0.000128031s
+1587118322.43:     Finding src.alts took 0.000018120s
+1587118322.43:   Setting up blender_r took 0.001415014s
+
+1587118322.43:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '621.wrf_s'
+1587118322.43:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/621.wrf_s/Spec/object.pm in 0.001210928s
+1587118322.43:     Instantiated Spec::Benchmark::wrf_s621 in 0.000175953s
+1587118322.43:     Finding src.alts took 0.000017166s
+1587118322.43:   Setting up wrf_s took 0.001537085s
+
+1587118322.43:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'specspeed.bset'
+1587118322.43:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fprate_any_c.bset'
+1587118322.43:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '521.wrf_r'
+1587118322.43:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/521.wrf_r/Spec/object.pm in 0.001477003s
+1587118322.43:     Instantiated Spec::Benchmark::wrf_r521 in 0.000183821s
+1587118322.43:     Finding src.alts took 0.000018835s
+1587118322.43:   Setting up wrf_r took 0.001818895s
+
+1587118322.43:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '628.pop2_s'
+1587118322.44:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/628.pop2_s/Spec/object.pm in 0.001813889s
+1587118322.44:     Instantiated Spec::Benchmark::pop2_s628 in 0.000195980s
+1587118322.44:     Finding src.alts took 0.000019073s
+1587118322.44:   Setting up pop2_s took 0.002159834s
+
+1587118322.44:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '641.leela_s'
+1587118322.44:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/641.leela_s/Spec/object.pm in 0.000185966s
+1587118322.44:     Instantiated Spec::Benchmark::leela_s641 in 0.000122070s
+1587118322.44:     Finding src.alts took 0.000014067s
+1587118322.44:   Setting up leela_s took 0.000433207s
+
+1587118322.44:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '623.xalancbmk_s'
+1587118322.44:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/623.xalancbmk_s/Spec/object.pm in 0.000236988s
+1587118322.44:     Instantiated Spec::Benchmark::xalancbmk_s623 in 0.000108957s
+1587118322.44:     Finding src.alts took 0.000014067s
+1587118322.44:   Setting up xalancbmk_s took 0.000463009s
+
+1587118322.44:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'openmp.bset'
+1587118322.44:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intrate_any_cpp.bset'
+1587118322.44:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fpspeed_mixed_fortran.bset'
+1587118322.44:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '607.cactuBSSN_s'
+1587118322.44:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/607.cactuBSSN_s/Spec/object.pm in 0.000213861s
+1587118322.44:     Instantiated Spec::Benchmark::cactuBSSN_s607 in 0.000116110s
+1587118322.44:     Finding src.alts took 0.000014782s
+1587118322.44:   Setting up cactuBSSN_s took 0.000454903s
+
+1587118322.44:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intrate.bset'
+1587118322.44:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '999.specrand_ir'
+1587118322.44:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/999.specrand_ir/Spec/object.pm in 0.000216007s
+1587118322.44:     Instantiated Spec::Benchmark::specrand_ir999 in 0.000113964s
+1587118322.44:     Finding src.alts took 0.000015020s
+1587118322.44:   Setting up specrand_ir took 0.000464916s
+
+1587118322.44:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '605.mcf_s'
+1587118322.44:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/605.mcf_s/Spec/object.pm in 0.000200033s
+1587118322.44:     Instantiated Spec::Benchmark::mcf_s605 in 0.000108957s
+1587118322.44:     Finding src.alts took 0.000014067s
+1587118322.44:   Setting up mcf_s took 0.000427008s
+
+1587118322.44:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'serial.bset'
+1587118322.44:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '503.bwaves_r'
+1587118322.44:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/503.bwaves_r/Spec/object.pm in 0.000233889s
+1587118322.44:     Instantiated Spec::Benchmark::bwaves_r503 in 0.000133991s
+1587118322.44:     Finding src.alts took 0.000015974s
+1587118322.44:   Setting up bwaves_r took 0.000496149s
+
+1587118322.44:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '620.omnetpp_s'
+1587118322.44:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/620.omnetpp_s/Spec/object.pm in 0.000216961s
+1587118322.44:     Instantiated Spec::Benchmark::omnetpp_s620 in 0.000103951s
+1587118322.44:     Finding src.alts took 0.000013113s
+1587118322.44:   Setting up omnetpp_s took 0.000439882s
+
+1587118322.44:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fpspeed_mixed.bset'
+1587118322.44:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '657.xz_s'
+1587118322.44:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/657.xz_s/Spec/object.pm in 0.000294924s
+1587118322.44:     Instantiated Spec::Benchmark::xz_s657 in 0.000113964s
+1587118322.44:     Finding src.alts took 0.000015974s
+1587118322.44:   Setting up xz_s took 0.000542164s
+
+1587118322.44:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intrate_pure_c.bset'
+1587118322.44:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intspeed_any_c.bset'
+1587118322.45:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fpspeed.bset'
+1587118322.45:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'pure_fortran.bset'
+1587118322.45:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fprate_pure_fortran.bset'
+1587118322.45:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intspeed_any_cpp.bset'
+1587118322.45:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '644.nab_s'
+1587118322.45:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/644.nab_s/Spec/object.pm in 0.000212908s
+1587118322.45:     Instantiated Spec::Benchmark::nab_s644 in 0.000113964s
+1587118322.45:     Finding src.alts took 0.000025034s
+1587118322.45:   Setting up nab_s took 0.000467062s
+
+1587118322.45:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '997.specrand_fr'
+1587118322.45:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/997.specrand_fr/Spec/object.pm in 0.000208139s
+1587118322.45:     Instantiated Spec::Benchmark::specrand_fr997 in 0.000113010s
+1587118322.45:     Finding src.alts took 0.000013828s
+1587118322.45:   Setting up specrand_fr took 0.000446081s
+
+1587118322.45:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'CPU.bset'
+1587118322.45:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '544.nab_r'
+1587118322.45:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/544.nab_r/Spec/object.pm in 0.000260115s
+1587118322.45:     Instantiated Spec::Benchmark::nab_r544 in 0.000113964s
+1587118322.45:     Finding src.alts took 0.000014067s
+1587118322.45:   Setting up nab_r took 0.000500917s
+
+1587118322.45:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '602.gcc_s'
+1587118322.45:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/602.gcc_s/Spec/object.pm in 0.000262976s
+1587118322.45:     Instantiated Spec::Benchmark::gcc_s602 in 0.000115156s
+1587118322.45:     Finding src.alts took 0.000015020s
+1587118322.45:   Setting up gcc_s took 0.000509977s
+
+1587118322.45: Setting up suite took 0.077320814s
+1587118322.45: Reading suite directory for 'Makefile.defaults', '/home/rlsahita/spec2017/benchspec'
+1587118322.45: Reading suite directory for 'version.txt', '/home/rlsahita/spec2017/benchspec'
+1587118322.45: found 47 benchmarks in 53 benchsets.
+1587118322.46: Reading config file '/home/rlsahita/spec2017/config/no-cet-icc.cfg'
+1587118322.46: NOTICE: Skipping expression evaluation for 'build_ncpus' on line 42 of
+1587118322.46:         /home/rlsahita/spec2017/config/no-cet-icc.cfg
+1587118322.47: WARNING: The preprocessor macro 'cores' was defined on the
+1587118322.47:          command line but never referenced in the config file.
+
+1587118322.50:   '600.perlbench_s' added
+1587118322.50:   '602.gcc_s' added
+1587118322.50:   '605.mcf_s' added
+1587118322.50:   '620.omnetpp_s' added
+1587118322.50:   '623.xalancbmk_s' added
+1587118322.50:   '625.x264_s' added
+1587118322.50:   '631.deepsjeng_s' added
+1587118322.50:   '641.leela_s' added
+1587118322.50:   '648.exchange2_s' added
+1587118322.50:   '657.xz_s' added
+1587118322.50:   '998.specrand_is' added
+1587118322.50: 1 configuration selected:
+
+1587118322.50:  Action    Run Mode   Workload      Report Type      Benchmarks
+1587118322.50: --------   --------   --------   -----------------   --------------------------
+1587118322.50: validate   speed      refspeed   SPECspeed2017_int   intspeed                  
+1587118322.50: -------------------------------------------------------------------------------
+1587118322.50: 
+1587118322.50: Setting up environment for running intspeed...
+1587118322.50: Setting LD_LIBRARY_PATH = "/opt/intel/compilers_and_libraries_2017/linux/lib/intel64"
+1587118322.50: Setting OMP_STACKSIZE = "192M"
+1587118322.50: Starting runcpu for intspeed...
+1587118322.50:    /home/rlsahita/spec2017/bin/specperl /home/rlsahita/spec2017/bin/harness/runcpu --ignore_errors --noreportable --configfile no-cet-icc --define cores=1 --noreportable --nopower --runmode speed --tune base --size refspeed intspeed
+1587118322.85: Created default regexp '(?:^|(?<=\s))[-/]DSPEC(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.85: Created default regexp '(?:^|(?<=\s))[-/]USPEC(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for USPEC in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.85: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_CPU in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.85: Created default regexp '(?:^|(?<=\s))[-/]DNDEBUG(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DNDEBUG in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.85: Created default regexp '(?:^|(?<=\s))[-/]UNDEBUG(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for UNDEBUG in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.85: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_WINDOWS(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_WINDOWS in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.85: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_MEM_IO(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_MEM_IO in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.85: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_ILP32(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_ILP32 in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.85: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_P64(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_P64 in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.85: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_LP64(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_LP64 in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.85: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_ILP64(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_ILP64 in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.85: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_SUPPRESS_OPENMP(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_SUPPRESS_OPENMP in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.85: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_AUTO_SUPPRESS_OPENMP(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_AUTO_SUPPRESS_OPENMP in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.85: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_OPENMP(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_OPENMP in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.85: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_NO_AUTO_BYTEORDER(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_NO_AUTO_BYTEORDER in /home/rlsahita/spec2017/benchspec/flags-mandatory.xml
+1587118322.85: Reading suite directory for 'flags-mandatory.xml', '/home/rlsahita/spec2017/benchspec'
+1587118322.85: Reading suite directory for 'CPU', '/home/rlsahita/spec2017/benchspec'
+1587118322.85:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '557.xz_r'
+1587118322.85:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/557.xz_r/Spec/object.pm in 0.001080036s
+1587118322.85:     Instantiated Spec::Benchmark::xz_r557 in 0.000257969s
+1587118322.85:     Finding src.alts took 0.000025988s
+1587118322.85:   Setting up xz_r took 0.001514912s
+
+1587118322.85:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fprate_any_fortran.bset'
+1587118322.85:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '508.namd_r'
+1587118322.85:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/508.namd_r/Spec/object.pm in 0.000212908s
+1587118322.85:     Instantiated Spec::Benchmark::namd_r508 in 0.000143051s
+1587118322.85:     Finding src.alts took 0.000016928s
+1587118322.85:   Setting up namd_r took 0.000488997s
+
+1587118322.85:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '554.roms_r'
+1587118322.85:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/554.roms_r/Spec/object.pm in 0.000831127s
+1587118322.85:     Instantiated Spec::Benchmark::roms_r554 in 0.000169992s
+1587118322.85:     Finding src.alts took 0.000020027s
+1587118322.85:   Setting up roms_r took 0.001145124s
+
+1587118322.85:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intspeed_pure_cpp.bset'
+1587118322.86:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '996.specrand_fs'
+1587118322.86:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/996.specrand_fs/Spec/object.pm in 0.000206947s
+1587118322.86:     Instantiated Spec::Benchmark::specrand_fs996 in 0.000115871s
+1587118322.86:     Finding src.alts took 0.000015020s
+1587118322.86:   Setting up specrand_fs took 0.000446081s
+
+1587118322.86:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fprate_pure_cpp.bset'
+1587118322.86:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '500.perlbench_r'
+1587118322.86:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/500.perlbench_r/Spec/object.pm in 0.000710011s
+1587118322.86:     Instantiated Spec::Benchmark::perlbench_r500 in 0.000151873s
+1587118322.86:     Finding src.alts took 0.000017166s
+1587118322.86:   Setting up perlbench_r took 0.001010895s
+
+1587118322.86:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fprate_pure_c.bset'
+1587118322.86:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '519.lbm_r'
+1587118322.86:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/519.lbm_r/Spec/object.pm in 0.000198841s
+1587118322.86:     Instantiated Spec::Benchmark::lbm_r519 in 0.000118971s
+1587118322.86:     Finding src.alts took 0.000014067s
+1587118322.86:   Setting up lbm_r took 0.000448942s
+
+1587118322.86:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fprate_mixed.bset'
+1587118322.86:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fpspeed_any_c.bset'
+1587118322.86:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '627.cam4_s'
+1587118322.86:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/627.cam4_s/Spec/object.pm in 0.000283957s
+1587118322.86:     Instantiated Spec::Benchmark::cam4_s627 in 0.000133991s
+1587118322.86:     Finding src.alts took 0.000015020s
+1587118322.86:   Setting up cam4_s took 0.000546932s
+
+1587118322.86:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '548.exchange2_r'
+1587118322.86:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/548.exchange2_r/Spec/object.pm in 0.000199080s
+1587118322.86:     Instantiated Spec::Benchmark::exchange2_r548 in 0.000115871s
+1587118322.86:     Finding src.alts took 0.000012875s
+1587118322.86:   Setting up exchange2_r took 0.000436068s
+
+1587118322.86:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intopenmp.bset'
+1587118322.86:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '505.mcf_r'
+1587118322.86:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/505.mcf_r/Spec/object.pm in 0.000215054s
+1587118322.86:     Instantiated Spec::Benchmark::mcf_r505 in 0.000113010s
+1587118322.86:     Finding src.alts took 0.000015020s
+1587118322.86:   Setting up mcf_r took 0.000463009s
+
+1587118322.86:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fpspeed_mixed_c.bset'
+1587118322.86:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '538.imagick_r'
+1587118322.86:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/538.imagick_r/Spec/object.pm in 0.000472069s
+1587118322.86:     Instantiated Spec::Benchmark::imagick_r538 in 0.000123024s
+1587118322.86:     Finding src.alts took 0.000016928s
+1587118322.86:   Setting up imagick_r took 0.000738144s
+
+1587118322.86:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intspeed_pure_c.bset'
+1587118322.86:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fpspeed_any_cpp.bset'
+1587118322.86:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '502.gcc_r'
+1587118322.87:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/502.gcc_r/Spec/object.pm in 0.009261847s
+1587118322.87:     Instantiated Spec::Benchmark::gcc_r502 in 0.000268936s
+1587118322.87:     Finding src.alts took 0.000024080s
+1587118322.87:   Setting up gcc_r took 0.009706020s
+
+1587118322.87:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intrate_pure_cpp.bset'
+1587118322.87:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fpspeed_mixed_cpp.bset'
+1587118322.87:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'mixed_fortran.bset'
+1587118322.87:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intspeed_pure_fortran.bset'
+1587118322.88:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fprate_mixed_cpp.bset'
+1587118322.88:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '648.exchange2_s'
+1587118322.88:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/648.exchange2_s/Spec/object.pm in 0.000227213s
+1587118322.88:     Instantiated Spec::Benchmark::exchange2_s648 in 0.000114202s
+1587118322.88:     Finding src.alts took 0.000015974s
+1587118322.88:   Setting up exchange2_s took 0.000476837s
+
+1587118322.88:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '631.deepsjeng_s'
+1587118322.88:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/631.deepsjeng_s/Spec/object.pm in 0.000164032s
+1587118322.88:     Instantiated Spec::Benchmark::deepsjeng_s631 in 0.000106812s
+1587118322.88:     Finding src.alts took 0.000014067s
+1587118322.88:   Setting up deepsjeng_s took 0.000384808s
+
+1587118322.88:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'any_c.bset'
+1587118322.88:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'serial_speed.bset'
+1587118322.88:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '603.bwaves_s'
+1587118322.88:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/603.bwaves_s/Spec/object.pm in 0.000241995s
+1587118322.88:     Instantiated Spec::Benchmark::bwaves_s603 in 0.000142097s
+1587118322.88:     Finding src.alts took 0.000014782s
+1587118322.88:   Setting up bwaves_s took 0.000509977s
+
+1587118322.88:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'any_fortran.bset'
+1587118322.88:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intrate_any_c.bset'
+1587118322.88:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fpopenmp.bset'
+1587118322.88:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '523.xalancbmk_r'
+1587118322.88:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/523.xalancbmk_r/Spec/object.pm in 0.000514984s
+1587118322.88:     Instantiated Spec::Benchmark::xalancbmk_r523 in 0.000146866s
+1587118322.88:     Finding src.alts took 0.000019073s
+1587118322.88:   Setting up xalancbmk_r took 0.000811100s
+
+1587118322.88:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intrate_any_fortran.bset'
+1587118322.88:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fpspeed_any_fortran.bset'
+1587118322.88:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '654.roms_s'
+1587118322.88:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/654.roms_s/Spec/object.pm in 0.000494003s
+1587118322.88:     Instantiated Spec::Benchmark::roms_s654 in 0.000115871s
+1587118322.88:     Finding src.alts took 0.000016928s
+1587118322.88:   Setting up roms_s took 0.000751019s
+
+1587118322.88:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'pure_cpp.bset'
+1587118322.88:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fpspeed_pure_c.bset'
+1587118322.88:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'mixed_cpp.bset'
+1587118322.88:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '549.fotonik3d_r'
+1587118322.88:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/549.fotonik3d_r/Spec/object.pm in 0.000241041s
+1587118322.88:     Instantiated Spec::Benchmark::fotonik3d_r549 in 0.000115871s
+1587118322.88:     Finding src.alts took 0.000015020s
+1587118322.88:   Setting up fotonik3d_r took 0.000485897s
+
+1587118322.88:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'any_cpp.bset'
+1587118322.88:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fpspeed_pure_fortran.bset'
+1587118322.89:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'mixed.bset'
+1587118322.89:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'pure_c.bset'
+1587118322.89:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '625.x264_s'
+1587118322.89:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/625.x264_s/Spec/object.pm in 0.000503063s
+1587118322.89:     Instantiated Spec::Benchmark::x264_s625 in 0.000137091s
+1587118322.89:     Finding src.alts took 0.000016928s
+1587118322.89:   Setting up x264_s took 0.000777960s
+
+1587118322.89:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '511.povray_r'
+1587118322.89:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/511.povray_r/Spec/object.pm in 0.000301123s
+1587118322.89:     Instantiated Spec::Benchmark::povray_r511 in 0.000116110s
+1587118322.89:     Finding src.alts took 0.000015020s
+1587118322.89:   Setting up povray_r took 0.000544071s
+
+1587118322.89:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fprate_mixed_c.bset'
+1587118322.89:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fprate_mixed_fortran.bset'
+1587118322.89:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '600.perlbench_s'
+1587118322.89:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/600.perlbench_s/Spec/object.pm in 0.000341892s
+1587118322.89:     Instantiated Spec::Benchmark::perlbench_s600 in 0.000117064s
+1587118322.89:     Finding src.alts took 0.000016928s
+1587118322.89:   Setting up perlbench_s took 0.000591993s
+
+1587118322.89:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fprate.bset'
+1587118322.89:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '531.deepsjeng_r'
+1587118322.89:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/531.deepsjeng_r/Spec/object.pm in 0.000200987s
+1587118322.89:     Instantiated Spec::Benchmark::deepsjeng_r531 in 0.000113010s
+1587118322.89:     Finding src.alts took 0.000014067s
+1587118322.89:   Setting up deepsjeng_r took 0.000446081s
+
+1587118322.89:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'mixed_c.bset'
+1587118322.89:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '527.cam4_r'
+1587118322.89:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/527.cam4_r/Spec/object.pm in 0.002470016s
+1587118322.89:     Instantiated Spec::Benchmark::cam4_r527 in 0.000240088s
+1587118322.89:     Finding src.alts took 0.000020027s
+1587118322.89:   Setting up cam4_r took 0.002871037s
+
+1587118322.89:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intrate_pure_fortran.bset'
+1587118322.90:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '520.omnetpp_r'
+1587118322.90:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/520.omnetpp_r/Spec/object.pm in 0.000277996s
+1587118322.90:     Instantiated Spec::Benchmark::omnetpp_r520 in 0.000114918s
+1587118322.90:     Finding src.alts took 0.000016212s
+1587118322.90:   Setting up omnetpp_r took 0.000522852s
+
+1587118322.90:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '649.fotonik3d_s'
+1587118322.90:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/649.fotonik3d_s/Spec/object.pm in 0.000194073s
+1587118322.90:     Instantiated Spec::Benchmark::fotonik3d_s649 in 0.000107050s
+1587118322.90:     Finding src.alts took 0.000013113s
+1587118322.90:   Setting up fotonik3d_s took 0.000419140s
+
+1587118322.90:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '998.specrand_is'
+1587118322.90:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/998.specrand_is/Spec/object.pm in 0.000190973s
+1587118322.90:     Instantiated Spec::Benchmark::specrand_is998 in 0.000108004s
+1587118322.90:     Finding src.alts took 0.000014067s
+1587118322.90:   Setting up specrand_is took 0.000414848s
+
+1587118322.90:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '525.x264_r'
+1587118322.90:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/525.x264_r/Spec/object.pm in 0.000545025s
+1587118322.90:     Instantiated Spec::Benchmark::x264_r525 in 0.000129938s
+1587118322.90:     Finding src.alts took 0.000017881s
+1587118322.90:   Setting up x264_r took 0.000810146s
+
+1587118322.90:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intspeed.bset'
+1587118322.90:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '510.parest_r'
+1587118322.90:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/510.parest_r/Spec/object.pm in 0.000298023s
+1587118322.90:     Instantiated Spec::Benchmark::parest_r510 in 0.000123978s
+1587118322.90:     Finding src.alts took 0.000015974s
+1587118322.90:   Setting up parest_r took 0.000560999s
+
+1587118322.90:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'specrate.bset'
+1587118322.90:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fprate_any_cpp.bset'
+1587118322.90:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '638.imagick_s'
+1587118322.90:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/638.imagick_s/Spec/object.pm in 0.000391006s
+1587118322.90:     Instantiated Spec::Benchmark::imagick_s638 in 0.000124931s
+1587118322.90:     Finding src.alts took 0.000015974s
+1587118322.90:   Setting up imagick_s took 0.000655174s
+
+1587118322.90:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '619.lbm_s'
+1587118322.90:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/619.lbm_s/Spec/object.pm in 0.000200033s
+1587118322.90:     Instantiated Spec::Benchmark::lbm_s619 in 0.000115156s
+1587118322.90:     Finding src.alts took 0.000012875s
+1587118322.90:   Setting up lbm_s took 0.000439882s
+
+1587118322.90:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intspeed_any_fortran.bset'
+1587118322.90:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '541.leela_r'
+1587118322.90:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/541.leela_r/Spec/object.pm in 0.000190020s
+1587118322.90:     Instantiated Spec::Benchmark::leela_r541 in 0.000108004s
+1587118322.90:     Finding src.alts took 0.000015020s
+1587118322.90:   Setting up leela_r took 0.000418901s
+
+1587118322.90:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '507.cactuBSSN_r'
+1587118322.90:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/507.cactuBSSN_r/Spec/object.pm in 0.000410080s
+1587118322.90:     Instantiated Spec::Benchmark::cactuBSSN_r507 in 0.000139952s
+1587118322.90:     Finding src.alts took 0.000017166s
+1587118322.90:   Setting up cactuBSSN_r took 0.000686169s
+
+1587118322.90:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '526.blender_r'
+1587118322.91:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/526.blender_r/Spec/object.pm in 0.001102924s
+1587118322.91:     Instantiated Spec::Benchmark::blender_r526 in 0.000131130s
+1587118322.91:     Finding src.alts took 0.000019073s
+1587118322.91:   Setting up blender_r took 0.001374006s
+
+1587118322.91:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '621.wrf_s'
+1587118322.91:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/621.wrf_s/Spec/object.pm in 0.001214981s
+1587118322.91:     Instantiated Spec::Benchmark::wrf_s621 in 0.000171900s
+1587118322.91:     Finding src.alts took 0.000019073s
+1587118322.91:   Setting up wrf_s took 0.001542091s
+
+1587118322.91:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'specspeed.bset'
+1587118322.91:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fprate_any_c.bset'
+1587118322.91:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '521.wrf_r'
+1587118322.91:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/521.wrf_r/Spec/object.pm in 0.001476049s
+1587118322.91:     Instantiated Spec::Benchmark::wrf_r521 in 0.000174999s
+1587118322.91:     Finding src.alts took 0.000019073s
+1587118322.91:   Setting up wrf_r took 0.001803160s
+
+1587118322.91:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '628.pop2_s'
+1587118322.91:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/628.pop2_s/Spec/object.pm in 0.001817942s
+1587118322.91:     Instantiated Spec::Benchmark::pop2_s628 in 0.000207901s
+1587118322.91:     Finding src.alts took 0.000019789s
+1587118322.91:   Setting up pop2_s took 0.002179861s
+
+1587118322.91:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '641.leela_s'
+1587118322.91:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/641.leela_s/Spec/object.pm in 0.000190973s
+1587118322.91:     Instantiated Spec::Benchmark::leela_s641 in 0.000109911s
+1587118322.91:     Finding src.alts took 0.000013113s
+1587118322.91:   Setting up leela_s took 0.000425100s
+
+1587118322.91:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '623.xalancbmk_s'
+1587118322.91:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/623.xalancbmk_s/Spec/object.pm in 0.000234842s
+1587118322.91:     Instantiated Spec::Benchmark::xalancbmk_s623 in 0.000103951s
+1587118322.91:     Finding src.alts took 0.000013113s
+1587118322.91:   Setting up xalancbmk_s took 0.000455856s
+
+1587118322.91:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'openmp.bset'
+1587118322.91:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intrate_any_cpp.bset'
+1587118322.91:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fpspeed_mixed_fortran.bset'
+1587118322.91:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '607.cactuBSSN_s'
+1587118322.92:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/607.cactuBSSN_s/Spec/object.pm in 0.000205994s
+1587118322.92:     Instantiated Spec::Benchmark::cactuBSSN_s607 in 0.000116110s
+1587118322.92:     Finding src.alts took 0.000013828s
+1587118322.92:   Setting up cactuBSSN_s took 0.000446081s
+
+1587118322.92:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intrate.bset'
+1587118322.92:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '999.specrand_ir'
+1587118322.92:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/999.specrand_ir/Spec/object.pm in 0.000211000s
+1587118322.92:     Instantiated Spec::Benchmark::specrand_ir999 in 0.000115871s
+1587118322.92:     Finding src.alts took 0.000015974s
+1587118322.92:   Setting up specrand_ir took 0.000467062s
+
+1587118322.92:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '605.mcf_s'
+1587118322.92:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/605.mcf_s/Spec/object.pm in 0.000200033s
+1587118322.92:     Instantiated Spec::Benchmark::mcf_s605 in 0.000108957s
+1587118322.92:     Finding src.alts took 0.000014067s
+1587118322.92:   Setting up mcf_s took 0.000425100s
+
+1587118322.92:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'serial.bset'
+1587118322.92:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '503.bwaves_r'
+1587118322.92:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/503.bwaves_r/Spec/object.pm in 0.000235081s
+1587118322.92:     Instantiated Spec::Benchmark::bwaves_r503 in 0.000133991s
+1587118322.92:     Finding src.alts took 0.000015020s
+1587118322.92:   Setting up bwaves_r took 0.000496864s
+
+1587118322.92:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '620.omnetpp_s'
+1587118322.92:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/620.omnetpp_s/Spec/object.pm in 0.000206947s
+1587118322.92:     Instantiated Spec::Benchmark::omnetpp_s620 in 0.000108004s
+1587118322.92:     Finding src.alts took 0.000014067s
+1587118322.92:   Setting up omnetpp_s took 0.000436068s
+
+1587118322.92:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fpspeed_mixed.bset'
+1587118322.92:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '657.xz_s'
+1587118322.92:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/657.xz_s/Spec/object.pm in 0.000297070s
+1587118322.92:     Instantiated Spec::Benchmark::xz_s657 in 0.000111103s
+1587118322.92:     Finding src.alts took 0.000015974s
+1587118322.92:   Setting up xz_s took 0.000538111s
+
+1587118322.92:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intrate_pure_c.bset'
+1587118322.92:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intspeed_any_c.bset'
+1587118322.92:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fpspeed.bset'
+1587118322.92:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'pure_fortran.bset'
+1587118322.92:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'fprate_pure_fortran.bset'
+1587118322.92:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'intspeed_any_cpp.bset'
+1587118322.93:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '644.nab_s'
+1587118322.93:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/644.nab_s/Spec/object.pm in 0.000220060s
+1587118322.93:     Instantiated Spec::Benchmark::nab_s644 in 0.000116825s
+1587118322.93:     Finding src.alts took 0.000015020s
+1587118322.93:   Setting up nab_s took 0.000468016s
+
+1587118322.93:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '997.specrand_fr'
+1587118322.93:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/997.specrand_fr/Spec/object.pm in 0.000216961s
+1587118322.93:     Instantiated Spec::Benchmark::specrand_fr997 in 0.000113010s
+1587118322.93:     Finding src.alts took 0.000014067s
+1587118322.93:   Setting up specrand_fr took 0.000450850s
+
+1587118322.93:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', 'CPU.bset'
+1587118322.93:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '544.nab_r'
+1587118322.93:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/544.nab_r/Spec/object.pm in 0.000256062s
+1587118322.93:     Instantiated Spec::Benchmark::nab_r544 in 0.000119925s
+1587118322.93:     Finding src.alts took 0.000015020s
+1587118322.93:   Setting up nab_r took 0.000504017s
+
+1587118322.93:   Reading benchmark directory for '/home/rlsahita/spec2017/benchspec/CPU', '/home/rlsahita/spec2017/benchspec', '602.gcc_s'
+1587118322.93:     Evaluated /home/rlsahita/spec2017/benchspec/CPU/602.gcc_s/Spec/object.pm in 0.000267982s
+1587118322.93:     Instantiated Spec::Benchmark::gcc_s602 in 0.000119925s
+1587118322.93:     Finding src.alts took 0.000014782s
+1587118322.93:   Setting up gcc_s took 0.000509977s
+
+1587118322.93: Setting up suite took 0.077419043s
+1587118322.93: Reading suite directory for 'Makefile.defaults', '/home/rlsahita/spec2017/benchspec'
+1587118322.93: Reading suite directory for 'version.txt', '/home/rlsahita/spec2017/benchspec'
+
+1587118322.93: NOTICE: Skipping expression evaluation for 'build_ncpus' on line 42 of
+1587118322.93:         /home/rlsahita/spec2017/config/no-cet-icc.cfg
+1587118322.94: Running "specperl /home/rlsahita/spec2017/bin/sysinfo" to gather system information.
+1587118323.04: sysinfo: r5797 of 2017-06-14 (96c45e4568ad54c135fd618bcc091c0f)
+1587118323.04: sysinfo: Getting system information for Linux...
+1587118323.04: sysinfo: ...getting CPU info
+1587118323.04: sysinfo: ...getting info from numactl
+1587118323.04: sysinfo: ...getting memory info
+1587118323.04: sysinfo: ...getting OS info
+1587118323.04: sysinfo: ...getting disk info
+1587118323.04: sysinfo: ...trying to get DIMM info from dmidecode
+1587118323.19: Retrieving flags file (/home/rlsahita/spec2017/config/flags/Intel-ic17.0-official-linux64-revE.xml)...
+1587118323.22:   '600.perlbench_s' added
+1587118323.22:   '602.gcc_s' added
+1587118323.22:   '605.mcf_s' added
+1587118323.22:   '620.omnetpp_s' added
+1587118323.22:   '623.xalancbmk_s' added
+1587118323.22:   '625.x264_s' added
+1587118323.22:   '631.deepsjeng_s' added
+1587118323.22:   '641.leela_s' added
+1587118323.22:   '648.exchange2_s' added
+1587118323.22:   '657.xz_s' added
+1587118323.22:   '998.specrand_is' added
+1587118323.27: Verbosity = 5
+1587118323.27: Action    = validate
+1587118323.27: Tune      = base
+1587118323.27: Label     = myTest
+1587118323.27: Size      = refspeed
+1587118323.27: benchmarks= 600.perlbench_s,602.gcc_s,605.mcf_s,620.omnetpp_s,623.xalancbmk_s,625.x264_s,631.deepsjeng_s,641.leela_s,648.exchange2_s,657.xz_s,998.specrand_is
+1587118323.27: outputs   = txt,html,cfg,pdf,csv
+1587118323.27: username  = rlsahita
+1587118323.27: Environment settings:
+1587118323.27: LD_LIBRARY_PATH = "/opt/intel/compilers_and_libraries_2017/linux/lib/intel64"
+1587118323.27: OMP_STACKSIZE = "192M"
+
+1587118323.27: Benchmarks selected: 600.perlbench_s, 602.gcc_s, 605.mcf_s, 620.omnetpp_s, 623.xalancbmk_s, 625.x264_s, 631.deepsjeng_s, 641.leela_s, 648.exchange2_s, 657.xz_s, 998.specrand_is
+1587118323.27: /home/rlsahita/spec2017/benchspec/CPU/600.perlbench_s/exe/perlbench_s_base.myTest does not exist
+1587118323.27: build_check('600.perlbench_s base myTest' (Spec::Benchmark::perlbench_s600=HASH(0x5ed1f88)), check_exe=1, check_options=0) called at /home/rlsahita/spec2017/bin/harness/benchmark.pm line 315.
+1587118323.27: 	Spec::Benchmark::instance(Spec::Benchmark::perlbench_s600=HASH(0x5a045b0), Spec::Config=HASH(0x502b398), "base", "refspeed", "myTest") called at /home/rlsahita/spec2017/bin/harness/runcpu line 670
+
+1587118323.27: /home/rlsahita/spec2017/benchspec/CPU/602.gcc_s/exe/sgcc_base.myTest does not exist
+1587118323.27: build_check('602.gcc_s base myTest' (Spec::Benchmark::gcc_s602=HASH(0x5ef1108)), check_exe=1, check_options=0) called at /home/rlsahita/spec2017/bin/harness/benchmark.pm line 315.
+1587118323.27: 	Spec::Benchmark::instance(Spec::Benchmark::gcc_s602=HASH(0x5a88320), Spec::Config=HASH(0x502b398), "base", "refspeed", "myTest") called at /home/rlsahita/spec2017/bin/harness/runcpu line 670
+
+1587118323.27: /home/rlsahita/spec2017/benchspec/CPU/605.mcf_s/exe/mcf_s_base.myTest does not exist
+1587118323.27: build_check('605.mcf_s base myTest' (Spec::Benchmark::mcf_s605=HASH(0x5e268e8)), check_exe=1, check_options=0) called at /home/rlsahita/spec2017/bin/harness/benchmark.pm line 315.
+1587118323.27: 	Spec::Benchmark::instance(Spec::Benchmark::mcf_s605=HASH(0x5c2d560), Spec::Config=HASH(0x502b398), "base", "refspeed", "myTest") called at /home/rlsahita/spec2017/bin/harness/runcpu line 670
+
+1587118323.27: /home/rlsahita/spec2017/benchspec/CPU/620.omnetpp_s/exe/omnetpp_s_base.myTest does not exist
+1587118323.27: build_check('620.omnetpp_s base myTest' (Spec::Benchmark::omnetpp_s620=HASH(0x5e6ab48)), check_exe=1, check_options=0) called at /home/rlsahita/spec2017/bin/harness/benchmark.pm line 315.
+1587118323.27: 	Spec::Benchmark::instance(Spec::Benchmark::omnetpp_s620=HASH(0x5b37f98), Spec::Config=HASH(0x502b398), "base", "refspeed", "myTest") called at /home/rlsahita/spec2017/bin/harness/runcpu line 670
+
+1587118323.27: /home/rlsahita/spec2017/benchspec/CPU/623.xalancbmk_s/exe/xalancbmk_s_base.myTest does not exist
+1587118323.27: build_check('623.xalancbmk_s base myTest' (Spec::Benchmark::xalancbmk_s623=HASH(0x5ebfd40)), check_exe=1, check_options=0) called at /home/rlsahita/spec2017/bin/harness/benchmark.pm line 315.
+1587118323.27: 	Spec::Benchmark::instance(Spec::Benchmark::xalancbmk_s623=HASH(0x59cd300), Spec::Config=HASH(0x502b398), "base", "refspeed", "myTest") called at /home/rlsahita/spec2017/bin/harness/runcpu line 670
+
+1587118323.27: /home/rlsahita/spec2017/benchspec/CPU/625.x264_s/exe/imagevalidate_625_base.myTest does not exist
+1587118323.27: /home/rlsahita/spec2017/benchspec/CPU/625.x264_s/exe/ldecod_s_base.myTest does not exist
+1587118323.27: /home/rlsahita/spec2017/benchspec/CPU/625.x264_s/exe/x264_s_base.myTest does not exist
+1587118323.27: build_check('625.x264_s base myTest' (Spec::Benchmark::x264_s625=HASH(0x5e9a398)), check_exe=1, check_options=0) called at /home/rlsahita/spec2017/bin/harness/benchmark.pm line 315.
+1587118323.27: 	Spec::Benchmark::instance(Spec::Benchmark::x264_s625=HASH(0x5b02a88), Spec::Config=HASH(0x502b398), "base", "refspeed", "myTest") called at /home/rlsahita/spec2017/bin/harness/runcpu line 670
+
+1587118323.27: /home/rlsahita/spec2017/benchspec/CPU/631.deepsjeng_s/exe/deepsjeng_s_base.myTest does not exist
+1587118323.27: build_check('631.deepsjeng_s base myTest' (Spec::Benchmark::deepsjeng_s631=HASH(0x5c3ae10)), check_exe=1, check_options=0) called at /home/rlsahita/spec2017/bin/harness/benchmark.pm line 315.
+1587118323.27: 	Spec::Benchmark::instance(Spec::Benchmark::deepsjeng_s631=HASH(0x5c2a678), Spec::Config=HASH(0x502b398), "base", "refspeed", "myTest") called at /home/rlsahita/spec2017/bin/harness/runcpu line 670
+
+1587118323.28: /home/rlsahita/spec2017/benchspec/CPU/641.leela_s/exe/leela_s_base.myTest does not exist
+1587118323.28: build_check('641.leela_s base myTest' (Spec::Benchmark::leela_s641=HASH(0x5e9ffc8)), check_exe=1, check_options=0) called at /home/rlsahita/spec2017/bin/harness/benchmark.pm line 315.
+1587118323.28: 	Spec::Benchmark::instance(Spec::Benchmark::leela_s641=HASH(0x5c235a0), Spec::Config=HASH(0x502b398), "base", "refspeed", "myTest") called at /home/rlsahita/spec2017/bin/harness/runcpu line 670
+
+1587118323.28: When checking executables (/home/rlsahita/spec2017/benchspec/CPU/648.exchange2_s/exe/exchange2_s_base.myTest), no checksums were
+1587118323.28:   found in the config file.  They will be installed after build.
+1587118323.28: build_check('648.exchange2_s base myTest' (Spec::Benchmark::exchange2_s648=HASH(0x5e339a8)), check_exe=1, check_options=0) called at /home/rlsahita/spec2017/bin/harness/benchmark.pm line 315.
+1587118323.28: 	Spec::Benchmark::instance(Spec::Benchmark::exchange2_s648=HASH(0x5aaf4b8), Spec::Config=HASH(0x502b398), "base", "refspeed", "myTest") called at /home/rlsahita/spec2017/bin/harness/runcpu line 670
+
+1587118323.28: /home/rlsahita/spec2017/benchspec/CPU/657.xz_s/exe/xz_s_base.myTest does not exist
+1587118323.28: build_check('657.xz_s base myTest' (Spec::Benchmark::xz_s657=HASH(0x5c3ae70)), check_exe=1, check_options=0) called at /home/rlsahita/spec2017/bin/harness/benchmark.pm line 315.
+1587118323.28: 	Spec::Benchmark::instance(Spec::Benchmark::xz_s657=HASH(0x59a5930), Spec::Config=HASH(0x502b398), "base", "refspeed", "myTest") called at /home/rlsahita/spec2017/bin/harness/runcpu line 670
+
+1587118323.28: /home/rlsahita/spec2017/benchspec/CPU/998.specrand_is/exe/specrand_is_base.myTest does not exist
+1587118323.28: build_check('998.specrand_is base myTest' (Spec::Benchmark::specrand_is998=HASH(0x5753920)), check_exe=1, check_options=0) called at /home/rlsahita/spec2017/bin/harness/benchmark.pm line 315.
+1587118323.28: 	Spec::Benchmark::instance(Spec::Benchmark::specrand_is998=HASH(0x5c27630), Spec::Config=HASH(0x502b398), "base", "refspeed", "myTest") called at /home/rlsahita/spec2017/bin/harness/runcpu line 670
+
+1587118323.28: /home/rlsahita/spec2017/benchspec/CPU/600.perlbench_s/exe/perlbench_s_base.myTest does not exist
+1587118323.28: build_check('600.perlbench_s base myTest' (Spec::Benchmark::perlbench_s600=HASH(0x5eb8a58)), check_exe=1, check_options=0) called at /home/rlsahita/spec2017/bin/harness/benchmark.pm line 315.
+1587118323.28: 	Spec::Benchmark::instance(Spec::Benchmark::perlbench_s600=HASH(0x5a045b0), Spec::Config=HASH(0x502b398), "base", "refspeed", "myTest") called at /home/rlsahita/spec2017/bin/harness/runcpu line 758
+
+1587118323.28: Found reftime file in /home/rlsahita/spec2017/benchspec/CPU/500.perlbench_r/data/refrate
+1587118323.28: Found input directory under /home/rlsahita/spec2017/benchspec/CPU/500.perlbench_r/data/refrate
+1587118323.28: Found output directory under /home/rlsahita/spec2017/benchspec/CPU/500.perlbench_r/data/refrate
+1587118323.28: /home/rlsahita/spec2017/benchspec/CPU/602.gcc_s/exe/sgcc_base.myTest does not exist
+1587118323.28: build_check('602.gcc_s base myTest' (Spec::Benchmark::gcc_s602=HASH(0x57536f8)), check_exe=1, check_options=0) called at /home/rlsahita/spec2017/bin/harness/benchmark.pm line 315.
+1587118323.28: 	Spec::Benchmark::instance(Spec::Benchmark::gcc_s602=HASH(0x5a88320), Spec::Config=HASH(0x502b398), "base", "refspeed", "myTest") called at /home/rlsahita/spec2017/bin/harness/runcpu line 758
+
+1587118323.28: Found reftime file in /home/rlsahita/spec2017/benchspec/CPU/502.gcc_r/data/refspeed
+1587118323.28: Found input directory under /home/rlsahita/spec2017/benchspec/CPU/502.gcc_r/data/refspeed
+1587118323.28: Found output directory under /home/rlsahita/spec2017/benchspec/CPU/502.gcc_r/data/refspeed
+1587118323.28: /home/rlsahita/spec2017/benchspec/CPU/605.mcf_s/exe/mcf_s_base.myTest does not exist
+1587118323.28: build_check('605.mcf_s base myTest' (Spec::Benchmark::mcf_s605=HASH(0x5e95978)), check_exe=1, check_options=0) called at /home/rlsahita/spec2017/bin/harness/benchmark.pm line 315.
+1587118323.28: 	Spec::Benchmark::instance(Spec::Benchmark::mcf_s605=HASH(0x5c2d560), Spec::Config=HASH(0x502b398), "base", "refspeed", "myTest") called at /home/rlsahita/spec2017/bin/harness/runcpu line 758
+
+1587118323.28: Found reftime file in /home/rlsahita/spec2017/benchspec/CPU/505.mcf_r/data/refspeed
+1587118323.28: Found input directory under /home/rlsahita/spec2017/benchspec/CPU/505.mcf_r/data/refspeed
+1587118323.28: Found output directory under /home/rlsahita/spec2017/benchspec/CPU/505.mcf_r/data/refspeed
+1587118323.28: /home/rlsahita/spec2017/benchspec/CPU/620.omnetpp_s/exe/omnetpp_s_base.myTest does not exist
+1587118323.28: build_check('620.omnetpp_s base myTest' (Spec::Benchmark::omnetpp_s620=HASH(0x5e4ccc8)), check_exe=1, check_options=0) called at /home/rlsahita/spec2017/bin/harness/benchmark.pm line 315.
+1587118323.28: 	Spec::Benchmark::instance(Spec::Benchmark::omnetpp_s620=HASH(0x5b37f98), Spec::Config=HASH(0x502b398), "base", "refspeed", "myTest") called at /home/rlsahita/spec2017/bin/harness/runcpu line 758
+
+1587118323.28: Found reftime file in /home/rlsahita/spec2017/benchspec/CPU/520.omnetpp_r/data/refrate
+1587118323.28: Found input directory under /home/rlsahita/spec2017/benchspec/CPU/520.omnetpp_r/data/refrate
+1587118323.28: Found output directory under /home/rlsahita/spec2017/benchspec/CPU/520.omnetpp_r/data/refrate
+1587118323.28: /home/rlsahita/spec2017/benchspec/CPU/623.xalancbmk_s/exe/xalancbmk_s_base.myTest does not exist
+1587118323.28: build_check('623.xalancbmk_s base myTest' (Spec::Benchmark::xalancbmk_s623=HASH(0x5e83358)), check_exe=1, check_options=0) called at /home/rlsahita/spec2017/bin/harness/benchmark.pm line 315.
+1587118323.28: 	Spec::Benchmark::instance(Spec::Benchmark::xalancbmk_s623=HASH(0x59cd300), Spec::Config=HASH(0x502b398), "base", "refspeed", "myTest") called at /home/rlsahita/spec2017/bin/harness/runcpu line 758
+
+1587118323.28: Found reftime file in /home/rlsahita/spec2017/benchspec/CPU/523.xalancbmk_r/data/refrate
+1587118323.29: Found input directory under /home/rlsahita/spec2017/benchspec/CPU/523.xalancbmk_r/data/refrate
+1587118323.29: Found output directory under /home/rlsahita/spec2017/benchspec/CPU/523.xalancbmk_r/data/refrate
+1587118323.29: /home/rlsahita/spec2017/benchspec/CPU/625.x264_s/exe/imagevalidate_625_base.myTest does not exist
+1587118323.29: /home/rlsahita/spec2017/benchspec/CPU/625.x264_s/exe/ldecod_s_base.myTest does not exist
+1587118323.29: /home/rlsahita/spec2017/benchspec/CPU/625.x264_s/exe/x264_s_base.myTest does not exist
+1587118323.29: build_check('625.x264_s base myTest' (Spec::Benchmark::x264_s625=HASH(0x5e385d0)), check_exe=1, check_options=0) called at /home/rlsahita/spec2017/bin/harness/benchmark.pm line 315.
+1587118323.29: 	Spec::Benchmark::instance(Spec::Benchmark::x264_s625=HASH(0x5b02a88), Spec::Config=HASH(0x502b398), "base", "refspeed", "myTest") called at /home/rlsahita/spec2017/bin/harness/runcpu line 758
+
+1587118323.29: Found reftime file in /home/rlsahita/spec2017/benchspec/CPU/525.x264_r/data/refrate
+1587118323.29: Found input directory under /home/rlsahita/spec2017/benchspec/CPU/525.x264_r/data/refrate
+1587118323.29: Found output directory under /home/rlsahita/spec2017/benchspec/CPU/525.x264_r/data/refrate
+1587118323.29: /home/rlsahita/spec2017/benchspec/CPU/631.deepsjeng_s/exe/deepsjeng_s_base.myTest does not exist
+1587118323.29: build_check('631.deepsjeng_s base myTest' (Spec::Benchmark::deepsjeng_s631=HASH(0x5e9a0c8)), check_exe=1, check_options=0) called at /home/rlsahita/spec2017/bin/harness/benchmark.pm line 315.
+1587118323.29: 	Spec::Benchmark::instance(Spec::Benchmark::deepsjeng_s631=HASH(0x5c2a678), Spec::Config=HASH(0x502b398), "base", "refspeed", "myTest") called at /home/rlsahita/spec2017/bin/harness/runcpu line 758
+
+1587118323.29: Found reftime file in /home/rlsahita/spec2017/benchspec/CPU/631.deepsjeng_s/data/refspeed
+1587118323.29: Found input directory under /home/rlsahita/spec2017/benchspec/CPU/631.deepsjeng_s/data/refspeed
+1587118323.29: Found output directory under /home/rlsahita/spec2017/benchspec/CPU/631.deepsjeng_s/data/refspeed
+1587118323.29: /home/rlsahita/spec2017/benchspec/CPU/641.leela_s/exe/leela_s_base.myTest does not exist
+1587118323.29: build_check('641.leela_s base myTest' (Spec::Benchmark::leela_s641=HASH(0x5932fd8)), check_exe=1, check_options=0) called at /home/rlsahita/spec2017/bin/harness/benchmark.pm line 315.
+1587118323.29: 	Spec::Benchmark::instance(Spec::Benchmark::leela_s641=HASH(0x5c235a0), Spec::Config=HASH(0x502b398), "base", "refspeed", "myTest") called at /home/rlsahita/spec2017/bin/harness/runcpu line 758
+
+1587118323.29: Found reftime file in /home/rlsahita/spec2017/benchspec/CPU/541.leela_r/data/refrate
+1587118323.29: Found input directory under /home/rlsahita/spec2017/benchspec/CPU/541.leela_r/data/refrate
+1587118323.29: Found output directory under /home/rlsahita/spec2017/benchspec/CPU/541.leela_r/data/refrate
+1587118323.29: When checking executables (/home/rlsahita/spec2017/benchspec/CPU/648.exchange2_s/exe/exchange2_s_base.myTest), no checksums were
+1587118323.29:   found in the config file.  They will be installed after build.
+1587118323.29: build_check('648.exchange2_s base myTest' (Spec::Benchmark::exchange2_s648=HASH(0x5e2d230)), check_exe=1, check_options=0) called at /home/rlsahita/spec2017/bin/harness/benchmark.pm line 315.
+1587118323.29: 	Spec::Benchmark::instance(Spec::Benchmark::exchange2_s648=HASH(0x5aaf4b8), Spec::Config=HASH(0x502b398), "base", "refspeed", "myTest") called at /home/rlsahita/spec2017/bin/harness/runcpu line 758
+
+1587118323.29: Found reftime file in /home/rlsahita/spec2017/benchspec/CPU/548.exchange2_r/data/refrate
+1587118323.29: Found input directory under /home/rlsahita/spec2017/benchspec/CPU/548.exchange2_r/data/refrate
+1587118323.29: Found output directory under /home/rlsahita/spec2017/benchspec/CPU/548.exchange2_r/data/refrate
+1587118323.29: /home/rlsahita/spec2017/benchspec/CPU/657.xz_s/exe/xz_s_base.myTest does not exist
+1587118323.29: build_check('657.xz_s base myTest' (Spec::Benchmark::xz_s657=HASH(0x5eb90b8)), check_exe=1, check_options=0) called at /home/rlsahita/spec2017/bin/harness/benchmark.pm line 315.
+1587118323.29: 	Spec::Benchmark::instance(Spec::Benchmark::xz_s657=HASH(0x59a5930), Spec::Config=HASH(0x502b398), "base", "refspeed", "myTest") called at /home/rlsahita/spec2017/bin/harness/runcpu line 758
+
+1587118323.29: Found reftime file in /home/rlsahita/spec2017/benchspec/CPU/557.xz_r/data/refspeed
+1587118323.29: Found input directory under /home/rlsahita/spec2017/benchspec/CPU/557.xz_r/data/refspeed
+1587118323.29: Found output directory under /home/rlsahita/spec2017/benchspec/CPU/557.xz_r/data/refspeed
+1587118323.29: /home/rlsahita/spec2017/benchspec/CPU/998.specrand_is/exe/specrand_is_base.myTest does not exist
+1587118323.29: build_check('998.specrand_is base myTest' (Spec::Benchmark::specrand_is998=HASH(0x5e7ba90)), check_exe=1, check_options=0) called at /home/rlsahita/spec2017/bin/harness/benchmark.pm line 315.
+1587118323.29: 	Spec::Benchmark::instance(Spec::Benchmark::specrand_is998=HASH(0x5c27630), Spec::Config=HASH(0x502b398), "base", "refspeed", "myTest") called at /home/rlsahita/spec2017/bin/harness/runcpu line 758
+
+1587118323.29: Found reftime file in /home/rlsahita/spec2017/benchspec/CPU/999.specrand_ir/data/refrate
+1587118323.29: Found input directory under /home/rlsahita/spec2017/benchspec/CPU/999.specrand_ir/data/refrate
+1587118323.29: Found output directory under /home/rlsahita/spec2017/benchspec/CPU/999.specrand_ir/data/refrate
+1587118323.29: Compiling Binaries
+1587118323.29: ------------------------------------------------------------------------
+1587118323.29: /home/rlsahita/spec2017/benchspec/CPU/600.perlbench_s/exe/perlbench_s_base.myTest does not exist
+1587118323.29: build_check('600.perlbench_s base myTest' (Spec::Benchmark::perlbench_s600=HASH(0x5eb8a58)), check_exe=1, check_options=1) called at /home/rlsahita/spec2017/bin/harness/runcpu line 1027.
+
+1587118323.29:   Building 600.perlbench_s base myTest: (build_base_myTest.0000) [2020-04-17 03:12:03]
+1587118323.29:    Creating directory at '/home/rlsahita/spec2017/benchspec/CPU/600.perlbench_s/build/build_base_myTest.0000' for 600.perlbench_s base myTest build
+1587118323.39: Comparing SHA-512 hashes:
+1587118323.39:   a744d08c01ea13df07c929b2eb54739190be53aef8c5f9764728525162e748182bc265b53595b7c8869d32172368d3a565a94c5ec2a82e545ba5f2a34ac51c04 /home/rlsahita/spec2017/benchspec/CPU/500.perlbench_r/src/Makefile
+1587118323.39:   a744d08c01ea13df07c929b2eb54739190be53aef8c5f9764728525162e748182bc265b53595b7c8869d32172368d3a565a94c5ec2a82e545ba5f2a34ac51c04 /home/rlsahita/spec2017/benchspec/CPU/600.perlbench_s/build/build_base_myTest.0000/Makefile
+1587118323.40: Wrote to makefile '/home/rlsahita/spec2017/benchspec/CPU/600.perlbench_s/build/build_base_myTest.0000/Makefile.deps':
+1587118323.40: # End dependencies
+1587118323.40: # These are the build dependencies
+1587118323.40: $(addsuffix $(OBJ), $(basename XSUB.h)): XSUB.h perlapi.h
+1587118323.40: $(addsuffix $(OBJ), $(basename av.c)): av.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename config.h)): config.h perl-orig-config.h spec_config.h
+1587118323.40: $(addsuffix $(OBJ), $(basename cpan/Digest-SHA/src/sha.c)): cpan/Digest-SHA/src/sha.c cpan/Digest-SHA/src/sha.h cpan/Digest-SHA/src/sha64bit.c cpan/Digest-SHA/src/sha64bit.h
+1587118323.40: $(addsuffix $(OBJ), $(basename deb.c)): deb.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename doio.c)): doio.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename doop.c)): doop.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename dump.c)): dump.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h mg_names.inc op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regcharclass.h regcomp.h regexp.h regnodes.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename ext/Cwd/Cwd.c)): ext/Cwd/Cwd.c EXTERN.h XSUB.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlapi.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename ext/Data/Dumper/Dumper.c)): ext/Data/Dumper/Dumper.c EXTERN.h XSUB.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlapi.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename ext/Devel/Peek/Peek.c)): ext/Devel/Peek/Peek.c EXTERN.h XSUB.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlapi.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename ext/Digest/MD5/MD5.c)): ext/Digest/MD5/MD5.c EXTERN.h XSUB.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename ext/Digest/SHA/SHA.c)): ext/Digest/SHA/SHA.c EXTERN.h XSUB.h av.h config.h cop.h cpan/Digest-SHA/src/sha.c cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename ext/File-Glob/Glob.c)): ext/File-Glob/Glob.c av.h config.h cop.h cv.h embed.h embedvar.h ext/File-Glob/const-c.inc form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename ext/IO/IO.c)): ext/IO/IO.c EXTERN.h XSUB.h av.h config.h cop.h cv.h embed.h embedvar.h ext/IO/poll.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlapi.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename ext/IO/poll.c)): ext/IO/poll.c EXTERN.h XSUB.h av.h config.h cop.h cv.h embed.h embedvar.h ext/IO/poll.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlapi.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename ext/MIME/Base64/Base64.c)): ext/MIME/Base64/Base64.c EXTERN.h XSUB.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlapi.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename ext/Storable/Storable.c)): ext/Storable/Storable.c EXTERN.h XSUB.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlapi.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename ext/Sys/Hostname/Hostname.c)): ext/Sys/Hostname/Hostname.c EXTERN.h XSUB.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlapi.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename ext/Time/HiRes/HiRes.c)): ext/Time/HiRes/HiRes.c EXTERN.h XSUB.h av.h config.h cop.h cv.h embed.h embedvar.h ext/Time/HiRes/const-c.inc form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlapi.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename ext/attrs/attrs.c)): ext/attrs/attrs.c EXTERN.h XSUB.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlapi.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename ext/re/re_comp.c)): ext/re/re_comp.c regcomp.c
+1587118323.40: $(addsuffix $(OBJ), $(basename ext/re/re_exec.c)): ext/re/re_exec.c invlist_inline.h
+1587118323.40: $(addsuffix $(OBJ), $(basename globals.c)): globals.c INTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlapi.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename gv.c)): gv.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h overload.inc pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename hv.c)): hv.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename iperlsys.h)): iperlsys.h perlio.h
+1587118323.40: $(addsuffix $(OBJ), $(basename locale.c)): locale.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename mg.c)): mg.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename non-core-ext/HTML/Parser/Parser.c)): non-core-ext/HTML/Parser/Parser.c EXTERN.h XSUB.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h non-core-ext/HTML/Parser/hctype.h non-core-ext/HTML/Parser/hparser.c non-core-ext/HTML/Parser/hparser.h non-core-ext/HTML/Parser/parser-util.c non-core-ext/HTML/Parser/tokenpos.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlapi.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename non-core-ext/HTML/Parser/hparser.c)): non-core-ext/HTML/Parser/hparser.c hctype.h tokenpos.h
+1587118323.40: $(addsuffix $(OBJ), $(basename numeric.c)): numeric.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename op.c)): op.c EXTERN.h XSUB.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h keywords.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlapi.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename pad.c)): pad.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename perl.c)): perl.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename perlapi.c)): perlapi.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlapi.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename perlhost.h)): perlhost.h iperlsys.h perlio.h vdir.h vmem.h
+1587118323.40: $(addsuffix $(OBJ), $(basename perlio.c)): perlio.c EXTERN.h XSUB.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlapi.h perlio.h perliol.h perlsdio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename perlmain.c)): perlmain.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename perly.c)): perly.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename pp.c)): pp.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h keywords.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h reentr.h regexp.h scope.h spec_config.h specrand/specrand.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename pp_ctl.c)): pp_ctl.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename pp_hot.c)): pp_hot.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename pp_pack.c)): pp_pack.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h packsizetables.inc pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename pp_sort.c)): pp_sort.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h specrand/specrand.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename pp_sys.c)): pp_sys.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h reentr.h regexp.h scope.h spec_config.h sv.h thread.h time64.c utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename proto.h)): proto.h pp_proto.h
+1587118323.40: $(addsuffix $(OBJ), $(basename reentr.c)): reentr.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h reentr.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename regcomp.c)): regcomp.c EXTERN.h INTERN.h av.h config.h cop.h cv.h dquote.c embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h invlist_inline.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regcharclass.h regcomp.h regexp.h regnodes.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename regexec.c)): regexec.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h invlist_inline.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regcharclass.h regcomp.h regexp.h regnodes.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename run.c)): run.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename scope.c)): scope.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename sv.c)): sv.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regcharclass.h regcomp.h regexp.h regnodes.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename taint.c)): taint.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename toke.c)): toke.c EXTERN.h av.h config.h cop.h cv.h dquote.c embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h keywords.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename universal.c)): universal.c EXTERN.h XSUB.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlapi.h perlio.h perliol.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h vxs.inc warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename utf8.c)): utf8.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h invlist_inline.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename util.c)): util.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h specrand/specrand.h sv.h thread.h utf8.h util.h uudmap.h vutil.c warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename win32/perllib.c)): win32/perllib.c EXTERN.h XSUB.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlapi.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename win32/win32.c)): win32/win32.c EXTERN.h XSUB.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlapi.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h win32/win32iop.h
+1587118323.40: $(addsuffix $(OBJ), $(basename win32/win32io.c)): win32/win32io.c EXTERN.h XSUB.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlapi.h perlio.h perliol.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: $(addsuffix $(OBJ), $(basename win32/win32sck.c)): win32/win32sck.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h win32/win32iop.h
+1587118323.40: $(addsuffix $(OBJ), $(basename win32/win32thread.c)): win32/win32thread.c EXTERN.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h win32/win32.h win32/win32iop.h
+1587118323.40: $(addsuffix $(OBJ), $(basename xsutils.c)): xsutils.c EXTERN.h XSUB.h av.h config.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h hv.h intrpvar.h iperlsys.h mg.h op.h opcode.h opnames.h overload.h pad.h parser.h patchlevel.h perl-orig-config.h perl.h perlapi.h perlio.h perlvars.h perly.h pp.h pp_proto.h proto.h regexp.h scope.h spec_config.h sv.h thread.h utf8.h util.h uudmap.h warnings.h
+1587118323.40: Wrote to makefile '/home/rlsahita/spec2017/benchspec/CPU/600.perlbench_s/build/build_base_myTest.0000/Makefile.spec':
+1587118323.40: TUNE=base
+1587118323.40: LABEL=myTest
+1587118323.40: NUMBER=600
+1587118323.40: NAME=perlbench_s
+1587118323.40: SOURCES= av.c caretx.c deb.c doio.c doop.c dump.c globals.c gv.c hv.c \
+1587118323.40: 	 keywords.c locale.c mg.c numeric.c op.c pad.c perl.c perlapi.c perlio.c \
+1587118323.40: 	 perlmain.c perly.c pp.c pp_ctl.c pp_hot.c pp_pack.c pp_sort.c pp_sys.c \
+1587118323.40: 	 regcomp.c regexec.c run.c scope.c sv.c taint.c toke.c universal.c utf8.c \
+1587118323.40: 	 util.c reentr.c mro_core.c mathoms.c specrand/specrand.c \
+1587118323.40: 	 dist/PathTools/Cwd.c dist/Data-Dumper/Dumper.c ext/Devel-Peek/Peek.c \
+1587118323.40: 	 cpan/Digest-MD5/MD5.c cpan/Digest-SHA/SHA.c DynaLoader.c dist/IO/IO.c \
+1587118323.40: 	 dist/IO/poll.c cpan/MIME-Base64/Base64.c Opcode.c \
+1587118323.40: 	 dist/Storable/Storable.c ext/Sys-Hostname/Hostname.c \
+1587118323.40: 	 cpan/Time-HiRes/HiRes.c ext/XS-Typemap/stdio.c \
+1587118323.40: 	 ext/attributes/attributes.c cpan/HTML-Parser/Parser.c ext/mro/mro.c \
+1587118323.40: 	 ext/re/re.c ext/re/re_comp.c ext/re/re_exec.c ext/arybase/arybase.c \
+1587118323.40: 	 ext/PerlIO-scalar/scalar.c ext/PerlIO-via/via.c ext/File-Glob/bsd_glob.c \
+1587118323.40: 	 ext/File-Glob/Glob.c ext/Hash-Util/Util.c \
+1587118323.40: 	 ext/Hash-Util-FieldHash/FieldHash.c \
+1587118323.40: 	 ext/Tie-Hash-NamedCapture/NamedCapture.c \
+1587118323.40: 	 cpan/Scalar-List-Utils/ListUtil.c
+1587118323.40: EXEBASE=perlbench_s
+1587118323.40: NEED_MATH=yes
+1587118323.40: BENCHLANG=C
+1587118323.40: BENCH_FLAGS      = -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
+1587118323.40: CC               = icc -m64 -std=c11 -fcf-protection=full -static
+1587118323.40: CC_VERSION_OPTION = --version
+1587118323.40: COPTIMIZE        = $(FAST_NO_STATIC)  -qopt-prefetch  -qopenmp -DSPEC_OPENMP
+1587118323.40: CPORTABILITY     = -DSPEC_LINUX_X64
+1587118323.40: CXX              = icpc -m64
+1587118323.40: CXXOPTIMIZE      = $(FAST_NO_STATIC)  -qopt-prefetch
+1587118323.40: CXX_VERSION_OPTION = --version
+1587118323.40: EXTRA_FOPTIMIZE  = -nostandard-realloc-lhs
+1587118323.40: FAST             = $(SSE) $(OPT_ROOT) -static -auto-p32
+1587118323.40: FAST_NO_STATIC   = $(SSE) $(OPT_ROOT) -auto-p32
+1587118323.40: FC               = ifort -m64
+1587118323.40: FC_VERSION_OPTION = --version
+1587118323.40: FOPTIMIZE        = $(FORT_FAST_NO_STATIC)  -qopt-prefetch
+1587118323.40: FORT_FAST        = $(SSE) $(OPT_ROOT) -static
+1587118323.40: FORT_FAST_NO_STATIC = $(SSE) $(OPT_ROOT)
+1587118323.40: OPT_ROOT         = -ipo -O3 -no-prec-div
+1587118323.40: OS               = unix
+1587118323.40: PORTABILITY      = -DSPEC_LP64
+1587118323.40: SSE              = -xHOST
+1587118323.40: absolutely_no_locking = 0
+1587118323.40: abstol           = 
+1587118323.40: action           = validate
+1587118323.40: allow_label_override = 0
+1587118323.40: backup_config    = 1
+1587118323.40: baseexe          = perlbench_s
+1587118323.40: basepeak         = 0
+1587118323.40: bench_post_setup = sync
+1587118323.40: benchdir         = benchspec
+1587118323.40: benchmark        = 600.perlbench_s
+1587118323.40: binary           = 
+1587118323.40: bindir           = exe
+1587118323.40: builddir         = build
+1587118323.40: bundleaction     = 
+1587118323.40: bundlename       = 
+1587118323.40: calctol          = no
+1587118323.40: changedhash      = 0
+1587118323.40: check_version    = 0
+1587118323.40: clean_between_builds = no
+1587118323.40: command_add_redirect = 0
+1587118323.40: commanderrfile   = speccmds.err
+1587118323.40: commandexe       = perlbench_s_base.myTest
+1587118323.40: commandfile      = speccmds.cmd
+1587118323.40: commandoutfile   = speccmds.out
+1587118323.40: commandstdoutfile = speccmds.stdout
+1587118323.40: comparedir       = compare
+1587118323.40: compareerrfile   = compare.err
+1587118323.40: comparefile      = compare.cmd
+1587118323.40: compareoutfile   = compare.out
+1587118323.40: comparestdoutfile = compare.stdout
+1587118323.40: compile_error    = 0
+1587118323.40: compwhite        = 
+1587118323.40: configdir        = config
+1587118323.40: configfile       = no-cet-icc
+1587118323.40: configpath       = /home/rlsahita/spec2017/config/no-cet-icc.cfg
+1587118323.40: copies           = 1
+1587118323.40: current_range    = 
+1587118323.40: datadir          = data
+1587118323.40: default_size     = ref
+1587118323.40: default_submit   = $command
+1587118323.40: delay            = 0
+1587118323.40: deletebinaries   = 0
+1587118323.40: deletework       = 0
+1587118323.40: dependent_workloads = 0
+1587118323.40: device           = 
+1587118323.40: difflines        = 10
+1587118323.40: dirprot          = 511
+1587118323.40: discard_power_samples = 0
+1587118323.40: enable_monitor   = 1
+1587118323.40: endian           = 12345678
+1587118323.40: env_vars         = 0
+1587118323.40: expand_notes     = 0
+1587118323.40: expid            = 
+1587118323.40: exthash_bits     = 256
+1587118323.40: failflags        = 0
+1587118323.40: fake             = 0
+1587118323.40: feedback         = 1
+1587118323.40: flag_url_base    = https://www.spec.org/auto/cpu2017/Docs/benchmarks/flags/
+1587118323.40: floatcompare     = yes
+1587118323.40: force_monitor    = 0
+1587118323.40: from_runcpu      = 2
+1587118323.40: hostname         = tigerlake1-ravi
+1587118323.40: http_proxy       = 
+1587118323.40: http_timeout     = 30
+1587118323.40: hw_avail         = 
+1587118323.40: hw_cpu_max_mhz   = 
+1587118323.40: hw_cpu_name      = Genuine Intel 0000
+1587118323.40: hw_cpu_nominal_mhz = 
+1587118323.40: hw_disk          = 391 GB  add more disk info here
+1587118323.40: hw_memory001     = 15.431 GB fixme: If using DDR3, format is:
+1587118323.40: hw_memory002     = 'N GB (M x N GB nRxn PCn-nnnnnR-n, ECC)'
+1587118323.40: hw_model         = 
+1587118323.40: hw_nchips        = 1
+1587118323.40: hw_ncores        = 
+1587118323.40: hw_ncpuorder     = 
+1587118323.40: hw_nthreadspercore = 
+1587118323.40: hw_ocache        = 
+1587118323.40: hw_other         = 
+1587118323.40: hw_pcache        = 
+1587118323.40: hw_scache        = 
+1587118323.40: hw_tcache        = 
+1587118323.40: hw_vendor        = My Corporation
+1587118323.40: idle_current_range = 
+1587118323.40: idledelay        = 10
+1587118323.40: idleduration     = 60
+1587118323.40: ignore_errors    = 1
+1587118323.40: ignore_sigint    = 0
+1587118323.40: ignorecase       = 
+1587118323.40: info_wrap_columns = 50
+1587118323.40: inputdir         = input
+1587118323.40: inputgenerrfile  = inputgen.err
+1587118323.40: inputgenfile     = inputgen.cmd
+1587118323.40: inputgenoutfile  = inputgen.out
+1587118323.40: inputgenstdoutfile = inputgen.stdout
+1587118323.40: iteration        = -1
+1587118323.40: iterations       = 3
+1587118323.40: keeptmp          = 0
+1587118323.40: label            = myTest
+1587118323.40: license_num      = 13
+1587118323.40: line_width       = 1020
+1587118323.40: link_input_files = 1
+1587118323.40: locking          = 1
+1587118323.40: log              = CPU2017
+1587118323.40: log_line_width   = 1020
+1587118323.40: log_timestamp    = 0
+1587118323.40: logfile          = /home/rlsahita/spec2017/tmp/CPU2017.035/templogs/preenv.intspeed.035.0
+1587118323.40: logname          = /home/rlsahita/spec2017/tmp/CPU2017.035/templogs/preenv.intspeed.035.0
+1587118323.40: lognum           = 035.0
+1587118323.40: mail_reports     = all
+1587118323.40: mailcompress     = 0
+1587118323.40: mailmethod       = smtp
+1587118323.40: mailport         = 25
+1587118323.40: mailserver       = 127.0.0.1
+1587118323.40: mailto           = 
+1587118323.40: make             = specmake
+1587118323.40: make_no_clobber  = 0
+1587118323.40: makefile_template = Makefile.YYYtArGeTYYYspec
+1587118323.40: makeflags        = -j8
+1587118323.40: max_average_uncertainty = 1
+1587118323.40: max_hum_limit    = 0
+1587118323.40: max_report_runs  = 3
+1587118323.40: max_unknown_uncertainty = 1
+1587118323.40: mean_anyway      = 1
+1587118323.40: meter_connect_timeout = 30
+1587118323.40: meter_errors_default = 5
+1587118323.40: meter_errors_percentage = 5
+1587118323.40: min_report_runs  = 2
+1587118323.40: min_temp_limit   = 20
+1587118323.40: minimize_builddirs = 0
+1587118323.40: minimize_rundirs = 0
+1587118323.40: name             = perlbench_s
+1587118323.40: nansupport       = no
+1587118323.40: need_math        = yes
+1587118323.40: no_input_handler = close
+1587118323.40: no_monitor       = 
+1587118323.40: noratios         = 0
+1587118323.40: note_preenv      = 1
+1587118323.40: notes_plat_sysinfo_000 =  Sysinfo program /home/rlsahita/spec2017/bin/sysinfo
+1587118323.40: notes_plat_sysinfo_005 =  Rev: r5797 of 2017-06-14 96c45e4568ad54c135fd618bcc091c0f
+1587118323.40: notes_plat_sysinfo_010 =  running on tigerlake1-ravi Fri Apr 17 03:12:02 2020
+1587118323.40: notes_plat_sysinfo_015 = 
+1587118323.40: notes_plat_sysinfo_020 =  SUT (System Under Test) info as seen by some common utilities.
+1587118323.40: notes_plat_sysinfo_025 =  For more information on this section, see
+1587118323.40: notes_plat_sysinfo_030 =     https://www.spec.org/cpu2017/Docs/config.html\#sysinfo
+1587118323.40: notes_plat_sysinfo_035 = 
+1587118323.40: notes_plat_sysinfo_040 =  From /proc/cpuinfo
+1587118323.40: notes_plat_sysinfo_045 =     model name : Genuine Intel(R) CPU 0000 @ 2.30GHz
+1587118323.40: notes_plat_sysinfo_050 =        1  "physical id"s (chips)
+1587118323.40: notes_plat_sysinfo_055 =        8 "processors"
+1587118323.40: notes_plat_sysinfo_060 =     cores, siblings (Caution: counting these is hw and system dependent. The following
+1587118323.40: notes_plat_sysinfo_065 =     excerpts from /proc/cpuinfo might not be reliable.  Use with caution.)
+1587118323.40: notes_plat_sysinfo_070 =        cpu cores : 4
+1587118323.40: notes_plat_sysinfo_075 =        siblings  : 8
+1587118323.40: notes_plat_sysinfo_080 =        physical 0: cores 0 1 2 3
+1587118323.40: notes_plat_sysinfo_085 = 
+1587118323.40: notes_plat_sysinfo_090 =  From lscpu:
+1587118323.40: notes_plat_sysinfo_095 =       Architecture:                    x86_64
+1587118323.40: notes_plat_sysinfo_100 =       CPU op-mode(s):                  32-bit, 64-bit
+1587118323.40: notes_plat_sysinfo_105 =       Byte Order:                      Little Endian
+1587118323.40: notes_plat_sysinfo_110 =       Address sizes:                   39 bits physical, 48 bits virtual
+1587118323.40: notes_plat_sysinfo_115 =       CPU(s):                          8
+1587118323.40: notes_plat_sysinfo_120 =       On-line CPU(s) list:             0-7
+1587118323.40: notes_plat_sysinfo_125 =       Thread(s) per core:              2
+1587118323.40: notes_plat_sysinfo_130 =       Core(s) per socket:              4
+1587118323.40: notes_plat_sysinfo_135 =       Socket(s):                       1
+1587118323.40: notes_plat_sysinfo_140 =       NUMA node(s):                    1
+1587118323.40: notes_plat_sysinfo_145 =       Vendor ID:                       GenuineIntel
+1587118323.40: notes_plat_sysinfo_150 =       CPU family:                      6
+1587118323.40: notes_plat_sysinfo_155 =       Model:                           140
+1587118323.40: notes_plat_sysinfo_160 =       Model name:                      Genuine Intel(R) CPU 0000 @ 2.30GHz
+1587118323.40: notes_plat_sysinfo_165 =       Stepping:                        0
+1587118323.40: notes_plat_sysinfo_170 =       CPU MHz:                         1795.738
+1587118323.40: notes_plat_sysinfo_175 =       CPU max MHz:                     4200.0000
+1587118323.40: notes_plat_sysinfo_180 =       CPU min MHz:                     400.0000
+1587118323.40: notes_plat_sysinfo_185 =       BogoMIPS:                        4608.00
+1587118323.40: notes_plat_sysinfo_190 =       Virtualization:                  VT-x
+1587118323.40: notes_plat_sysinfo_195 =       L1d cache:                       192 KiB
+1587118323.40: notes_plat_sysinfo_200 =       L1i cache:                       128 KiB
+1587118323.40: notes_plat_sysinfo_205 =       L2 cache:                        5 MiB
+1587118323.40: notes_plat_sysinfo_210 =       L3 cache:                        12 MiB
+1587118323.40: notes_plat_sysinfo_215 =       NUMA node0 CPU(s):               0-7
+1587118323.40: notes_plat_sysinfo_220 =       Vulnerability Itlb multihit:     KVM: Mitigation: Split huge pages
+1587118323.40: notes_plat_sysinfo_225 =       Vulnerability L1tf:              Not affected
+1587118323.40: notes_plat_sysinfo_230 =       Vulnerability Mds:               Vulnerable: Clear CPU buffers attempted, no
+1587118323.40: notes_plat_sysinfo_235 =       microcode; SMT vulnerable
+1587118323.40: notes_plat_sysinfo_240 =       Vulnerability Meltdown:          Not affected
+1587118323.40: notes_plat_sysinfo_245 =       Vulnerability Spec store bypass: Mitigation; Speculative Store Bypass disabled via
+1587118323.40: notes_plat_sysinfo_250 =       prctl and seccomp
+1587118323.40: notes_plat_sysinfo_255 =       Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user
+1587118323.40: notes_plat_sysinfo_260 =       pointer sanitization
+1587118323.40: notes_plat_sysinfo_265 =       Vulnerability Spectre v2:        Mitigation; Enhanced IBRS, IBPB conditional, RSB
+1587118323.40: notes_plat_sysinfo_270 =       filling
+1587118323.40: notes_plat_sysinfo_275 =       Vulnerability Tsx async abort:   Not affected
+1587118323.40: notes_plat_sysinfo_280 =       Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr
+1587118323.40: notes_plat_sysinfo_285 =       pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx
+1587118323.40: notes_plat_sysinfo_290 =       pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology
+1587118323.40: notes_plat_sysinfo_295 =       nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx
+1587118323.40: notes_plat_sysinfo_300 =       smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt
+1587118323.40: notes_plat_sysinfo_305 =       tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault
+1587118323.40: notes_plat_sysinfo_310 =       epb invpcid_single ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow vnmi flexpriority
+1587118323.40: notes_plat_sysinfo_315 =       ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid avx512f
+1587118323.40: notes_plat_sysinfo_320 =       avx512dq rdseed adx smap avx512ifma clflushopt clwb intel_pt avx512cd sha_ni
+1587118323.40: notes_plat_sysinfo_325 =       avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hwp
+1587118323.40: notes_plat_sysinfo_330 =       hwp_notify hwp_act_window hwp_epp hwp_pkg_req avx512vbmi umip pku ospke avx512_vbmi2
+1587118323.40: notes_plat_sysinfo_335 =       shstk gfni vaes vpclmulqdq avx512_vnni avx512_bitalg tme avx512_vpopcntdq rdpid
+1587118323.40: notes_plat_sysinfo_340 =       movdiri movdir64b avx512_vp2intersect ibt flush_l1d arch_capabilities
+1587118323.40: notes_plat_sysinfo_345 = 
+1587118323.40: notes_plat_sysinfo_350 =  /proc/cpuinfo cache data
+1587118323.40: notes_plat_sysinfo_355 =     cache size : 12288 KB
+1587118323.40: notes_plat_sysinfo_360 = 
+1587118323.40: notes_plat_sysinfo_365 =  From numactl --hardware  WARNING: a numactl 'node' might or might not correspond to a
+1587118323.40: notes_plat_sysinfo_370 =  physical chip.
+1587118323.40: notes_plat_sysinfo_375 = 
+1587118323.40: notes_plat_sysinfo_380 =  From /proc/meminfo
+1587118323.40: notes_plat_sysinfo_385 =     MemTotal:       16180852 kB
+1587118323.40: notes_plat_sysinfo_390 =     HugePages_Total:       0
+1587118323.40: notes_plat_sysinfo_395 =     Hugepagesize:       2048 kB
+1587118323.40: notes_plat_sysinfo_400 = 
+1587118323.40: notes_plat_sysinfo_405 =  From /etc/*release* /etc/*version*
+1587118323.40: notes_plat_sysinfo_410 =     fedora-release: Fedora release 31 (Thirty One)
+1587118323.40: notes_plat_sysinfo_415 =     os-release:
+1587118323.40: notes_plat_sysinfo_420 =        NAME=Fedora
+1587118323.40: notes_plat_sysinfo_425 =        VERSION="31 (Workstation Edition)"
+1587118323.40: notes_plat_sysinfo_430 =        ID=fedora
+1587118323.40: notes_plat_sysinfo_435 =        VERSION_ID=31
+1587118323.40: notes_plat_sysinfo_440 =        VERSION_CODENAME=""
+1587118323.40: notes_plat_sysinfo_445 =        PLATFORM_ID="platform:f31"
+1587118323.40: notes_plat_sysinfo_450 =        PRETTY_NAME="Fedora 31 (Workstation Edition)"
+1587118323.40: notes_plat_sysinfo_455 =        ANSI_COLOR="0;34"
+1587118323.40: notes_plat_sysinfo_460 =     redhat-release: Fedora release 31 (Thirty One)
+1587118323.40: notes_plat_sysinfo_465 =     system-release: Fedora release 31 (Thirty One)
+1587118323.40: notes_plat_sysinfo_470 =     system-release-cpe: cpe:/o:fedoraproject:fedora:31
+1587118323.40: notes_plat_sysinfo_475 = 
+1587118323.40: notes_plat_sysinfo_480 =  uname -a:
+1587118323.40: notes_plat_sysinfo_485 =     Linux tigerlake1-ravi 5.5.0-cet+ \#2 SMP Tue Feb 4 10:34:12 PST 2020 x86_64 x86_64
+1587118323.40: notes_plat_sysinfo_490 =     x86_64 GNU/Linux
+1587118323.40: notes_plat_sysinfo_495 = 
+1587118323.40: notes_plat_sysinfo_500 =  run-level 3 Mar 10 17:08
+1587118323.40: notes_plat_sysinfo_505 = 
+1587118323.40: notes_plat_sysinfo_510 =  SPEC is set to: /home/rlsahita/spec2017
+1587118323.40: notes_plat_sysinfo_515 =     Filesystem                              Type  Size  Used Avail Use% Mounted on
+1587118323.40: notes_plat_sysinfo_520 =     /dev/mapper/fedora_localhost--live-home ext4  391G   56G  316G  15% /home
+1587118323.40: notes_plat_sysinfo_525 = 
+1587118323.40: notes_plat_sysinfo_530 =  Additional information from dmidecode follows.  WARNING: Use caution when you interpret
+1587118323.40: notes_plat_sysinfo_535 =  this section. The 'dmidecode' program reads system data which is "intended to allow
+1587118323.40: notes_plat_sysinfo_540 =  hardware to be accurately determined", but the intent may not be met, as there are
+1587118323.40: notes_plat_sysinfo_545 =  frequent changes to hardware, firmware, and the "DMTF SMBIOS" standard.
+1587118323.40: notes_plat_sysinfo_550 = 
+1587118323.40: notes_plat_sysinfo_555 =  (End of data from sysinfo program)
+1587118323.40: notes_wrap_columns = 0
+1587118323.40: notes_wrap_indent =   
+1587118323.40: num              = 600
+1587118323.40: obiwan           = 
+1587118323.40: os_exe_ext       = 
+1587118323.40: output_format    = txt,html,cfg,pdf,csv
+1587118323.40: output_root      = 
+1587118323.40: outputdir        = output
+1587118323.40: parallel_test    = 1
+1587118323.40: parallel_test_submit = 0
+1587118323.40: parallel_test_workloads = 
+1587118323.40: path             = /home/rlsahita/spec2017/benchspec/CPU/600.perlbench_s
+1587118323.40: plain_train      = 1
+1587118323.40: platform         = 
+1587118323.40: power            = 0
+1587118323.40: preENV_LD_LIBRARY_PATH = /opt/intel/compilers_and_libraries_2017/linux/lib/intel64
+1587118323.40: preENV_OMP_STACKSIZE = 192M
+1587118323.40: preenv           = 0
+1587118323.40: prefix           = 
+1587118323.40: prepared_by      = My Corporation
+1587118323.40: ranks            = 1
+1587118323.40: rawhash_bits     = 256
+1587118323.40: rebuild          = 0
+1587118323.40: reftime          = reftime
+1587118323.40: reltol           = 
+1587118323.40: reportable       = 0
+1587118323.40: resultdir        = result
+1587118323.40: review           = 0
+1587118323.40: run              = all
+1587118323.40: runcpu           = /home/rlsahita/spec2017/bin/harness/runcpu --ignore_errors --noreportable --configfile no-cet-icc --define cores=1 --noreportable --nopower --runmode speed --tune base --size refspeed intspeed --nopreenv --note-preenv --logfile /home/rlsahita/spec2017/tmp/CPU2017.035/templogs/preenv.intspeed.035.0 --lognum 035.0 --from_runcpu 2
+1587118323.40: rundir           = run
+1587118323.40: runmode          = speed
+1587118323.40: safe_eval        = 1
+1587118323.40: save_build_files = 
+1587118323.40: section_specifier_fatal = 1
+1587118323.40: setprocgroup     = 1
+1587118323.40: setup_error      = 0
+1587118323.40: sigint           = 2
+1587118323.40: size             = refspeed
+1587118323.40: size_class       = ref
+1587118323.40: skipabstol       = 
+1587118323.40: skipobiwan       = 
+1587118323.40: skipreltol       = 
+1587118323.40: skiptol          = 
+1587118323.40: smarttune        = base
+1587118323.40: specdiff         = specdiff
+1587118323.40: specrun          = specinvoke
+1587118323.40: srcalt           = 
+1587118323.40: srcdir           = src
+1587118323.40: srcsource        = /home/rlsahita/spec2017/benchspec/CPU/500.perlbench_r/src
+1587118323.40: stagger          = 10
+1587118323.40: strict_rundir_verify = 1
+1587118323.40: sw_avail         = 
+1587118323.40: sw_base_ptrsize  = 64-bit
+1587118323.40: sw_compiler001   = C/C++: Version 17.0.1.132 of Intel C/C++
+1587118323.40: sw_compiler002   = Compiler for Linux;
+1587118323.40: sw_compiler003   = Fortran: Version 17.0.1.132 of Intel Fortran
+1587118323.40: sw_compiler004   = Compiler for Linux
+1587118323.40: sw_file          = ext4
+1587118323.40: sw_os001         = Fedora release 31 (Thirty One)
+1587118323.40: sw_os002         = 5.5.0-cet+
+1587118323.40: sw_peak_ptrsize  = Not Applicable
+1587118323.40: sw_state         = Run level 3 (add definition here)
+1587118323.40: sysinfo_hash_bits = 256
+1587118323.40: sysinfo_program  = specperl /home/rlsahita/spec2017/bin/sysinfo
+1587118323.40: sysinfo_program_hash = sysinfo:SHA:ecd2bef08f316af97f5a7768b641e2a3307c1b4b68efb5a57fa76367d790d233
+1587118323.40: table            = 1
+1587118323.40: teeout           = 0
+1587118323.40: test_date        = Apr-2020
+1587118323.40: test_sponsor     = My Corporation
+1587118323.40: tester           = My Corporation
+1587118323.40: threads          = 4
+1587118323.40: top              = /home/rlsahita/spec2017
+1587118323.40: train_single_thread = 0
+1587118323.40: train_with       = train
+1587118323.40: tune             = base
+1587118323.40: uid              = 1001
+1587118323.40: unbuffer         = 1
+1587118323.40: uncertainty_exception = 5
+1587118323.40: update           = 0
+1587118323.40: update_url       = http://www.spec.org/auto/cpu2017/updates/
+1587118323.40: use_submit_for_compare = 0
+1587118323.40: use_submit_for_speed = 0
+1587118323.40: username         = rlsahita
+1587118323.40: verbose          = 5
+1587118323.40: verify_binaries  = 1
+1587118323.40: version          = 0.906000
+1587118323.40: version_url      = http://www.spec.org/auto/cpu2017/current_version
+1587118323.40: voltage_range    = 
+1587118323.40: worklist         = list
+1587118323.40: OUTPUT_RMFILES   = diffmail.2.550.15.24.23.100.out perfect.b.3.out scrabbl.out splitmail.535.13.25.24.1091.1.out suns.out validate
+1587118323.41:   Compile for '600.perlbench_s' started at: 2020-04-17 03:12:03 (1587118323)
+1587118323.41: Issuing make.clean command 'specmake --output-sync -j8 clean'
+1587118323.41: Start make.clean command: 2020-04-17 03:12:03 (1587118323.41097)
+1587118323.51: rm -rf *.o  diffmail.2.550.15.24.23.100.out perfect.b.3.out scrabbl.out splitmail.535.13.25.24.1091.1.out suns.out validate
+1587118323.51: find . \( -name \*.o -o -name '*.fppized.f*' -o -name '*.i' -o -name '*.mod' \) -print | xargs rm -rf
+1587118323.51: rm -rf perlbench_s
+1587118323.51: rm -rf perlbench_s.exe
+1587118323.51: rm -rf core
+1587118323.57: Stop make.clean command: 2020-04-17 03:12:03 (1587118323.57312)
+1587118323.57: Elapsed time for make.clean command: 00:00:00 (0.162152051925659)
+1587118323.57: Issuing make command 'specmake --output-sync -j8 build'
+1587118323.57: Start make command: 2020-04-17 03:12:03 (1587118323.57445)
+1587118323.88: icc -m64 -std=c11 -fcf-protection=full -static -c -o caretx.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        caretx.c
+1587118323.88: icc -m64 -std=c11 -fcf-protection=full -static -c -o globals.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        globals.c
+1587118323.88: icc -m64 -std=c11 -fcf-protection=full -static -c -o deb.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        deb.c
+1587118323.88: icc -m64 -std=c11 -fcf-protection=full -static -c -o av.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        av.c
+1587118323.98: icc -m64 -std=c11 -fcf-protection=full -static -c -o doop.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        doop.c
+1587118323.98: icc -m64 -std=c11 -fcf-protection=full -static -c -o doio.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        doio.c
+1587118323.98: icc -m64 -std=c11 -fcf-protection=full -static -c -o dump.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        dump.c
+1587118323.98: icc -m64 -std=c11 -fcf-protection=full -static -c -o gv.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        gv.c
+1587118324.08: icc -m64 -std=c11 -fcf-protection=full -static -c -o locale.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        locale.c
+1587118324.08: icc -m64 -std=c11 -fcf-protection=full -static -c -o numeric.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        numeric.c
+1587118324.08: icc -m64 -std=c11 -fcf-protection=full -static -c -o keywords.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        keywords.c
+1587118324.08: icc -m64 -std=c11 -fcf-protection=full -static -c -o hv.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        hv.c
+1587118324.18: icc -m64 -std=c11 -fcf-protection=full -static -c -o perlapi.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        perlapi.c
+1587118324.18: icc -m64 -std=c11 -fcf-protection=full -static -c -o pad.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        pad.c
+1587118324.18: icc -m64 -std=c11 -fcf-protection=full -static -c -o mg.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        mg.c
+1587118324.28: icc -m64 -std=c11 -fcf-protection=full -static -c -o perlmain.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        perlmain.c
+1587118324.28: icc -m64 -std=c11 -fcf-protection=full -static -c -o perl.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        perl.c
+1587118324.28: icc -m64 -std=c11 -fcf-protection=full -static -c -o perly.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        perly.c
+1587118324.28: icc -m64 -std=c11 -fcf-protection=full -static -c -o perlio.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        perlio.c
+1587118324.48: icc -m64 -std=c11 -fcf-protection=full -static -c -o pp_sort.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        pp_sort.c
+1587118324.48: icc -m64 -std=c11 -fcf-protection=full -static -c -o pp_pack.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        pp_pack.c
+1587118324.48: icc -m64 -std=c11 -fcf-protection=full -static -c -o pp_hot.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        pp_hot.c
+1587118324.48: icc -m64 -std=c11 -fcf-protection=full -static -c -o op.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        op.c
+1587118324.48: icc -m64 -std=c11 -fcf-protection=full -static -c -o pp_ctl.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        pp_ctl.c
+1587118324.58: icc -m64 -std=c11 -fcf-protection=full -static -c -o run.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        run.c
+1587118324.58: icc -m64 -std=c11 -fcf-protection=full -static -c -o pp.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        pp.c
+1587118324.58: icc -m64 -std=c11 -fcf-protection=full -static -c -o pp_sys.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        pp_sys.c
+1587118324.58: icc -m64 -std=c11 -fcf-protection=full -static -c -o scope.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        scope.c
+1587118324.69: icc -m64 -std=c11 -fcf-protection=full -static -c -o taint.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        taint.c
+1587118324.79: icc -m64 -std=c11 -fcf-protection=full -static -c -o universal.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        universal.c
+1587118324.79: icc -m64 -std=c11 -fcf-protection=full -static -c -o reentr.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        reentr.c
+1587118324.89: icc -m64 -std=c11 -fcf-protection=full -static -c -o regexec.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        regexec.c
+1587118324.89: icc -m64 -std=c11 -fcf-protection=full -static -c -o util.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        util.c
+1587118324.89: icc -m64 -std=c11 -fcf-protection=full -static -c -o utf8.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        utf8.c
+1587118324.89: icc -m64 -std=c11 -fcf-protection=full -static -c -o specrand/specrand.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        specrand/specrand.c
+1587118324.99: icc -m64 -std=c11 -fcf-protection=full -static -c -o regcomp.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        regcomp.c
+1587118324.99: icc -m64 -std=c11 -fcf-protection=full -static -c -o sv.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        sv.c
+1587118324.99: icc -m64 -std=c11 -fcf-protection=full -static -c -o mro_core.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        mro_core.c
+1587118324.99: icc -m64 -std=c11 -fcf-protection=full -static -c -o mathoms.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        mathoms.c
+1587118324.99: icc -m64 -std=c11 -fcf-protection=full -static -c -o dist/PathTools/Cwd.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        dist/PathTools/Cwd.c
+1587118324.99: icc -m64 -std=c11 -fcf-protection=full -static -c -o ext/Devel-Peek/Peek.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        ext/Devel-Peek/Peek.c
+1587118325.09: icc -m64 -std=c11 -fcf-protection=full -static -c -o dist/Data-Dumper/Dumper.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        dist/Data-Dumper/Dumper.c
+1587118325.09: icc -m64 -std=c11 -fcf-protection=full -static -c -o cpan/Digest-MD5/MD5.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        cpan/Digest-MD5/MD5.c
+1587118325.09: icc -m64 -std=c11 -fcf-protection=full -static -c -o DynaLoader.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        DynaLoader.c
+1587118325.19: icc -m64 -std=c11 -fcf-protection=full -static -c -o cpan/MIME-Base64/Base64.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        cpan/MIME-Base64/Base64.c
+1587118325.19: icc -m64 -std=c11 -fcf-protection=full -static -c -o dist/IO/IO.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        dist/IO/IO.c
+1587118325.19: icc -m64 -std=c11 -fcf-protection=full -static -c -o dist/IO/poll.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        dist/IO/poll.c
+1587118325.19: icc -m64 -std=c11 -fcf-protection=full -static -c -o cpan/Digest-SHA/SHA.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        cpan/Digest-SHA/SHA.c
+1587118325.19: icc -m64 -std=c11 -fcf-protection=full -static -c -o ext/XS-Typemap/stdio.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        ext/XS-Typemap/stdio.c
+1587118325.19: icc -m64 -std=c11 -fcf-protection=full -static -c -o toke.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        toke.c
+1587118325.19: icc -m64 -std=c11 -fcf-protection=full -static -c -o Opcode.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        Opcode.c
+1587118325.29: icc -m64 -std=c11 -fcf-protection=full -static -c -o ext/Sys-Hostname/Hostname.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        ext/Sys-Hostname/Hostname.c
+1587118325.29: icc -m64 -std=c11 -fcf-protection=full -static -c -o cpan/Time-HiRes/HiRes.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        cpan/Time-HiRes/HiRes.c
+1587118325.29: icc -m64 -std=c11 -fcf-protection=full -static -c -o ext/attributes/attributes.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        ext/attributes/attributes.c
+1587118325.39: icc -m64 -std=c11 -fcf-protection=full -static -c -o ext/re/re.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        ext/re/re.c
+1587118325.39: icc -m64 -std=c11 -fcf-protection=full -static -c -o ext/mro/mro.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        ext/mro/mro.c
+1587118325.39: icc -m64 -std=c11 -fcf-protection=full -static -c -o cpan/HTML-Parser/Parser.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        cpan/HTML-Parser/Parser.c
+1587118325.49: icc -m64 -std=c11 -fcf-protection=full -static -c -o dist/Storable/Storable.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        dist/Storable/Storable.c
+1587118325.49: icc -m64 -std=c11 -fcf-protection=full -static -c -o ext/PerlIO-scalar/scalar.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        ext/PerlIO-scalar/scalar.c
+1587118325.49: icc -m64 -std=c11 -fcf-protection=full -static -c -o ext/arybase/arybase.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        ext/arybase/arybase.c
+1587118325.49: icc -m64 -std=c11 -fcf-protection=full -static -c -o ext/PerlIO-via/via.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        ext/PerlIO-via/via.c
+1587118325.49: icc -m64 -std=c11 -fcf-protection=full -static -c -o ext/File-Glob/bsd_glob.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        ext/File-Glob/bsd_glob.c
+1587118325.59: icc -m64 -std=c11 -fcf-protection=full -static -c -o ext/File-Glob/Glob.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        ext/File-Glob/Glob.c
+1587118325.59: icc -m64 -std=c11 -fcf-protection=full -static -c -o ext/Hash-Util/Util.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        ext/Hash-Util/Util.c
+1587118325.59: icc -m64 -std=c11 -fcf-protection=full -static -c -o ext/Tie-Hash-NamedCapture/NamedCapture.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        ext/Tie-Hash-NamedCapture/NamedCapture.c
+1587118325.59: icc -m64 -std=c11 -fcf-protection=full -static -c -o ext/Hash-Util-FieldHash/FieldHash.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        ext/Hash-Util-FieldHash/FieldHash.c
+1587118325.69: icc -m64 -std=c11 -fcf-protection=full -static -c -o ext/re/re_exec.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        ext/re/re_exec.c
+1587118325.69: icc -m64 -std=c11 -fcf-protection=full -static -c -o cpan/Scalar-List-Utils/ListUtil.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        cpan/Scalar-List-Utils/ListUtil.c
+1587118325.79: icc -m64 -std=c11 -fcf-protection=full -static -c -o ext/re/re_comp.o -DSPEC -DNDEBUG -DPERL_CORE -I. -Idist/IO -Icpan/Time-HiRes -Icpan/HTML-Parser -Iext/re -Ispecrand -DDOUBLE_SLASHES_SPECIAL=0 -D_LARGE_FILES -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -xHOST -ipo -O3 -no-prec-div -auto-p32  -qopt-prefetch  -qopenmp -DSPEC_OPENMP       -DSPEC_LP64 -DSPEC_LINUX_X64        ext/re/re_comp.c

@@ -1,0 +1,1782 @@
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta name="generator" content="SPEC CPU2017 Tools v5749 (flags v5178)" />
+<meta http-equiv="Content-type" content="text/html;charset=utf-8" />
+<style type="text/css" id="internalScreen" media="screen">
+<!--
+body {
+  margin:  1em;
+  border:  0;
+  padding: 0;
+  background: white;
+  color:      black;
+  font-family: "Times Roman", times, serif;
+}
+
+.tt {
+  font-family: monospace;
+}
+
+div.flagClass > h2 {
+  border-bottom: 1px dotted black;
+  width: 80%;
+  font-family: sans-serif;
+}
+
+div.flagDesc {
+  clear: both;
+  background-color: rgb(255, 245, 220);
+  border: 1px solid blue; /* XXX This is for debugging */ 
+  margin: 0 auto;
+  width: 90%;
+}
+
+li.flagName {
+  font-weight: bold;
+  width: 100%;
+  border-bottom: 1px solid black;
+  display: block;
+  margin: 0.5em 0 0.5em 0;
+  font-size: 125%;
+  white-space: nowrap;
+}
+
+/* (presumably short) informationals all get grouped together near the top
+ * of the flag description block.
+ */
+.flagOrigin, .flagDescClass, .flagDescCompiler, .flagDescRE, .flagDescParallel, .flagVar {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  float: left;
+  padding: 0.25em;
+  margin: 0 0 0.25em 0;
+}
+
+.flagDescClass::before {
+  content: "Flag Class: ";
+}
+.flagDescCompiler::before {
+  content: "Compilers that recognize this flag: ";
+}
+.flagDescRE::before {
+  content: "Regular Expression: ";
+}
+.flagDescParallel::before {
+  content: "Indicates automatic parallelization: ";
+}
+.flagVar::before {
+  content: "Found In: ";
+}
+
+span.flagDescInc {
+  border-bottom: 1px solid black;
+}
+
+/* The description text stands alone. */
+.descText {
+  clear: both;
+  padding: 0.5em 1em 0.5em 1em;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  margin: 0.5em 0 0.5em 0;
+}
+
+/* This is a separate class so that in the print style sheet it can
+ * be ignored.
+ * Also, 'style="clear:both;"' is longer than 'class="clear"'
+ */
+.clear {
+  clear: both;
+}
+
+/* This is really for the link _to_ the flag report */
+li.unknown > a:link, a:visited { text-decoration: none; }
+
+.monospace {
+  font-family: Courier, "Courier New", monospace;
+}
+
+ul.flagDescList {
+  clear: both;
+  list-style-type: none;
+}
+
+/* Arrange for each flag description to have some headroom. */
+ul.flagDescList > li {
+  margin: 2em 0 0 0;
+}
+
+ul.flagDesc {
+  list-style-type: none;
+}
+
+div.flagTOC {
+  border: 1px solid white;
+  padding: 0.5em 1em;
+  margin: 0 auto;
+  width: 95%;
+}
+
+ul.flagTOC {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.flagTOC > li {
+  border: thin dotted lightgray;
+  margin: 0 1em 0 0;
+  padding: 0.25em 0 0.25em 0;
+  float: left;
+  display: inline-block; /* Fix IE bug; compliant browsers will ignore this */
+  width: 22.3%;
+  min-height: 1.5em;
+  overflow: hidden; /* If the table gets squeezed too much, don't let the
+                     * text overlap
+                     */
+}
+
+ul.flagTOC > li > a {
+   color:blue;
+   text-decoration:none;
+}
+
+ul.SubMenu li {
+  border: 1px solid white; /* rgb(211, 211, 211); */
+}
+
+ul.SubMenu {
+  display: none;
+  position: absolute;
+  list-style-type: none;
+  border: 1px solid black;
+  background-color: white;
+  margin: 0 0 0 2em;
+  padding: 0.25em 5em 0.25em 0.5em;
+  white-space: nowrap;
+}
+
+li:hover > ul.SubMenu, ul.SubMenu:hover {
+  display: block;
+}
+
+ul.SubMenu > li:hover, ul.flagTOC > li:hover {
+  background-color: rgb(176, 196, 238); /* lightsteelgray... almost */
+  border: 1px solid rgb(128, 128, 128);
+}
+
+
+.resultpage a:link, .resultpage a:visited {
+  text-decoration: none;
+  border-bottom: 1px dashed black;
+  color: inherit;
+}
+
+.resultpage {
+  margin: auto;
+  padding: 0;
+  width: 1000px;
+}
+
+.resultpage_landscape {
+  width: 1200px;
+}
+
+div.logo {
+  float: left;
+  width: 38px;
+  height: 57px;
+}
+
+.titlebarcontainer, .resultstable, .ncsection {
+  border: solid 1px;
+  width: 100%;
+  float: left;
+}
+
+.ncsection {
+  background-color: white;
+  color: black;
+}
+
+.titlebar {
+  float: left;
+  padding: 0em 1em 0em 1em;
+  text-align: center;
+  width: 91%;
+}
+
+div.titlebar > h1, div.titlebar > p {
+  margin: 0 1em 0 1em;
+}
+
+div.ncsection {
+  font-size: 150%;
+  font-weight: bold;
+  text-align: center;
+}
+
+.systembar {
+  width: 65%;
+  font-size: 150%;
+  margin: 0;
+}
+
+td.systembar {
+  padding: 0.2em;
+}
+
+.metricbar {
+  margin: 0;
+  font-size: 120%;
+}
+
+/* CSS for the old-style div-based systembar */
+
+div.systembar {
+  float: left;
+  padding: 0.1em;
+  border-right: solid 1px black;
+}
+
+div.metricbar {
+  padding: 0.1em;
+  float: right;
+  width: 33%;
+  height: 50%;
+}
+
+.base, .metricbar#base {
+  background-color: #c8c8c8;
+  color: black;
+}
+
+.peak, .metricbar#peak {
+  background-color: transparent;
+  color: #2626b3;       /* peak blue */
+}
+
+.metricbar p {
+  margin: 0;
+  padding: 0.2em;
+}
+
+.datebar p, .systembar p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Datebar stuff for older results */
+.datebar p {
+  float: left;
+  border-left: solid 1px black;
+}
+
+span.item {
+  float: left;
+  margin: 0;
+  padding: 0.1em 0 0.1em 0.5em;
+}
+
+span.value {
+  float: right;
+  padding: 0.1em 0.5em 0.1em 0;
+}
+
+div.datebar {
+  width: 100%;
+  float: left;
+  min-height: 100%;
+  border: solid 1px black;
+}
+
+p#test_sponsor         { width: 48%; }
+p#tester               { width: 48%; }
+p#license_num          { width: 24%; }
+p#test_date            { width: 23%; }
+p#hw_avail, p#sw_avail { width: 25%; }
+
+/* Table-based datebar and systembar on newer results */
+table.datebar, table.titlebarcontainer {
+  float: left;
+  width: 100%;
+  min-height: 100%;
+  border-collapse: collapse;
+  border: solid 1px black;
+  table-layout: fixed;
+}
+
+table.datebar th {
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  padding-left: 0.5em;
+  padding: 0 0.5em 0 0.25em;
+}
+
+table.datebar td {
+  text-align: left;
+  padding: 0 0.5em 0 0;
+}
+
+table.titlebarcontainer tr {
+  vertical-align: top;
+}
+table.titlebarcontainer td {
+  border-right: 1px solid black;
+}
+
+th#license_num          { width: 17%; }
+th#test_sponsor         { width: 17%; }
+th#tester               { width: 17%; }
+th#test_date            { width: 22%; }
+th#hw_avail             { width: 22%; }
+th#sw_avail             { width: 22%; }
+td#license_num_val      { width: 52%; }
+td#test_sponsor_val     { width: 52%; }
+td#tester_val           { width: 52%; }
+td#test_date_val        { width: 13%; white-space: nowrap; }
+td#hw_avail_val         { width: 13%; white-space: nowrap; }
+td#sw_avail_val         { width: 13%; white-space: nowrap; }
+
+
+div.graph {
+  width: 100%
+  margin: auto;
+}
+
+div.sysdesc > h2 {
+  text-align: center;
+  background-color: #c8c8c8;
+  color: black;
+  padding: 0.5em 0 0.5em 0;
+  margin: 0;
+} 
+  
+div.sysdesc {
+  margin: 0.5em 0 0.5em 0;
+}
+
+div.infobox, div.sysdesc {
+  float: left;
+  width: 100%;
+  padding: 0;
+  border: solid 1px black;
+}
+
+div.infobox table {
+  width: 49%;
+  float: left;
+}
+
+div.infobox table tr {
+  vertical-align: top;
+}
+
+div.infobox table#Hardware,
+div.infobox table#BenchmarkSoftware {
+  width: 50%;
+  border-right: 1px solid black;
+}
+
+div.infobox table#Systems {
+  width: 100%;
+}
+
+div.infobox table#Power {
+  width: 100%;
+  border-top: 1px solid black;
+}
+
+div.infobox table#Systems tbody th {
+  width: 20%;
+}
+
+div.infobox thead th {
+  font-size: 200%;
+}
+
+div.infobox tbody th {
+  text-align: left;
+}
+
+.resultstable h2, div.notes h2 {
+  text-align: center;
+  margin: 0.1em;
+}
+
+div.notes h3 {
+  margin: 0.1em;
+}
+
+div.notes table {
+  width: 100%;
+}
+
+div.notes table tr td {
+  text-align: right;
+  vertical-align: top;
+}
+
+/* Alas, IE6... if only you didn't suck so much...
+div.notes table tr td + td {
+*/
+div.notes table td.al {
+  text-align: left;
+  width: 85%;
+}
+
+div.notes table tr td {
+  padding-bottom: 1em;
+}
+
+div.notes table.portability tr td {
+  padding: 0em;
+}
+
+div.notes table.portability {
+  padding: 1em;
+}
+
+.resultstable table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.resultstable th.basecol, .resultstable th.peakcol {
+  padding: 0.1em;
+  font-size: 90%;
+}
+
+.resultstable th {
+  border: solid 2px black;
+}
+
+.resultstable td {
+  border: solid 1px #b8b8b8;
+}
+
+td.bm, th.bm { 
+  border-right: solid 2px black;
+  border-left: solid 2px black;
+}
+
+td.l_edge { 
+  border-left: solid 2px black;
+}
+
+td.r_edge { 
+  border-right: solid 2px black;
+}
+
+.resultstable tfoot td {
+  text-align: center;
+  border: solid 2px black;
+}
+
+tr.table_metrics > td {
+  text-align: right;
+}
+
+th.basecol {
+  background-color: #c8c8c8;
+  color: black;
+}
+td.basecol {
+  text-align: right;
+  background-color: transparent;
+  color: black;
+}
+
+th.peakcol {
+  text-align: center;
+}
+
+.peakcol {
+  background-color: transparent;
+  color: #2626b3;       /* peak blue */
+  text-align: right;
+}
+
+td.bm {
+  /* Basically, the benchmark name and copies columns */
+  background-color: #c8c8c8;
+  color: black;
+}
+
+span.selected {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.selected a:link, .selected a:visited {
+  border-bottom: 0;
+}
+
+div.notes {
+  width: 100%;
+  float: left;
+  border: solid 1px black;
+}
+
+div.flagfooter {
+  text-align: center;
+}
+
+div.errors {
+  border: solid 2px red;
+}
+div.errors h2 {
+  background-color: transparent;
+  color: red;
+}
+
+div.footer {
+  border: none;
+}
+
+/* People find the "double underline" confusing.  And Safari 1.3 doesn't deal
+ * well with attempting to disable the border for userflag links.  So just
+ * give up and don't decorate user flags specially.
+********************
+span.userflag {
+  text-decoration: underline;
+}
+
+.userflag a:link {
+  border-bottom: 0;
+}
+********************
+*/
+
+/* Keep flags from being wrapped */
+span.userflag, span.flagtext {
+  white-space: nowrap;
+}
+/* Most of the screen-specific CSS is also the common CSS */
+
+/* Style for the non-image W3C marking at the bottom of the page, courtesy of
+ * Marek Prokop (http://www.sovavsiti.cz/css/w3c_buttons.html)
+ */
+.w3cbutton3 {
+  margin: 1em 1em 0 0;
+  width: 9em;
+  border: 1px solid #ccc;
+  font-family: helvetica,arial,sans-serif;
+  font-size: 70%;
+  font-weight: bold;
+  float: left;
+}
+.w3cbutton3 a {
+  display: block;
+  width: 100%;
+}
+.w3cbutton3 a:link,
+.w3cbutton3 a:visited,
+.w3cbutton3 a:hover {
+  background-color: #fc6;
+  color: #000;
+  text-decoration: none;
+  border-bottom: none;
+}
+.w3cbutton3 span.w3c {
+  padding: 0 0.4em;
+  background-color: #fff;
+  color: #0c479d;
+}
+
+-->
+</style>
+<style type="text/css" id="internalPrint" media="print">
+<!--
+body {
+  margin:  1em;
+  border:  0;
+  padding: 0;
+  background: white;
+  color:      black;
+  font-family: "Times Roman", times, serif;
+}
+
+.tt {
+  font-family: monospace;
+}
+
+div.flagClass > h2 {
+  border-bottom: 1px dotted black;
+  width: 80%;
+  font-family: sans-serif;
+}
+
+div.flagDesc {
+  clear: both;
+  background-color: rgb(255, 245, 220);
+  border: 1px solid blue; /* XXX This is for debugging */ 
+  margin: 0 auto;
+  width: 90%;
+}
+
+li.flagName {
+  font-weight: bold;
+  width: 100%;
+  border-bottom: 1px solid black;
+  display: block;
+  margin: 0.5em 0 0.5em 0;
+  font-size: 125%;
+  white-space: nowrap;
+}
+
+/* (presumably short) informationals all get grouped together near the top
+ * of the flag description block.
+ */
+.flagOrigin, .flagDescClass, .flagDescCompiler, .flagDescRE, .flagDescParallel, .flagVar {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  float: left;
+  padding: 0.25em;
+  margin: 0 0 0.25em 0;
+}
+
+.flagDescClass::before {
+  content: "Flag Class: ";
+}
+.flagDescCompiler::before {
+  content: "Compilers that recognize this flag: ";
+}
+.flagDescRE::before {
+  content: "Regular Expression: ";
+}
+.flagDescParallel::before {
+  content: "Indicates automatic parallelization: ";
+}
+.flagVar::before {
+  content: "Found In: ";
+}
+
+span.flagDescInc {
+  border-bottom: 1px solid black;
+}
+
+/* The description text stands alone. */
+.descText {
+  clear: both;
+  padding: 0.5em 1em 0.5em 1em;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  margin: 0.5em 0 0.5em 0;
+}
+
+/* This is a separate class so that in the print style sheet it can
+ * be ignored.
+ * Also, 'style="clear:both;"' is longer than 'class="clear"'
+ */
+.clear {
+  clear: both;
+}
+
+/* This is really for the link _to_ the flag report */
+li.unknown > a:link, a:visited { text-decoration: none; }
+
+.monospace {
+  font-family: Courier, "Courier New", monospace;
+}
+
+ul.flagDescList {
+  clear: both;
+  list-style-type: none;
+}
+
+/* Arrange for each flag description to have some headroom. */
+ul.flagDescList > li {
+  margin: 2em 0 0 0;
+}
+
+ul.flagDesc {
+  list-style-type: none;
+}
+
+div.flagTOC {
+  border: 1px solid white;
+  padding: 0.5em 1em;
+  margin: 0 auto;
+  width: 95%;
+}
+
+ul.flagTOC {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.flagTOC > li {
+  border: thin dotted lightgray;
+  margin: 0 1em 0 0;
+  padding: 0.25em 0 0.25em 0;
+  float: left;
+  display: inline-block; /* Fix IE bug; compliant browsers will ignore this */
+  width: 22.3%;
+  min-height: 1.5em;
+  overflow: hidden; /* If the table gets squeezed too much, don't let the
+                     * text overlap
+                     */
+}
+
+ul.flagTOC > li > a {
+   color:blue;
+   text-decoration:none;
+}
+
+ul.SubMenu li {
+  border: 1px solid white; /* rgb(211, 211, 211); */
+}
+
+ul.SubMenu {
+  display: none;
+  position: absolute;
+  list-style-type: none;
+  border: 1px solid black;
+  background-color: white;
+  margin: 0 0 0 2em;
+  padding: 0.25em 5em 0.25em 0.5em;
+  white-space: nowrap;
+}
+
+li:hover > ul.SubMenu, ul.SubMenu:hover {
+  display: block;
+}
+
+ul.SubMenu > li:hover, ul.flagTOC > li:hover {
+  background-color: rgb(176, 196, 238); /* lightsteelgray... almost */
+  border: 1px solid rgb(128, 128, 128);
+}
+
+
+.resultpage a:link, .resultpage a:visited {
+  text-decoration: none;
+  border-bottom: 1px dashed black;
+  color: inherit;
+}
+
+.resultpage {
+  margin: auto;
+  padding: 0;
+  width: 1000px;
+}
+
+.resultpage_landscape {
+  width: 1200px;
+}
+
+div.logo {
+  float: left;
+  width: 38px;
+  height: 57px;
+}
+
+.titlebarcontainer, .resultstable, .ncsection {
+  border: solid 1px;
+  width: 100%;
+  float: left;
+}
+
+.ncsection {
+  background-color: white;
+  color: black;
+}
+
+.titlebar {
+  float: left;
+  padding: 0em 1em 0em 1em;
+  text-align: center;
+  width: 91%;
+}
+
+div.titlebar > h1, div.titlebar > p {
+  margin: 0 1em 0 1em;
+}
+
+div.ncsection {
+  font-size: 150%;
+  font-weight: bold;
+  text-align: center;
+}
+
+.systembar {
+  width: 65%;
+  font-size: 150%;
+  margin: 0;
+}
+
+td.systembar {
+  padding: 0.2em;
+}
+
+.metricbar {
+  margin: 0;
+  font-size: 120%;
+}
+
+/* CSS for the old-style div-based systembar */
+
+div.systembar {
+  float: left;
+  padding: 0.1em;
+  border-right: solid 1px black;
+}
+
+div.metricbar {
+  padding: 0.1em;
+  float: right;
+  width: 33%;
+  height: 50%;
+}
+
+.base, .metricbar#base {
+  background-color: #c8c8c8;
+  color: black;
+}
+
+.peak, .metricbar#peak {
+  background-color: transparent;
+  color: #2626b3;       /* peak blue */
+}
+
+.metricbar p {
+  margin: 0;
+  padding: 0.2em;
+}
+
+.datebar p, .systembar p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Datebar stuff for older results */
+.datebar p {
+  float: left;
+  border-left: solid 1px black;
+}
+
+span.item {
+  float: left;
+  margin: 0;
+  padding: 0.1em 0 0.1em 0.5em;
+}
+
+span.value {
+  float: right;
+  padding: 0.1em 0.5em 0.1em 0;
+}
+
+div.datebar {
+  width: 100%;
+  float: left;
+  min-height: 100%;
+  border: solid 1px black;
+}
+
+p#test_sponsor         { width: 48%; }
+p#tester               { width: 48%; }
+p#license_num          { width: 24%; }
+p#test_date            { width: 23%; }
+p#hw_avail, p#sw_avail { width: 25%; }
+
+/* Table-based datebar and systembar on newer results */
+table.datebar, table.titlebarcontainer {
+  float: left;
+  width: 100%;
+  min-height: 100%;
+  border-collapse: collapse;
+  border: solid 1px black;
+  table-layout: fixed;
+}
+
+table.datebar th {
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  padding-left: 0.5em;
+  padding: 0 0.5em 0 0.25em;
+}
+
+table.datebar td {
+  text-align: left;
+  padding: 0 0.5em 0 0;
+}
+
+table.titlebarcontainer tr {
+  vertical-align: top;
+}
+table.titlebarcontainer td {
+  border-right: 1px solid black;
+}
+
+th#license_num          { width: 17%; }
+th#test_sponsor         { width: 17%; }
+th#tester               { width: 17%; }
+th#test_date            { width: 22%; }
+th#hw_avail             { width: 22%; }
+th#sw_avail             { width: 22%; }
+td#license_num_val      { width: 52%; }
+td#test_sponsor_val     { width: 52%; }
+td#tester_val           { width: 52%; }
+td#test_date_val        { width: 13%; white-space: nowrap; }
+td#hw_avail_val         { width: 13%; white-space: nowrap; }
+td#sw_avail_val         { width: 13%; white-space: nowrap; }
+
+
+div.graph {
+  width: 100%
+  margin: auto;
+}
+
+div.sysdesc > h2 {
+  text-align: center;
+  background-color: #c8c8c8;
+  color: black;
+  padding: 0.5em 0 0.5em 0;
+  margin: 0;
+} 
+  
+div.sysdesc {
+  margin: 0.5em 0 0.5em 0;
+}
+
+div.infobox, div.sysdesc {
+  float: left;
+  width: 100%;
+  padding: 0;
+  border: solid 1px black;
+}
+
+div.infobox table {
+  width: 49%;
+  float: left;
+}
+
+div.infobox table tr {
+  vertical-align: top;
+}
+
+div.infobox table#Hardware,
+div.infobox table#BenchmarkSoftware {
+  width: 50%;
+  border-right: 1px solid black;
+}
+
+div.infobox table#Systems {
+  width: 100%;
+}
+
+div.infobox table#Power {
+  width: 100%;
+  border-top: 1px solid black;
+}
+
+div.infobox table#Systems tbody th {
+  width: 20%;
+}
+
+div.infobox thead th {
+  font-size: 200%;
+}
+
+div.infobox tbody th {
+  text-align: left;
+}
+
+.resultstable h2, div.notes h2 {
+  text-align: center;
+  margin: 0.1em;
+}
+
+div.notes h3 {
+  margin: 0.1em;
+}
+
+div.notes table {
+  width: 100%;
+}
+
+div.notes table tr td {
+  text-align: right;
+  vertical-align: top;
+}
+
+/* Alas, IE6... if only you didn't suck so much...
+div.notes table tr td + td {
+*/
+div.notes table td.al {
+  text-align: left;
+  width: 85%;
+}
+
+div.notes table tr td {
+  padding-bottom: 1em;
+}
+
+div.notes table.portability tr td {
+  padding: 0em;
+}
+
+div.notes table.portability {
+  padding: 1em;
+}
+
+.resultstable table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.resultstable th.basecol, .resultstable th.peakcol {
+  padding: 0.1em;
+  font-size: 90%;
+}
+
+.resultstable th {
+  border: solid 2px black;
+}
+
+.resultstable td {
+  border: solid 1px #b8b8b8;
+}
+
+td.bm, th.bm { 
+  border-right: solid 2px black;
+  border-left: solid 2px black;
+}
+
+td.l_edge { 
+  border-left: solid 2px black;
+}
+
+td.r_edge { 
+  border-right: solid 2px black;
+}
+
+.resultstable tfoot td {
+  text-align: center;
+  border: solid 2px black;
+}
+
+tr.table_metrics > td {
+  text-align: right;
+}
+
+th.basecol {
+  background-color: #c8c8c8;
+  color: black;
+}
+td.basecol {
+  text-align: right;
+  background-color: transparent;
+  color: black;
+}
+
+th.peakcol {
+  text-align: center;
+}
+
+.peakcol {
+  background-color: transparent;
+  color: #2626b3;       /* peak blue */
+  text-align: right;
+}
+
+td.bm {
+  /* Basically, the benchmark name and copies columns */
+  background-color: #c8c8c8;
+  color: black;
+}
+
+span.selected {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.selected a:link, .selected a:visited {
+  border-bottom: 0;
+}
+
+div.notes {
+  width: 100%;
+  float: left;
+  border: solid 1px black;
+}
+
+div.flagfooter {
+  text-align: center;
+}
+
+div.errors {
+  border: solid 2px red;
+}
+div.errors h2 {
+  background-color: transparent;
+  color: red;
+}
+
+div.footer {
+  border: none;
+}
+
+/* People find the "double underline" confusing.  And Safari 1.3 doesn't deal
+ * well with attempting to disable the border for userflag links.  So just
+ * give up and don't decorate user flags specially.
+********************
+span.userflag {
+  text-decoration: underline;
+}
+
+.userflag a:link {
+  border-bottom: 0;
+}
+********************
+*/
+
+/* Keep flags from being wrapped */
+span.userflag, span.flagtext {
+  white-space: nowrap;
+}
+/* Classes that contain links - useless on paper */
+.flagTOC, .SubMenu, .NoPrint {
+  display: none;
+}
+
+/* Don't decorate links - they're not clickable */
+a {
+  text-decoration: none;
+  background: inherit;
+  color: inherit;
+}
+
+.resultpage {
+  width: 100%;
+}
+
+.w3cbutton3 {
+  display: none;
+}
+-->
+</style>
+<title>CPU2017 Result Flag Description</title>
+</head>
+<body>
+<h1>CPU2017 Flag Description<br />My Corporation </h1>
+
+
+<p style="text-align: left; color: red; font-size: larger; background-color: black">
+ Copyright &copy; 2016 Intel Corporation.  All Rights Reserved.</p>
+
+
+<hr />
+<div class="unknownflags">
+<h2>Base Unknown Flags</h2>
+<h3><a name="unknown600.perlbench_sbase">600.perlbench_s (base)</a></h3>
+<ul class="flagDescList">
+<li><a name="CC600.perlbench_sbase">CC</a>: <span class="monospace">-fcf-protection=full</span></li>
+<li><a name="LD600.perlbench_sbase">LD</a>: <span class="monospace">-fcf-protection=full</span></li>
+</ul>
+</div>
+<hr />
+
+<div class="compilerflags">
+<h2>Base Compiler Invocation</h2>
+<h3><a name="CCbasecompiler">C benchmarks</a></h3>
+<h4><a name="compiler600.perlbench_sbase">600.perlbench_s</a></h4>
+<ul class="flagDescList">
+<li>
+<div class="flagDesc">
+<ul class="flagDesc">
+<li class="flagName"><a name="user_baseCCLD600_perlbench_s_intel_icc_64bit_c11_33ee0cdaae7deeeab2a9725423ba97205ce30f63b9926c2519791662299b76a0318f32ddfffdc46587804de3178b4f9328c46fa7c2b0cd779d7a61945c91cd35" id="user_baseCCLD600_perlbench_s_intel_icc_64bit_c11_33ee0cdaae7deeeab2a9725423ba97205ce30f63b9926c2519791662299b76a0318f32ddfffdc46587804de3178b4f9328c46fa7c2b0cd779d7a61945c91cd35">icc -m64 -std=c11</a></li>
+<li class="flagOrigin"><a href="#userOrigin"><img src="https://www.spec.org/auto/cpu2017/images/user.png" alt="[user]" /></a></li>
+<li class="flagVar">CC, LD</li>
+<li class="descText">
+<p>Invoke the Intel C compiler 17.0 for Intel 64 applications. Conforms to ISO C11.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<hr />
+
+<div class="portabilityflags">
+<h2>Base Portability Flags</h2>
+<h4><a name="portability600.perlbench_sbase">600.perlbench_s</a></h4>
+<ul class="flagDescList">
+<li>
+<div class="flagDesc">
+<ul class="flagDesc">
+<li class="flagName"><a name="b600.perlbench_s_basePORTABILITY_DSPEC_LP64" id="b600.perlbench_s_basePORTABILITY_DSPEC_LP64">-DSPEC_LP64</a></li>
+<li class="flagOrigin"><a href="#benchmarkOrigin"><img src="https://www.spec.org/auto/cpu2017/images/benchmark.png" alt="[benchmark]" /></a></li>
+<li class="flagVar">PORTABILITY</li>
+<li class="descText">
+<p>
+This macro specifies that the target system uses the LP64 data model;
+specifically, that integers are 32 bits, while longs and pointers are 64 bits.
+</p>
+</li>
+<li class="flagDescInc"><span class="flagDescInc">Includes:</span>
+ <ul class="flagTOC">
+  <li><a href="https://www.spec.org/auto/cpu2017/Docs/benchmarks/flags/600.perlbench_s.flags.html#b600.perlbench_s_SPEC_INT32_T">-DSPEC_INT32_T=XXX</a></li>
+  <li><a href="https://www.spec.org/auto/cpu2017/Docs/benchmarks/flags/600.perlbench_s.flags.html#b600.perlbench_s_DUSE_64_BIT_INT">-DUSE_64_BIT_INT</a></li>
+ </ul>
+<div class="clear"></div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<div class="flagDesc">
+<ul class="flagDesc">
+<li class="flagName"><a name="b600.perlbench_s_baseCPORTABILITY_DSPEC_LINUX_X64" id="b600.perlbench_s_baseCPORTABILITY_DSPEC_LINUX_X64">-DSPEC_LINUX_X64</a></li>
+<li class="flagOrigin"><a href="#benchmarkOrigin"><img src="https://www.spec.org/auto/cpu2017/images/benchmark.png" alt="[benchmark]" /></a></li>
+<li class="flagVar">CPORTABILITY</li>
+<li class="descText">
+<p>
+This macro indicates that the benchmark is being compiled on an AMD64-compatible
+system running the Linux operating system.
+</p>
+</li>
+<li class="flagDescInc"><span class="flagDescInc">Includes:</span>
+ <ul class="flagTOC">
+  <li><a href="https://www.spec.org/auto/cpu2017/Docs/benchmarks/flags/600.perlbench_s.flags.html#b600.perlbench_s_DSPEC_LINUX">-DSPEC_LINUX</a>
+   <ul class="SubMenu">
+    <li><a href="https://www.spec.org/auto/cpu2017/Docs/benchmarks/flags/600.perlbench_s.flags.html#b600.perlbench_s_DI_TIME">-DI_TIME</a></li>
+   </ul>
+  </li>
+  <li><a href="https://www.spec.org/auto/cpu2017/Docs/benchmarks/flags/600.perlbench_s.flags.html#b600.perlbench_s_DSPEC_X64">-DSPEC_X64</a>
+   <ul class="SubMenu">
+    <li><a href="https://www.spec.org/auto/cpu2017/Docs/benchmarks/flags/600.perlbench_s.flags.html#b600.perlbench_s_DSPEC_LITTLEENDIAN">-DSPEC_LITTLEENDIAN</a></li>
+    <li><a href="https://www.spec.org/auto/cpu2017/Docs/benchmarks/flags/600.perlbench_s.flags.html#b600.perlbench_s_DMYSWAP">-DMYSWAP</a></li>
+    <li><a href="https://www.spec.org/auto/cpu2017/Docs/benchmarks/flags/600.perlbench_s.flags.html#b600.perlbench_s_DNEED_VA_COPY">-DNEED_VA_COPY</a></li>
+    <li><a href="https://www.spec.org/auto/cpu2017/Docs/benchmarks/flags/600.perlbench_s.flags.html#b600.perlbench_s_DSPEC_NO_NV_PRESERVES_UV">-DSPEC_NO_NV_PRESERVES_UV</a></li>
+   </ul>
+  </li>
+ </ul>
+<div class="clear"></div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<hr />
+
+<div class="optimizationflags">
+<h2>Base Optimization Flags</h2>
+<h3><a name="CCbaseoptimization">C benchmarks</a></h3>
+<h4><a name="optimization600.perlbench_sbase">600.perlbench_s</a></h4>
+<ul class="flagDescList">
+<li>
+<div class="flagDesc">
+<ul class="flagDesc">
+<li class="flagName"><a name="user_baseCOPTIMIZE600_perlbench_s_f-xHost_9aff57c13912e5241231eca3c90347e98b6f8143fb6a44f63230ba3f5dd0783cffe106f9d1464b9077fa5ee34d8ecd3c16457a892fcc704a0af56d72ed665d0b" id="user_baseCOPTIMIZE600_perlbench_s_f-xHost_9aff57c13912e5241231eca3c90347e98b6f8143fb6a44f63230ba3f5dd0783cffe106f9d1464b9077fa5ee34d8ecd3c16457a892fcc704a0af56d72ed665d0b">-xHOST</a></li>
+<li class="flagOrigin"><a href="#userOrigin"><img src="https://www.spec.org/auto/cpu2017/images/user.png" alt="[user]" /></a></li>
+<li class="flagVar">COPTIMIZE</li>
+<li class="descText">
+<p>This option tells the compiler to generate instructions for the highest instruction set available on the compilation host processor. 
+         The instructions generated by Host differ depending on the compilation host processor.
+      </p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<div class="flagDesc">
+<ul class="flagDesc">
+<li class="flagName"><a name="user_baseCOPTIMIZE600_perlbench_s_f-ipo" id="user_baseCOPTIMIZE600_perlbench_s_f-ipo">-ipo</a></li>
+<li class="flagOrigin"><a href="#userOrigin"><img src="https://www.spec.org/auto/cpu2017/images/user.png" alt="[user]" /></a></li>
+<li class="flagVar">COPTIMIZE</li>
+<li class="descText">
+<p>Multi-file ip optimizations that includes:<br />
+       - inline function expansion<br />
+       - interprocedural constant propogation<br />
+       - dead code elimination<br />
+       - propagation of function characteristics<br />
+       - passing arguments in registers<br />
+       - loop-invariant code motion</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<div class="flagDesc">
+<ul class="flagDesc">
+<li class="flagName"><a name="user_baseCOPTIMIZE600_perlbench_s_f-O3" id="user_baseCOPTIMIZE600_perlbench_s_f-O3">-O3</a></li>
+<li class="flagOrigin"><a href="#userOrigin"><img src="https://www.spec.org/auto/cpu2017/images/user.png" alt="[user]" /></a></li>
+<li class="flagVar">COPTIMIZE</li>
+<li class="descText">
+<p>Enables O2 optimizations plus more aggressive optimizations, 
+         such as prefetching, scalar replacement, and loop and memory 
+         access transformations. Enables optimizations for maximum speed,   
+         such as: </p>
+         <ul>
+         <li> Loop unrolling, including instruction scheduling </li>
+         <li> Code replication to eliminate branches</li>
+         <li> Padding the size of certain power-of-two arrays to allow 
+           more efficient cache use.</li>
+         </ul> <br/>
+         <p>
+         On IA-32 and Intel EM64T processors, when O3 is used with options 
+         -ax or -x (Linux) or with options /Qax or /Qx (Windows), the compiler 
+         performs more aggressive data dependency analysis than for O2, which 
+         may result in longer compilation times. 
+         The O3 optimizations may not cause higher performance unless loop and 
+         memory access transformations take place. The optimizations may slow 
+         down code in some cases compared to O2 optimizations.  
+         The O3 option is recommended for applications that have loops that heavily 
+         use floating-point calculations and process large data sets. </p>
+</li>
+<li class="flagDescInc"><span class="flagDescInc">Includes:</span>
+ <ul class="flagTOC">
+  <li><a href="#user_f-O2">-O2</a>
+   <ul class="SubMenu">
+    <li><a href="#user_f-O1">-O1</a>
+     <ul class="SubMenu">
+      <li><a href="#user_f-funroll-loops">-funroll-loops</a></li>
+      <li><a href="#user_f-fno-builtin">-fno-builtin</a></li>
+      <li><a href="#user_f-mno-ieee-fp">-mno-ieee-fp</a></li>
+      <li><a href="#user_f-fomit-framepointer">-fomit-framepointer</a></li>
+      <li><a href="#user_f-ffunction-sections">-ffunction-sections</a></li>
+      <li><a href="#user_f-ftz">-ftz</a></li>
+     </ul>
+    </li>
+   </ul>
+  </li>
+ </ul>
+<div class="clear"></div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<div class="flagDesc">
+<ul class="flagDesc">
+<li class="flagName"><a name="user_baseCOPTIMIZE600_perlbench_s_f-no-prec-div" id="user_baseCOPTIMIZE600_perlbench_s_f-no-prec-div">-no-prec-div</a></li>
+<li class="flagOrigin"><a href="#userOrigin"><img src="https://www.spec.org/auto/cpu2017/images/user.png" alt="[user]" /></a></li>
+<li class="flagVar">COPTIMIZE</li>
+<li class="descText">
+(disable/enable[default] -prec-div)
+                
+   
+      <p>-no-prec-div enables optimizations that give slightly less precise results 
+         than full IEEE division. </p>
+
+      <p>When you specify -no-prec-div along with some optimizations, such as 
+         -xN and -xB (Linux) or /QxN and /QxB (Windows), 
+         the compiler may change floating-point division computations into 
+         multiplication by the reciprocal of the denominator. 
+         For example, A/B is computed as A * (1/B) to improve the speed of the 
+         computation.</p>
+      <p>However, sometimes the value produced by this transformation is 
+         not as accurate as full IEEE division. When it is important to have fully 
+         precise IEEE division, do not use -no-prec-div. 
+
+         This will enable the default -prec-div and the result will be more accurate, 
+         with some loss of performance.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<div class="flagDesc">
+<ul class="flagDesc">
+<li class="flagName"><a name="user_baseCOPTIMIZE600_perlbench_s_f-auto-p32" id="user_baseCOPTIMIZE600_perlbench_s_f-auto-p32">-auto-p32</a></li>
+<li class="flagOrigin"><a href="#userOrigin"><img src="https://www.spec.org/auto/cpu2017/images/user.png" alt="[user]" /></a></li>
+<li class="flagVar">COPTIMIZE</li>
+<li class="descText">
+<p>This option instructs the compiler to analyze and transform the program so that 
+64-bit pointers are shrunk to 32-bit pointers wherever it is legal and safe to do so. 
+In order for this option to be effective, the compiler must optimize using 
+the -ipo option and must be able to analyze all library/external calls the program makes. 
+This option has no effect unless you specify setting SSE3 or higher for option -x. </p>
+
+<p>This option requires that the application cannot exceed a 32-bit address space, otherwise 
+unpredictable results can occur.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<div class="flagDesc">
+<ul class="flagDesc">
+<li class="flagName"><a name="user_baseCOPTIMIZE600_perlbench_s_f-qopt-prefetch" id="user_baseCOPTIMIZE600_perlbench_s_f-qopt-prefetch">-qopt-prefetch</a></li>
+<li class="flagOrigin"><a href="#userOrigin"><img src="https://www.spec.org/auto/cpu2017/images/user.png" alt="[user]" /></a></li>
+<li class="flagVar">COPTIMIZE</li>
+<li class="descText">
+<p>
+Enable/disable(DEFAULT) the compiler to generate prefetch instructions to prefetch data.
+</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<div class="flagDesc">
+<ul class="flagDesc">
+<li class="flagName"><a name="user_baseCOPTIMIZE600_perlbench_s_qopenmp_16be0c44f24f464004c6784a7acb94aca937f053568ce72f94b139a11c7c168634a55f6653758ddd83bcf7b8463e8028bb0b48b77bcddc6b78d5d95bb1df2967" id="user_baseCOPTIMIZE600_perlbench_s_qopenmp_16be0c44f24f464004c6784a7acb94aca937f053568ce72f94b139a11c7c168634a55f6653758ddd83bcf7b8463e8028bb0b48b77bcddc6b78d5d95bb1df2967">-qopenmp</a></li>
+<li class="flagOrigin"><a href="#userOrigin"><img src="https://www.spec.org/auto/cpu2017/images/user.png" alt="[user]" /></a></li>
+<li class="flagDescParallel"><span class="tt">Yes</span></li>
+<li class="flagVar">COPTIMIZE</li>
+<li class="descText">
+<p>
+
+</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<div class="flagDesc">
+<ul class="flagDesc">
+<li class="flagName"><a name="suite_baseCOPTIMIZE600_perlbench_s_DSPEC_OPENMP" id="suite_baseCOPTIMIZE600_perlbench_s_DSPEC_OPENMP">-DSPEC_OPENMP</a></li>
+<li class="flagOrigin"><a href="#suiteOrigin"><img src="https://www.spec.org/auto/cpu2017/images/suite.png" alt="[suite]" /></a></li>
+<li class="flagVar">COPTIMIZE</li>
+<li class="descText">
+<p>
+Definition of this macro indicates that compilation for parallel operation
+  is enabled, and that any OpenMP directives or pragmas will be visible to
+  the compiler.
+</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<hr />
+
+<div class="otherflags">
+<h2>Base Other Flags</h2>
+<h3><a name="CCbaseother">C benchmarks</a></h3>
+<h4><a name="other600.perlbench_sbase">600.perlbench_s</a></h4>
+<ul class="flagDescList">
+<li>
+<div class="flagDesc">
+<ul class="flagDesc">
+<li class="flagName"><a name="suite_base600_perlbench_s___noflags_YYY_4134e6f6d27ea46fe7eb2bedd2b8e841920723418f3a38ba207783f1f4929474834687c4d40884841d6462e231023239fa69bffd194bd7079bd1f00428cef023" id="suite_base600_perlbench_s___noflags_YYY_4134e6f6d27ea46fe7eb2bedd2b8e841920723418f3a38ba207783f1f4929474834687c4d40884841d6462e231023239fa69bffd194bd7079bd1f00428cef023">No flags used</a></li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<hr />
+<h2>Implicitly Included Flags</h2>
+<p>This section contains descriptions of flags that were included implicitly
+by other flags, but which do not have a permanent home at SPEC.</p>
+<ul class="flagDescList">
+<li>
+<div class="flagDesc">
+<ul class="flagDesc">
+<li class="flagName"><a name="user_f-O2" id="user_f-O2">-O2</a></li>
+<li class="flagOrigin"><a href="#userOrigin"><img src="https://www.spec.org/auto/cpu2017/images/user.png" alt="[user]" /></a></li>
+<li class="descText">
+<p>Enables optimizations for speed. This is the generally recommended 
+      optimization level. This option also enables: <br />
+      - Inlining of intrinsics<br />
+      - Intra-file interprocedural optimizations, which include: <br />
+        - inlining<br />
+        - constant propagation<br />
+        - forward substitution<br />
+        - routine attribute propagation<br />
+        - variable address-taken analysis<br />
+        - dead static function elimination<br />
+        - removal of unreferenced variables<br />
+      - The following capabilities for performance gain: <br /> 
+        - constant propagation<br />
+        - copy propagation<br />
+        - dead-code elimination<br />
+        - global register allocation<br />
+        - global instruction scheduling and control speculation<br />
+        - loop unrolling<br />
+        - optimized code selection<br />
+        - partial redundancy elimination<br />
+        - strength reduction/induction variable simplification<br />
+        - variable renaming<br />
+        - exception handling optimizations<br />
+        - tail recursions<br />
+        - peephole optimizations<br />
+        - structure assignment lowering and optimizations<br />
+        - dead store elimination<br />
+      </p>
+</li>
+<li class="flagDescInc"><span class="flagDescInc">Includes:</span>
+ <ul class="flagTOC">
+  <li><a href="#user_f-O1">-O1</a>
+   <ul class="SubMenu">
+    <li><a href="#user_f-funroll-loops">-funroll-loops</a></li>
+    <li><a href="#user_f-fno-builtin">-fno-builtin</a></li>
+    <li><a href="#user_f-mno-ieee-fp">-mno-ieee-fp</a></li>
+    <li><a href="#user_f-fomit-framepointer">-fomit-framepointer</a></li>
+    <li><a href="#user_f-ffunction-sections">-ffunction-sections</a></li>
+    <li><a href="#user_f-ftz">-ftz</a></li>
+   </ul>
+  </li>
+ </ul>
+<div class="clear"></div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<div class="flagDesc">
+<ul class="flagDesc">
+<li class="flagName"><a name="user_f-O1" id="user_f-O1">-O1</a></li>
+<li class="flagOrigin"><a href="#userOrigin"><img src="https://www.spec.org/auto/cpu2017/images/user.png" alt="[user]" /></a></li>
+<li class="descText">
+<p>Enables optimizations for speed and disables some optimizations that increase code size and affect speed. <br />
+         To limit code size, this option: </p>
+         <ul>
+         <li> Enables global optimization; this includes data-flow analysis, 
+           code motion, strength reduction and test replacement, split-lifetime
+           analysis, and instruction scheduling. </li>
+         <li> Disables intrinsic recognition and intrinsics inlining. </li>
+         </ul>
+  
+         <p> The O1 option may improve performance for applications with very large 
+         code size, many branches, and execution time not dominated by code within loops. </p>
+         
+         -O1 sets the following options:<br />
+         -funroll-loops0, -fno-builtin, -mno-ieee-fp, -fomit-framepointer, -ffunction-sections, -ftz
+</li>
+<li class="flagDescInc"><span class="flagDescInc">Includes:</span>
+ <ul class="flagTOC">
+  <li><a href="#user_f-funroll-loops">-funroll-loops</a></li>
+  <li><a href="#user_f-fno-builtin">-fno-builtin</a></li>
+  <li><a href="#user_f-mno-ieee-fp">-mno-ieee-fp</a></li>
+  <li><a href="#user_f-fomit-framepointer">-fomit-framepointer</a></li>
+  <li><a href="#user_f-ffunction-sections">-ffunction-sections</a></li>
+  <li><a href="#user_f-ftz">-ftz</a></li>
+ </ul>
+<div class="clear"></div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<div class="flagDesc">
+<ul class="flagDesc">
+<li class="flagName"><a name="user_f-funroll-loops" id="user_f-funroll-loops">-funroll-loops</a></li>
+<li class="flagOrigin"><a href="#userOrigin"><img src="https://www.spec.org/auto/cpu2017/images/user.png" alt="[user]" /></a></li>
+<li class="descText">
+<p>
+Tells the compiler the maximum number of times to unroll loops. For example -funroll-loops0 would
+      disable unrolling of loops.
+</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<div class="flagDesc">
+<ul class="flagDesc">
+<li class="flagName"><a name="user_f-fno-builtin" id="user_f-fno-builtin">-fno-builtin</a></li>
+<li class="flagOrigin"><a href="#userOrigin"><img src="https://www.spec.org/auto/cpu2017/images/user.png" alt="[user]" /></a></li>
+<li class="descText">
+<p>
+-fno-builtin disables inline expansion for all intrinsic functions.
+</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<div class="flagDesc">
+<ul class="flagDesc">
+<li class="flagName"><a name="user_f-mno-ieee-fp" id="user_f-mno-ieee-fp">-mno-ieee-fp</a></li>
+<li class="flagOrigin"><a href="#userOrigin"><img src="https://www.spec.org/auto/cpu2017/images/user.png" alt="[user]" /></a></li>
+<li class="descText">
+<p>
+This option trades off floating-point precision for speed by removing 
+the restriction to conform to the IEEE standard.
+</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<div class="flagDesc">
+<ul class="flagDesc">
+<li class="flagName"><a name="user_f-fomit-framepointer" id="user_f-fomit-framepointer">-fomit-framepointer</a></li>
+<li class="flagOrigin"><a href="#userOrigin"><img src="https://www.spec.org/auto/cpu2017/images/user.png" alt="[user]" /></a></li>
+<li class="descText">
+<p>
+EBP is used as a general-purpose register in optimizations.
+</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<div class="flagDesc">
+<ul class="flagDesc">
+<li class="flagName"><a name="user_f-ffunction-sections" id="user_f-ffunction-sections">-ffunction-sections</a></li>
+<li class="flagOrigin"><a href="#userOrigin"><img src="https://www.spec.org/auto/cpu2017/images/user.png" alt="[user]" /></a></li>
+<li class="descText">
+<p>
+Places each function in its own COMDAT section.
+</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<div class="flagDesc">
+<ul class="flagDesc">
+<li class="flagName"><a name="user_f-ftz" id="user_f-ftz">-ftz</a></li>
+<li class="flagOrigin"><a href="#userOrigin"><img src="https://www.spec.org/auto/cpu2017/images/user.png" alt="[user]" /></a></li>
+<li class="descText">
+<p>
+Flushes denormal results to zero.
+</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+<hr />
+<h2><a name="submitCommand">Commands and Options Used to Submit Benchmark Runs</a></h2>
+
+ 
+<dl>                 
+  <dt><b>submit= MYMASK=`printf '0x%x' $((1&lt;&lt;$SPECCOPYNUM))`; /usr/bin/taskset $MYMASK $command </b></dt>
+
+   <dd>When running multiple copies of benchmarks, the SPEC config file feature <b>submit</b> is used to cause individual jobs to be bound to 
+   specific processors. This specific submit command, using taskset, is used for Linux64 systems without numactl. <br />
+   Here is a brief guide to understanding the specific command which will be found in the config file: 
+	 <ul>
+	 <li><b>/usr/bin/taskset [options] [mask] [pid | command [arg] ... ]</b>: <br/>
+       	 taskset is used to set or retreive the CPU affinity of a running 
+         process given its PID or to launch a new COMMAND with a given CPU 
+         affinity. The CPU affinity is represented as a bitmask, with the 
+         lowest order bit corresponding to the first logical CPU and highest
+         order bit corresponding to the last logical CPU. When the taskset 
+         returns, it is guaranteed that the given program has been scheduled
+         to a specific, legal CPU, as defined by the mask setting.</li>
+	 <li><b>[mask]</b>: The bitmask (in hexadecimal) corresponding to a specific
+         SPECCOPYNUM. The specific example above, computes this mask value in the variable $MYMASK. 
+         The value of this mask for the first copy of a 
+         rate run will be 0x00000001, for the second copy of the rate will 
+         be 0x00000002 etc. Thus, the first copy of the rate run will have a
+         CPU affinity of CPU0, the second copy will have the affinity CPU1 
+         etc.</li>
+	 <li><b>$command</b>: Program to be started, in this case, the benchmark instance to be started.</li>
+	 </ul> 
+    </dd>
+
+  <dt><b>submit= numactl --localalloc --physcpubind=$SPECCOPYNUM $command </b></dt>
+   <dd> When running multiple copies of benchmarks, the SPEC config file feature <b>submit</b> is used to cause individual jobs to be bound to 
+   specific processors. This specific submit command is used for Linux64 systems with support for numactl. <br />
+   Here is a brief guide to understanding the specific command which will be found in the config file: 
+	 <ul>
+         <li>syntax: numactl [--interleave=nodes] [--preferred=node] [--physcpubind=cpus] [--cpunodebind=nodes] [--membind=nodes] [--localalloc] command args ...</li>
+         <li>numactl runs processes with a specific NUMA scheduling or memory placement policy.  The policy is set for a command and inherited by all of its children. </li> 
+         <li>"--localalloc" instructs numactl to keep a process memory on the local node while "-m" specifies which node(s) to place a process memory.  </li>
+         <li>"--physcpubind" specifies which core(s) to bind the process. In this case, copy 0 is bound to processor 0 etc.</li>
+         <li> For full details on using numactl, please refer to your Linux documentation, 'man numactl'</li>
+       </ul> 
+   </dd>
+</dl>
+
+
+ 
+
+<hr />
+<h2><a name="softwareEnvironment">Shell, Environment, and Other Software Settings</a></h2>
+
+
+
+<dl>
+  <dt><b>numactl --interleave=all "runspec command" </b></dt>
+   <dd> Launching a process with numactl --interleave=all sets the memory interleave policy so that memory will be allocated using round robin on nodes. 
+   When memory cannot be allocated on the current interleave target fall back to other nodes.</dd>
+
+  <dt><b>KMP_STACKSIZE </b></dt>
+  <dd> Specify stack size to be allocated for each thread.  </dd>
+  
+  <dt><b>KMP_AFFINITY</b></dt>
+  <dd>Syntax: KMP_AFFINITY=[&#60;modifier&#62;,...]&#60;type&#62;[,&#60;permute&#62;][,&#60;offset&#62;]<br/>
+  The value for the environment variable KMP_AFFINITY affects how the threads from an auto-parallelized program are scheduled across processors. <br/>
+  It applies to binaries built with -qopenmp and -parallel (Linux and Mac OS X) or /Qopenmp and /Qparallel (Windows). <br/>
+  modifier:<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;<i>granularity=fine</i> Causes each OpenMP thread to be bound to a single thread context.<br/>
+  type:<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;<i>compact</i> Specifying compact assigns the OpenMP thread &lt;n&gt;+1 to a free thread context as close as possible to the thread context where the &lt;n&gt; OpenMP thread was placed.<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;<i>scatter</i>  Specifying scatter distributes the threads as evenly as possible across the entire system.<br/>
+  permute: The permute specifier is an integer value controls which levels are most significant when sorting the machine topology map. A value for permute forces the mappings to make the specified number of most significant levels of the sort the least significant, and it inverts the order of significance.<br/>
+  offset: The offset specifier indicates the starting position for thread assignment.<br/><br/>
+  
+  <b>Please see the <i>Thread Affinity Interface</i> article in the Intel Composer XE Documentation for more details.</b> <br/><br/></dd>
+  
+  <dd>Example: <b>KMP_AFFINITY=granularity=fine,scatter </b><br/>
+	Specifying granularity=fine selects the finest granularity level and causes each OpenMP or auto-par thread to be bound to a single thread context. <br/>
+  This ensures that there is only one thread per core on cores supporting HyperThreading Technology<br/>
+  Specifying scatter distributes the threads as evenly as possible across the entire system. <br/> 
+  Hence a combination of these two options, will spread the threads evenly across sockets, with one thread per physical core. <br/><br/> </dd>
+  <dd>Example: <b>KMP_AFFINITY=compact,1,0</b><br/>
+	Specifying <b><i>compact</i></b> will assign the n+1 thread to a free thread context as close as possible to thread n. <br/> 
+	A default granularity=core is implied if no granularity is explicitly specified. <br/>
+  Specifying <i>1,0</i> sets permute and offset values of the thread assignment. <br/>
+  With a permute value of 1, thread n+1 is assigned to a consecutive core. With an offset of 0, the process's first thread 0 will be assigned to thread 0.<br/> 
+  The same behavior is exhibited in a multisocket system.</dd>
+  
+  <dt><b>OMP_NUM_THREADS </b></dt>
+  <dd>Sets the maximum number of threads to use for OpenMP* parallel regions if no 
+  other value is specified in the application. This environment variable 
+  applies to both -qopenmp and -parallel (Linux and Mac OS X) or /Qopenmp and /Qparallel (Windows).
+  Example syntax on a Linux system with 8 cores:
+  export OMP_NUM_THREADS=8 </dd>
+
+  <dt><b>Set stack size to unlimited</b></dt>
+  <dd>The command "ulimit -s unlimited" is used to set the stack size limit to unlimited.   
+  </dd>
+
+  <dt><b>Free the file system page cache</b></dt>
+  <dd>The command "echo 1>       /proc/sys/vm/drop_caches" is used to free up the filesystem page cache.   
+  </dd>
+</dl>
+
+<h3> Red Hat Specific features </h3>
+
+<dl>
+  <dt><b>Transparent Huge Pages</b></dt>
+  <dd>On RedHat EL 6 and later, Transparent Hugepages increase the memory page size from 4 kilobytes to 2 megabytes. Transparent Hugepages provide significant performance advantages on systems with highly contended resources and large memory workloads. 
+  If memory utilization is too high or memory is badly fragmented which prevents hugepages being allocated, the kernel will assign smaller 4k pages instead. <br/>
+
+  Hugepages are used by default unless the /sys/kernel/mm/redhat_transparent_hugepage/enabled field is changed from its RedHat EL6 default of 'always'.   
+  </dd>
+</dl>
+
+
+
+<hr />
+<div class="flagorigins">
+ <p>Flag description origin markings:</p>
+ <table>
+  <tr>
+   <td><a name="userOrigin"><img src="https://www.spec.org/auto/cpu2017/images/user.png" alt="[user]" /></a></td>
+   <td>Indicates that the flag description came from the user flags file.</td>
+  </tr>
+  <tr>
+   <td><a name="suiteOrigin"><img src="https://www.spec.org/auto/cpu2017/images/suite.png" alt="[suite]" /></a></td>
+   <td>Indicates that the flag description came from the suite-wide flags file.</td>
+  </tr>
+  <tr>
+   <td><a name="benchmarkOrigin"><img src="https://www.spec.org/auto/cpu2017/images/benchmark.png" alt="[benchmark]" /></a></td>
+   <td>Indicates that the flag description came from a per-benchmark flags file.</td>
+  </tr>
+ </table>
+</div>
+<hr />
+<p style="text-align: left">For questions about the meanings of these flags, please contact the tester.<br />
+For other inquiries, please contact <a href="mailto:info@spec.org">info@spec.org</a><br />
+Copyright 2017-2020 Standard Performance Evaluation Corporation<br />
+Tested with SPEC CPU2017 v1.0.2.<br />
+Report generated on 2020-04-16 20:02:47 by SPEC CPU2017 flags formatter v5178.</p>
+</body>
+</html>

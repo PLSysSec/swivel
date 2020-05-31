@@ -1,0 +1,1285 @@
+==============================================================================
+Debug log for CPU2017.  This file contains very detailed debugging
+output from the CPU2017 tools (as if "--verbose 99" had been specified) and is
+typically useful only to developers of the CPU2017 toolset.
+
+For a successful run, this debug log will be removed automatically, unless you
+specify "--keeptmp" on the command line, or "keeptmp=1" in your config file.
+
+If you file a support request with cpu2017support@spec.org, you may be
+asked to submit this file.
+------------------------------------------------------------------------------
+
+Environment variables that may have been set or changed by shrc:
+SPEC: /home/ucsd/SpectreSandboxing/spec2017
+PATH: /home/ucsd/SpectreSandboxing/spec2017/bin:/home/ucsd/.cargo/bin:/home/ucsd/.local/bin:/home/ucsd/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+SPECPERLLIB: /home/ucsd/SpectreSandboxing/spec2017/bin/lib:/home/ucsd/SpectreSandboxing/spec2017/bin
+LD_LIBRARY_PATH: 
+DYLD_LIBRARY_PATH: 
+LC_ALL: C
+LC_LANG: C
+SPECDB_PWD: /home/ucsd/SpectreSandboxing/spec2017/config
+------------------------------------------------------------------------------
+
+Runspec's verbose version output:
+                 This is the SPEC CPU2017 benchmark tools suite.
+
+Version summary:
+    CPU2017 version: 1.0.2
+ Benchmarks version: 1.0.2
+      Tools version: 1.0.2
+    runcpu version: v5825 ($Id: runcpu 5825 2017-06-28 16:13:35Z CloyceS $)
+
+Tools information:
+ Tools package installed: linux-x86_64
+ File locking method: fcntl(2) (probably network-safe)
+Mode |  UID  |  GID  |   Size  |   Modification Time  | Name
+0755 | 1004  | 1004  | 1963960 |  2020-04-08 18:13:53 | specperl
+0755 | 1004  | 1004  |  253616 |  2020-04-08 18:13:53 | specmake
+0755 | 1004  | 1004  |   43992 |  2020-04-08 18:13:53 | specinvoke
+0755 | 1004  | 1004  |  272664 |  2020-04-08 18:13:53 | specrxp
+0777 | 0     | 0     |    1577 |  2020-05-21 19:14:44 | runcpu
+0777 | 0     | 0     |  177367 |  2020-05-21 19:14:44 | harness/runcpu
+0777 | 0     | 0     |    1577 |  2020-05-21 19:14:44 | specpp
+0777 | 0     | 0     |   89993 |  2020-05-21 19:14:44 | harness/specpp
+0777 | 0     | 0     |    1577 |  2020-05-21 19:14:44 | specdiff
+0777 | 0     | 0     |    9806 |  2020-05-21 19:14:44 | harness/specdiff
+0755 | 1004  | 1004  |  269856 |  2020-04-08 18:13:53 | specxz
+0755 | 1004  | 1004  |   77056 |  2020-04-08 18:13:53 | specsha512sum
+
+Version info for specperl (specperl): This is specperl 5, version 24, subversion 0 (v5.24.0) built for x86_64-linux
+                                      Compiled at Apr  8 2020 18:03:45
+                                      For more detail on specperl, say 'specperl -V'
+Version info for specmake (specmake): GNU Make 4.2.1
+Version info for specinvoke (specinvoke): specinvoke r4356 (OS implementation r4356)
+Version info for specrxp ($SPEC/bin/specrxp): RXP 1.5.0 Copyright Richard Tobin, LTG, HCRC, University of Edinburgh
+                                              Modified for use in SPEC benchmarks - 14 April 2011
+Version info for specpp ($SPEC/bin/specpp): specpp version 1.8.0SPEC
+Version info for specxz ($SPEC/bin/specxz): xz (XZ Utils) 5.2.2
+Version info for specsha512sum ($SPEC/bin/specsha512sum): sha512sum (specsum) 1.3
+
+==============================================================================
+
+1590281524.69: runcpu v5825 started at 2020-05-23 17:52:04 on "tigerlake1-ravi"
+1590281524.69: runcpu is: /home/ucsd/SpectreSandboxing/spec2017/bin/harness/runcpu
+1590281524.69: runcpu: runcpu --config=wasm_lucet --action=run --wasm --define cores=1 644
+1590281524.69: toolset: linux-x86_64
+
+1590281524.69(0.02s): Locating benchmarks...Created default regexp '(?:^|(?<=\s))[-/]DSPEC(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281524.71: Created default regexp '(?:^|(?<=\s))[-/]USPEC(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for USPEC in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281524.71: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_CPU in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281524.71: Created default regexp '(?:^|(?<=\s))[-/]DNDEBUG(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DNDEBUG in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281524.71: Created default regexp '(?:^|(?<=\s))[-/]UNDEBUG(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for UNDEBUG in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281524.71: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_WINDOWS(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_WINDOWS in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281524.71: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_MEM_IO(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_MEM_IO in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281524.71: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_ILP32(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_ILP32 in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281524.71: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_P64(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_P64 in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281524.71: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_LP64(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_LP64 in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281524.71: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_ILP64(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_ILP64 in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281524.71: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_SUPPRESS_OPENMP(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_SUPPRESS_OPENMP in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281524.71: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_AUTO_SUPPRESS_OPENMP(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_AUTO_SUPPRESS_OPENMP in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281524.71: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_OPENMP(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_OPENMP in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281524.71: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_NO_AUTO_BYTEORDER(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_NO_AUTO_BYTEORDER in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281524.71: Reading suite directory for 'flags-mandatory.xml', '/home/ucsd/SpectreSandboxing/spec2017/benchspec'
+1590281524.71: Reading suite directory for 'CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec'
+1590281524.71:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '557.xz_r'
+1590281524.71:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/557.xz_r/Spec/object.pm in 0.001745939s
+1590281524.71:     Instantiated Spec::Benchmark::xz_r557 in 0.000391960s
+1590281524.71:     Finding src.alts took 0.000051022s
+1590281524.71:   Setting up xz_r took 0.002455950s
+
+1590281524.71:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fprate_any_fortran.bset'
+1590281524.71:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '508.namd_r'
+1590281524.71:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/508.namd_r/Spec/object.pm in 0.000341177s
+1590281524.71:     Instantiated Spec::Benchmark::namd_r508 in 0.000243902s
+1590281524.71:     Finding src.alts took 0.000030041s
+1590281524.71:   Setting up namd_r took 0.000835180s
+
+1590281524.71:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '554.roms_r'
+1590281524.71:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/554.roms_r/Spec/object.pm in 0.001327038s
+1590281524.71:     Instantiated Spec::Benchmark::roms_r554 in 0.000306845s
+1590281524.71:     Finding src.alts took 0.000033140s
+1590281524.71:   Setting up roms_r took 0.001883030s
+
+1590281524.71:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intspeed_pure_cpp.bset'
+1590281524.72:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '996.specrand_fs'
+1590281524.72:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/996.specrand_fs/Spec/object.pm in 0.000349998s
+1590281524.72:     Instantiated Spec::Benchmark::specrand_fs996 in 0.000178099s
+1590281524.72:     Finding src.alts took 0.000023842s
+1590281524.72:   Setting up specrand_fs took 0.000761986s
+
+1590281524.72:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fprate_pure_cpp.bset'
+1590281524.72:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '500.perlbench_r'
+1590281524.72:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/500.perlbench_r/Spec/object.pm in 0.001212835s
+1590281524.72:     Instantiated Spec::Benchmark::perlbench_r500 in 0.000232935s
+1590281524.72:     Finding src.alts took 0.000038147s
+1590281524.72:   Setting up perlbench_r took 0.001699924s
+
+1590281524.72:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fprate_pure_c.bset'
+1590281524.72:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '519.lbm_r'
+1590281524.72:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/519.lbm_r/Spec/object.pm in 0.000303030s
+1590281524.72:     Instantiated Spec::Benchmark::lbm_r519 in 0.000211000s
+1590281524.72:     Finding src.alts took 0.000021935s
+1590281524.72:   Setting up lbm_r took 0.000704050s
+
+1590281524.72:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fprate_mixed.bset'
+1590281524.72:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fpspeed_any_c.bset'
+1590281524.72:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '627.cam4_s'
+1590281524.72:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/627.cam4_s/Spec/object.pm in 0.000455856s
+1590281524.72:     Instantiated Spec::Benchmark::cam4_s627 in 0.000211954s
+1590281524.72:     Finding src.alts took 0.000031948s
+1590281524.72:   Setting up cam4_s took 0.000888109s
+
+1590281524.72:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '548.exchange2_r'
+1590281524.72:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/548.exchange2_r/Spec/object.pm in 0.000319004s
+1590281524.72:     Instantiated Spec::Benchmark::exchange2_r548 in 0.000169992s
+1590281524.72:     Finding src.alts took 0.000020027s
+1590281524.72:   Setting up exchange2_r took 0.000679016s
+
+1590281524.72:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intopenmp.bset'
+1590281524.72:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '505.mcf_r'
+1590281524.72:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/505.mcf_r/Spec/object.pm in 0.000309944s
+1590281524.72:     Instantiated Spec::Benchmark::mcf_r505 in 0.000172138s
+1590281524.72:     Finding src.alts took 0.000035048s
+1590281524.72:   Setting up mcf_r took 0.000686884s
+
+1590281524.72:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fpspeed_mixed_c.bset'
+1590281524.73:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '538.imagick_r'
+1590281524.73:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/538.imagick_r/Spec/object.pm in 0.000748873s
+1590281524.73:     Instantiated Spec::Benchmark::imagick_r538 in 0.000195980s
+1590281524.73:     Finding src.alts took 0.000036001s
+1590281524.73:   Setting up imagick_r took 0.001173019s
+
+1590281524.73:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intspeed_pure_c.bset'
+1590281524.73:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fpspeed_any_cpp.bset'
+1590281524.73:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '502.gcc_r'
+1590281524.74:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/502.gcc_r/Spec/object.pm in 0.015636921s
+1590281524.74:     Instantiated Spec::Benchmark::gcc_r502 in 0.000485897s
+1590281524.74:     Finding src.alts took 0.000058174s
+1590281524.74:   Setting up gcc_r took 0.016446114s
+
+1590281524.74:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intrate_pure_cpp.bset'
+1590281524.75:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'osdi.bset'
+1590281524.75:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fpspeed_mixed_cpp.bset'
+1590281524.75:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'mixed_fortran.bset'
+1590281524.75:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intspeed_pure_fortran.bset'
+1590281524.75:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fprate_mixed_cpp.bset'
+1590281524.75:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '648.exchange2_s'
+1590281524.75:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/648.exchange2_s/Spec/object.pm in 0.000354052s
+1590281524.75:     Instantiated Spec::Benchmark::exchange2_s648 in 0.000219822s
+1590281524.75:     Finding src.alts took 0.000030041s
+1590281524.75:   Setting up exchange2_s took 0.000802040s
+
+1590281524.75:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '631.deepsjeng_s'
+1590281524.75:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/631.deepsjeng_s/Spec/object.pm in 0.000275135s
+1590281524.75:     Instantiated Spec::Benchmark::deepsjeng_s631 in 0.000192165s
+1590281524.75:     Finding src.alts took 0.000021935s
+1590281524.75:   Setting up deepsjeng_s took 0.000648022s
+
+1590281524.75:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'any_c.bset'
+1590281524.75:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'serial_speed.bset'
+1590281524.75:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'mini.bset'
+1590281524.75:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '603.bwaves_s'
+1590281524.75:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/603.bwaves_s/Spec/object.pm in 0.000372887s
+1590281524.75:     Instantiated Spec::Benchmark::bwaves_s603 in 0.000263214s
+1590281524.75:     Finding src.alts took 0.000026941s
+1590281524.75:   Setting up bwaves_s took 0.000833035s
+
+1590281524.75:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'any_fortran.bset'
+1590281524.75:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intrate_any_c.bset'
+1590281524.76:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fpopenmp.bset'
+1590281524.76:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '523.xalancbmk_r'
+1590281524.76:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/523.xalancbmk_r/Spec/object.pm in 0.000881195s
+1590281524.76:     Instantiated Spec::Benchmark::xalancbmk_r523 in 0.000226021s
+1590281524.76:     Finding src.alts took 0.000028849s
+1590281524.76:   Setting up xalancbmk_r took 0.001353979s
+
+1590281524.76:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intrate_any_fortran.bset'
+1590281524.76:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fpspeed_any_fortran.bset'
+1590281524.76:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '654.roms_s'
+1590281524.76:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/654.roms_s/Spec/object.pm in 0.000797033s
+1590281524.76:     Instantiated Spec::Benchmark::roms_s654 in 0.000182867s
+1590281524.76:     Finding src.alts took 0.000025988s
+1590281524.76:   Setting up roms_s took 0.001198053s
+
+1590281524.76:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'pure_cpp.bset'
+1590281524.76:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fpspeed_pure_c.bset'
+1590281524.76:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'mixed_cpp.bset'
+1590281524.76:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '549.fotonik3d_r'
+1590281524.76:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/549.fotonik3d_r/Spec/object.pm in 0.000378132s
+1590281524.76:     Instantiated Spec::Benchmark::fotonik3d_r549 in 0.000174999s
+1590281524.76:     Finding src.alts took 0.000020981s
+1590281524.76:   Setting up fotonik3d_r took 0.000740051s
+
+1590281524.76:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'any_cpp.bset'
+1590281524.76:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fpspeed_pure_fortran.bset'
+1590281524.77:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'mixed.bset'
+1590281524.77:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'pure_c.bset'
+1590281524.77:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '625.x264_s'
+1590281524.77:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/625.x264_s/Spec/object.pm in 0.000813961s
+1590281524.77:     Instantiated Spec::Benchmark::x264_s625 in 0.000201941s
+1590281524.77:     Finding src.alts took 0.000030041s
+1590281524.77:   Setting up x264_s took 0.001262903s
+
+1590281524.77:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '511.povray_r'
+1590281524.77:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/511.povray_r/Spec/object.pm in 0.000503063s
+1590281524.77:     Instantiated Spec::Benchmark::povray_r511 in 0.000171900s
+1590281524.77:     Finding src.alts took 0.000025034s
+1590281524.77:   Setting up povray_r took 0.000886202s
+
+1590281524.77:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fprate_mixed_c.bset'
+1590281524.77:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fprate_mixed_fortran.bset'
+1590281524.77:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '600.perlbench_s'
+1590281524.77:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/600.perlbench_s/Spec/object.pm in 0.002880096s
+1590281524.77:     Instantiated Spec::Benchmark::perlbench_s600 in 0.000174999s
+1590281524.77:     Finding src.alts took 0.000023842s
+1590281524.77:   Setting up perlbench_s took 0.003466129s
+
+1590281524.77:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fprate.bset'
+1590281524.78:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '531.deepsjeng_r'
+1590281524.78:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/531.deepsjeng_r/Spec/object.pm in 0.000314951s
+1590281524.78:     Instantiated Spec::Benchmark::deepsjeng_r531 in 0.000178099s
+1590281524.78:     Finding src.alts took 0.000025034s
+1590281524.78:   Setting up deepsjeng_r took 0.000693083s
+
+1590281524.78:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'mixed_c.bset'
+1590281524.78:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '527.cam4_r'
+1590281524.78:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/527.cam4_r/Spec/object.pm in 0.004292011s
+1590281524.78:     Instantiated Spec::Benchmark::cam4_r527 in 0.000375986s
+1590281524.78:     Finding src.alts took 0.000031948s
+1590281524.78:   Setting up cam4_r took 0.004940033s
+
+1590281524.78:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intrate_pure_fortran.bset'
+1590281524.78:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '520.omnetpp_r'
+1590281524.78:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/520.omnetpp_r/Spec/object.pm in 0.000437975s
+1590281524.78:     Instantiated Spec::Benchmark::omnetpp_r520 in 0.000185966s
+1590281524.78:     Finding src.alts took 0.000032902s
+1590281524.78:   Setting up omnetpp_r took 0.000848055s
+
+1590281524.78:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '649.fotonik3d_s'
+1590281524.79:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/649.fotonik3d_s/Spec/object.pm in 0.000272036s
+1590281524.79:     Instantiated Spec::Benchmark::fotonik3d_s649 in 0.000159979s
+1590281524.79:     Finding src.alts took 0.000019073s
+1590281524.79:   Setting up fotonik3d_s took 0.000601053s
+
+1590281524.79:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '998.specrand_is'
+1590281524.79:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/998.specrand_is/Spec/object.pm in 0.000313044s
+1590281524.79:     Instantiated Spec::Benchmark::specrand_is998 in 0.000159979s
+1590281524.79:     Finding src.alts took 0.000020981s
+1590281524.79:   Setting up specrand_is took 0.000648975s
+
+1590281524.79:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '525.x264_r'
+1590281524.79:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/525.x264_r/Spec/object.pm in 0.000851870s
+1590281524.79:     Instantiated Spec::Benchmark::x264_r525 in 0.000185013s
+1590281524.79:     Finding src.alts took 0.000025988s
+1590281524.79:   Setting up x264_r took 0.001244068s
+
+1590281524.79:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intspeed.bset'
+1590281524.79:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '510.parest_r'
+1590281524.79:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/510.parest_r/Spec/object.pm in 0.000436068s
+1590281524.79:     Instantiated Spec::Benchmark::parest_r510 in 0.000180006s
+1590281524.79:     Finding src.alts took 0.000021935s
+1590281524.79:   Setting up parest_r took 0.000820160s
+
+1590281524.79:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'specrate.bset'
+1590281524.79:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fprate_any_cpp.bset'
+1590281524.79:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '638.imagick_s'
+1590281524.79:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/638.imagick_s/Spec/object.pm in 0.000603914s
+1590281524.79:     Instantiated Spec::Benchmark::imagick_s638 in 0.000180006s
+1590281524.79:     Finding src.alts took 0.000025988s
+1590281524.79:   Setting up imagick_s took 0.001003027s
+
+1590281524.79:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '619.lbm_s'
+1590281524.79:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/619.lbm_s/Spec/object.pm in 0.000312805s
+1590281524.80:     Instantiated Spec::Benchmark::lbm_s619 in 0.000169039s
+1590281524.80:     Finding src.alts took 0.000022888s
+1590281524.80:   Setting up lbm_s took 0.000674963s
+
+1590281524.80:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intspeed_any_fortran.bset'
+1590281524.80:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '541.leela_r'
+1590281524.80:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/541.leela_r/Spec/object.pm in 0.000306129s
+1590281524.80:     Instantiated Spec::Benchmark::leela_r541 in 0.000171185s
+1590281524.80:     Finding src.alts took 0.000020981s
+1590281524.80:   Setting up leela_r took 0.000661850s
+
+1590281524.80:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '507.cactuBSSN_r'
+1590281524.80:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/507.cactuBSSN_r/Spec/object.pm in 0.000634909s
+1590281524.80:     Instantiated Spec::Benchmark::cactuBSSN_r507 in 0.000213861s
+1590281524.80:     Finding src.alts took 0.000023127s
+1590281524.80:   Setting up cactuBSSN_r took 0.001071930s
+
+1590281524.80:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '526.blender_r'
+1590281524.80:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/526.blender_r/Spec/object.pm in 0.001680851s
+1590281524.80:     Instantiated Spec::Benchmark::blender_r526 in 0.000239134s
+1590281524.80:     Finding src.alts took 0.000028133s
+1590281524.80:   Setting up blender_r took 0.002145052s
+
+1590281524.80:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '621.wrf_s'
+1590281524.80:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/621.wrf_s/Spec/object.pm in 0.001913786s
+1590281524.80:     Instantiated Spec::Benchmark::wrf_s621 in 0.000263929s
+1590281524.80:     Finding src.alts took 0.000026941s
+1590281524.80:   Setting up wrf_s took 0.002413034s
+
+1590281524.80:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'specspeed.bset'
+1590281524.80:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fprate_any_c.bset'
+1590281524.80:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '521.wrf_r'
+1590281524.81:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/521.wrf_r/Spec/object.pm in 0.002285004s
+1590281524.81:     Instantiated Spec::Benchmark::wrf_r521 in 0.000293016s
+1590281524.81:     Finding src.alts took 0.000030041s
+1590281524.81:   Setting up wrf_r took 0.002823830s
+
+1590281524.81:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '628.pop2_s'
+1590281524.81:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/628.pop2_s/Spec/object.pm in 0.002784967s
+1590281524.81:     Instantiated Spec::Benchmark::pop2_s628 in 0.000313044s
+1590281524.81:     Finding src.alts took 0.000030041s
+1590281524.81:   Setting up pop2_s took 0.003341913s
+
+1590281524.81:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '641.leela_s'
+1590281524.81:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/641.leela_s/Spec/object.pm in 0.000303984s
+1590281524.81:     Instantiated Spec::Benchmark::leela_s641 in 0.000165939s
+1590281524.81:     Finding src.alts took 0.000020981s
+1590281524.81:   Setting up leela_s took 0.000649214s
+
+1590281524.81:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '623.xalancbmk_s'
+1590281524.81:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/623.xalancbmk_s/Spec/object.pm in 0.000361919s
+1590281524.81:     Instantiated Spec::Benchmark::xalancbmk_s623 in 0.000180006s
+1590281524.81:     Finding src.alts took 0.000022173s
+1590281524.81:   Setting up xalancbmk_s took 0.000720978s
+
+1590281524.81:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'openmp.bset'
+1590281524.81:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intrate_any_cpp.bset'
+1590281524.81:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fpspeed_mixed_fortran.bset'
+1590281524.81:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '607.cactuBSSN_s'
+1590281524.81:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/607.cactuBSSN_s/Spec/object.pm in 0.000304937s
+1590281524.81:     Instantiated Spec::Benchmark::cactuBSSN_s607 in 0.000195980s
+1590281524.82:     Finding src.alts took 0.000025034s
+1590281524.82:   Setting up cactuBSSN_s took 0.000700951s
+
+1590281524.82:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intrate.bset'
+1590281524.82:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '999.specrand_ir'
+1590281524.82:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/999.specrand_ir/Spec/object.pm in 0.000322104s
+1590281524.82:     Instantiated Spec::Benchmark::specrand_ir999 in 0.000189066s
+1590281524.82:     Finding src.alts took 0.000022888s
+1590281524.82:   Setting up specrand_ir took 0.000706911s
+
+1590281524.82:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '605.mcf_s'
+1590281524.82:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/605.mcf_s/Spec/object.pm in 0.000287056s
+1590281524.82:     Instantiated Spec::Benchmark::mcf_s605 in 0.000171900s
+1590281524.82:     Finding src.alts took 0.000018835s
+1590281524.82:   Setting up mcf_s took 0.000636816s
+
+1590281524.82:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'serial.bset'
+1590281524.82:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '503.bwaves_r'
+1590281524.82:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/503.bwaves_r/Spec/object.pm in 0.000371933s
+1590281524.82:     Instantiated Spec::Benchmark::bwaves_r503 in 0.000209808s
+1590281524.82:     Finding src.alts took 0.000023127s
+1590281524.82:   Setting up bwaves_r took 0.000782967s
+
+1590281524.82:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '620.omnetpp_s'
+1590281524.82:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/620.omnetpp_s/Spec/object.pm in 0.000325918s
+1590281524.82:     Instantiated Spec::Benchmark::omnetpp_s620 in 0.000168085s
+1590281524.82:     Finding src.alts took 0.000020027s
+1590281524.82:   Setting up omnetpp_s took 0.000673056s
+
+1590281524.82:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fpspeed_mixed.bset'
+1590281524.82:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '657.xz_s'
+1590281524.82:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/657.xz_s/Spec/object.pm in 0.000452995s
+1590281524.82:     Instantiated Spec::Benchmark::xz_s657 in 0.000200033s
+1590281524.82:     Finding src.alts took 0.000030994s
+1590281524.82:   Setting up xz_s took 0.000854969s
+
+1590281524.82:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intrate_pure_c.bset'
+1590281524.82:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intspeed_any_c.bset'
+1590281524.83:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fpspeed.bset'
+1590281524.83:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'pure_fortran.bset'
+1590281524.83:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fprate_pure_fortran.bset'
+1590281524.83:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intspeed_any_cpp.bset'
+1590281524.83:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '644.nab_s'
+1590281524.83:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/644.nab_s/Spec/object.pm in 0.000329018s
+1590281524.83:     Instantiated Spec::Benchmark::nab_s644 in 0.000185013s
+1590281524.83:     Finding src.alts took 0.000022888s
+1590281524.83:   Setting up nab_s took 0.000704050s
+
+1590281524.83:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '997.specrand_fr'
+1590281524.83:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/997.specrand_fr/Spec/object.pm in 0.000308990s
+1590281524.83:     Instantiated Spec::Benchmark::specrand_fr997 in 0.000155926s
+1590281524.83:     Finding src.alts took 0.000018120s
+1590281524.83:   Setting up specrand_fr took 0.000645161s
+
+1590281524.83:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'CPU.bset'
+1590281524.83:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '544.nab_r'
+1590281524.83:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/544.nab_r/Spec/object.pm in 0.000393867s
+1590281524.83:     Instantiated Spec::Benchmark::nab_r544 in 0.000185013s
+1590281524.83:     Finding src.alts took 0.000022888s
+1590281524.83:   Setting up nab_r took 0.000771046s
+
+1590281524.83:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '602.gcc_s'
+1590281524.83:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/602.gcc_s/Spec/object.pm in 0.000418901s
+1590281524.83:     Instantiated Spec::Benchmark::gcc_s602 in 0.000150919s
+1590281524.83:     Finding src.alts took 0.000020981s
+1590281524.83:   Setting up gcc_s took 0.000756979s
+
+1590281524.83: Setting up suite took 0.126667023s
+1590281524.83: Reading suite directory for 'Makefile.defaults', '/home/ucsd/SpectreSandboxing/spec2017/benchspec'
+1590281524.83: Reading suite directory for 'version.txt', '/home/ucsd/SpectreSandboxing/spec2017/benchspec'
+1590281524.84: found 47 benchmarks in 55 benchsets.
+1590281524.84: Reading config file '/home/ucsd/SpectreSandboxing/spec2017/config/wasm_lucet.cfg'
+1590281524.84: NOTICE: Skipping expression evaluation for 'build_ncpus' on line 27 of
+1590281524.84:         /home/ucsd/SpectreSandboxing/spec2017/config/wasm_lucet.cfg
+1590281524.84: NOTICE: Skipping expression evaluation for 'version' on line 30 of
+1590281524.84:         /home/ucsd/SpectreSandboxing/spec2017/config/wasm_lucet.cfg
+1590281524.85: NOTICE: Expression evaluation for 'gccpath' on line 117 of
+1590281524.85:         /home/ucsd/SpectreSandboxing/spec2017/config/wasm_lucet.cfg succeeded.
+1590281524.85:         Expression:     '/usr/'
+1590281524.85:         Returned value: ''
+1590281524.85: NOTICE: Expression evaluation for 'numxzthreads' on line 190 of
+1590281524.85:         /home/ucsd/SpectreSandboxing/spec2017/config/wasm_lucet.cfg succeeded.
+1590281524.85:         Expression:     '1 * 2'
+1590281524.85:         Returned value: '2'
+
+1590281524.94:   '644.nab_s' added
+1590281524.94: 1 configuration selected:
+
+1590281524.94:  Action    Run Mode   Workload     Report Type      Benchmarks
+1590281524.94: --------   --------   --------   ----------------   ---------------------------
+1590281524.94: validate   speed      refspeed   SPECspeed2017_fp   644.nab_s                  
+1590281524.94: -------------------------------------------------------------------------------
+1590281524.94: 
+1590281524.94: Setting up environment for running 644.nab_s...
+1590281524.94: Setting KMP_AFFINITY = "granularity=fine,compact"
+1590281524.94: Setting LD_LIBRARY_PATH = "/home/ucsd/SpectreSandboxing/spec2017/lib/ia32:/home/ucsd/SpectreSandboxing/spec2017/lib/intel64"
+1590281524.94: Setting OMP_STACKSIZE = "192M"
+1590281524.94: Starting runcpu for 644.nab_s...
+1590281524.94:    /home/ucsd/SpectreSandboxing/spec2017/bin/specperl /home/ucsd/SpectreSandboxing/spec2017/bin/harness/runcpu --configfile wasm_lucet --action run --wasm --define cores=1 --noreportable --nopower --runmode speed --tune base --size refspeed 644.nab_s
+1590281525.47: Created default regexp '(?:^|(?<=\s))[-/]DSPEC(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281525.47: Created default regexp '(?:^|(?<=\s))[-/]USPEC(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for USPEC in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281525.47: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_CPU in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281525.47: Created default regexp '(?:^|(?<=\s))[-/]DNDEBUG(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DNDEBUG in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281525.47: Created default regexp '(?:^|(?<=\s))[-/]UNDEBUG(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for UNDEBUG in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281525.47: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_WINDOWS(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_WINDOWS in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281525.47: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_MEM_IO(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_MEM_IO in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281525.48: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_ILP32(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_ILP32 in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281525.48: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_P64(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_P64 in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281525.48: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_LP64(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_LP64 in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281525.48: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_ILP64(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_ILP64 in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281525.48: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_SUPPRESS_OPENMP(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_SUPPRESS_OPENMP in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281525.48: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_AUTO_SUPPRESS_OPENMP(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_AUTO_SUPPRESS_OPENMP in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281525.48: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_OPENMP(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_OPENMP in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281525.48: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_NO_AUTO_BYTEORDER(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for DSPEC_NO_AUTO_BYTEORDER in /home/ucsd/SpectreSandboxing/spec2017/benchspec/flags-mandatory.xml
+1590281525.48: Reading suite directory for 'flags-mandatory.xml', '/home/ucsd/SpectreSandboxing/spec2017/benchspec'
+1590281525.48: Reading suite directory for 'CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec'
+1590281525.48:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '557.xz_r'
+1590281525.48:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/557.xz_r/Spec/object.pm in 0.001744032s
+1590281525.48:     Instantiated Spec::Benchmark::xz_r557 in 0.000381947s
+1590281525.48:     Finding src.alts took 0.000049114s
+1590281525.48:   Setting up xz_r took 0.002446890s
+
+1590281525.48:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fprate_any_fortran.bset'
+1590281525.48:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '508.namd_r'
+1590281525.48:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/508.namd_r/Spec/object.pm in 0.000355959s
+1590281525.48:     Instantiated Spec::Benchmark::namd_r508 in 0.000236988s
+1590281525.48:     Finding src.alts took 0.000039816s
+1590281525.48:   Setting up namd_r took 0.000813961s
+
+1590281525.48:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '554.roms_r'
+1590281525.48:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/554.roms_r/Spec/object.pm in 0.001315117s
+1590281525.48:     Instantiated Spec::Benchmark::roms_r554 in 0.000293016s
+1590281525.48:     Finding src.alts took 0.000040054s
+1590281525.48:   Setting up roms_r took 0.001858950s
+
+1590281525.48:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intspeed_pure_cpp.bset'
+1590281525.48:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '996.specrand_fs'
+1590281525.48:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/996.specrand_fs/Spec/object.pm in 0.000323057s
+1590281525.48:     Instantiated Spec::Benchmark::specrand_fs996 in 0.000198841s
+1590281525.48:     Finding src.alts took 0.000024080s
+1590281525.48:   Setting up specrand_fs took 0.000715017s
+
+1590281525.48:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fprate_pure_cpp.bset'
+1590281525.49:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '500.perlbench_r'
+1590281525.49:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/500.perlbench_r/Spec/object.pm in 0.001216173s
+1590281525.49:     Instantiated Spec::Benchmark::perlbench_r500 in 0.000246048s
+1590281525.49:     Finding src.alts took 0.000035048s
+1590281525.49:   Setting up perlbench_r took 0.001719952s
+
+1590281525.49:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fprate_pure_c.bset'
+1590281525.49:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '519.lbm_r'
+1590281525.49:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/519.lbm_r/Spec/object.pm in 0.000303030s
+1590281525.49:     Instantiated Spec::Benchmark::lbm_r519 in 0.000196934s
+1590281525.49:     Finding src.alts took 0.000024080s
+1590281525.49:   Setting up lbm_r took 0.000693083s
+
+1590281525.49:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fprate_mixed.bset'
+1590281525.49:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fpspeed_any_c.bset'
+1590281525.49:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '627.cam4_s'
+1590281525.49:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/627.cam4_s/Spec/object.pm in 0.000447989s
+1590281525.49:     Instantiated Spec::Benchmark::cam4_s627 in 0.000211954s
+1590281525.49:     Finding src.alts took 0.000025988s
+1590281525.49:   Setting up cam4_s took 0.000860929s
+
+1590281525.49:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '548.exchange2_r'
+1590281525.49:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/548.exchange2_r/Spec/object.pm in 0.000313997s
+1590281525.49:     Instantiated Spec::Benchmark::exchange2_r548 in 0.000177145s
+1590281525.49:     Finding src.alts took 0.000022888s
+1590281525.49:   Setting up exchange2_r took 0.000691175s
+
+1590281525.49:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intopenmp.bset'
+1590281525.49:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '505.mcf_r'
+1590281525.49:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/505.mcf_r/Spec/object.pm in 0.000299931s
+1590281525.49:     Instantiated Spec::Benchmark::mcf_r505 in 0.000175953s
+1590281525.49:     Finding src.alts took 0.000020981s
+1590281525.49:   Setting up mcf_r took 0.000668049s
+
+1590281525.49:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fpspeed_mixed_c.bset'
+1590281525.49:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '538.imagick_r'
+1590281525.50:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/538.imagick_r/Spec/object.pm in 0.000744104s
+1590281525.50:     Instantiated Spec::Benchmark::imagick_r538 in 0.000181913s
+1590281525.50:     Finding src.alts took 0.000031948s
+1590281525.50:   Setting up imagick_r took 0.001144171s
+
+1590281525.50:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intspeed_pure_c.bset'
+1590281525.50:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fpspeed_any_cpp.bset'
+1590281525.50:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '502.gcc_r'
+1590281525.51:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/502.gcc_r/Spec/object.pm in 0.015544891s
+1590281525.51:     Instantiated Spec::Benchmark::gcc_r502 in 0.000485897s
+1590281525.51:     Finding src.alts took 0.000051975s
+1590281525.51:   Setting up gcc_r took 0.016373873s
+
+1590281525.51:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intrate_pure_cpp.bset'
+1590281525.51:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'osdi.bset'
+1590281525.52:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fpspeed_mixed_cpp.bset'
+1590281525.52:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'mixed_fortran.bset'
+1590281525.52:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intspeed_pure_fortran.bset'
+1590281525.52:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fprate_mixed_cpp.bset'
+1590281525.52:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '648.exchange2_s'
+1590281525.52:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/648.exchange2_s/Spec/object.pm in 0.000359058s
+1590281525.52:     Instantiated Spec::Benchmark::exchange2_s648 in 0.000200033s
+1590281525.52:     Finding src.alts took 0.000041008s
+1590281525.52:   Setting up exchange2_s took 0.000781059s
+
+1590281525.52:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '631.deepsjeng_s'
+1590281525.52:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/631.deepsjeng_s/Spec/object.pm in 0.000279903s
+1590281525.52:     Instantiated Spec::Benchmark::deepsjeng_s631 in 0.000172138s
+1590281525.52:     Finding src.alts took 0.000020027s
+1590281525.52:   Setting up deepsjeng_s took 0.000638008s
+
+1590281525.52:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'any_c.bset'
+1590281525.52:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'serial_speed.bset'
+1590281525.52:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'mini.bset'
+1590281525.52:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '603.bwaves_s'
+1590281525.52:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/603.bwaves_s/Spec/object.pm in 0.000380039s
+1590281525.52:     Instantiated Spec::Benchmark::bwaves_s603 in 0.000212908s
+1590281525.52:     Finding src.alts took 0.000021935s
+1590281525.52:   Setting up bwaves_s took 0.000788927s
+
+1590281525.52:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'any_fortran.bset'
+1590281525.52:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intrate_any_c.bset'
+1590281525.52:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fpopenmp.bset'
+1590281525.52:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '523.xalancbmk_r'
+1590281525.53:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/523.xalancbmk_r/Spec/object.pm in 0.000847101s
+1590281525.53:     Instantiated Spec::Benchmark::xalancbmk_r523 in 0.000242949s
+1590281525.53:     Finding src.alts took 0.000027895s
+1590281525.53:   Setting up xalancbmk_r took 0.001317024s
+
+1590281525.53:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intrate_any_fortran.bset'
+1590281525.53:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fpspeed_any_fortran.bset'
+1590281525.53:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '654.roms_s'
+1590281525.53:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/654.roms_s/Spec/object.pm in 0.000755072s
+1590281525.53:     Instantiated Spec::Benchmark::roms_s654 in 0.000192165s
+1590281525.53:     Finding src.alts took 0.000035048s
+1590281525.53:   Setting up roms_s took 0.001186132s
+
+1590281525.53:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'pure_cpp.bset'
+1590281525.53:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fpspeed_pure_c.bset'
+1590281525.53:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'mixed_cpp.bset'
+1590281525.53:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '549.fotonik3d_r'
+1590281525.53:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/549.fotonik3d_r/Spec/object.pm in 0.000362873s
+1590281525.53:     Instantiated Spec::Benchmark::fotonik3d_r549 in 0.000186920s
+1590281525.53:     Finding src.alts took 0.000025034s
+1590281525.53:   Setting up fotonik3d_r took 0.000746965s
+
+1590281525.53:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'any_cpp.bset'
+1590281525.53:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fpspeed_pure_fortran.bset'
+1590281525.53:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'mixed.bset'
+1590281525.53:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'pure_c.bset'
+1590281525.53:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '625.x264_s'
+1590281525.54:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/625.x264_s/Spec/object.pm in 0.000787020s
+1590281525.54:     Instantiated Spec::Benchmark::x264_s625 in 0.000200033s
+1590281525.54:     Finding src.alts took 0.000026941s
+1590281525.54:   Setting up x264_s took 0.001210928s
+
+1590281525.54:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '511.povray_r'
+1590281525.54:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/511.povray_r/Spec/object.pm in 0.000458956s
+1590281525.54:     Instantiated Spec::Benchmark::povray_r511 in 0.000177145s
+1590281525.54:     Finding src.alts took 0.000022888s
+1590281525.54:   Setting up povray_r took 0.000830889s
+
+1590281525.54:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fprate_mixed_c.bset'
+1590281525.54:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fprate_mixed_fortran.bset'
+1590281525.54:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '600.perlbench_s'
+1590281525.54:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/600.perlbench_s/Spec/object.pm in 0.000530005s
+1590281525.54:     Instantiated Spec::Benchmark::perlbench_s600 in 0.000171900s
+1590281525.54:     Finding src.alts took 0.000021935s
+1590281525.54:   Setting up perlbench_s took 0.000899076s
+
+1590281525.54:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fprate.bset'
+1590281525.54:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '531.deepsjeng_r'
+1590281525.54:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/531.deepsjeng_r/Spec/object.pm in 0.000288010s
+1590281525.54:     Instantiated Spec::Benchmark::deepsjeng_r531 in 0.000178099s
+1590281525.54:     Finding src.alts took 0.000021935s
+1590281525.54:   Setting up deepsjeng_r took 0.000665903s
+
+1590281525.54:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'mixed_c.bset'
+1590281525.54:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '527.cam4_r'
+1590281525.55:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/527.cam4_r/Spec/object.pm in 0.004123926s
+1590281525.55:     Instantiated Spec::Benchmark::cam4_r527 in 0.000373840s
+1590281525.55:     Finding src.alts took 0.000030994s
+1590281525.55:   Setting up cam4_r took 0.004762888s
+
+1590281525.55:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intrate_pure_fortran.bset'
+1590281525.55:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '520.omnetpp_r'
+1590281525.55:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/520.omnetpp_r/Spec/object.pm in 0.000409842s
+1590281525.55:     Instantiated Spec::Benchmark::omnetpp_r520 in 0.000193119s
+1590281525.55:     Finding src.alts took 0.000036001s
+1590281525.55:   Setting up omnetpp_r took 0.000817060s
+
+1590281525.55:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '649.fotonik3d_s'
+1590281525.55:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/649.fotonik3d_s/Spec/object.pm in 0.000266075s
+1590281525.55:     Instantiated Spec::Benchmark::fotonik3d_s649 in 0.000149012s
+1590281525.55:     Finding src.alts took 0.000019073s
+1590281525.55:   Setting up fotonik3d_s took 0.000584126s
+
+1590281525.55:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '998.specrand_is'
+1590281525.55:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/998.specrand_is/Spec/object.pm in 0.000297070s
+1590281525.55:     Instantiated Spec::Benchmark::specrand_is998 in 0.000149012s
+1590281525.55:     Finding src.alts took 0.000018835s
+1590281525.55:   Setting up specrand_is took 0.000622988s
+
+1590281525.55:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '525.x264_r'
+1590281525.55:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/525.x264_r/Spec/object.pm in 0.000839949s
+1590281525.55:     Instantiated Spec::Benchmark::x264_r525 in 0.000192165s
+1590281525.55:     Finding src.alts took 0.000027895s
+1590281525.55:   Setting up x264_r took 0.001243114s
+
+1590281525.55:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intspeed.bset'
+1590281525.56:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '510.parest_r'
+1590281525.56:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/510.parest_r/Spec/object.pm in 0.000524998s
+1590281525.56:     Instantiated Spec::Benchmark::parest_r510 in 0.000188828s
+1590281525.56:     Finding src.alts took 0.000025034s
+1590281525.56:   Setting up parest_r took 0.000935078s
+
+1590281525.56:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'specrate.bset'
+1590281525.56:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fprate_any_cpp.bset'
+1590281525.56:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '638.imagick_s'
+1590281525.56:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/638.imagick_s/Spec/object.pm in 0.000595093s
+1590281525.56:     Instantiated Spec::Benchmark::imagick_s638 in 0.000184059s
+1590281525.56:     Finding src.alts took 0.000025988s
+1590281525.56:   Setting up imagick_s took 0.000997066s
+
+1590281525.56:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '619.lbm_s'
+1590281525.56:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/619.lbm_s/Spec/object.pm in 0.000285149s
+1590281525.56:     Instantiated Spec::Benchmark::lbm_s619 in 0.000169992s
+1590281525.56:     Finding src.alts took 0.000020981s
+1590281525.56:   Setting up lbm_s took 0.000648975s
+
+1590281525.56:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intspeed_any_fortran.bset'
+1590281525.56:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '541.leela_r'
+1590281525.56:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/541.leela_r/Spec/object.pm in 0.000284910s
+1590281525.56:     Instantiated Spec::Benchmark::leela_r541 in 0.000169992s
+1590281525.56:     Finding src.alts took 0.000021935s
+1590281525.56:   Setting up leela_r took 0.000641108s
+
+1590281525.56:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '507.cactuBSSN_r'
+1590281525.56:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/507.cactuBSSN_r/Spec/object.pm in 0.000634909s
+1590281525.56:     Instantiated Spec::Benchmark::cactuBSSN_r507 in 0.000194788s
+1590281525.56:     Finding src.alts took 0.000025034s
+1590281525.56:   Setting up cactuBSSN_r took 0.001026154s
+
+1590281525.56:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '526.blender_r'
+1590281525.56:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/526.blender_r/Spec/object.pm in 0.001716137s
+1590281525.56:     Instantiated Spec::Benchmark::blender_r526 in 0.000210047s
+1590281525.56:     Finding src.alts took 0.000029087s
+1590281525.56:   Setting up blender_r took 0.002166033s
+
+1590281525.56:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '621.wrf_s'
+1590281525.57:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/621.wrf_s/Spec/object.pm in 0.001834869s
+1590281525.57:     Instantiated Spec::Benchmark::wrf_s621 in 0.000264883s
+1590281525.57:     Finding src.alts took 0.000028133s
+1590281525.57:   Setting up wrf_s took 0.002328157s
+
+1590281525.57:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'specspeed.bset'
+1590281525.57:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fprate_any_c.bset'
+1590281525.57:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '521.wrf_r'
+1590281525.57:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/521.wrf_r/Spec/object.pm in 0.002187967s
+1590281525.57:     Instantiated Spec::Benchmark::wrf_r521 in 0.000272989s
+1590281525.57:     Finding src.alts took 0.000034809s
+1590281525.57:   Setting up wrf_r took 0.002701998s
+
+1590281525.57:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '628.pop2_s'
+1590281525.57:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/628.pop2_s/Spec/object.pm in 0.002743959s
+1590281525.57:     Instantiated Spec::Benchmark::pop2_s628 in 0.000312090s
+1590281525.58:     Finding src.alts took 0.000029087s
+1590281525.58:   Setting up pop2_s took 0.003292084s
+
+1590281525.58:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '641.leela_s'
+1590281525.58:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/641.leela_s/Spec/object.pm in 0.000280857s
+1590281525.58:     Instantiated Spec::Benchmark::leela_s641 in 0.000163078s
+1590281525.58:     Finding src.alts took 0.000020027s
+1590281525.58:   Setting up leela_s took 0.000620842s
+
+1590281525.58:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '623.xalancbmk_s'
+1590281525.58:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/623.xalancbmk_s/Spec/object.pm in 0.000349998s
+1590281525.58:     Instantiated Spec::Benchmark::xalancbmk_s623 in 0.000154018s
+1590281525.58:     Finding src.alts took 0.000020027s
+1590281525.58:   Setting up xalancbmk_s took 0.000679016s
+
+1590281525.58:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'openmp.bset'
+1590281525.58:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intrate_any_cpp.bset'
+1590281525.58:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fpspeed_mixed_fortran.bset'
+1590281525.58:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '607.cactuBSSN_s'
+1590281525.58:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/607.cactuBSSN_s/Spec/object.pm in 0.000313044s
+1590281525.58:     Instantiated Spec::Benchmark::cactuBSSN_s607 in 0.000180960s
+1590281525.58:     Finding src.alts took 0.000023127s
+1590281525.58:   Setting up cactuBSSN_s took 0.000688076s
+
+1590281525.58:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intrate.bset'
+1590281525.58:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '999.specrand_ir'
+1590281525.58:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/999.specrand_ir/Spec/object.pm in 0.000320911s
+1590281525.58:     Instantiated Spec::Benchmark::specrand_ir999 in 0.000171900s
+1590281525.58:     Finding src.alts took 0.000020981s
+1590281525.58:   Setting up specrand_ir took 0.000699043s
+
+1590281525.58:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '605.mcf_s'
+1590281525.58:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/605.mcf_s/Spec/object.pm in 0.000298023s
+1590281525.58:     Instantiated Spec::Benchmark::mcf_s605 in 0.000162125s
+1590281525.58:     Finding src.alts took 0.000020981s
+1590281525.58:   Setting up mcf_s took 0.000638008s
+
+1590281525.58:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'serial.bset'
+1590281525.59:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '503.bwaves_r'
+1590281525.59:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/503.bwaves_r/Spec/object.pm in 0.000354052s
+1590281525.59:     Instantiated Spec::Benchmark::bwaves_r503 in 0.000215054s
+1590281525.59:     Finding src.alts took 0.000024080s
+1590281525.59:   Setting up bwaves_r took 0.000766993s
+
+1590281525.59:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '620.omnetpp_s'
+1590281525.59:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/620.omnetpp_s/Spec/object.pm in 0.000298023s
+1590281525.59:     Instantiated Spec::Benchmark::omnetpp_s620 in 0.000149012s
+1590281525.59:     Finding src.alts took 0.000017881s
+1590281525.59:   Setting up omnetpp_s took 0.000618219s
+
+1590281525.59:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fpspeed_mixed.bset'
+1590281525.59:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '657.xz_s'
+1590281525.59:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/657.xz_s/Spec/object.pm in 0.000434160s
+1590281525.59:     Instantiated Spec::Benchmark::xz_s657 in 0.000164986s
+1590281525.59:     Finding src.alts took 0.000021935s
+1590281525.59:   Setting up xz_s took 0.000797987s
+
+1590281525.59:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intrate_pure_c.bset'
+1590281525.59:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intspeed_any_c.bset'
+1590281525.59:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fpspeed.bset'
+1590281525.59:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'pure_fortran.bset'
+1590281525.59:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'fprate_pure_fortran.bset'
+1590281525.59:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'intspeed_any_cpp.bset'
+1590281525.59:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '644.nab_s'
+1590281525.59:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/644.nab_s/Spec/object.pm in 0.000331879s
+1590281525.60:     Instantiated Spec::Benchmark::nab_s644 in 0.000169039s
+1590281525.60:     Finding src.alts took 0.000023842s
+1590281525.60:   Setting up nab_s took 0.000708818s
+
+1590281525.60:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '997.specrand_fr'
+1590281525.60:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/997.specrand_fr/Spec/object.pm in 0.000296116s
+1590281525.60:     Instantiated Spec::Benchmark::specrand_fr997 in 0.000153065s
+1590281525.60:     Finding src.alts took 0.000019789s
+1590281525.60:   Setting up specrand_fr took 0.000628948s
+
+1590281525.60:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', 'CPU.bset'
+1590281525.60:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '544.nab_r'
+1590281525.60:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/544.nab_r/Spec/object.pm in 0.000406027s
+1590281525.60:     Instantiated Spec::Benchmark::nab_r544 in 0.000168800s
+1590281525.60:     Finding src.alts took 0.000022888s
+1590281525.60:   Setting up nab_r took 0.000766039s
+
+1590281525.60:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU', '/home/ucsd/SpectreSandboxing/spec2017/benchspec', '602.gcc_s'
+1590281525.60:     Evaluated /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/602.gcc_s/Spec/object.pm in 0.000398874s
+1590281525.60:     Instantiated Spec::Benchmark::gcc_s602 in 0.000154972s
+1590281525.60:     Finding src.alts took 0.000021935s
+1590281525.60:   Setting up gcc_s took 0.000735998s
+
+1590281525.60: Setting up suite took 0.121778011s
+1590281525.60: Reading suite directory for 'Makefile.defaults', '/home/ucsd/SpectreSandboxing/spec2017/benchspec'
+1590281525.60: Reading suite directory for 'version.txt', '/home/ucsd/SpectreSandboxing/spec2017/benchspec'
+
+1590281525.61: NOTICE: Skipping expression evaluation for 'build_ncpus' on line 27 of
+1590281525.61:         /home/ucsd/SpectreSandboxing/spec2017/config/wasm_lucet.cfg
+1590281525.61: NOTICE: Skipping expression evaluation for 'version' on line 30 of
+1590281525.61:         /home/ucsd/SpectreSandboxing/spec2017/config/wasm_lucet.cfg
+1590281525.61: NOTICE: Expression evaluation for 'gccpath' on line 117 of
+1590281525.61:         /home/ucsd/SpectreSandboxing/spec2017/config/wasm_lucet.cfg succeeded.
+1590281525.61:         Expression:     '/usr/'
+1590281525.61:         Returned value: ''
+1590281525.62: NOTICE: Expression evaluation for 'numxzthreads' on line 190 of
+1590281525.62:         /home/ucsd/SpectreSandboxing/spec2017/config/wasm_lucet.cfg succeeded.
+1590281525.62:         Expression:     '1 * 2'
+1590281525.62:         Returned value: '2'
+1590281525.63: Running "specperl /home/ucsd/SpectreSandboxing/spec2017/bin/sysinfo" to gather system information.
+1590281525.73: sysinfo: r5797 of 2017-06-14 (96c45e4568ad54c135fd618bcc091c0f)
+1590281525.73: sysinfo: Getting system information for Linux...
+1590281525.73: sysinfo: ...getting CPU info
+1590281525.73: sysinfo: ...getting info from numactl
+1590281525.73: sysinfo: ...getting memory info
+1590281525.73: sysinfo: ...getting OS info
+1590281525.73: sysinfo: ...getting disk info
+1590281525.73: sysinfo: ...trying to get DIMM info from dmidecode
+1590281525.88: Retrieving flags file (gcc.xml)...
+1590281525.89: Created default regexp '(?:^|(?<=\s))-D_FILE_OFFSET_BITS=64(?=\s|$)' for F-D_FILE_OFFSET_BITS:64 in gcc.xml
+1590281525.89: Created default regexp '(?:^|(?<=\s))-fconvert=big-endian(?=\s|$)' for F-fconvert:big-endian in gcc.xml
+1590281525.89: Created default regexp '(?:^|(?<=\s))-ffast-math(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for F-ffast-math in gcc.xml
+1590281525.89: Created default regexp '(?:^|(?<=\s))-ffixed-form(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for F-ffixed-form in gcc.xml
+1590281525.89: Created default regexp '(?:^|(?<=\s))-fgnu89-inline(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for F-fgnu89-inline in gcc.xml
+1590281525.89: Created default regexp '(?:^|(?<=\s))-fno-strict-aliasing(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for F-fno-strict-aliasing in gcc.xml
+1590281525.89: Created default regexp '(?:^|(?<=\s))-fno-tree-loop-vectorize(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for F-fno-tree-loop-vectorize in gcc.xml
+1590281525.89: Created default regexp '(?:^|(?<=\s))-fno-underscoring(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for F-fno-underscoring in gcc.xml
+1590281525.89: Created default regexp '(?:^|(?<=\s))-fno-unsafe-math-optimizations(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for F-fno-unsafe-math-optimizations in gcc.xml
+1590281525.89: Created default regexp '(?:^|(?<=\s))-fopenmp(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for F-fopenmp in gcc.xml
+1590281525.89: Created default regexp '(?:^|(?<=\s))-fprefetch-loop-arrays(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for F-fprefetch-loop-arrays in gcc.xml
+1590281525.89: Created default regexp '(?:^|(?<=\s))-fprofile-generate(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for F-fprofile-generate in gcc.xml
+1590281525.89: Created default regexp '(?:^|(?<=\s))-fprofile-use(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for F-fprofile-use in gcc.xml
+1590281525.89: Created default regexp '(?:^|(?<=\s))-fsigned-zeros(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for F-fsigned-zeros in gcc.xml
+1590281525.89: Created default regexp '(?:^|(?<=\s))-funroll-all-loops(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for F-funroll-all-loops in gcc.xml
+1590281525.89: Created default regexp '(?:^|(?<=\s))-funroll-loops(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for F-funroll-loops in gcc.xml
+1590281525.89: Created default regexp '(?:^|(?<=\s))-funsigned-char(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for F-funsigned-char in gcc.xml
+1590281525.89: Created default regexp '(?:^|(?<=\s))-mavx(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for F-mavx in gcc.xml
+1590281525.89: Created default regexp '(?:^|(?<=\s))-mfmaf(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for F-mfmaf in gcc.xml
+1590281525.89: Created default regexp '(?:^|(?<=\s))-mrecip(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for F-mrecip in gcc.xml
+1590281525.89: Created default regexp '(?:^|(?<=\s))-mvis3(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for F-mvis3 in gcc.xml
+1590281525.89: Created default regexp '(?:^|(?<=\s))-Ofast(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for F-Ofast in gcc.xml
+1590281525.89: Created default regexp '(?:^|(?<=\s))-Wall(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for F-Wall in gcc.xml
+1590281525.89: Created default regexp '(?:^|(?<=\s))-Wno-return-type(?:\([^\)]+\))?(?:=\S*)?(?=\s|$)' for F-Wno-return-type in gcc.xml
+1590281525.93:   '644.nab_s' added
+1590281526.00: Verbosity = 5
+1590281526.00: Action    = validate
+1590281526.00: Tune      = base
+1590281526.00: Label     = wasm_lucet
+1590281526.00: Size      = refspeed
+1590281526.00: benchmarks= 644.nab_s
+1590281526.00: outputs   = txt,cfg,pdf,csv
+1590281526.00: username  = ucsd
+1590281526.00: Environment settings:
+1590281526.00: KMP_AFFINITY = "granularity=fine,compact"
+1590281526.00: LD_LIBRARY_PATH = "/home/ucsd/SpectreSandboxing/spec2017/lib/ia32:/home/ucsd/SpectreSandboxing/spec2017/lib/intel64"
+1590281526.00: OMP_STACKSIZE = "192M"
+
+1590281526.00: Benchmarks selected: 644.nab_s
+1590281526.02: Found reftime file in /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/544.nab_r/data/refspeed
+1590281526.02: Found input directory under /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/544.nab_r/data/refspeed
+1590281526.02: Found output directory under /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/544.nab_r/data/refspeed
+1590281526.02: Compiling Binaries
+1590281526.02: ------------------------------------------------------------------------
+1590281526.15: COMP: "/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o options.o -DSPEC -DNDEBUG -Ispecrand -Iregex-alpha -DNDEBUG -DNOPERFLIB -DNOREDUCE    -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP              -DSPEC_LP64  <source>"
+1590281526.15: C: CC="/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -I/opt/wasi-sdk/lib/clang/10.0.0/include/"
+1590281526.15: C: COBJOPT="-c -o options"
+1590281526.15: P: CPUFLAGS="-DSPEC -DNDEBUG"
+1590281526.15: P: BENCH_FLAGS="-Ispecrand -Iregex-alpha -DNDEBUG -DNOPERFLIB -DNOREDUCE"
+1590281526.15: P: BENCH_CFLAGS=""
+1590281526.15: O: OPTIMIZE=""
+1590281526.15: O: COPTIMIZE=" -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP"
+1590281526.15: P: PORTABILITY=""
+1590281526.15: P: CPORTABILITY=""
+1590281526.15: O: EXTRA_CFLAGS=""
+1590281526.15: O: EXTRA_OPTIMIZE=""
+1590281526.15: O: EXTRA_COPTIMIZE=""
+1590281526.15: P: EXTRA_PORTABILITY="-DSPEC_LP64"
+1590281526.15: P: EXTRA_CPORTABILITY=""
+1590281526.15: LINK: "/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -I/opt/wasi-sdk/lib/clang/10.0.0/include/        -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP         <objects>   -lm         -o options  "
+1590281526.15: C: LD="/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -I/opt/wasi-sdk/lib/clang/10.0.0/include/"
+1590281526.15: O: COPTIMIZE=" -O2 -fno-strict-aliasing -DSPEC_SUPPRESS_OPENMP"
+1590281526.15: C: MATH_LIBS="-lm"
+1590281526.15: C: LDOUT="-o options"
+1590281526.32:  CC_VERSION_OPTION:
+1590281526.32: clang version 10.0.0 (https://github.com/llvm/llvm-project d32170dbd5b0d54436537b6b75beaf44324e0c28)
+1590281526.32: Target: wasm32-unknown-wasi
+1590281526.32: Thread model: posix
+1590281526.32: InstalledDir: /opt/wasi-sdk/bin
+1590281526.38:   Up to date 644.nab_s base wasm_lucet
+1590281526.38: 
+1590281526.38: 
+1590281526.38: Setting Up Run Directories
+1590281526.39:   Setting up 644.nab_s refspeed (ref) base wasm_lucet: 
+1590281526.39: Notice: Unusable path detected in run directory list file at
+1590281526.39:         /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/644.nab_s/run/list
+1590281526.39:         The list file references one or more paths which will be
+1590281526.39:         ignored because they are not subdirectories of the directory
+1590281526.39:         where the list file resides.  This condition may be a result of
+1590281526.39:         having moved your SPEC CPU2017 benchmark tree.  If that's what
+1590281526.39:         happened, and if you don't need the old run directories, you
+1590281526.39:         can just remove them, along with the list file.  (Usually it's
+1590281526.39:         safe to delete old run directories, as they are automatically
+1590281526.39:         re-created when needed.)
+1590281526.41: 	Checking checksum of '3j1n/3j1n.pdb' in /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/644.nab_s/run/run_base_refspeed_wasm_lucet.0000 against cached source checksums.
+1590281526.50: 	Checking checksum of '3j1n/3j1n.prm' in /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/644.nab_s/run/run_base_refspeed_wasm_lucet.0000 against cached source checksums.
+1590281526.50: 	Checking checksum of 'control' in /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/644.nab_s/run/run_base_refspeed_wasm_lucet.0000 against cached source checksums.
+1590281526.50: run_base_refspeed_wasm_lucet.0000
+1590281526.50: Issuing command 'sync'
+1590281526.51: Start command: 2020-05-23 17:52:06 (1590281526.50521)
+1590281526.66: Stop command: 2020-05-23 17:52:06 (1590281526.66177)
+1590281526.66: Elapsed time for command: 00:00:00 (0.156557083129883)
+1590281526.66: -----------------------------------
+1590281526.66: Running Benchmarks
+1590281526.66: -----------------------------------
+1590281526.67: Comparing SHA-512 hashes:
+1590281526.67:   d6c3a4d2362ca8632032a1f4a5d35215c5bd2315f83f29dacbd42ec003e0692da4c61ae93739fae57e073d0431345f51824cae22abd9a50e21916df2f028bcea /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/644.nab_s/exe/nab_s_base.wasm_lucet
+1590281526.67:   d6c3a4d2362ca8632032a1f4a5d35215c5bd2315f83f29dacbd42ec003e0692da4c61ae93739fae57e073d0431345f51824cae22abd9a50e21916df2f028bcea /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/644.nab_s/run/run_base_refspeed_wasm_lucet.0000/nab_s_base.wasm_lucet
+1590281526.68:   Running (#1) 644.nab_s refspeed (ref) base wasm_lucet [2020-05-23 17:52:06]
+1590281526.68: check_submit for Spec::Benchmark::nab_s644=HASH(0x5a2a170): called from Spec::Benchmark::was_submit_used
+1590281526.68: check_submit for Spec::Benchmark::nab_s644=HASH(0x5a2a170): YES: submit ne '' ($command)
+1590281526.68: check_submit for Spec::Benchmark::nab_s644=HASH(0x5a2a170): NO: default submit
+1590281526.68: check_submit for Spec::Benchmark::nab_s644=HASH(0x5a2a170): NO
+1590281526.68: OpenMP environment variables removed: None
+1590281526.68: OpenMP environment variables in effect:
+1590281526.68: 	OMP_NUM_THREADS	=> '1'
+1590281526.68: 	OMP_THREAD_LIMIT	=> '1'
+1590281526.68: 	OMP_STACKSIZE	=> '192M'
+1590281526.69: Pre-run environment changes:
+1590281526.69: 	'OMP_NUM_THREADS' added: (value now '1')
+1590281526.69: 	'OMP_THREAD_LIMIT' added: (value now '1')
+1590281526.70: check_submit for Spec::Benchmark::nab_s644=HASH(0x5a2a170): called from Spec::Benchmark::prep_specrun
+1590281526.70: check_submit for Spec::Benchmark::nab_s644=HASH(0x5a2a170): YES: submit ne '' ($command)
+1590281526.70: check_submit for Spec::Benchmark::nab_s644=HASH(0x5a2a170): NO: default submit
+1590281526.70: check_submit for Spec::Benchmark::nab_s644=HASH(0x5a2a170): NO
+1590281526.70: Commands to run (specinvoke command file):
+1590281526.70:     -r
+1590281526.70:     -N C
+1590281526.70:     -C /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/644.nab_s/run/run_base_refspeed_wasm_lucet.0000
+1590281526.70:     -o 3j1n.out -e 3j1n.err ../../../../../../lucet-spectre/target/release/lucet-wasi --heap-address-space "8GiB" --max-heap-size "4GiB" --stack-size "8MiB" --dir ./:./ -- ../run_base_refspeed_wasm_lucet.0000/nab_s_base.wasm_lucet 3j1n 20140317 220 > 3j1n.out 2>> 3j1n.err (timed)
+1590281526.70: **WARNING: environment variable 'BASH_FUNC__module_raw%%' contains embedded CR or LF; they will be converted to spaces
+1590281526.70: **WARNING: environment variable 'BASH_FUNC_module%%' contains embedded CR or LF; they will be converted to spaces
+1590281526.70: **WARNING: environment variable 'BASH_FUNC_scl%%' contains embedded CR or LF; they will be converted to spaces
+1590281526.71: **WARNING: environment variable 'BASH_FUNC_switchml%%' contains embedded CR or LF; they will be converted to spaces
+1590281526.71: Specinvoke: /home/ucsd/SpectreSandboxing/spec2017/bin/specinvoke -d /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/644.nab_s/run/run_base_refspeed_wasm_lucet.0000 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout
+1590281526.71: Issuing command '/home/ucsd/SpectreSandboxing/spec2017/bin/specinvoke -d /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/644.nab_s/run/run_base_refspeed_wasm_lucet.0000 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout'
+1590281526.71: Start command: 2020-05-23 17:52:06 (1590281526.70865)
+1590281526.87: Stop command: 2020-05-23 17:52:06 (1590281526.86625)
+1590281526.87: Elapsed time for command: 00:00:00 (0.157603025436401)
+1590281526.87: specinvoke r4356
+1590281526.87:  Invoked as: /home/ucsd/SpectreSandboxing/spec2017/bin/specinvoke -d /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/644.nab_s/run/run_base_refspeed_wasm_lucet.0000 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout
+1590281526.87: timer ticks over every 1000 ns
+1590281526.88:  Environment in effect for these runs:
+1590281526.88:  # 1: SHLVL=1
+1590281526.88:  # 2: LOGNAME=ucsd
+1590281526.88:  # 3: SPECPERLLIB=/home/ucsd/SpectreSandboxing/spec2017/bin/lib:/home/ucsd/SpectreSandboxing/spec2017/bin
+1590281526.88:  # 4: USER=ucsd
+1590281526.88:  # 5: XDG_SESSION_TYPE=tty
+1590281526.88:  # 6: LANG=en_US.UTF-8
+1590281526.88:  # 7: PATH=/home/ucsd/SpectreSandboxing/spec2017/bin:/home/ucsd/.cargo/bin:/home/ucsd/.local/bin:/home/ucsd/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+1590281526.88:  # 8: OLDPWD=/home/ucsd/SpectreSandboxing/spec2017
+1590281526.88:  # 9: XDG_SESSION_ID=12
+1590281526.88:  #10: BASH_FUNC__module_raw%%=() {  unset _mlshdbg;
+1590281526.88:  if [ "${MODULES_SILENT_SHELL_DEBUG:-0}" = '1' ]; then
+1590281526.88:  case "$-" in 
+1590281526.88:  *v*x*)
+1590281526.88:  set +vx;
+1590281526.88:  _mlshdbg='vx'
+1590281526.88:  ;;
+1590281526.88:  *v*)
+1590281526.88:  set +v;
+1590281526.88:  _mlshdbg='v'
+1590281526.88:  ;;
+1590281526.88:  *x*)
+1590281526.88:  set +x;
+1590281526.88:  _mlshdbg='x'
+1590281526.88:  ;;
+1590281526.88:  *)
+1590281526.88:  _mlshdbg=''
+1590281526.88:  ;;
+1590281526.88:  esac;
+1590281526.88:  fi;
+1590281526.88:  unset _mlre _mlIFS;
+1590281526.88:  if [ -n "${IFS+x}" ]; then
+1590281526.88:  _mlIFS=$IFS;
+1590281526.88:  fi;
+1590281526.88:  IFS=' ';
+1590281526.88:  for _mlv in ${MODULES_RUN_QUARANTINE:-};
+1590281526.88:  do
+1590281526.88:  if [ "${_mlv}" = "${_mlv##*[!A-Za-z0-9_]}" -a "${_mlv}" = "${_mlv#[0-9]}" ]; then
+1590281526.88:  if [ -n "`eval 'echo ${'$_mlv'+x}'`" ]; then
+1590281526.88:  _mlre="${_mlre:-}${_mlv}_modquar='`eval 'echo ${'$_mlv'}'`' ";
+1590281526.88:  fi;
+1590281526.88:  _mlrv="MODULES_RUNENV_${_mlv}";
+1590281526.88:  _mlre="${_mlre:-}${_mlv}='`eval 'echo ${'$_mlrv':-}'`' ";
+1590281526.88:  fi;
+1590281526.88:  done;
+1590281526.88:  if [ -n "${_mlre:-}" ]; then
+1590281526.88:  eval `eval ${_mlre}/usr/bin/tclsh /usr/share/Modules/libexec/modulecmd.tcl bash '"$@"'`;
+1590281526.88:  else
+1590281526.88:  eval `/usr/bin/tclsh /usr/share/Modules/libexec/modulecmd.tcl bash "$@"`;
+1590281526.88:  fi;
+1590281526.88:  _mlstatus=$?;
+1590281526.88:  if [ -n "${_mlIFS+x}" ]; then
+1590281526.88:  IFS=$_mlIFS;
+1590281526.88:  else
+1590281526.88:  unset IFS;
+1590281526.88:  fi;
+1590281526.88:  unset _mlre _mlv _mlrv _mlIFS;
+1590281526.88:  if [ -n "${_mlshdbg:-}" ]; then
+1590281526.88:  set -$_mlshdbg;
+1590281526.88:  fi;
+1590281526.88:  unset _mlshdbg;
+1590281526.88:  return $_mlstatus
+1590281526.88: }
+1590281526.88:  #11: MODULESHOME=/usr/share/Modules
+1590281526.88:  #12: LS_COLORS=rs=0:di=38;5;33:ln=38;5;51:mh=00:pi=40;38;5;11:so=38;5;13:do=38;5;5:bd=48;5;232;38;5;11:cd=48;5;232;38;5;3:or=48;5;232;38;5;9:mi=01;37;41:su=48;5;196;38;5;15:sg=48;5;11;38;5;16:ca=48;5;196;38;5;226:tw=48;5;10;38;5;16:ow=48;5;10;38;5;21:st=48;5;21;38;5;15:ex=38;5;40:*.tar=38;5;9:*.tgz=38;5;9:*.arc=38;5;9:*.arj=38;5;9:*.taz=38;5;9:*.lha=38;5;9:*.lz4=38;5;9:*.lzh=38;5;9:*.lzma=38;5;9:*.tlz=38;5;9:*.txz=38;5;9:*.tzo=38;5;9:*.t7z=38;5;9:*.zip=38;5;9:*.z=38;5;9:*.dz=38;5;9:*.gz=38;5;9:*.lrz=38;5;9:*.lz=38;5;9:*.lzo=38;5;9:*.xz=38;5;9:*.zst=38;5;9:*.tzst=38;5;9:*.bz2=38;5;9:*.bz=38;5;9:*.tbz=38;5;9:*.tbz2=38;5;9:*.tz=38;5;9:*.deb=38;5;9:*.rpm=38;5;9:*.jar=38;5;9:*.war=38;5;9:*.ear=38;5;9:*.sar=38;5;9:*.rar=38;5;9:*.alz=38;5;9:*.ace=38;5;9:*.zoo=38;5;9:*.cpio=38;5;9:*.7z=38;5;9:*.rz=38;5;9:*.cab=38;5;9:*.wim=38;5;9:*.swm=38;5;9:*.dwm=38;5;9:*.esd=38;5;9:*.jpg=38;5;13:*.jpeg=38;5;13:*.mjpg=38;5;13:*.mjpeg=38;5;13:*.gif=38;5;13:*.bmp=38;5;13:*.pbm=38;5;13:*.pgm=38;5;13:*.ppm=38;5;13:*.tga=38;5;13:*.
+1590281526.88: xbm=38;5;13:*.xpm=38;5;13:*.tif=38;5;13:*.tiff=38;5;13:*.png=38;5;13:*.svg=38;5;13:*.svgz=38;5;13:*.mng=38;5;13:*.pcx=38;5;13:*.mov=38;5;13:*.mpg=38;5;13:*.mpeg=38;5;13:*.m2v=38;5;13:*.mkv=38;5;13:*.webm=38;5;13:*.webp=38;5;13:*.ogm=38;5;13:*.mp4=38;5;13:*.m4v=38;5;13:*.mp4v=38;5;13:*.vob=38;5;13:*.qt=38;5;13:*.nuv=38;5;13:*.wmv=38;5;13:*.asf=38;5;13:*.rm=38;5;13:*.rmvb=38;5;13:*.flc=38;5;13:*.avi=38;5;13:*.fli=38;5;13:*.flv=38;5;13:*.gl=38;5;13:*.dl=38;5;13:*.xcf=38;5;13:*.xwd=38;5;13:*.yuv=38;5;13:*.cgm=38;5;13:*.emf=38;5;13:*.ogv=38;5;13:*.ogx=38;5;13:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+1590281526.88:  #13: LESSOPEN=||/usr/bin/lesspipe.sh %s
+1590281526.88:  #14: SSH_CLIENT=10.212.97.10 45916 22
+1590281526.88:  #15: KMP_AFFINITY=granularity=fine,compact
+1590281526.88:  #16: SPECDB_PWD=/home/ucsd/SpectreSandboxing/spec2017/config
+1590281526.88:  #17: MANPATH=:
+1590281526.88:  #18: MODULES_CMD=/usr/share/Modules/libexec/modulecmd.tcl
+1590281526.88:  #19: MAIL=/var/spool/mail/ucsd
+1590281526.88:  #20: HISTCONTROL=ignoredups
+1590281526.88:  #21: HOME=/home/ucsd
+1590281526.88:  #22: XDG_RUNTIME_DIR=/run/user/1004
+1590281526.88:  #23: DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1004/bus
+1590281526.88:  #24: TERM=xterm-256color
+1590281526.88:  #25: MODULEPATH=/etc/scl/modulefiles:/usr/share/Modules/modulefiles:/etc/modulefiles:/usr/share/modulefiles
+1590281526.88:  #26: MODULEPATH_modshare=/usr/share/modulefiles:1:/usr/share/Modules/modulefiles:1:/etc/modulefiles:1
+1590281526.88:  #27: SPEC=/home/ucsd/SpectreSandboxing/spec2017
+1590281526.88:  #28: XDG_DATA_DIRS=/home/ucsd/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+1590281526.88:  #29: HOSTNAME=tigerlake1-ravi
+1590281526.88:  #30: HISTSIZE=1000
+1590281526.88:  #31: S_COLORS=auto
+1590281526.88:  #32: BASH_FUNC_scl%%=() {  if [ "$1" = "load" -o "$1" = "unload" ]; then
+1590281526.88:  eval "module $@";
+1590281526.88:  else
+1590281526.88:  /usr/bin/scl "$@";
+1590281526.88:  fi
+1590281526.88: }
+1590281526.88:  #33: SSH_CONNECTION=10.212.97.10 45916 10.212.84.11 22
+1590281526.88:  #34: LIBC_FATAL_STDERR_=1
+1590281526.88:  #35: SHELL=/bin/bash
+1590281526.88:  #36: BASH_FUNC_module%%=() {  _module_raw "$@" 2>&1
+1590281526.88: }
+1590281526.88:  #37: LD_LIBRARY_PATH=/home/ucsd/SpectreSandboxing/spec2017/lib/ia32:/home/ucsd/SpectreSandboxing/spec2017/lib/intel64
+1590281526.88:  #38: LC_LANG=C
+1590281526.88:  #39: MODULES_RUN_QUARANTINE=LD_LIBRARY_PATH
+1590281526.88:  #40: LOADEDMODULES=
+1590281526.88:  #41: OMP_STACKSIZE=192M
+1590281526.88:  #42: BASH_FUNC_switchml%%=() {  typeset swfound=1;
+1590281526.88:  if [ "${MODULES_USE_COMPAT_VERSION:-0}" = '1' ]; then
+1590281526.88:  typeset swname='main';
+1590281526.88:  if [ -e /usr/share/Modules/libexec/modulecmd.tcl ]; then
+1590281526.88:  typeset swfound=0;
+1590281526.88:  unset MODULES_USE_COMPAT_VERSION;
+1590281526.88:  fi;
+1590281526.88:  else
+1590281526.88:  typeset swname='compatibility';
+1590281526.88:  if [ -e /usr/share/Modules/libexec/modulecmd-compat ]; then
+1590281526.88:  typeset swfound=0;
+1590281526.88:  MODULES_USE_COMPAT_VERSION=1;
+1590281526.88:  export MODULES_USE_COMPAT_VERSION;
+1590281526.88:  fi;
+1590281526.88:  fi;
+1590281526.88:  if [ $swfound -eq 0 ]; then
+1590281526.88:  echo "Switching to Modules $swname version";
+1590281526.88:  source /usr/share/Modules/init/bash;
+1590281526.88:  else
+1590281526.88:  echo "Cannot switch to Modules $swname version, command not found";
+1590281526.88:  return 1;
+1590281526.88:  fi
+1590281526.88: }
+1590281526.88:  #43: LC_ALL=C
+1590281526.88:  #44: PWD=/home/ucsd/SpectreSandboxing/spec2017/config
+1590281526.88:  #45: XDG_SESSION_CLASS=user
+1590281526.88:  #46: SSH_TTY=/dev/pts/3
+1590281526.88:  #47: OMP_NUM_THREADS=1
+1590281526.88:  #48: OMP_THREAD_LIMIT=1
+1590281526.88: running commands in speccmds.cmd 1 times
+1590281526.88: runs started at		1590281526, 711491000, Sat May 23 17:52:06 2020
+1590281526.88: run 1 started at	1590281526, 711514000, Sat May 23 17:52:06 2020
+1590281526.88: child started: 0,	1590281526, 711522000, pid=130634, '../../../../../../lucet-spectre/target/release/lucet-wasi --heap-address-space "8GiB" --max-heap-size "4GiB" --stack-size "8MiB" --dir ./:./ -- ../run_base_refspeed_wasm_lucet.0000/nab_s_base.wasm_lucet 3j1n 20140317 220 > 3j1n.out 2>> 3j1n.err'
+1590281526.88: child finished: 0,	1590281526, 714695000, sec=0, nsec=3173000, pid=130634, rc=25856
+1590281526.88: 644.nab_s: copy 0 non-zero return code (exit code=101, signal=0)
+
+1590281526.88: ****************************************
+1590281526.88: Contents of 3j1n.err
+1590281526.88: ****************************************
+1590281526.88: thread 'main' panicked at 'module can be loaded: ModuleError(ModuleDataError(DeserializationError(Io(Custom { kind: UnexpectedEof, error: "failed to fill whole buffer" }))))', lucet-wasi/src/main.rs:220:13
+1590281526.88: note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+1590281526.88: ****************************************
+1590281526.88: ****************************************
+1590281526.88: Contents of speccmds.out
+1590281526.88: ****************************************
+1590281526.88: specinvoke r4356
+1590281526.88:  Invoked as: /home/ucsd/SpectreSandboxing/spec2017/bin/specinvoke -d /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/644.nab_s/run/run_base_refspeed_wasm_lucet.0000 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout
+1590281526.88: timer ticks over every 1000 ns
+1590281526.88:  Environment in effect for these runs:
+1590281526.88:  # 1: SHLVL=1
+1590281526.88:  # 2: LOGNAME=ucsd
+1590281526.88:  # 3: SPECPERLLIB=/home/ucsd/SpectreSandboxing/spec2017/bin/lib:/home/ucsd/SpectreSandboxing/spec2017/bin
+1590281526.88:  # 4: USER=ucsd
+1590281526.88:  # 5: XDG_SESSION_TYPE=tty
+1590281526.88:  # 6: LANG=en_US.UTF-8
+1590281526.88:  # 7: PATH=/home/ucsd/SpectreSandboxing/spec2017/bin:/home/ucsd/.cargo/bin:/home/ucsd/.local/bin:/home/ucsd/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+1590281526.88:  # 8: OLDPWD=/home/ucsd/SpectreSandboxing/spec2017
+1590281526.88:  # 9: XDG_SESSION_ID=12
+1590281526.88:  #10: BASH_FUNC__module_raw%%=() {  unset _mlshdbg;
+1590281526.88:  if [ "${MODULES_SILENT_SHELL_DEBUG:-0}" = '1' ]; then
+1590281526.88:  case "$-" in 
+1590281526.88:  *v*x*)
+1590281526.88:  set +vx;
+1590281526.88:  _mlshdbg='vx'
+1590281526.88:  ;;
+1590281526.88:  *v*)
+1590281526.88:  set +v;
+1590281526.88:  _mlshdbg='v'
+1590281526.88:  ;;
+1590281526.88:  *x*)
+1590281526.88:  set +x;
+1590281526.88:  _mlshdbg='x'
+1590281526.88:  ;;
+1590281526.88:  *)
+1590281526.88:  _mlshdbg=''
+1590281526.88:  ;;
+1590281526.88:  esac;
+1590281526.88:  fi;
+1590281526.88:  unset _mlre _mlIFS;
+1590281526.88:  if [ -n "${IFS+x}" ]; then
+1590281526.88:  _mlIFS=$IFS;
+1590281526.88:  fi;
+1590281526.88:  IFS=' ';
+1590281526.88:  for _mlv in ${MODULES_RUN_QUARANTINE:-};
+1590281526.88:  do
+1590281526.88:  if [ "${_mlv}" = "${_mlv##*[!A-Za-z0-9_]}" -a "${_mlv}" = "${_mlv#[0-9]}" ]; then
+1590281526.88:  if [ -n "`eval 'echo ${'$_mlv'+x}'`" ]; then
+1590281526.88:  _mlre="${_mlre:-}${_mlv}_modquar='`eval 'echo ${'$_mlv'}'`' ";
+1590281526.88:  fi;
+1590281526.88:  _mlrv="MODULES_RUNENV_${_mlv}";
+1590281526.88:  _mlre="${_mlre:-}${_mlv}='`eval 'echo ${'$_mlrv':-}'`' ";
+1590281526.88:  fi;
+1590281526.88:  done;
+1590281526.88:  if [ -n "${_mlre:-}" ]; then
+1590281526.88:  eval `eval ${_mlre}/usr/bin/tclsh /usr/share/Modules/libexec/modulecmd.tcl bash '"$@"'`;
+1590281526.88:  else
+1590281526.88:  eval `/usr/bin/tclsh /usr/share/Modules/libexec/modulecmd.tcl bash "$@"`;
+1590281526.88:  fi;
+1590281526.88:  _mlstatus=$?;
+1590281526.88:  if [ -n "${_mlIFS+x}" ]; then
+1590281526.88:  IFS=$_mlIFS;
+1590281526.88:  else
+1590281526.88:  unset IFS;
+1590281526.88:  fi;
+1590281526.88:  unset _mlre _mlv _mlrv _mlIFS;
+1590281526.88:  if [ -n "${_mlshdbg:-}" ]; then
+1590281526.88:  set -$_mlshdbg;
+1590281526.88:  fi;
+1590281526.88:  unset _mlshdbg;
+1590281526.88:  return $_mlstatus
+1590281526.88: }
+1590281526.88:  #11: MODULESHOME=/usr/share/Modules
+1590281526.88:  #12: LS_COLORS=rs=0:di=38;5;33:ln=38;5;51:mh=00:pi=40;38;5;11:so=38;5;13:do=38;5;5:bd=48;5;232;38;5;11:cd=48;5;232;38;5;3:or=48;5;232;38;5;9:mi=01;37;41:su=48;5;196;38;5;15:sg=48;5;11;38;5;16:ca=48;5;196;38;5;226:tw=48;5;10;38;5;16:ow=48;5;10;38;5;21:st=48;5;21;38;5;15:ex=38;5;40:*.tar=38;5;9:*.tgz=38;5;9:*.arc=38;5;9:*.arj=38;5;9:*.taz=38;5;9:*.lha=38;5;9:*.lz4=38;5;9:*.lzh=38;5;9:*.lzma=38;5;9:*.tlz=38;5;9:*.txz=38;5;9:*.tzo=38;5;9:*.t7z=38;5;9:*.zip=38;5;9:*.z=38;5;9:*.dz=38;5;9:*.gz=38;5;9:*.lrz=38;5;9:*.lz=38;5;9:*.lzo=38;5;9:*.xz=38;5;9:*.zst=38;5;9:*.tzst=38;5;9:*.bz2=38;5;9:*.bz=38;5;9:*.tbz=38;5;9:*.tbz2=38;5;9:*.tz=38;5;9:*.deb=38;5;9:*.rpm=38;5;9:*.jar=38;5;9:*.war=38;5;9:*.ear=38;5;9:*.sar=38;5;9:*.rar=38;5;9:*.alz=38;5;9:*.ace=38;5;9:*.zoo=38;5;9:*.cpio=38;5;9:*.7z=38;5;9:*.rz=38;5;9:*.cab=38;5;9:*.wim=38;5;9:*.swm=38;5;9:*.dwm=38;5;9:*.esd=38;5;9:*.jpg=38;5;13:*.jpeg=38;5;13:*.mjpg=38;5;13:*.mjpeg=38;5;13:*.gif=38;5;13:*.bmp=38;5;13:*.pbm=38;5;13:*.pgm=38;5;13:*.ppm=38;5;13:*.tga=38;5;13:*.
+1590281526.88: xbm=38;5;13:*.xpm=38;5;13:*.tif=38;5;13:*.tiff=38;5;13:*.png=38;5;13:*.svg=38;5;13:*.svgz=38;5;13:*.mng=38;5;13:*.pcx=38;5;13:*.mov=38;5;13:*.mpg=38;5;13:*.mpeg=38;5;13:*.m2v=38;5;13:*.mkv=38;5;13:*.webm=38;5;13:*.webp=38;5;13:*.ogm=38;5;13:*.mp4=38;5;13:*.m4v=38;5;13:*.mp4v=38;5;13:*.vob=38;5;13:*.qt=38;5;13:*.nuv=38;5;13:*.wmv=38;5;13:*.asf=38;5;13:*.rm=38;5;13:*.rmvb=38;5;13:*.flc=38;5;13:*.avi=38;5;13:*.fli=38;5;13:*.flv=38;5;13:*.gl=38;5;13:*.dl=38;5;13:*.xcf=38;5;13:*.xwd=38;5;13:*.yuv=38;5;13:*.cgm=38;5;13:*.emf=38;5;13:*.ogv=38;5;13:*.ogx=38;5;13:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+1590281526.88:  #13: LESSOPEN=||/usr/bin/lesspipe.sh %s
+1590281526.88:  #14: SSH_CLIENT=10.212.97.10 45916 22
+1590281526.88:  #15: KMP_AFFINITY=granularity=fine,compact
+1590281526.88:  #16: SPECDB_PWD=/home/ucsd/SpectreSandboxing/spec2017/config
+1590281526.88:  #17: MANPATH=:
+1590281526.88:  #18: MODULES_CMD=/usr/share/Modules/libexec/modulecmd.tcl
+1590281526.88:  #19: MAIL=/var/spool/mail/ucsd
+1590281526.88:  #20: HISTCONTROL=ignoredups
+1590281526.88:  #21: HOME=/home/ucsd
+1590281526.88:  #22: XDG_RUNTIME_DIR=/run/user/1004
+1590281526.88:  #23: DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1004/bus
+1590281526.88:  #24: TERM=xterm-256color
+1590281526.88:  #25: MODULEPATH=/etc/scl/modulefiles:/usr/share/Modules/modulefiles:/etc/modulefiles:/usr/share/modulefiles
+1590281526.88:  #26: MODULEPATH_modshare=/usr/share/modulefiles:1:/usr/share/Modules/modulefiles:1:/etc/modulefiles:1
+1590281526.88:  #27: SPEC=/home/ucsd/SpectreSandboxing/spec2017
+1590281526.88:  #28: XDG_DATA_DIRS=/home/ucsd/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+1590281526.88:  #29: HOSTNAME=tigerlake1-ravi
+1590281526.88:  #30: HISTSIZE=1000
+1590281526.88:  #31: S_COLORS=auto
+1590281526.88:  #32: BASH_FUNC_scl%%=() {  if [ "$1" = "load" -o "$1" = "unload" ]; then
+1590281526.88:  eval "module $@";
+1590281526.88:  else
+1590281526.88:  /usr/bin/scl "$@";
+1590281526.88:  fi
+1590281526.88: }
+1590281526.88:  #33: SSH_CONNECTION=10.212.97.10 45916 10.212.84.11 22
+1590281526.88:  #34: LIBC_FATAL_STDERR_=1
+1590281526.88:  #35: SHELL=/bin/bash
+1590281526.88:  #36: BASH_FUNC_module%%=() {  _module_raw "$@" 2>&1
+1590281526.88: }
+1590281526.88:  #37: LD_LIBRARY_PATH=/home/ucsd/SpectreSandboxing/spec2017/lib/ia32:/home/ucsd/SpectreSandboxing/spec2017/lib/intel64
+1590281526.88:  #38: LC_LANG=C
+1590281526.88:  #39: MODULES_RUN_QUARANTINE=LD_LIBRARY_PATH
+1590281526.88:  #40: LOADEDMODULES=
+1590281526.88:  #41: OMP_STACKSIZE=192M
+1590281526.88:  #42: BASH_FUNC_switchml%%=() {  typeset swfound=1;
+1590281526.88:  if [ "${MODULES_USE_COMPAT_VERSION:-0}" = '1' ]; then
+1590281526.88:  typeset swname='main';
+1590281526.88:  if [ -e /usr/share/Modules/libexec/modulecmd.tcl ]; then
+1590281526.88:  typeset swfound=0;
+1590281526.88:  unset MODULES_USE_COMPAT_VERSION;
+1590281526.88:  fi;
+1590281526.88:  else
+1590281526.88:  typeset swname='compatibility';
+1590281526.88:  if [ -e /usr/share/Modules/libexec/modulecmd-compat ]; then
+1590281526.88:  typeset swfound=0;
+1590281526.88:  MODULES_USE_COMPAT_VERSION=1;
+1590281526.88:  export MODULES_USE_COMPAT_VERSION;
+1590281526.88:  fi;
+1590281526.88:  fi;
+1590281526.88:  if [ $swfound -eq 0 ]; then
+1590281526.88:  echo "Switching to Modules $swname version";
+1590281526.88:  source /usr/share/Modules/init/bash;
+1590281526.88:  else
+1590281526.88:  echo "Cannot switch to Modules $swname version, command not found";
+1590281526.88:  return 1;
+1590281526.88:  fi
+1590281526.88: }
+1590281526.88:  #43: LC_ALL=C
+1590281526.88:  #44: PWD=/home/ucsd/SpectreSandboxing/spec2017/config
+1590281526.88:  #45: XDG_SESSION_CLASS=user
+1590281526.88:  #46: SSH_TTY=/dev/pts/3
+1590281526.88:  #47: OMP_NUM_THREADS=1
+1590281526.88:  #48: OMP_THREAD_LIMIT=1
+1590281526.88: running commands in speccmds.cmd 1 times
+1590281526.88: runs started at		1590281526, 711491000, Sat May 23 17:52:06 2020
+1590281526.88: run 1 started at	1590281526, 711514000, Sat May 23 17:52:06 2020
+1590281526.88: child started: 0,	1590281526, 711522000, pid=130634, '../../../../../../lucet-spectre/target/release/lucet-wasi --heap-address-space "8GiB" --max-heap-size "4GiB" --stack-size "8MiB" --dir ./:./ -- ../run_base_refspeed_wasm_lucet.0000/nab_s_base.wasm_lucet 3j1n 20140317 220 > 3j1n.out 2>> 3j1n.err'
+1590281526.88: child finished: 0,	1590281526, 714695000, sec=0, nsec=3173000, pid=130634, rc=25856
+1590281526.88: run 1 finished at:	1590281526, 714713000, Sat May 23 17:52:06 2020
+1590281526.88: run 1 elapsed time:	         0, 003199000, 0.003199000
+1590281526.88: runs finished at	1590281526, 714723000, Sat May 23 17:52:06 2020
+1590281526.88: runs elapsed time:	         0, 003232000, 0.003232000
+1590281526.88: error: a total of 1 children finished with errors
+1590281526.88: specinvoke exit: rc=0
+
+1590281526.88: ****************************************
+1590281526.88: Workload elapsed time (copy 0 workload 1) = 0.003173 seconds
+1590281526.88: run 1 finished at:	1590281526, 714713000, Sat May 23 17:52:06 2020
+1590281526.88: run 1 elapsed time:	         0, 003199000, 0.003199000
+1590281526.88: runs finished at	1590281526, 714723000, Sat May 23 17:52:06 2020
+1590281526.89: runs elapsed time:	         0, 003232000, 0.003232000
+1590281526.89: error: a total of 1 children finished with errors
+1590281526.89: specinvoke exit: rc=0
+1590281526.89: Copy 0 of 644.nab_s (base refspeed) run 1 finished at 2020-05-23 17:52:06.  Total elapsed time: 0.003173
+1590281526.89: Selected multiplier of 1 for 644.nab_s refspeed (ref) base
+1590281526.89: Benchmark Times:
+1590281526.89:   Run Start:    2020-05-23 17:52:06 (1590281526)
+1590281526.89:   Run Stop:     2020-05-23 17:52:06 (1590281526)
+1590281526.89:   Run Elapsed:  00:00:00 (0)
+1590281526.89:   Run Reported: 00:00:00 (0 3232000 0.003232)
+1590281526.89:  Error 644.nab_s base refspeed ratio=5405940.59, runtime=0.003232, copies=1, threads=1, power=0.00W, temp=0.00 degC, humidity=0.00%, errorcode=RE
+1590281526.89: Invalid run; unable to continue.
+1590281526.89: If you wish to ignore errors please use '-I' or ignore_errors
+1590281526.89: runcpu finished at 2020-05-23 17:52:06; 1 total seconds elapsed
+1590281527.07: The log for this run is in /home/ucsd/SpectreSandboxing/spec2017/result/CPU2017.154.log
+1590281527.07: The debug log for this run is in /home/ucsd/SpectreSandboxing/spec2017/result/CPU2017.154.log.debug
+1590281527.07: *
+1590281527.07: * Temporary files were NOT deleted; keeping temporaries such as
+1590281527.07: * /home/ucsd/SpectreSandboxing/spec2017/result/CPU2017.154.log.debug and
+1590281527.07: * /home/ucsd/SpectreSandboxing/spec2017/tmp/CPU2017.154
+1590281527.07: * (These may be large!)
+1590281527.07: *
+1590281527.07: runcpu finished at 2020-05-23 17:52:07; 2 total seconds elapsed

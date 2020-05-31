@@ -1,0 +1,102 @@
+runcpu v5825 started at 2020-05-24 12:42:28 on "tigerlake1-ravi"
+runcpu is: /home/ucsd/SpectreSandboxing/spec2017/bin/harness/runcpu
+runcpu: runcpu --config=wasm_cet.cfg --action=run --wasmcet --iterations=1 --noreportable --define cores=1 osdi
+toolset: linux-x86_64
+
+Locating benchmarks...found 47 benchmarks in 55 benchsets.
+Reading config file '/home/ucsd/SpectreSandboxing/spec2017/config/wasm_cet.cfg'
+
+3 configurations selected:
+
+ Action    Run Mode   Workload      Report Type      Benchmarks
+--------   --------   --------   -----------------   --------------------------
+validate   rate       refrate    SPECrate2017_fp     508.namd_r                
+validate   speed      refspeed   SPECspeed2017_int   605.mcf_s                 
+validate   speed      refspeed   SPECspeed2017_fp    619.lbm_s                 
+-------------------------------------------------------------------------------
+
+Setting up environment for running 508.namd_r...
+Starting runcpu for 508.namd_r...
+Running "specperl /home/ucsd/SpectreSandboxing/spec2017/bin/sysinfo" to gather system information.
+sysinfo: r5797 of 2017-06-14 (96c45e4568ad54c135fd618bcc091c0f)
+sysinfo: Getting system information for Linux...
+sysinfo: ...getting CPU info
+sysinfo: ...getting info from numactl
+sysinfo: ...getting memory info
+sysinfo: ...getting OS info
+sysinfo: ...getting disk info
+sysinfo: ...trying to get DIMM info from dmidecode
+Retrieving flags file (gcc.xml)...
+Verbosity = 5
+Action    = validate
+Tune      = base
+Label     = wasm_cet
+Size      = refrate
+benchmarks= 508.namd_r
+outputs   = txt,cfg,pdf,csv
+username  = ucsd
+Environment settings:
+KMP_AFFINITY = "granularity=fine,compact"
+LD_LIBRARY_PATH = "/home/ucsd/SpectreSandboxing/spec2017/lib/ia32:/home/ucsd/SpectreSandboxing/spec2017/lib/intel64"
+OMP_STACKSIZE = "192M"
+
+Benchmarks selected: 508.namd_r
+Compiling Binaries
+------------------------------------------------------------------------
+COMP: "/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/ -c -o options.o -DSPEC -DNDEBUG  -DNAMD_DISABLE_SSE -DSPEC_AUTO_SUPPRESS_OPENMP     -fno-exceptions     -DSPEC_LP64  <source>"
+C: CXXC="/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/"
+C: CXXOBJOPT="-c -o options"
+P: CPUFLAGS="-DSPEC -DNDEBUG"
+P: BENCH_FLAGS=""
+P: BENCH_CXXFLAGS="-DNAMD_DISABLE_SSE -DSPEC_AUTO_SUPPRESS_OPENMP"
+O: OPTIMIZE=""
+O: CXXOPTIMIZE=""
+P: PORTABILITY="-fno-exceptions"
+P: CXXPORTABILITY=""
+O: EXTRA_CXXFLAGS=""
+O: EXTRA_OPTIMIZE=""
+O: EXTRA_CXXOPTIMIZE=""
+P: EXTRA_PORTABILITY="-DSPEC_LP64"
+P: EXTRA_CXXPORTABILITY=""
+LINK: "/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/           -fno-exceptions     <objects>            -o options  "
+C: LD="/opt/wasi-sdk/bin/clang --sysroot /opt/wasi-sdk/share/wasi-sysroot -Wl,--export-all -lstdc++ -I/opt/wasi-sdk/lib/clang/10.0.0/include/"
+P: PORTABILITY="-fno-exceptions"
+C: LDOUT="-o options"
+ CXXC_VERSION_OPTION:
+clang version 10.0.0 (https://github.com/llvm/llvm-project d32170dbd5b0d54436537b6b75beaf44324e0c28)
+Target: wasm32-unknown-wasi
+Thread model: posix
+InstalledDir: /opt/wasi-sdk/bin
+  Up to date 508.namd_r base wasm_cet
+
+
+Setting Up Run Directories
+  Setting up 508.namd_r refrate (ref) base wasm_cet (1 copy): run_base_refrate_wasm_cet.0000
+Issuing command 'sync'
+Start command: 2020-05-24 12:42:30 (1590349350.36404)
+Stop command: 2020-05-24 12:42:30 (1590349350.52095)
+Elapsed time for command: 00:00:00 (0.156904935836792)
+-----------------------------------
+Running Benchmarks
+-----------------------------------
+  Running 508.namd_r refrate (ref) base wasm_cet (1 copy) [2020-05-24 12:42:30]
+OpenMP environment variables removed: OMP_STACKSIZE
+OpenMP environment variables in effect:
+	OMP_NUM_THREADS	=> '1'
+	OMP_THREAD_LIMIT	=> '1'
+Pre-run environment changes:
+	'OMP_NUM_THREADS' added: (value now '1')
+	'OMP_STACKSIZE' removed (value was '192M')
+	'OMP_THREAD_LIMIT' added: (value now '1')
+Commands to run (specinvoke command file):
+    -r
+    -N C
+    -C /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/508.namd_r/run/run_base_refrate_wasm_cet.0000
+    -o namd.out -e namd.err ../../../../../../lucet-spectre/target-cet/release/lucet-wasi --heap-address-space "16GiB" --max-heap-size "8GiB" --stack-size "64MiB" --dir ./:./ -- ../run_base_refrate_wasm_cet.0000/namd_r_base.wasm_cet --input apoa1.input --output apoa1.ref.output --iterations 65 > namd.out 2>> namd.err (timed)
+**WARNING: environment variable 'BASH_FUNC__module_raw%%' contains embedded CR or LF; they will be converted to spaces
+**WARNING: environment variable 'BASH_FUNC_module%%' contains embedded CR or LF; they will be converted to spaces
+**WARNING: environment variable 'BASH_FUNC_scl%%' contains embedded CR or LF; they will be converted to spaces
+**WARNING: environment variable 'BASH_FUNC_switchml%%' contains embedded CR or LF; they will be converted to spaces
+Specinvoke: /home/ucsd/SpectreSandboxing/spec2017/bin/specinvoke -d /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/508.namd_r/run/run_base_refrate_wasm_cet.0000 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout
+Issuing command '/home/ucsd/SpectreSandboxing/spec2017/bin/specinvoke -d /home/ucsd/SpectreSandboxing/spec2017/benchspec/CPU/508.namd_r/run/run_base_refrate_wasm_cet.0000 -f speccmds.cmd -q -e speccmds.err -o speccmds.stdout'
+Start command: 2020-05-24 12:42:30 (1590349350.61221)
