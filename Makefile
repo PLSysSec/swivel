@@ -312,10 +312,12 @@ build_macro_benchmark: spectresfi_webserver node_modules build_lucet out/rust_bu
 		CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER="$(CURR_DIR)/rustc-cet/rust_cet_linker" \
 		CARGO_TARGET_DIR="${CURR_DIR}/spectresfi_webserver/target-cet" \
 		cargo +rust-cet build --release
+	cd ./spectresfi_webserver/modules && make clean
 	cd ./spectresfi_webserver/modules && make -j8
 
 build_macro_benchmark_nocet: spectresfi_webserver node_modules build_lucet_nocet
 	cd ./spectresfi_webserver && cargo build --release
+	cd ./spectresfi_webserver/modules && make clean
 	cd ./spectresfi_webserver/modules && make -j8
 
 run_macro_benchmark_server:
