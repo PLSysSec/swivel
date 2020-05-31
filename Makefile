@@ -109,9 +109,9 @@ pull: $(DIRS)
 	cd rlbox_lucet_spectre_sandbox && git pull --recurse-submodules
 	cd lucet-spectre && git pull --recurse-submodules
 	cd sfi-spectre-testing && git pull --recurse-submodules
-	cd rustc-cet && git pull --recurse-submodules
 	cd btbflush-module && git pull
 	cd spectresfi_webserver && git pull
+	cd rustc-cet && git pull --recurse-submodules
 
 libnsl:
 	git clone https://github.com/thkukuk/libnsl
