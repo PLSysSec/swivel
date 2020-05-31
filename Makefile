@@ -230,7 +230,7 @@ run_spec_combine_stats:
 	read SPEC17_PATH; \
 	mkdir -p ./benchmarks/speccombined_current; \
 	python3 ./sfi-spectre-testing/scripts/spec_stats.py -i "$$SPEC06_PATH" --extraSpec2017Path "$$SPEC17_PATH" --extraSpec2017n 7  --filter "./benchmarks/speccombined_current/speccombined=wasm_loadlfence:loadlfence,wasm_strawman:strawman,wasm_sfi:sfi,wasm_cet:cet" -n 7; \
-	python3 ./sfi-spectre-testing/scripts/spec_stats.py -i "$$SPEC06_PATH" --extraSpec2017Path "$$SPEC17_PATH" --extraSpec2017n 7  --filter "./benchmarks/speccombined_current/speccombined_noblade=wasm_sfi_noblade:sfi_noblade,wasm_cet_noblade:cet_noblade" -n 7; \
+	python3 ./sfi-spectre-testing/scripts/spec_stats.py -i "$$SPEC06_PATH" --usePercent --extraSpec2017Path "$$SPEC17_PATH" --extraSpec2017n 7  --filter "./benchmarks/speccombined_current/speccombined_noblade=wasm_sfi_noblade:sfi_noblade,wasm_cet_noblade:cet_noblade" -n 7; \
 	mv benchmarks/speccombined_current/ benchmarks/speccombined_$(shell date --iso=seconds)
 
 
