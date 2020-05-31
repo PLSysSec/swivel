@@ -329,8 +329,10 @@ run_macro_benchmark_server_nocet: install_btbflush
 	./spectresfi_webserver/target/release/spectresfi_webserver
 
 run_macro_benchmark_client:
-	./spectresfi_webserver/spectre_testfib.sh spectre_cet
-	./spectresfi_webserver/spectre_testfib.sh spectre_cet_no_cross_sbx
+	./spectresfi_webserver/spectre_testfib.sh spectre_cet_isol
+	./spectresfi_webserver/spectre_testfib.sh spectre_cet_isol_cross_sbx
+	./spectresfi_webserver/spectre_testfib.sh spectre_cet_isol_cross_app
+	./spectresfi_webserver/spectre_testfib.sh spectre_cet_isol_cross
 	@echo "CET Server tests passed"
 	cd ./spectresfi_webserver && node request_spectre_test.js --cet
 	mkdir -p ./benchmarks/current_macro_cet
@@ -340,8 +342,10 @@ run_macro_benchmark_client:
 
 run_macro_benchmark_client_nocet:
 	./spectresfi_webserver/spectre_testfib.sh stock
-	./spectresfi_webserver/spectre_testfib.sh spectre_sfi
-	./spectresfi_webserver/spectre_testfib.sh spectre_sfi_no_cross_sbx
+	./spectresfi_webserver/spectre_testfib.sh spectre_sfi_isol
+	./spectresfi_webserver/spectre_testfib.sh spectre_sfi_isol_cross_sbx
+	./spectresfi_webserver/spectre_testfib.sh spectre_sfi_isol_cross_app
+	./spectresfi_webserver/spectre_testfib.sh spectre_sfi_isol_cross
 	@echo "Server tests passed"
 	cd ./spectresfi_webserver && node request_spectre_test.js --nocet
 	mkdir -p ./benchmarks/current_macro_nocet
