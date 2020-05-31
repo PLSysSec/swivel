@@ -185,7 +185,7 @@ run_spec_blade_test:
 	cd sfi-spectre-spec && source shrc && cd config && \
 	runspec --config=wasm_lucet.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
 	runspec --config=wasm_blade.cfg --iterations=1 --noreportable --size=ref --wasm oakland
-	python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre/spec/result --usePercent --filter \"sfi-spectre/spec/spec_results_blade=wasm_blade:blade\" -n 2
+	python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre-spec/result --usePercent --filter "sfi-spectre/spec/spec_results_blade=wasm_blade:blade" -n 2
 	mv sfi-spectre-spec/result/ benchmarks/spec_$(shell date --iso=seconds)
 
 build_spec2017: build_lucet_nocet
@@ -217,8 +217,9 @@ run_spec2017: build_spec2017 install_btbflush
 	runcpu --config=wasm_cet.cfg --action=run --wasmcet --iterations=1 --noreportable --define cores=1 osdi && \
 	runcpu --config=wasm_sfi_noblade.cfg --action=run --wasm --iterations=1 --noreportable --define cores=1 osdi && \
 	runcpu --config=wasm_cet_noblade.cfg --action=run --wasmcet --iterations=1 --noreportable --define cores=1 osdi
-	python3 sfi-spectre-testing/scripts/spec_stats.py --spec2017 -i spec2017/result --filter  \"sfi-spectre-spec/result/spec_results=wasm_loadlfence:loadlfence,wasm_strawman:strawman,wasm_sfi:sfi,wasm_cet:cet\" -n 7
-	python3 sfi-spectre-testing/scripts/spec_stats.py --spec2017 -i spec2017/result --usePercent --filter \"sfi-spectre/spec/spec_results_sbx_only=wasm_sfi_noblade:sfi_noblade,wasm_cet_noblade:cet_noblade\" -n 7
+	python3 sfi-spectre-testing/scripts/spec_stats.py --spec2017 -i spec2017/result --filter  "spec2017/result/spec_results=wasm_loadlfence:loadlfence,wasm_strawman:strawman,wasm_sfi:sfi,wasm_cet:cet" -n 7
+	python3 sfi-spectre-testing/scripts/spec_stats.py --spec2017 -i spec2017/result --usePercent --filter "spec2017/spec_results_sbx_only=wasm_sfi_noblade:sfi_noblade,wasm_cet_noblade:cet_noblade" -n 7
+	mv spec2017/result/ benchmarks/spec17_$(shell date --iso=seconds)
 
 
 run_spec_all: run_spec run_spec2017
