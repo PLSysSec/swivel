@@ -335,6 +335,7 @@ run_macro_benchmark_client:
 	cd ./spectresfi_webserver && node request_spectre_test.js --cet
 	mkdir -p ./benchmarks/current_macro_cet
 	mv ./spectresfi_webserver/results.json ./benchmarks/current_macro_cet/cet_results.json
+	python3 ./spectresfi_webserver/autocanon_analysis.py -file ./benchmarks/current_macro_cet/cet_results.json 2>&1 > ./benchmarks/current_macro_cet/cet_results.tex
 	mv ./benchmarks/current_macro_cet ./benchmarks/macro_cet_$(shell date --iso=seconds)
 
 run_macro_benchmark_client_nocet:
@@ -345,6 +346,7 @@ run_macro_benchmark_client_nocet:
 	cd ./spectresfi_webserver && node request_spectre_test.js --nocet
 	mkdir -p ./benchmarks/current_macro_nocet
 	mv ./spectresfi_webserver/results.json ./benchmarks/current_macro_nocet/nocet_results.json
+	python3 ./spectresfi_webserver/autocanon_analysis.py -file ./benchmarks/current_macro_nocet/nocet_results.json 2>&1 > ./benchmarks/current_macro_nocet/nocet_results.tex
 	mv ./benchmarks/current_macro_nocet ./benchmarks/macro_nocet_$(shell date --iso=seconds)
 
 clean:
