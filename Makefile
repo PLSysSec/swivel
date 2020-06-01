@@ -7,14 +7,17 @@ build_spec2017 run_spec2017 \
 run_spec_all \
 build_sightglass run_sightglass build_sightglass_nocet run_sightglass_nocet \
 build_transitions_benchmark run_transitions_benchmark \
-build_macro_benchmark build_macro_benchmark_nocet run_macro_benchmark_server run_macro_benchmark_server_nocet \
-run_macro_benchmark_client run_macro_benchmark_client_nocet
+build_macro_benchmark build_macro_benchmark_nocet \
+run_macro_benchmark_server run_macro_benchmark_server_nocet \
+run_macro_benchmark_client run_macro_benchmark_client_nocet \
+run_macro_benchmark_server_aslr run_macro_benchmark_server_nocet_aslr \
+run_macro_benchmark_client_aslr run_macro_benchmark_client_nocet_aslr run_macro_benchmark_client_stock
 
 .DEFAULT_GOAL := build
 
 SHELL := /bin/bash
 
-DIRS=rustc-cet lucet-spectre sfi-spectre-testing rlbox_spectre_sandboxing_api rlbox_lucet_spectre_sandbox btbflush-module spectresfi_webserver node_modules
+DIRS=rustc-cet rust_libloading_aslr lucet-spectre sfi-spectre-testing rlbox_spectre_sandboxing_api rlbox_lucet_spectre_sandbox btbflush-module spectresfi_webserver node_modules
 
 CURR_DIR := $(shell realpath ./)
 
@@ -61,6 +64,9 @@ bootstrap:
 	@echo "--------------------------------------------------------------------------"
 	touch ./bootstrap
 
+rust_libloading_aslr:
+	git clone git@github.com:PLSysSec/rust_libloading_aslr.git $@
+
 lucet-spectre:
 	git clone git@github.com:PLSysSec/lucet-spectre.git $@
 	cd $@ && git submodule update --init --recursive
@@ -106,6 +112,7 @@ install_deps: $(DIRS)
 pull: $(DIRS)
 	git pull
 	cd rlbox_spectre_sandboxing_api && git pull
+	cd rust_libloading_aslr && git pull
 	cd rlbox_lucet_spectre_sandbox && git pull --recurse-submodules
 	cd lucet-spectre && git pull --recurse-submodules
 	cd sfi-spectre-testing && git pull --recurse-submodules
@@ -239,7 +246,7 @@ out/rust_build/bin/rustc:
 	cd ./rustc-cet && ./x.py build && ./x.py install
 	rustup toolchain link rust-cet ./out/rust_build
 
-build_lucet_nocet:
+build_lucet_nocet: rust_libloading_aslr
 	cd lucet-spectre && cargo build
 	cd lucet-spectre && cargo build --release
 
@@ -328,6 +335,14 @@ run_macro_benchmark_server:
 run_macro_benchmark_server_nocet: install_btbflush
 	./spectresfi_webserver/target/release/spectresfi_webserver
 
+run_macro_benchmark_server_aslr:
+	cd ./spectresfi_webserver && \
+	CARGO_TARGET_DIR="${CURR_DIR}/spectresfi_webserver/target-cet"
+	./spectresfi_webserver/target-cet/release/spectresfi_webserver --aslr
+
+run_macro_benchmark_server_nocet_aslr:
+	./spectresfi_webserver/target/release/spectresfi_webserver --aslr
+
 run_macro_benchmark_client:
 	./spectresfi_webserver/spectre_testfib.sh spectre_cet_isol
 	./spectresfi_webserver/spectre_testfib.sh spectre_cet_isol_cross_sbx
@@ -352,6 +367,33 @@ run_macro_benchmark_client_nocet:
 	mv ./spectresfi_webserver/results.json ./benchmarks/current_macro_nocet/nocet_results.json
 	python3 ./spectresfi_webserver/autocanon_analysis.py -file ./benchmarks/current_macro_nocet/nocet_results.json 2>&1 > ./benchmarks/current_macro_nocet/nocet_results.tex
 	mv ./benchmarks/current_macro_nocet ./benchmarks/macro_nocet_$(shell date --iso=seconds)
+
+run_macro_benchmark_client_aslr:
+	./spectresfi_webserver/spectre_testfib.sh spectre_cet_isol
+	@echo "CET ASLR Server tests passed"
+	cd ./spectresfi_webserver && node request_spectre_test.js --cetaslr
+	mkdir -p ./benchmarks/current_macro_cetaslr
+	mv ./spectresfi_webserver/results.json ./benchmarks/current_macro_cetaslr/cetaslr_results.json
+	python3 ./spectresfi_webserver/autocanon_analysis.py -file ./benchmarks/current_macro_cetaslr/cetaslr_results.json 2>&1 > ./benchmarks/current_macro_cetaslr/cetaslr_results.tex
+	mv ./benchmarks/current_macro_cetaslr ./benchmarks/macro_cetaslr_$(shell date --iso=seconds)
+
+run_macro_benchmark_client_nocet_aslr:
+	./spectresfi_webserver/spectre_testfib.sh spectre_sfi_isol
+	@echo "ASLR Server tests passed"
+	cd ./spectresfi_webserver && node request_spectre_test.js --nocetaslr
+	mkdir -p ./benchmarks/current_macro_nocetaslr
+	mv ./spectresfi_webserver/results.json ./benchmarks/current_macro_nocetaslr/nocetaslr_results.json
+	python3 ./spectresfi_webserver/autocanon_analysis.py -file ./benchmarks/current_macro_nocetaslr/nocetaslr_results.json 2>&1 > ./benchmarks/current_macro_nocetaslr/nocetaslr_results.tex
+	mv ./benchmarks/current_macro_nocetaslr ./benchmarks/macro_nocetaslr_$(shell date --iso=seconds)
+
+run_macro_benchmark_client_stock:
+	./spectresfi_webserver/spectre_testfib.sh stock
+	@echo "Stock Server tests passed"
+	cd ./spectresfi_webserver && node request_spectre_test.js --stock
+	mkdir -p ./benchmarks/current_macro_stock
+	mv ./spectresfi_webserver/results.json ./benchmarks/current_macro_stock/stock_results.json
+	python3 ./spectresfi_webserver/autocanon_analysis.py -file ./benchmarks/current_macro_stock/stock_results.json 2>&1 > ./benchmarks/current_macro_stock/stock_results.tex
+	mv ./benchmarks/current_macro_stock ./benchmarks/macro_stock_$(shell date --iso=seconds)
 
 clean:
 	-cd lucet-spectre && cargo clean
