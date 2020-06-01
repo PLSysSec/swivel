@@ -10,8 +10,8 @@ build_transitions_benchmark run_transitions_benchmark \
 build_macro_benchmark build_macro_benchmark_nocet \
 run_macro_benchmark_server run_macro_benchmark_server_nocet \
 run_macro_benchmark_client run_macro_benchmark_client_nocet \
-run_macro_benchmark_server_aslr run_macro_benchmark_server_nocet_aslr \
-run_macro_benchmark_client_aslr run_macro_benchmark_client_nocet_aslr run_macro_benchmark_client_stock
+run_macro_benchmark_server_stock run_macro_benchmark_server_aslr run_macro_benchmark_server_nocet_aslr \
+run_macro_benchmark_client_stock run_macro_benchmark_client_aslr run_macro_benchmark_client_nocet_aslr
 
 .DEFAULT_GOAL := build
 
@@ -333,6 +333,9 @@ run_macro_benchmark_server:
 	./spectresfi_webserver/target-cet/release/spectresfi_webserver
 
 run_macro_benchmark_server_nocet: install_btbflush
+	./spectresfi_webserver/target/release/spectresfi_webserver
+
+run_macro_benchmark_server_stock:
 	./spectresfi_webserver/target/release/spectresfi_webserver
 
 run_macro_benchmark_server_aslr:
