@@ -316,6 +316,7 @@ build_macro_benchmark: spectresfi_webserver node_modules build_lucet out/rust_bu
 	cd ./spectresfi_webserver && cargo build --release
 	cd ./spectresfi_webserver && \
 		CFLAGS="-fcf-protection=full" \
+		CXXFLAGS="-fcf-protection=full" \
 		CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER="$(CURR_DIR)/rustc-cet/rust_cet_linker" \
 		CARGO_TARGET_DIR="${CURR_DIR}/spectresfi_webserver/target-cet" \
 		cargo +rust-cet build --release
@@ -329,7 +330,7 @@ build_macro_benchmark_nocet: spectresfi_webserver node_modules build_lucet_nocet
 
 run_macro_benchmark_server:
 	cd ./spectresfi_webserver && \
-	CARGO_TARGET_DIR="${CURR_DIR}/spectresfi_webserver/target-cet"
+	CARGO_TARGET_DIR="${CURR_DIR}/spectresfi_webserver/target-cet" \
 	./spectresfi_webserver/target-cet/release/spectresfi_webserver
 
 run_macro_benchmark_server_nocet: install_btbflush
@@ -340,7 +341,7 @@ run_macro_benchmark_server_stock:
 
 run_macro_benchmark_server_aslr:
 	cd ./spectresfi_webserver && \
-	CARGO_TARGET_DIR="${CURR_DIR}/spectresfi_webserver/target-cet"
+	CARGO_TARGET_DIR="${CURR_DIR}/spectresfi_webserver/target-cet" \
 	./spectresfi_webserver/target-cet/release/spectresfi_webserver --aslr
 
 run_macro_benchmark_server_nocet_aslr:
