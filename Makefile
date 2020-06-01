@@ -329,8 +329,6 @@ build_macro_benchmark_nocet: spectresfi_webserver node_modules build_lucet_nocet
 	cd ./spectresfi_webserver/modules && make -j8
 
 run_macro_benchmark_server:
-	cd ./spectresfi_webserver && \
-	CARGO_TARGET_DIR="${CURR_DIR}/spectresfi_webserver/target-cet" \
 	./spectresfi_webserver/target-cet/release/spectresfi_webserver
 
 run_macro_benchmark_server_nocet: install_btbflush
@@ -340,8 +338,6 @@ run_macro_benchmark_server_stock:
 	./spectresfi_webserver/target/release/spectresfi_webserver
 
 run_macro_benchmark_server_aslr:
-	cd ./spectresfi_webserver && \
-	CARGO_TARGET_DIR="${CURR_DIR}/spectresfi_webserver/target-cet" \
 	./spectresfi_webserver/target-cet/release/spectresfi_webserver --aslr
 
 run_macro_benchmark_server_nocet_aslr:
