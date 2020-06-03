@@ -5,7 +5,7 @@ build_lucet build_lucet_nocet \
 build_spec run_spec \
 build_spec2017 run_spec2017 \
 run_spec_all \
-build_sightglass run_sightglass build_sightglass_nocet run_sightglass_nocet \
+build_sightglass run_sightglass build_sightglass_nocet run_sightglass_nocet run_sightglass_pht_nocet \
 build_transitions_benchmark run_transitions_benchmark \
 build_macro_benchmark build_macro_benchmark_nocet \
 run_macro_benchmark_server run_macro_benchmark_server_nocet \
@@ -305,6 +305,14 @@ run_sightglass_nocet:
 		sudo cpufreq-set -c $(LAST_CPU_CORE) --min 2700MHz --max 2700MHz; \
 	fi
 	$(MAKE) -C lucet-spectre/benchmarks/shootout run
+
+run_sightglass_pht_nocet:
+	if [ -x "$(shell command -v cpupower)" ]; then \
+		sudo cpupower -c $(LAST_CPU_CORE) frequency-set --min 2700MHz --max 2700MHz; \
+	else \
+		sudo cpufreq-set -c $(LAST_CPU_CORE) --min 2700MHz --max 2700MHz; \
+	fi
+	$(MAKE) -C lucet-spectre/benchmarks/shootout run_pht
 
 build_transitions_benchmark:
 	$(MAKE) -C sfi-spectre-testing build_transitions -j8
