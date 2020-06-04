@@ -121,6 +121,7 @@ pull: $(DIRS)
 	cd sfi-spectre-testing && git pull --recurse-submodules
 	cd btbflush-module && git pull
 	cd spectresfi_webserver && git pull
+	cd firefox-spectre && git pull
 	cd rustc-cet && git pull --recurse-submodules
 
 libnsl:
