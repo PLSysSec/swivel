@@ -11,13 +11,14 @@ build_macro_benchmark build_macro_benchmark_nocet \
 run_macro_benchmark_server run_macro_benchmark_server_nocet \
 run_macro_benchmark_client run_macro_benchmark_client_nocet \
 run_macro_benchmark_server_stock run_macro_benchmark_server_aslr run_macro_benchmark_server_nocet_aslr \
-run_macro_benchmark_client_stock run_macro_benchmark_client_aslr run_macro_benchmark_client_nocet_aslr
+run_macro_benchmark_client_stock run_macro_benchmark_client_aslr run_macro_benchmark_client_nocet_aslr \
+build_firefox
 
 .DEFAULT_GOAL := build
 
 SHELL := /bin/bash
 
-DIRS=rustc-cet rust_libloading_aslr lucet-spectre sfi-spectre-testing rlbox_spectre_sandboxing_api rlbox_lucet_spectre_sandbox btbflush-module spectresfi_webserver node_modules
+DIRS=rustc-cet rust_libloading_aslr lucet-spectre sfi-spectre-testing rlbox_spectre_sandboxing_api rlbox_lucet_spectre_sandbox btbflush-module spectresfi_webserver node_modules firefox-spectre
 
 CURR_DIR := $(shell realpath ./)
 
@@ -102,6 +103,9 @@ spectresfi_webserver:
 
 node_modules:
 	npm install autocannon
+
+firefox-spectre:
+	git clone git@github.com:PLSysSec/firefox-spectre.git $@
 
 get_source: $(DIRS)
 
@@ -401,6 +405,9 @@ run_macro_benchmark_client_stock:
 	mv ./spectresfi_webserver/results.json ./benchmarks/current_macro_stock/stock_results.json
 	python3 ./spectresfi_webserver/autocanon_analysis.py -file ./benchmarks/current_macro_stock/stock_results.json 2>&1 > ./benchmarks/current_macro_stock/stock_results.tex
 	mv ./benchmarks/current_macro_stock ./benchmarks/macro_stock_$(shell date --iso=seconds)
+
+build_firefox:
+	$(MAKE) -C ./firefox-spectre/builds build
 
 clean:
 	-cd lucet-spectre && cargo clean
