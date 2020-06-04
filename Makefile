@@ -406,7 +406,7 @@ run_macro_benchmark_client_stock:
 	python3 ./spectresfi_webserver/autocanon_analysis.py -file ./benchmarks/current_macro_stock/stock_results.json 2>&1 > ./benchmarks/current_macro_stock/stock_results.tex
 	mv ./benchmarks/current_macro_stock ./benchmarks/macro_stock_$(shell date --iso=seconds)
 
-build_firefox:
+build_firefox: build_lucet_nocet
 	$(MAKE) -C ./firefox-spectre/builds build
 
 clean:
