@@ -80,7 +80,6 @@ rlbox_spectre_sandboxing_api:
 
 rlbox_lucet_spectre_sandbox:
 	git clone git@github.com:PLSysSec/rlbox_lucet_spectre_sandbox.git $@
-	cd $@ && git checkout experimental
 	cd $@ && git submodule update --init --recursive
 	CUSTOM_LUCET_DIR=$(CURR_DIR)/lucet-spectre cmake -S $@ -B $@/build
 
