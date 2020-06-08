@@ -1,10 +1,12 @@
 .NOTPARALLEL:
-.PHONY : build build_nocet pull clean get_source \
-test test_nocet \
+.PHONY : pull clean get_source \
+build_sanity_test build_sanity_test_nocet \
+run_sanity_test run_sanity_test_nocet \
+build_rustc \
 build_lucet build_lucet_nocet \
 build_spec run_spec \
 build_spec2017 run_spec2017 \
-run_spec_all \
+run_spec_all run_spec_combine_stats \
 build_sightglass run_sightglass build_sightglass_nocet run_sightglass_nocet run_sightglass_pht_nocet \
 build_transitions_benchmark run_transitions_benchmark \
 build_macro_benchmark build_macro_benchmark_nocet \
@@ -244,8 +246,13 @@ run_spec_combine_stats:
 	python3 ./sfi-spectre-testing/scripts/spec_stats.py -i "$$SPEC06_PATH" --usePercent --extraSpec2017Path "$$SPEC17_PATH" --extraSpec2017n 7  --filter "./benchmarks/speccombined_current/speccombined_noblade=wasm_sfi_noblade:sfi_noblade,wasm_cet_noblade:cet_noblade" -n 7; \
 	mv benchmarks/speccombined_current/ benchmarks/speccombined_$(shell date --iso=seconds)
 
-
 out/rust_build/bin/rustc:
+	mkdir -p out/rust_build
+	cd ./rustc-cet && ./x.py build && ./x.py install
+	rustup toolchain link rust-cet ./out/rust_build
+
+build_rustc:
+	# force rebuild
 	mkdir -p out/rust_build
 	cd ./rustc-cet && ./x.py build && ./x.py install
 	rustup toolchain link rust-cet ./out/rust_build
@@ -268,23 +275,23 @@ build_lucet: out/rust_build/bin/rustc build_lucet_nocet
 		CARGO_TARGET_DIR="${CURR_DIR}/lucet-spectre/target-cet" \
 		cargo +rust-cet build --release
 
-build: install_deps build_lucet
+build_sanity_test: install_deps build_lucet
 	mkdir -p ./out
 	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build
 	REALLY_USE_CET=1 $(MAKE) -C sfi-spectre-testing build -j8
 
-build_nocet: install_deps
+build_sanity_test_nocet: install_deps
 	mkdir -p ./out
 	cd lucet-spectre && cargo build
 	cp -r lucet-spectre/target lucet-spectre/target-cet
 	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build
 	$(MAKE) -C sfi-spectre-testing build -j8
 
-test:
+run_sanity_test:
 	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build check
 	REALLY_USE_CET=1 $(MAKE) -C sfi-spectre-testing test
 
-test_nocet:
+run_sanity_test_nocet:
 	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build check
 	$(MAKE) -C sfi-spectre-testing test
 
