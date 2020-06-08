@@ -257,11 +257,13 @@ build_lucet_nocet: rust_libloading_aslr
 build_lucet: out/rust_build/bin/rustc build_lucet_nocet
 	cd lucet-spectre && \
 		CFLAGS="-fcf-protection=full" \
+		CXXFLAGS="-fcf-protection=full" \
 		CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER="$(CURR_DIR)/rustc-cet/rust_cet_linker" \
 		CARGO_TARGET_DIR="${CURR_DIR}/lucet-spectre/target-cet" \
 		cargo +rust-cet build
 	cd lucet-spectre && \
 		CFLAGS="-fcf-protection=full" \
+		CXXFLAGS="-fcf-protection=full" \
 		CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER="$(CURR_DIR)/rustc-cet/rust_cet_linker" \
 		CARGO_TARGET_DIR="${CURR_DIR}/lucet-spectre/target-cet" \
 		cargo +rust-cet build --release
