@@ -125,6 +125,7 @@ pull: $(DIRS)
 	cd spectresfi_webserver && git pull
 	cd firefox-spectre && git pull
 	cd rustc-cet && git pull --recurse-submodules
+	cd sfi-spectre-spec && git pull
 
 libnsl:
 	git clone https://github.com/thkukuk/libnsl
