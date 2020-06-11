@@ -192,7 +192,7 @@ run_spec_min: build_spec install_btbflush
 	runspec --config=wasm_sfi_noblade.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
 	runspec --config=wasm_phttobtb.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
 	runspec --config=wasm_cfi.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
-	runspec --config=wasm_blade.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
+	runspec --config=wasm_blade.cfg --iterations=1 --noreportable --size=ref --wasm oakland
 	python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre-spec/result --filter  "sfi-spectre-spec/result/spec_results=wasm_phttobtb:phttobtb,wasm_cfi:cfi,wasm_sfi:sfi,wasm_blade:blade" -n 5
 	python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre-spec/result --usePercent --filter "sfi-spectre-spec/result/spec_results_sbx_only=wasm_sfi_noblade:sfi_noblade" -n 5
 	mv sfi-spectre-spec/result/ benchmarks/spec_$(shell date --iso=seconds)
