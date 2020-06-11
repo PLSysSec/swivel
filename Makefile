@@ -4,7 +4,7 @@ build_sanity_test build_sanity_test_nocet \
 run_sanity_test run_sanity_test_nocet \
 build_rustc \
 build_lucet build_lucet_nocet \
-build_spec run_spec \
+build_spec run_spec run_spec_min \
 build_spec2017 run_spec2017 \
 run_spec_all run_spec_combine_stats \
 build_sightglass run_sightglass build_sightglass_nocet run_sightglass_nocet run_sightglass_pht_nocet \
@@ -155,6 +155,8 @@ build_spec: sfi-spectre-spec build_lucet_nocet
 	runspec --config=wasm_sfi_noblade.cfg --action=clobber oakland && \
 	runspec --config=wasm_cet_noblade.cfg --action=clobber oakland && \
 	runspec --config=wasm_blade.cfg --action=clobber oakland && \
+	runspec --config=wasm_cfi.cfg --action=clobber oakland && \
+	runspec --config=wasm_phttobtb.cfg --action=clobber oakland && \
 	runspec --config=wasm_lucet.cfg --action=build oakland && \
 	runspec --config=wasm_loadlfence.cfg --action=build oakland && \
 	runspec --config=wasm_strawman.cfg --action=build oakland && \
@@ -162,7 +164,9 @@ build_spec: sfi-spectre-spec build_lucet_nocet
 	runspec --config=wasm_cet.cfg --action=build oakland && \
 	runspec --config=wasm_sfi_noblade.cfg --action=build oakland && \
 	runspec --config=wasm_cet_noblade.cfg --action=build oakland && \
-	runspec --config=wasm_blade.cfg --action=build oakland
+	runspec --config=wasm_blade.cfg --action=build oakland && \
+	runspec --config=wasm_cfi.cfg --action=build oakland && \
+	runspec --config=wasm_phttobtb.cfg --action=build oakland
 
 run_spec: build_spec install_btbflush
 	export LD_LIBRARY_PATH="$(CURR_DIR)/libnsl/build/lib/" && \
@@ -177,6 +181,19 @@ run_spec: build_spec install_btbflush
 	runspec --config=wasm_cet_noblade.cfg --iterations=1 --noreportable --size=ref --wasmcet oakland
 	python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre-spec/result --filter  "sfi-spectre-spec/result/spec_results=wasm_loadlfence:loadlfence,wasm_strawman:strawman,wasm_sfi:sfi,wasm_cet:cet" -n 7
 	python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre-spec/result --usePercent --filter "sfi-spectre-spec/result/spec_results_sbx_only=wasm_sfi_noblade:sfi_noblade,wasm_cet_noblade:cet_noblade" -n 7
+	mv sfi-spectre-spec/result/ benchmarks/spec_$(shell date --iso=seconds)
+
+run_spec_min: build_spec install_btbflush
+	export LD_LIBRARY_PATH="$(CURR_DIR)/libnsl/build/lib/" && \
+	sh cp_spec_data_into_tmp.sh && \
+	cd sfi-spectre-spec && source shrc && cd config && \
+	runspec --config=wasm_lucet.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
+	runspec --config=wasm_sfi_noblade.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
+	runspec --config=wasm_phttobtb.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
+	runspec --config=wasm_cfi.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
+	runspec --config=wasm_blade.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
+	python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre-spec/result --filter  "sfi-spectre-spec/result/spec_results=wasm_phttobtb:phttobtb,wasm_cfi:cfi,wasm_sfi:sfi,wasm_blade:blade" -n 5
+	python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre-spec/result --usePercent --filter "sfi-spectre-spec/result/spec_results_sbx_only=wasm_sfi_noblade:sfi_noblade" -n 5
 	mv sfi-spectre-spec/result/ benchmarks/spec_$(shell date --iso=seconds)
 
 run_spec_stats:
