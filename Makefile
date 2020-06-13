@@ -149,6 +149,7 @@ build_spec: sfi-spectre-spec build_lucet_nocet
 	cd sfi-spectre-spec && source shrc && \
 	cd config && \
 	runspec --config=wasm_lucet.cfg --action=clobber oakland && \
+	runspec --config=wasm_lucet_unroll.cfg --action=clobber oakland && \
 	runspec --config=wasm_loadlfence.cfg --action=clobber oakland && \
 	runspec --config=wasm_strawman.cfg --action=clobber oakland && \
 	runspec --config=wasm_sfi.cfg --action=clobber oakland && \
@@ -157,8 +158,11 @@ build_spec: sfi-spectre-spec build_lucet_nocet
 	runspec --config=wasm_cet_noblade.cfg --action=clobber oakland && \
 	runspec --config=wasm_blade.cfg --action=clobber oakland && \
 	runspec --config=wasm_cfi.cfg --action=clobber oakland && \
+	runspec --config=wasm_cfi_unroll.cfg --action=clobber oakland && \
 	runspec --config=wasm_phttobtb.cfg --action=clobber oakland && \
+	runspec --config=wasm_phttobtb_unroll.cfg --action=clobber oakland && \
 	runspec --config=wasm_lucet.cfg --action=build oakland && \
+	runspec --config=wasm_lucet_unroll.cfg --action=build oakland && \
 	runspec --config=wasm_loadlfence.cfg --action=build oakland && \
 	runspec --config=wasm_strawman.cfg --action=build oakland && \
 	runspec --config=wasm_sfi.cfg --action=build oakland && \
@@ -167,7 +171,9 @@ build_spec: sfi-spectre-spec build_lucet_nocet
 	runspec --config=wasm_cet_noblade.cfg --action=build oakland && \
 	runspec --config=wasm_blade.cfg --action=build oakland && \
 	runspec --config=wasm_cfi.cfg --action=build oakland && \
-	runspec --config=wasm_phttobtb.cfg --action=build oakland
+	runspec --config=wasm_cfi_unroll.cfg --action=build oakland && \
+	runspec --config=wasm_phttobtb.cfg --action=build oakland && \
+	runspec --config=wasm_phttobtb_unroll.cfg --action=build oakland
 
 run_spec: build_spec install_btbflush
 	export LD_LIBRARY_PATH="$(CURR_DIR)/libnsl/build/lib/" && \
@@ -189,8 +195,12 @@ run_spec_min: build_spec install_btbflush
 	sh cp_spec_data_into_tmp.sh && \
 	cd sfi-spectre-spec && source shrc && cd config && \
 	runspec --config=wasm_lucet.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
-	runspec --config=wasm_cfi.cfg --iterations=1 --noreportable --size=ref --wasm oakland
-	python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre-spec/result --usePercent --filter  "sfi-spectre-spec/result/spec_results=wasm_cfi:cfi" -n 2
+	runspec --config=wasm_lucet_unroll.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
+	runspec --config=wasm_phttobtb.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
+	runspec --config=wasm_phttobtb_unroll.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
+	runspec --config=wasm_cfi.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
+	runspec --config=wasm_cfi_unroll.cfg --iterations=1 --noreportable --size=ref --wasm oakland
+	python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre-spec/result --usePercent --filter  "sfi-spectre-spec/result/spec_results=wasm_lucet:lucet,wasm_lucet_unroll:lucet_unroll,wasm_phttobtb:phttobtb,wasm_phttobtb_unroll:phttobtb_unroll,wasm_cfi:cfi,wasm_cfi_unroll:cfi_unroll" -n 6
 	mv sfi-spectre-spec/result/ benchmarks/spec_$(shell date --iso=seconds)
 
 run_spec_stats:
