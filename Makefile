@@ -194,13 +194,8 @@ run_spec_min: build_spec install_btbflush
 	export LD_LIBRARY_PATH="$(CURR_DIR)/libnsl/build/lib/" && \
 	sh cp_spec_data_into_tmp.sh && \
 	cd sfi-spectre-spec && source shrc && cd config && \
-	runspec --config=wasm_lucet.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
-	runspec --config=wasm_lucet_unroll.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
-	runspec --config=wasm_phttobtb.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
-	runspec --config=wasm_phttobtb_unroll.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
-	runspec --config=wasm_cfi.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
 	runspec --config=wasm_cfi_unroll.cfg --iterations=1 --noreportable --size=ref --wasm oakland
-	python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre-spec/result --usePercent --filter  "sfi-spectre-spec/result/spec_results=wasm_lucet:lucet,wasm_lucet_unroll:lucet_unroll,wasm_phttobtb:phttobtb,wasm_phttobtb_unroll:phttobtb_unroll,wasm_cfi:cfi,wasm_cfi_unroll:cfi_unroll" -n 6
+	# python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre-spec/result --usePercent --filter  "sfi-spectre-spec/result/spec_results=wasm_lucet:lucet,wasm_lucet_unroll:lucet_unroll,wasm_phttobtb:phttobtb,wasm_phttobtb_unroll:phttobtb_unroll,wasm_cfi:cfi,wasm_cfi_unroll:cfi_unroll" -n 6
 	mv sfi-spectre-spec/result/ benchmarks/spec_$(shell date --iso=seconds)
 
 run_spec_stats:
