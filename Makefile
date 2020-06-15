@@ -336,7 +336,7 @@ run_macro_benchmark_client_cetschemes:
 	mkdir -p ./benchmarks/current_macro_cetschemes
 	mv ./spectresfi_webserver/results.json ./benchmarks/current_macro_cetschemes/cet_results.json
 	python3 ./spectresfi_webserver/autocanon_analysis.py -file ./benchmarks/current_macro_cetschemes/cet_results.json 2>&1 > ./benchmarks/current_macro_cetschemes/cet_results.tex
-	mv ./benchmarks/current_macro_cetschemes ./benchmarks/macro_cet_$(shell date --iso=seconds)
+	mv ./benchmarks/current_macro_cetschemes ./benchmarks/macro_cetschemes_$(shell date --iso=seconds)
 
 run_macro_benchmark_client_sfischemes:
 	./spectresfi_webserver/spectre_testfib.sh stock
@@ -347,7 +347,7 @@ run_macro_benchmark_client_sfischemes:
 	mkdir -p ./benchmarks/current_macro_sfischemes
 	mv ./spectresfi_webserver/results.json ./benchmarks/current_macro_sfischemes/nocet_results.json
 	python3 ./spectresfi_webserver/autocanon_analysis.py -file ./benchmarks/current_macro_sfischemes/nocet_results.json 2>&1 > ./benchmarks/current_macro_sfischemes/nocet_results.tex
-	mv ./benchmarks/current_macro_sfischemes ./benchmarks/macro_nocet_$(shell date --iso=seconds)
+	mv ./benchmarks/current_macro_sfischemes ./benchmarks/macro_sfischemes_$(shell date --iso=seconds)
 
 build_firefox: build_lucet_nocet
 	$(MAKE) -C ./firefox-spectre/builds build
