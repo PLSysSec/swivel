@@ -154,7 +154,7 @@ build_spec: sfi-spectre-spec build_lucet_nocet
 		runspec --config=$$spec_build.cfg --action=clobber oakland 2&>1 > /dev/null; \
 	done && \
 	for spec_build in $(SPEC_BUILDS); do \
-		echo "Building $(spec_build)" && runspec --config=$$spec_build.cfg --action=build oakland 2>&1 | grep "Build "; \
+		echo "Building $$spec_build" && runspec --config=$$spec_build.cfg --action=build oakland 2>&1 | grep "Build "; \
 	done
 
 run_spec: build_spec install_btbflush
