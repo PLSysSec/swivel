@@ -156,7 +156,7 @@ build_spec: sfi-spectre-spec build_lucet_nocet
 	done && \
 	for spec_build in $(SPEC_BUILDS); do \
 		runspec --config=$$spec_build.cfg --action=build oakland; \
-	done &&
+	done
 
 run_spec: build_spec install_btbflush
 	export LD_LIBRARY_PATH="$(CURR_DIR)/libnsl/build/lib/" && \
