@@ -162,7 +162,7 @@ run_spec: build_spec install_btbflush
 	sh cp_spec_data_into_tmp.sh && \
 	cd sfi-spectre-spec && source shrc && cd config && \
 	for spec_build in $(SPEC_BUILDS); do \
-		runspec --config=$$spec_build.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
+		runspec --config=$$spec_build.cfg --iterations=1 --noreportable --size=ref --wasm oakland; \
 	done
 	# Baseline
 	python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre-spec/result --filter  \
