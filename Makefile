@@ -10,10 +10,8 @@ run_spec_all run_spec_combine_stats \
 build_sightglass run_sightglass build_sightglass_nocet run_sightglass_nocet run_sightglass_pht_nocet \
 build_transitions_benchmark run_transitions_benchmark \
 build_macro_benchmark build_macro_benchmark_nocet \
-run_macro_benchmark_server run_macro_benchmark_server_nocet \
-run_macro_benchmark_client run_macro_benchmark_client_nocet \
-run_macro_benchmark_server_stock run_macro_benchmark_server_aslr run_macro_benchmark_server_nocet_aslr \
-run_macro_benchmark_client_stock run_macro_benchmark_client_aslr run_macro_benchmark_client_nocet_aslr \
+run_macro_benchmark_server_sfischemes run_macro_benchmark_server_cetschemes \
+run_macro_benchmark_client_sfischemes run_macro_benchmark_client_cetschemes \
 build_firefox
 
 .DEFAULT_GOAL := build
@@ -324,72 +322,32 @@ build_macro_benchmark_nocet: spectresfi_webserver node_modules build_lucet_nocet
 	cd ./spectresfi_webserver/modules && make clean
 	cd ./spectresfi_webserver/modules && make -j8
 
-run_macro_benchmark_server:
+run_macro_benchmark_server_cetschemes:
 	./spectresfi_webserver/target-cet/release/spectresfi_webserver
 
-run_macro_benchmark_server_nocet: install_btbflush
+run_macro_benchmark_server_sfischemes: install_btbflush
 	./spectresfi_webserver/target/release/spectresfi_webserver
 
-run_macro_benchmark_server_stock:
-	./spectresfi_webserver/target/release/spectresfi_webserver
-
-run_macro_benchmark_server_aslr:
-	./spectresfi_webserver/target-cet/release/spectresfi_webserver --aslr
-
-run_macro_benchmark_server_nocet_aslr:
-	./spectresfi_webserver/target/release/spectresfi_webserver --aslr
-
-run_macro_benchmark_client:
-	./spectresfi_webserver/spectre_testfib.sh spectre_cet_isol
-	./spectresfi_webserver/spectre_testfib.sh spectre_cet_isol_cross_sbx
-	./spectresfi_webserver/spectre_testfib.sh spectre_cet_isol_cross_app
-	./spectresfi_webserver/spectre_testfib.sh spectre_cet_isol_cross
+run_macro_benchmark_client_cetschemes:
+	./spectresfi_webserver/spectre_testfib.sh spectre_cet_aslr
+	./spectresfi_webserver/spectre_testfib.sh spectre_cet_full
 	@echo "CET Server tests passed"
 	cd ./spectresfi_webserver && node request_spectre_test.js --cet
-	mkdir -p ./benchmarks/current_macro_cet
-	mv ./spectresfi_webserver/results.json ./benchmarks/current_macro_cet/cet_results.json
-	python3 ./spectresfi_webserver/autocanon_analysis.py -file ./benchmarks/current_macro_cet/cet_results.json 2>&1 > ./benchmarks/current_macro_cet/cet_results.tex
-	mv ./benchmarks/current_macro_cet ./benchmarks/macro_cet_$(shell date --iso=seconds)
+	mkdir -p ./benchmarks/current_macro_cetschemes
+	mv ./spectresfi_webserver/results.json ./benchmarks/current_macro_cetschemes/cet_results.json
+	python3 ./spectresfi_webserver/autocanon_analysis.py -file ./benchmarks/current_macro_cetschemes/cet_results.json 2>&1 > ./benchmarks/current_macro_cetschemes/cet_results.tex
+	mv ./benchmarks/current_macro_cetschemes ./benchmarks/macro_cet_$(shell date --iso=seconds)
 
-run_macro_benchmark_client_nocet:
+run_macro_benchmark_client_sfischemes:
 	./spectresfi_webserver/spectre_testfib.sh stock
-	./spectresfi_webserver/spectre_testfib.sh spectre_sfi_isol
-	./spectresfi_webserver/spectre_testfib.sh spectre_sfi_isol_cross_sbx
-	./spectresfi_webserver/spectre_testfib.sh spectre_sfi_isol_cross_app
-	./spectresfi_webserver/spectre_testfib.sh spectre_sfi_isol_cross
+	./spectresfi_webserver/spectre_testfib.sh spectre_sfi_aslr
+	./spectresfi_webserver/spectre_testfib.sh spectre_sfi_full
 	@echo "Server tests passed"
 	cd ./spectresfi_webserver && node request_spectre_test.js --nocet
-	mkdir -p ./benchmarks/current_macro_nocet
-	mv ./spectresfi_webserver/results.json ./benchmarks/current_macro_nocet/nocet_results.json
-	python3 ./spectresfi_webserver/autocanon_analysis.py -file ./benchmarks/current_macro_nocet/nocet_results.json 2>&1 > ./benchmarks/current_macro_nocet/nocet_results.tex
-	mv ./benchmarks/current_macro_nocet ./benchmarks/macro_nocet_$(shell date --iso=seconds)
-
-run_macro_benchmark_client_aslr:
-	./spectresfi_webserver/spectre_testfib.sh spectre_cet_isol
-	@echo "CET ASLR Server tests passed"
-	cd ./spectresfi_webserver && node request_spectre_test.js --cetaslr
-	mkdir -p ./benchmarks/current_macro_cetaslr
-	mv ./spectresfi_webserver/results.json ./benchmarks/current_macro_cetaslr/cetaslr_results.json
-	python3 ./spectresfi_webserver/autocanon_analysis.py -file ./benchmarks/current_macro_cetaslr/cetaslr_results.json 2>&1 > ./benchmarks/current_macro_cetaslr/cetaslr_results.tex
-	mv ./benchmarks/current_macro_cetaslr ./benchmarks/macro_cetaslr_$(shell date --iso=seconds)
-
-run_macro_benchmark_client_nocet_aslr:
-	./spectresfi_webserver/spectre_testfib.sh spectre_sfi_isol
-	@echo "ASLR Server tests passed"
-	cd ./spectresfi_webserver && node request_spectre_test.js --nocetaslr
-	mkdir -p ./benchmarks/current_macro_nocetaslr
-	mv ./spectresfi_webserver/results.json ./benchmarks/current_macro_nocetaslr/nocetaslr_results.json
-	python3 ./spectresfi_webserver/autocanon_analysis.py -file ./benchmarks/current_macro_nocetaslr/nocetaslr_results.json 2>&1 > ./benchmarks/current_macro_nocetaslr/nocetaslr_results.tex
-	mv ./benchmarks/current_macro_nocetaslr ./benchmarks/macro_nocetaslr_$(shell date --iso=seconds)
-
-run_macro_benchmark_client_stock:
-	./spectresfi_webserver/spectre_testfib.sh stock
-	@echo "Stock Server tests passed"
-	cd ./spectresfi_webserver && node request_spectre_test.js --stock
-	mkdir -p ./benchmarks/current_macro_stock
-	mv ./spectresfi_webserver/results.json ./benchmarks/current_macro_stock/stock_results.json
-	python3 ./spectresfi_webserver/autocanon_analysis.py -file ./benchmarks/current_macro_stock/stock_results.json 2>&1 > ./benchmarks/current_macro_stock/stock_results.tex
-	mv ./benchmarks/current_macro_stock ./benchmarks/macro_stock_$(shell date --iso=seconds)
+	mkdir -p ./benchmarks/current_macro_sfischemes
+	mv ./spectresfi_webserver/results.json ./benchmarks/current_macro_sfischemes/nocet_results.json
+	python3 ./spectresfi_webserver/autocanon_analysis.py -file ./benchmarks/current_macro_sfischemes/nocet_results.json 2>&1 > ./benchmarks/current_macro_sfischemes/nocet_results.tex
+	mv ./benchmarks/current_macro_sfischemes ./benchmarks/macro_nocet_$(shell date --iso=seconds)
 
 build_firefox: build_lucet_nocet
 	$(MAKE) -C ./firefox-spectre/builds build
