@@ -149,11 +149,12 @@ build_spec: sfi-spectre-spec build_lucet_nocet
 	export LD_LIBRARY_PATH="$(CURR_DIR)/libnsl/build/lib/" && \
 	cd sfi-spectre-spec && source shrc && \
 	cd config && \
+	echo "Cleaning dirs" &&
 	for spec_build in $(SPEC_BUILDS); do \
-		runspec --config=$$spec_build.cfg --action=clobber oakland; \
+		runspec --config=$$spec_build.cfg --action=clobber oakland 2&>1 > /dev/null; \
 	done && \
 	for spec_build in $(SPEC_BUILDS); do \
-		runspec --config=$$spec_build.cfg --action=build oakland; \
+		echo "Building $(spec_build)" && runspec --config=$$spec_build.cfg --action=build oakland 2>&1 | grep "Build "; \
 	done
 
 run_spec: build_spec install_btbflush
