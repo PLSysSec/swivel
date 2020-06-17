@@ -147,7 +147,7 @@ CET_BUILDS=wasm_cet_full
 SFI_ASLR_BUILDS=wasm_sfi_aslr
 CET_ASLR_BUILDS=wasm_cet_aslr
 SPEC_BUILDS=$(SFI_BUILDS) $(CET_BUILDS) $(SFI_ASLR_BUILDS) $(CET_ASLR_BUILDS)
-SPEC_BUILD_COUNT := $(shell echo "$(SPEC_BUILDS)" | wc -)
+SPEC_BUILD_COUNT := $(shell echo "$(SPEC_BUILDS)" | wc -w)
 
 build_spec: sfi-spectre-spec build_lucet_nocet
 	export LD_LIBRARY_PATH="$(CURR_DIR)/libnsl/build/lib/" && \
