@@ -1,0 +1,535 @@
+==============================================================================
+Debug log for CPU2006.  This file contains very detailed debugging
+output from the CPU2006 tools (as if "--verbose 99" had been specified) and is
+typically useful only to developers of the CPU2006 toolset.   
+
+For a successful run, this debug log will be removed automatically, unless you
+specify "--keeptmp" on the command line, or "keeptmp=1" in your config file.
+
+If you file a support request with cpu2006support@spec.org, you may be
+asked to submit this file.
+------------------------------------------------------------------------------
+
+Environment variables that should have been set or changed by shrc:
+SPEC: /home/ucsd/SpectreSandboxing/sfi-spectre-spec
+PATH: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin:/home/ucsd/.cargo/bin:/home/ucsd/.local/bin:/home/ucsd/bin:/usr/share/Modules/bin:/usr/lib64/ccache:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+SPECPERLLIB: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin:/home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/lib
+LD_LIBRARY_PATH: /home/ucsd/SpectreSandboxing/libnsl/build/lib/
+DYLD_LIBRARY_PATH: 
+LC_ALL: C
+LC_LANG: C
+SPECDB_PWD: /home/ucsd/SpectreSandboxing
+------------------------------------------------------------------------------
+
+Runspec's verbose version output:
+                 This is the SPEC CPU2006 benchmark tools suite.
+
+Version summary:
+    CPU2006 version: 1.1
+ Benchmarks version: 110
+      Tools version: 111
+    runspec version: 6152 ($Id: runspec 6152 2008-05-07 05:25:30Z cloyce $)
+
+Tools information:
+ Tools package installed: linux-suse101-AMD64
+ File locking method: fcntl(2) (probably network-safe)
+Mode |  UID  |  GID  |   Size  |    Modified Date   | Name
+0755 | 1004  | 1004  |  197376 | 17-May-2007 10:05:18 | specmake
+0755 | 1004  | 1004  | 1269511 | 17-May-2007 10:05:18 | specperl
+0755 | 1004  | 1004  |   25160 | 17-May-2007 10:05:18 | specinvoke
+0755 | 1004  | 1004  |   28176 | 17-May-2007 10:05:18 | specinvoke_pm
+0755 | 1004  | 1004  |   87352 | 17-May-2007 10:05:18 | specbzip2
+0755 | 1004  | 1004  |   20056 | 17-May-2007 10:05:18 | specmd5sum
+0755 | 1004  | 1004  |    7645 | 24-May-2020 18:37:54 | specdiff
+0755 | 1004  | 1004  |   86553 | 24-May-2020 18:37:54 | specpp
+0755 | 1004  | 1004  |  264960 | 17-May-2007 10:05:18 | specrxp
+0755 | 1004  | 1004  |  121915 | 24-May-2020 18:37:54 | runspec
+
+Version info for specinvoke (specinvoke): Version: 5000
+Version info for specmake (specmake): GNU Make 3.81
+Version info for specbzip2 (/home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specbzip2): bzip2 v1.0.3, 15-Feb-2005
+Version info for specpp (/home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specperl): filepp version 1.7.1SPEC
+Version info for specperl (/home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specperl): This is specperl, v5.8.8 built for x86_64-linux
+                           For more detail on specperl, say 'specperl -V'
+
+==============================================================================
+
+1592375629.31: runspec v6152 started at Tue Jun 16 23:33:48 2020 on "tigerlake1-ravi"
+1592375629.31: runspec is: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/runspec
+1592375629.31: runspec: runspec --config=wasm_interlock.cfg --iterations=1 --noreportable --size=ref --wasm oakland
+1592375629.31: toolset: linux-suse101-AMD64
+
+1592375629.31(0.02s): Locating benchmarks...Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU(?:=\S*)?(?=\s|$)' for DSPEC_CPU in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1592375629.33: Created default regexp '(?:^|(?<=\s))[-/]USPEC_CPU(?:=\S*)?(?=\s|$)' for USPEC_CPU in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1592375629.33: Created default regexp '(?:^|(?<=\s))[-/]DNDEBUG(?:=\S*)?(?=\s|$)' for DNDEBUG in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1592375629.33: Created default regexp '(?:^|(?<=\s))[-/]UNDEBUG(?:=\S*)?(?=\s|$)' for UNDEBUG in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1592375629.33: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_WINDOWS(?:=\S*)?(?=\s|$)' for DSPEC_CPU_WINDOWS in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1592375629.33: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_ILP32(?:=\S*)?(?=\s|$)' for DSPEC_CPU_ILP32 in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1592375629.33: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_P64(?:=\S*)?(?=\s|$)' for DSPEC_CPU_P64 in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1592375629.33: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_LP64(?:=\S*)?(?=\s|$)' for DSPEC_CPU_LP64 in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1592375629.33: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_ILP64(?:=\S*)?(?=\s|$)' for DSPEC_CPU_ILP64 in /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/flags-mandatory.xml
+1592375629.33: Reading suite directory for 'flags-mandatory.xml', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec'
+1592375629.33: Reading suite directory for 'CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec'
+1592375629.33:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '459.GemsFDTD'
+1592375629.34:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/459.GemsFDTD/Spec/object.pm in 0.000209808s
+1592375629.34:     Instantiated Spec::Benchmark::GemsFDTD459 in 0.000126839s
+1592375629.34:     Finding src.alts took 0.000030994s
+1592375629.34:   Setting up GemsFDTD took 0.000510931s
+
+1592375629.34:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', 'all_mixed.bset'
+1592375629.34:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '403.gcc'
+1592375629.34:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/403.gcc/Spec/object.pm in 0.000148058s
+1592375629.34:     Instantiated Spec::Benchmark::gcc403 in 0.000090837s
+1592375629.34:     Finding src.alts took 0.000021935s
+1592375629.34:   Setting up gcc took 0.000382185s
+
+1592375629.34:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '473.astar'
+1592375629.34:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/473.astar/Spec/object.pm in 0.000168085s
+1592375629.34:     Instantiated Spec::Benchmark::astar473 in 0.000060081s
+1592375629.34:     Finding src.alts took 0.000017881s
+1592375629.34:   Setting up astar took 0.000355959s
+
+1592375629.34:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '433.milc'
+1592375629.34:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/Spec/object.pm in 0.000135899s
+1592375629.34:     Instantiated Spec::Benchmark::milc433 in 0.000091076s
+1592375629.34:     Finding src.alts took 0.000019073s
+1592375629.34:   Setting up milc took 0.000359058s
+
+1592375629.34:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '482.sphinx3'
+1592375629.34:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/482.sphinx3/Spec/object.pm in 0.000330210s
+1592375629.34:     Instantiated Spec::Benchmark::sphinx3482 in 0.000077009s
+1592375629.34:     Finding src.alts took 0.000022173s
+1592375629.34:   Setting up sphinx3 took 0.000553131s
+
+1592375629.34:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', 'CINT2006.bset'
+1592375629.34:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '435.gromacs'
+1592375629.34:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/435.gromacs/Spec/object.pm in 0.000143051s
+1592375629.34:     Instantiated Spec::Benchmark::gromacs435 in 0.000074863s
+1592375629.34:     Finding src.alts took 0.000022173s
+1592375629.34:   Setting up gromacs took 0.000375986s
+
+1592375629.34:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '465.tonto'
+1592375629.34:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/465.tonto/Spec/object.pm in 0.000681877s
+1592375629.34:     Instantiated Spec::Benchmark::tonto465 in 0.000118017s
+1592375629.34:     Finding src.alts took 0.000025988s
+1592375629.34:   Setting up tonto took 0.000954866s
+
+1592375629.34:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '462.libquantum'
+1592375629.34:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/462.libquantum/Spec/object.pm in 0.000112057s
+1592375629.34:     Instantiated Spec::Benchmark::libquantum462 in 0.000059128s
+1592375629.34:     Finding src.alts took 0.000016928s
+1592375629.34:   Setting up libquantum took 0.000295162s
+
+1592375629.34:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', 'CFP2006.bset'
+1592375629.34:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', 'all_c.bset'
+1592375629.34:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '998.specrand'
+1592375629.34:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/998.specrand/Spec/object.pm in 0.000098944s
+1592375629.34:     Instantiated Spec::Benchmark::specrand998 in 0.000055075s
+1592375629.34:     Finding src.alts took 0.000020027s
+1592375629.34:   Setting up specrand took 0.000280142s
+
+1592375629.34:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', 'all_fortran.bset'
+1592375629.34:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '410.bwaves'
+1592375629.34:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/410.bwaves/Spec/object.pm in 0.000076056s
+1592375629.34:     Instantiated Spec::Benchmark::bwaves410 in 0.000066042s
+1592375629.34:     Finding src.alts took 0.000017881s
+1592375629.34:   Setting up bwaves took 0.000272989s
+
+1592375629.34:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '401.bzip2'
+1592375629.34:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/Spec/object.pm in 0.000102997s
+1592375629.34:     Instantiated Spec::Benchmark::bzip2401 in 0.000051975s
+1592375629.34:     Finding src.alts took 0.000020027s
+1592375629.34:   Setting up bzip2 took 0.000279188s
+
+1592375629.34:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '434.zeusmp'
+1592375629.34:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/434.zeusmp/Spec/object.pm in 0.000096083s
+1592375629.34:     Instantiated Spec::Benchmark::zeusmp434 in 0.000061989s
+1592375629.34:     Finding src.alts took 0.000018835s
+1592375629.34:   Setting up zeusmp took 0.000283957s
+
+1592375629.34:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '437.leslie3d'
+1592375629.34:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/437.leslie3d/Spec/object.pm in 0.000100851s
+1592375629.34:     Instantiated Spec::Benchmark::leslie3d437 in 0.000052929s
+1592375629.34:     Finding src.alts took 0.000019073s
+1592375629.34:   Setting up leslie3d took 0.000283957s
+
+1592375629.34:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '429.mcf'
+1592375629.34:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/Spec/object.pm in 0.000098228s
+1592375629.34:     Instantiated Spec::Benchmark::mcf429 in 0.000052929s
+1592375629.34:     Finding src.alts took 0.000018120s
+1592375629.34:   Setting up mcf took 0.000276089s
+
+1592375629.34:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '400.perlbench'
+1592375629.34:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/400.perlbench/Spec/object.pm in 0.000483990s
+1592375629.34:     Instantiated Spec::Benchmark::perlbench400 in 0.000075817s
+1592375629.34:     Finding src.alts took 0.000025988s
+1592375629.34:   Setting up perlbench took 0.000713110s
+
+1592375629.34:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '416.gamess'
+1592375629.34:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/416.gamess/Spec/object.pm in 0.000154018s
+1592375629.34:     Instantiated Spec::Benchmark::gamess416 in 0.000082016s
+1592375629.34:     Finding src.alts took 0.000020981s
+1592375629.34:   Setting up gamess took 0.000370026s
+
+1592375629.34:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', 'oakland.bset'
+1592375629.34:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '450.soplex'
+1592375629.34:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/450.soplex/Spec/object.pm in 0.000171900s
+1592375629.34:     Instantiated Spec::Benchmark::soplex450 in 0.000058889s
+1592375629.34:     Finding src.alts took 0.000020027s
+1592375629.34:   Setting up soplex took 0.000355005s
+
+1592375629.34:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '453.povray'
+1592375629.34:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/453.povray/Spec/object.pm in 0.000154018s
+1592375629.34:     Instantiated Spec::Benchmark::povray453 in 0.000100851s
+1592375629.34:     Finding src.alts took 0.000020981s
+1592375629.34:   Setting up povray took 0.000382185s
+
+1592375629.34:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '481.wrf'
+1592375629.35:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/481.wrf/Spec/object.pm in 0.000943899s
+1592375629.35:     Instantiated Spec::Benchmark::wrf481 in 0.000117064s
+1592375629.35:     Finding src.alts took 0.000028133s
+1592375629.35:   Setting up wrf took 0.001216888s
+
+1592375629.35:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '445.gobmk'
+1592375629.35:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/445.gobmk/Spec/object.pm in 0.000141144s
+1592375629.35:     Instantiated Spec::Benchmark::gobmk445 in 0.000060081s
+1592375629.35:     Finding src.alts took 0.000021935s
+1592375629.35:   Setting up gobmk took 0.000329971s
+
+1592375629.35:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '470.lbm'
+1592375629.35:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/470.lbm/Spec/object.pm in 0.000097036s
+1592375629.35:     Instantiated Spec::Benchmark::lbm470 in 0.000056982s
+1592375629.35:     Finding src.alts took 0.000020027s
+1592375629.35:   Setting up lbm took 0.000277996s
+
+1592375629.35:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '444.namd'
+1592375629.35:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/444.namd/Spec/object.pm in 0.000117064s
+1592375629.35:     Instantiated Spec::Benchmark::namd444 in 0.000069857s
+1592375629.35:     Finding src.alts took 0.000020027s
+1592375629.35:   Setting up namd took 0.000309944s
+
+1592375629.35:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '456.hmmer'
+1592375629.35:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/456.hmmer/Spec/object.pm in 0.000159979s
+1592375629.35:     Instantiated Spec::Benchmark::hmmer456 in 0.000056982s
+1592375629.35:     Finding src.alts took 0.000019073s
+1592375629.35:   Setting up hmmer took 0.000341177s
+
+1592375629.35:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '471.omnetpp'
+1592375629.35:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/471.omnetpp/Spec/object.pm in 0.000123024s
+1592375629.35:     Instantiated Spec::Benchmark::omnetpp471 in 0.000056028s
+1592375629.35:     Finding src.alts took 0.000019789s
+1592375629.35:   Setting up omnetpp took 0.000306129s
+
+1592375629.35:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '454.calculix'
+1592375629.35:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/454.calculix/Spec/object.pm in 0.000299931s
+1592375629.35:     Instantiated Spec::Benchmark::calculix454 in 0.000092030s
+1592375629.35:     Finding src.alts took 0.000024080s
+1592375629.35:   Setting up calculix took 0.000531197s
+
+1592375629.35:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '999.specrand'
+1592375629.35:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/999.specrand/Spec/object.pm in 0.000110865s
+1592375629.35:     Instantiated Spec::Benchmark::specrand999 in 0.000060797s
+1592375629.35:     Finding src.alts took 0.000019789s
+1592375629.35:   Setting up specrand took 0.000298977s
+
+1592375629.35:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', 'extra.bset'
+1592375629.35:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '458.sjeng'
+1592375629.35:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/458.sjeng/Spec/object.pm in 0.000097990s
+1592375629.35:     Instantiated Spec::Benchmark::sjeng458 in 0.000056028s
+1592375629.35:     Finding src.alts took 0.000021935s
+1592375629.35:   Setting up sjeng took 0.000279903s
+
+1592375629.35:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', 'all_cpp.bset'
+1592375629.35:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '447.dealII'
+1592375629.35:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/447.dealII/Spec/object.pm in 0.000410795s
+1592375629.35:     Instantiated Spec::Benchmark::dealII447 in 0.000079870s
+1592375629.35:     Finding src.alts took 0.000027180s
+1592375629.35:   Setting up dealII took 0.000642061s
+
+1592375629.35:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '464.h264ref'
+1592375629.35:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/464.h264ref/Spec/object.pm in 0.000166893s
+1592375629.35:     Instantiated Spec::Benchmark::h264ref464 in 0.000056982s
+1592375629.35:     Finding src.alts took 0.000020027s
+1592375629.35:   Setting up h264ref took 0.000358105s
+
+1592375629.35:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '436.cactusADM'
+1592375629.35:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/436.cactusADM/Spec/object.pm in 0.000252962s
+1592375629.35:     Instantiated Spec::Benchmark::cactusADM436 in 0.000087976s
+1592375629.35:     Finding src.alts took 0.000021935s
+1592375629.35:   Setting up cactusADM took 0.000475168s
+
+1592375629.35:   Reading benchmark directory for '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec', '483.xalancbmk'
+1592375629.35:     Evaluated /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/483.xalancbmk/Spec/object.pm in 0.000455856s
+1592375629.35:     Instantiated Spec::Benchmark::xalancbmk483 in 0.000124931s
+1592375629.35:     Finding src.alts took 0.000025988s
+1592375629.35:   Setting up xalancbmk took 0.000726938s
+
+1592375629.35: Setting up suite took 0.016297102s
+1592375629.35: Reading suite directory for 'Makefile.defaults', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec'
+1592375629.35: Reading suite directory for 'version.txt', '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec'
+1592375629.35: found 31 benchmarks in 8 benchsets.
+1592375629.35: Reading config file '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/config/wasm_interlock.cfg'
+
+1592375629.37:   '401.bzip2' added
+1592375629.37:   '429.mcf' added
+1592375629.37:   '433.milc' added
+1592375629.37:   '444.namd' added
+1592375629.37:   '462.libquantum' added
+1592375629.37:   '470.lbm' added
+1592375629.37:   '473.astar' added
+1592375629.38: Verbosity = 5
+1592375629.38: Action    = validate
+1592375629.38: Tune      = base
+1592375629.38: Ext       = Interlock
+1592375629.38: Size      = ref
+1592375629.38: Machine   = default
+1592375629.38: benchmarks= 401.bzip2,429.mcf,433.milc,444.namd,462.libquantum,470.lbm,473.astar
+1592375629.38: outputs   = asc
+1592375629.38: username  = ucsd
+1592375629.38: Benchmarks selected: 401.bzip2, 429.mcf, 433.milc, 444.namd, 462.libquantum, 470.lbm, 473.astar
+1592375629.39: Compiling Binaries
+
+1592375629.39: ------------------------------------------------------------------------
+1592375629.67: Tee child 64424 exited with code 0 (exit code=0, signal=0)
+1592375629.68:   Up to date 401.bzip2 base Interlock default
+
+1592375629.68: ------------------------------------------------------------------------
+1592375629.98: Tee child 64451 exited with code 0 (exit code=0, signal=0)
+1592375629.98:   Up to date 429.mcf base Interlock default
+
+1592375629.98: ------------------------------------------------------------------------
+1592375630.28: Tee child 64479 exited with code 0 (exit code=0, signal=0)
+1592375630.28:   Up to date 433.milc base Interlock default
+
+1592375630.28: ------------------------------------------------------------------------
+1592375630.59: Tee child 64507 exited with code 0 (exit code=0, signal=0)
+1592375630.59:   Up to date 444.namd base Interlock default
+
+1592375630.59: ------------------------------------------------------------------------
+1592375630.89: Tee child 64534 exited with code 0 (exit code=0, signal=0)
+1592375630.90:   Up to date 462.libquantum base Interlock default
+
+1592375630.90: ------------------------------------------------------------------------
+1592375631.20: Tee child 64563 exited with code 0 (exit code=0, signal=0)
+1592375631.20:   Up to date 470.lbm base Interlock default
+
+1592375631.20: ------------------------------------------------------------------------
+1592375631.50: Tee child 64591 exited with code 0 (exit code=0, signal=0)
+1592375631.50:   Up to date 473.astar base Interlock default
+
+
+1592375631.50: Setting Up Run Directories
+1592375631.50(0.02s):   Setting up 401.bzip2 ref base Interlock default: Comparing MD5 hashes:
+1592375631.52:   fa124d269a61f5709ee9665b195722ec /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/data/ref/input/chicken.jpg
+1592375631.52:   fa124d269a61f5709ee9665b195722ec /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/run/run_base_ref_Interlock.0000/chicken.jpg
+1592375631.52: Comparing MD5 hashes:
+1592375631.52:   7b1138f3b0d756e725415a8870f92c2c /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/data/ref/input/control
+1592375631.52:   7b1138f3b0d756e725415a8870f92c2c /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/run/run_base_ref_Interlock.0000/control
+1592375631.62: Comparing MD5 hashes:
+1592375631.62:   055a388172c50871c37d77906721f1d0 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/data/all/input/input.combined
+1592375631.62:   055a388172c50871c37d77906721f1d0 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/run/run_base_ref_Interlock.0000/input.combined
+1592375631.64: Comparing MD5 hashes:
+1592375631.64:   e62ef7ee0b2e0358a89ceaf8d4e8fc56 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/data/all/input/input.program
+1592375631.64:   e62ef7ee0b2e0358a89ceaf8d4e8fc56 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/run/run_base_ref_Interlock.0000/input.program
+1592375631.74: Comparing MD5 hashes:
+1592375631.74:   45e570a3d804cf0bacd6712c7d4f6b7b /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/data/ref/input/input.source
+1592375631.74:   45e570a3d804cf0bacd6712c7d4f6b7b /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/run/run_base_ref_Interlock.0000/input.source
+1592375631.74: Comparing MD5 hashes:
+1592375631.74:   2ac5daa702dcc820daf27f087ad1e999 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/data/ref/input/liberty.jpg
+1592375631.74:   2ac5daa702dcc820daf27f087ad1e999 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/run/run_base_ref_Interlock.0000/liberty.jpg
+1592375631.74: Comparing MD5 hashes:
+1592375631.74:   6dcb5b40d0108030de432691e5b07d23 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/data/ref/input/text.html
+1592375631.74:   6dcb5b40d0108030de432691e5b07d23 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/run/run_base_ref_Interlock.0000/text.html
+1592375631.75: Comparing MD5 hashes:
+1592375631.75:   59b5c4f424c04746e17f587a66e65e1f /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/exe/bzip2_base.Interlock
+1592375631.75:   59b5c4f424c04746e17f587a66e65e1f /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/run/run_base_ref_Interlock.0000/bzip2_base.Interlock
+1592375631.75: created (run_base_ref_Interlock.0000)
+1592375631.76:   Setting up 429.mcf ref base Interlock default: Comparing MD5 hashes:
+1592375631.76:   c9cbc843e228ad728ca48d99d8293b4a /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/data/ref/input/inp.in
+1592375631.76:   c9cbc843e228ad728ca48d99d8293b4a /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/run/run_base_ref_Interlock.0000/inp.in
+1592375631.76: Comparing MD5 hashes:
+1592375631.76:   152240bfebc808c40793f11aa55377d8 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/exe/mcf_base.Interlock
+1592375631.76:   152240bfebc808c40793f11aa55377d8 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/run/run_base_ref_Interlock.0000/mcf_base.Interlock
+1592375631.76: created (run_base_ref_Interlock.0000)
+1592375631.76:   Setting up 433.milc ref base Interlock default: Comparing MD5 hashes:
+1592375631.76:   5ea6bfb39cd90ea3f02f72832f596659 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/data/ref/input/su3imp.in
+1592375631.76:   5ea6bfb39cd90ea3f02f72832f596659 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/run/run_base_ref_Interlock.0000/su3imp.in
+1592375631.77: Comparing MD5 hashes:
+1592375631.77:   83bc1f4bfae26a0126a7f3f0aaaed24a /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/exe/milc_base.Interlock
+1592375631.77:   83bc1f4bfae26a0126a7f3f0aaaed24a /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/run/run_base_ref_Interlock.0000/milc_base.Interlock
+1592375631.77: created (run_base_ref_Interlock.0000)
+1592375631.78:   Setting up 444.namd ref base Interlock default: Comparing MD5 hashes:
+1592375631.78:   f1927ea1ec99e6cc157e1765d472408a /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/444.namd/data/all/input/namd.input
+1592375631.78:   f1927ea1ec99e6cc157e1765d472408a /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/444.namd/run/run_base_ref_Interlock.0000/namd.input
+1592375631.79: Comparing MD5 hashes:
+1592375631.79:   77884362dd1d3eca1b65edab4a34a9f6 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/444.namd/exe/namd_base.Interlock
+1592375631.79:   77884362dd1d3eca1b65edab4a34a9f6 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/444.namd/run/run_base_ref_Interlock.0000/namd_base.Interlock
+1592375631.79: created (run_base_ref_Interlock.0000)
+1592375631.80:   Setting up 462.libquantum ref base Interlock default: Comparing MD5 hashes:
+1592375631.80:   09de79654ba01f54ee016bb4d83a3d59 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/462.libquantum/data/ref/input/control
+1592375631.80:   09de79654ba01f54ee016bb4d83a3d59 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/462.libquantum/run/run_base_ref_Interlock.0000/control
+1592375631.80: Comparing MD5 hashes:
+1592375631.80:   d5cefcd064fb4ac8f785f1d401a59b48 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/462.libquantum/exe/libquantum_base.Interlock
+1592375631.80:   d5cefcd064fb4ac8f785f1d401a59b48 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/462.libquantum/run/run_base_ref_Interlock.0000/libquantum_base.Interlock
+1592375631.80: created (run_base_ref_Interlock.0000)
+1592375631.80:   Setting up 470.lbm ref base Interlock default: Comparing MD5 hashes:
+1592375631.80:   95dceee97128fb4c85220c853734bab1 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/470.lbm/data/ref/input/100_100_130_ldc.of
+1592375631.80:   95dceee97128fb4c85220c853734bab1 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/470.lbm/run/run_base_ref_Interlock.0000/100_100_130_ldc.of
+1592375631.80: Comparing MD5 hashes:
+1592375631.80:   4fe97a617eb7cf909845cbb6bcbdc213 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/470.lbm/data/ref/input/lbm.in
+1592375631.80:   4fe97a617eb7cf909845cbb6bcbdc213 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/470.lbm/run/run_base_ref_Interlock.0000/lbm.in
+1592375631.81: Comparing MD5 hashes:
+1592375631.81:   cbf1dce10e01a7060e32d48651e049de /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/470.lbm/exe/lbm_base.Interlock
+1592375631.81:   cbf1dce10e01a7060e32d48651e049de /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/470.lbm/run/run_base_ref_Interlock.0000/lbm_base.Interlock
+1592375631.81: created (run_base_ref_Interlock.0000)
+1592375631.82:   Setting up 473.astar ref base Interlock default: Comparing MD5 hashes:
+1592375631.82:   800862c7cee15fe1b5b26a9aeb407a4f /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/473.astar/data/ref/input/BigLakes2048.bin
+1592375631.82:   800862c7cee15fe1b5b26a9aeb407a4f /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/473.astar/run/run_base_ref_Interlock.0000/BigLakes2048.bin
+1592375631.82: Comparing MD5 hashes:
+1592375631.82:   ce2ea9194457b9182150071bd90ae6f1 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/473.astar/data/ref/input/BigLakes2048.cfg
+1592375631.82:   ce2ea9194457b9182150071bd90ae6f1 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/473.astar/run/run_base_ref_Interlock.0000/BigLakes2048.cfg
+1592375631.82: Comparing MD5 hashes:
+1592375631.82:   3fe6941cf06938525c2cde4d37fa9cac /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/473.astar/data/ref/input/rivers.bin
+1592375631.82:   3fe6941cf06938525c2cde4d37fa9cac /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/473.astar/run/run_base_ref_Interlock.0000/rivers.bin
+1592375631.82: Comparing MD5 hashes:
+1592375631.82:   320e7f6adc7728f9385f51e2802fabc6 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/473.astar/data/ref/input/rivers.cfg
+1592375631.82:   320e7f6adc7728f9385f51e2802fabc6 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/473.astar/run/run_base_ref_Interlock.0000/rivers.cfg
+1592375631.82: Comparing MD5 hashes:
+1592375631.82:   0de2d5fbca817dbcb76de2c175285acd /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/473.astar/exe/astar_base.Interlock
+1592375631.82:   0de2d5fbca817dbcb76de2c175285acd /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/473.astar/run/run_base_ref_Interlock.0000/astar_base.Interlock
+1592375631.82: created (run_base_ref_Interlock.0000)
+
+1592375631.82: -----------------------------------
+1592375631.82: Running Benchmarks
+
+1592375631.82: -----------------------------------
+1592375631.83: Comparing MD5 hashes:
+1592375631.83:   59b5c4f424c04746e17f587a66e65e1f /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/exe/bzip2_base.Interlock
+1592375631.83:   59b5c4f424c04746e17f587a66e65e1f /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/run/run_base_ref_Interlock.0000/bzip2_base.Interlock
+1592375631.83: REAPER(check, ) called
+1592375631.83:   Running 401.bzip2 ref base Interlock default
+1592375631.84: Commands to run:
+1592375631.84:     -C /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/run/run_base_ref_Interlock.0000
+1592375631.84:     -o /tmp/spec/bzip2_input.source.out -e /tmp/spec/bzip2_input.source.err ../../../../../../lucet-spectre/target/release/lucet-wasi --heap-address-space "8GiB" --max-heap-size "4GiB" --stack-size "8MiB" --dir /:/ -- ../run_base_ref_Interlock.0000/bzip2_base.Interlock /tmp/spec/bzip2_input.source 280 (timed)
+1592375631.84:     -o /tmp/spec/bzip2_chicken.jpg.out -e /tmp/spec/bzip2_chicken.jpg.err ../../../../../../lucet-spectre/target/release/lucet-wasi --heap-address-space "8GiB" --max-heap-size "4GiB" --stack-size "8MiB" --dir /:/ -- ../run_base_ref_Interlock.0000/bzip2_base.Interlock /tmp/spec/bzip2_chicken.jpg 30 (timed)
+1592375631.84:     -o /tmp/spec/bzip2_liberty.jpg.out -e /tmp/spec/bzip2_liberty.jpg.err ../../../../../../lucet-spectre/target/release/lucet-wasi --heap-address-space "8GiB" --max-heap-size "4GiB" --stack-size "8MiB" --dir /:/ -- ../run_base_ref_Interlock.0000/bzip2_base.Interlock /tmp/spec/bzip2_liberty.jpg 30 (timed)
+1592375631.84:     -o /tmp/spec/bzip2_input.program.out -e /tmp/spec/bzip2_input.program.err ../../../../../../lucet-spectre/target/release/lucet-wasi --heap-address-space "8GiB" --max-heap-size "4GiB" --stack-size "8MiB" --dir /:/ -- ../run_base_ref_Interlock.0000/bzip2_base.Interlock /tmp/spec/bzip2_input.program 280 (timed)
+1592375631.84:     -o /tmp/spec/bzip2_text.html.out -e /tmp/spec/bzip2_text.html.err ../../../../../../lucet-spectre/target/release/lucet-wasi --heap-address-space "8GiB" --max-heap-size "4GiB" --stack-size "8MiB" --dir /:/ -- ../run_base_ref_Interlock.0000/bzip2_base.Interlock /tmp/spec/bzip2_text.html 280 (timed)
+1592375631.84:     -o /tmp/spec/bzip2_input.combined.out -e /tmp/spec/bzip2_input.combined.err ../../../../../../lucet-spectre/target/release/lucet-wasi --heap-address-space "8GiB" --max-heap-size "4GiB" --stack-size "8MiB" --dir /:/ -- ../run_base_ref_Interlock.0000/bzip2_base.Interlock /tmp/spec/bzip2_input.combined 200 (timed)
+1592375631.84: Specinvoke: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specinvoke -d /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/run/run_base_ref_Interlock.0000 -e speccmds.err -o speccmds.stdout -f speccmds.cmd -C
+1592375631.84: Issuing command '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specinvoke -d /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/run/run_base_ref_Interlock.0000 -e speccmds.err -o speccmds.stdout -f speccmds.cmd -C'
+1592375631.84: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specinvoke -d /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/run/run_base_ref_Interlock.0000 -e speccmds.err -o speccmds.stdout -f speccmds.cmd -C
+1592375631.84: Start command: Tue Jun 16 23:33:51 2020 (1592375631)
+1592376741.95: Tee child 64619 exited with code 0 (exit code=0, signal=0)
+1592376741.95: Stop command: Tue Jun 16 23:52:21 2020 (1592376741)
+1592376741.95: Elapsed time for command: 00:18:30 (1110)
+1592376741.96: Workload elapsed time (0:1) = 187.68844 seconds
+1592376741.96: Workload elapsed time (0:2) = 82.027671 seconds
+1592376741.96: Workload elapsed time (0:3) = 149.471469 seconds
+1592376741.96: Workload elapsed time (0:4) = 218.220251 seconds
+1592376741.96: Workload elapsed time (0:5) = 315.622325 seconds
+1592376741.96: Workload elapsed time (0:6) = 149.072397 seconds
+1592376741.96: Copy 0 of 401.bzip2 (base ref) run 1 finished at Tue Jun 16 23:52:13 2020.  Total elapsed time: 1102.102553
+1592376741.96: comparing files in '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/run/run_base_ref_Interlock.0000'
+1592376741.96: comparing '/tmp/spec/bzip2_chicken.jpg.out' with abstol=, binary=, calctol=0, cw=, floatcompare=, ignorecase=, obiwan=, reltol=, skipabstol=, skipobiwan=, skipreltol=, skiptol=
+1592376741.96: comparing '/tmp/spec/bzip2_input.combined.out' with abstol=, binary=, calctol=0, cw=, floatcompare=, ignorecase=, obiwan=, reltol=, skipabstol=, skipobiwan=, skipreltol=, skiptol=
+1592376741.96: comparing '/tmp/spec/bzip2_input.program.out' with abstol=, binary=, calctol=0, cw=, floatcompare=, ignorecase=, obiwan=, reltol=, skipabstol=, skipobiwan=, skipreltol=, skiptol=
+1592376741.96: comparing '/tmp/spec/bzip2_input.source.out' with abstol=, binary=, calctol=0, cw=, floatcompare=, ignorecase=, obiwan=, reltol=, skipabstol=, skipobiwan=, skipreltol=, skiptol=
+1592376741.96: comparing '/tmp/spec/bzip2_liberty.jpg.out' with abstol=, binary=, calctol=0, cw=, floatcompare=, ignorecase=, obiwan=, reltol=, skipabstol=, skipobiwan=, skipreltol=, skiptol=
+1592376741.96: comparing '/tmp/spec/bzip2_text.html.out' with abstol=, binary=, calctol=0, cw=, floatcompare=, ignorecase=, obiwan=, reltol=, skipabstol=, skipobiwan=, skipreltol=, skiptol=
+1592376741.97: Specinvoke: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specinvoke -E -d /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/run/run_base_ref_Interlock.0000 -c 1 -e compare.err -o compare.stdout -f compare.cmd
+1592376741.97: Issuing command '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specinvoke -E -d /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/run/run_base_ref_Interlock.0000 -c 1 -e compare.err -o compare.stdout -f compare.cmd'
+1592376741.97: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specinvoke -E -d /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/401.bzip2/run/run_base_ref_Interlock.0000 -c 1 -e compare.err -o compare.stdout -f compare.cmd
+1592376741.97: Start command: Tue Jun 16 23:52:21 2020 (1592376741)
+1592376742.76: Tee child 64659 exited with code 0 (exit code=0, signal=0)
+1592376742.76: Stop command: Tue Jun 16 23:52:22 2020 (1592376742)
+1592376742.76: Elapsed time for command: 00:00:01 (1)
+1592376742.76: Benchmark Times:
+1592376742.76:   Start:    Tue Jun 16 23:33:51 2020 (1592375631)
+1592376742.76:   Stop:     Tue Jun 16 23:52:21 2020 (1592376741)
+1592376742.76:   Elapsed:  00:18:30 (1110)
+1592376742.76:   Reported: 1102 102662000 1102.102662
+1592376742.76:  Success 401.bzip2 base ref ratio=8.76, runtime=1102.102662
+
+1592376742.76: -----------------------------------
+1592376742.76: Comparing MD5 hashes:
+1592376742.76:   152240bfebc808c40793f11aa55377d8 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/exe/mcf_base.Interlock
+1592376742.76:   152240bfebc808c40793f11aa55377d8 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/run/run_base_ref_Interlock.0000/mcf_base.Interlock
+1592376742.77: REAPER(check, ) called
+1592376742.77:   Running 429.mcf ref base Interlock default
+1592376742.78: Commands to run:
+1592376742.78:     -C /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/run/run_base_ref_Interlock.0000
+1592376742.78:     -o /tmp/spec/mcf_inp.out -e /tmp/spec/mcf_inp.err ../../../../../../lucet-spectre/target/release/lucet-wasi --heap-address-space "8GiB" --max-heap-size "4GiB" --stack-size "8MiB" --dir /:/ -- ../run_base_ref_Interlock.0000/mcf_base.Interlock /tmp/spec/mcf_inp.in (timed)
+1592376742.78: Specinvoke: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specinvoke -d /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/run/run_base_ref_Interlock.0000 -e speccmds.err -o speccmds.stdout -f speccmds.cmd -C
+1592376742.78: Issuing command '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specinvoke -d /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/run/run_base_ref_Interlock.0000 -e speccmds.err -o speccmds.stdout -f speccmds.cmd -C'
+1592376742.78: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specinvoke -d /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/run/run_base_ref_Interlock.0000 -e speccmds.err -o speccmds.stdout -f speccmds.cmd -C
+1592376742.78: Start command: Tue Jun 16 23:52:22 2020 (1592376742)
+1592377475.82: Tee child 64668 exited with code 0 (exit code=0, signal=0)
+1592377475.82: Stop command: Wed Jun 17 00:04:35 2020 (1592377475)
+1592377475.82: Elapsed time for command: 00:12:13 (733)
+1592377475.84: Workload elapsed time (0:1) = 725.036102 seconds
+1592377475.84: Copy 0 of 429.mcf (base ref) run 1 finished at Wed Jun 17 00:04:27 2020.  Total elapsed time: 725.036102
+1592377475.84: comparing files in '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/run/run_base_ref_Interlock.0000'
+1592377475.84: comparing '/tmp/spec/mcf_inp.out' with abstol=, binary=, calctol=0, cw=, floatcompare=, ignorecase=, obiwan=, reltol=, skipabstol=, skipobiwan=, skipreltol=, skiptol=
+1592377475.84: comparing '/tmp/spec/mcf_mcf.out' with abstol=, binary=, calctol=0, cw=, floatcompare=, ignorecase=, obiwan=, reltol=, skipabstol=, skipobiwan=, skipreltol=, skiptol=
+1592377475.84: Specinvoke: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specinvoke -E -d /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/run/run_base_ref_Interlock.0000 -c 1 -e compare.err -o compare.stdout -f compare.cmd
+1592377475.84: Issuing command '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specinvoke -E -d /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/run/run_base_ref_Interlock.0000 -c 1 -e compare.err -o compare.stdout -f compare.cmd'
+1592377475.84: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specinvoke -E -d /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/429.mcf/run/run_base_ref_Interlock.0000 -c 1 -e compare.err -o compare.stdout -f compare.cmd
+1592377475.84: Start command: Wed Jun 17 00:04:35 2020 (1592377475)
+1592377476.20: Tee child 64713 exited with code 0 (exit code=0, signal=0)
+1592377476.20: Stop command: Wed Jun 17 00:04:36 2020 (1592377476)
+1592377476.20: Elapsed time for command: 00:00:01 (1)
+1592377476.20: Benchmark Times:
+1592377476.20:   Start:    Tue Jun 16 23:52:22 2020 (1592376742)
+1592377476.20:   Stop:     Wed Jun 17 00:04:35 2020 (1592377475)
+1592377476.20:   Elapsed:  00:12:13 (733)
+1592377476.20:   Reported: 725 36147000 725.036147
+1592377476.20:  Success 429.mcf base ref ratio=12.58, runtime=725.036147
+
+1592377476.20: -----------------------------------
+1592377476.22: Comparing MD5 hashes:
+1592377476.22:   83bc1f4bfae26a0126a7f3f0aaaed24a /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/exe/milc_base.Interlock
+1592377476.22:   83bc1f4bfae26a0126a7f3f0aaaed24a /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/run/run_base_ref_Interlock.0000/milc_base.Interlock
+1592377476.22: REAPER(check, ) called
+1592377476.22:   Running 433.milc ref base Interlock default
+1592377476.23: Commands to run:
+1592377476.23:     -C /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/run/run_base_ref_Interlock.0000
+1592377476.23:     -i su3imp.in -o /tmp/spec/milc_su3imp.out -e /tmp/spec/milc_su3imp.err ../../../../../../lucet-spectre/target/release/lucet-wasi --heap-address-space "8GiB" --max-heap-size "4GiB" --stack-size "8MiB" --dir /:/ -- ../run_base_ref_Interlock.0000/milc_base.Interlock (timed)
+1592377476.23: Specinvoke: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specinvoke -d /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/run/run_base_ref_Interlock.0000 -e speccmds.err -o speccmds.stdout -f speccmds.cmd -C
+1592377476.23: Issuing command '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specinvoke -d /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/run/run_base_ref_Interlock.0000 -e speccmds.err -o speccmds.stdout -f speccmds.cmd -C'
+1592377476.23: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specinvoke -d /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/run/run_base_ref_Interlock.0000 -e speccmds.err -o speccmds.stdout -f speccmds.cmd -C
+1592377476.23: Start command: Wed Jun 17 00:04:36 2020 (1592377476)
+1592377819.09: Tee child 64717 exited with code 0 (exit code=0, signal=0)
+1592377819.09: Stop command: Wed Jun 17 00:10:19 2020 (1592377819)
+1592377819.09: Elapsed time for command: 00:05:43 (343)
+1592377819.11: Workload elapsed time (0:1) = 334.861535 seconds
+1592377819.11: Copy 0 of 433.milc (base ref) run 1 finished at Wed Jun 17 00:10:11 2020.  Total elapsed time: 334.861535
+1592377819.11: comparing files in '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/run/run_base_ref_Interlock.0000'
+1592377819.11: comparing '/tmp/spec/milc_su3imp.out' with abstol=, binary=, calctol=0, cw=, floatcompare=, ignorecase=, obiwan=, reltol=, skipabstol=, skipobiwan=, skipreltol=, skiptol=
+1592377819.11: Specinvoke: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specinvoke -E -d /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/run/run_base_ref_Interlock.0000 -c 1 -e compare.err -o compare.stdout -f compare.cmd
+1592377819.11: Issuing command '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specinvoke -E -d /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/run/run_base_ref_Interlock.0000 -c 1 -e compare.err -o compare.stdout -f compare.cmd'
+1592377819.11: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specinvoke -E -d /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/433.milc/run/run_base_ref_Interlock.0000 -c 1 -e compare.err -o compare.stdout -f compare.cmd
+1592377819.11: Start command: Wed Jun 17 00:10:19 2020 (1592377819)
+1592377819.41: Tee child 64743 exited with code 0 (exit code=0, signal=0)
+1592377819.41: Stop command: Wed Jun 17 00:10:19 2020 (1592377819)
+1592377819.41: Elapsed time for command: 00:00:00 (0)
+1592377819.41: Benchmark Times:
+1592377819.41:   Start:    Wed Jun 17 00:04:36 2020 (1592377476)
+1592377819.41:   Stop:     Wed Jun 17 00:10:19 2020 (1592377819)
+1592377819.41:   Elapsed:  00:05:43 (343)
+1592377819.41:   Reported: 334 861590000 334.86159
+1592377819.41:  Success 433.milc base ref ratio=27.41, runtime=334.861590
+
+1592377819.41: -----------------------------------
+1592377819.43: Comparing MD5 hashes:
+1592377819.43:   77884362dd1d3eca1b65edab4a34a9f6 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/444.namd/exe/namd_base.Interlock
+1592377819.43:   77884362dd1d3eca1b65edab4a34a9f6 /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/444.namd/run/run_base_ref_Interlock.0000/namd_base.Interlock
+1592377819.44: REAPER(check, ) called
+1592377819.44:   Running 444.namd ref base Interlock default
+1592377819.44: Commands to run:
+1592377819.44:     -C /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/444.namd/run/run_base_ref_Interlock.0000
+1592377819.44:     -o namd.stdout -e namd.err ../../../../../../lucet-spectre/target/release/lucet-wasi --heap-address-space "8GiB" --max-heap-size "4GiB" --stack-size "8MiB" --dir /:/ -- ../run_base_ref_Interlock.0000/namd_base.Interlock --input /tmp/spec/namd_namd.input --iterations 38 --output /tmp/spec/namd_namd.out  (timed)
+1592377819.45: Specinvoke: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specinvoke -d /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/444.namd/run/run_base_ref_Interlock.0000 -e speccmds.err -o speccmds.stdout -f speccmds.cmd -C
+1592377819.45: Issuing command '/home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specinvoke -d /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/444.namd/run/run_base_ref_Interlock.0000 -e speccmds.err -o speccmds.stdout -f speccmds.cmd -C'
+1592377819.45: /home/ucsd/SpectreSandboxing/sfi-spectre-spec/bin/specinvoke -d /home/ucsd/SpectreSandboxing/sfi-spectre-spec/benchspec/CPU2006/444.namd/run/run_base_ref_Interlock.0000 -e speccmds.err -o speccmds.stdout -f speccmds.cmd -C
+1592377819.45: Start command: Wed Jun 17 00:10:19 2020 (1592377819)
