@@ -146,7 +146,9 @@ sfi-spectre-spec: libnsl/build/lib/libnsl.so.1
 	git clone git@github.com:PLSysSec/sfi-spectre-spec.git
 	cd sfi-spectre-spec && LD_LIBRARY_PATH="$(CURR_DIR)/libnsl/build/lib/" SPEC_INSTALL_NOCHECK=1 SPEC_FORCE_INSTALL=1 sh install.sh -f
 
-SFI_BUILDS=wasm_lucet wasm_lucet_unroll wasm_loadlfence wasm_strawman wasm_sfi_full wasm_blade wasm_interlock wasm_phttobtb
+BASELINE_BUILDS=wasm_loadlfence wasm_strawman wasm_blade wasm_interlock wasm_phttobtb
+OUR_SFI_BUILDS=wasm_lucet wasm_lucet_unroll wasm_sfi_full
+SFI_BUILDS=$(BASELINE_BUILDS) $(OUR_SFI_BUILDS)
 CET_BUILDS=wasm_cet_full
 SFI_ASLR_BUILDS=wasm_sfi_aslr
 CET_ASLR_BUILDS=wasm_cet_aslr
@@ -190,6 +192,27 @@ run_spec: install_btbflush
 	# Ours --- just the expensive parts
 	python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre-spec/result --usePercent --filter \
 		"sfi-spectre-spec/result/spec_results_ours_expensive=PhtToBtb:PhtToBtb,Interlock:Interlock" -n $(SPEC_BUILD_COUNT)
+	mv sfi-spectre-spec/result/ benchmarks/spec_$(shell date --iso=seconds)
+
+run_spec_ours: install_btbflush
+	export LD_LIBRARY_PATH="$(CURR_DIR)/libnsl/build/lib/" && \
+	sh cp_spec_data_into_tmp.sh && \
+	cd sfi-spectre-spec && source shrc && cd config && \
+	for spec_build in $(OUR_SFI_BUILDS); do \
+		runspec --config=$$spec_build.cfg --iterations=1 --noreportable --size=ref --wasm oakland; \
+	done && \
+	for spec_build in $(CET_BUILDS); do \
+		runspec --config=$$spec_build.cfg --iterations=1 --noreportable --size=ref --wasmcet oakland; \
+	done && \
+	for spec_build in $(SFI_ASLR_BUILDS); do \
+		runspec --config=$$spec_build.cfg --iterations=1 --noreportable --size=ref --wasmaslr oakland; \
+	done && \
+	for spec_build in $(CET_ASLR_BUILDS); do \
+		runspec --config=$$spec_build.cfg --iterations=1 --noreportable --size=ref --wasmcetaslr oakland; \
+	done
+	# Ours
+	python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre-spec/result --usePercent --filter \
+		"sfi-spectre-spec/result/spec_results_ours=Stock_Unrolled:Stock_Unrolled,Sfi_Aslr:Sfi_Aslr,Cet_Aslr:Cet_Aslr,Sfi_Full:Sfi_Full,Cet_Full:Cet_Full" -n $(SPEC_BUILD_COUNT)
 	mv sfi-spectre-spec/result/ benchmarks/spec_$(shell date --iso=seconds)
 
 run_spec_sfi: install_btbflush
