@@ -12,6 +12,7 @@ build_transitions_benchmark run_transitions_benchmark \
 build_macro_benchmark build_macro_benchmark_nocet \
 run_macro_benchmark_server_sfischemes run_macro_benchmark_server_cetschemes \
 run_macro_benchmark_client_sfischemes run_macro_benchmark_client_cetschemes \
+generate_macro_results \
 build_firefox
 
 .DEFAULT_GOAL := build
@@ -420,8 +421,13 @@ run_macro_benchmark_client_cetschemes:
 	mkdir -p ./benchmarks/current_macro_cetschemes_wrk
 	cp ./spectresfi_webserver/wrk_scripts/results/* ./benchmarks/current_macro_cetschemes_wrk
 
-benchmarks/wrk_table.tex: ./benchmarks/current_macro_sfischemes_wrk ./benchmarks/current_macro_cetschemes_wrk
-	python3 ./spectresfi_webserver/wrk_analysis.py -folders ./benchmarks/current_macro_sfischemes_wrk ./benchmarks/current_macro_cetschemes_wrk > $@
+generate_macro_results: ./benchmarks/current_macro_sfischemes_wrk ./benchmarks/current_macro_cetschemes_wrk
+	-rm -rf ./benchmarks/current_macro
+	mkdir -p ./benchmarks/current_macro
+	python3 ./spectresfi_webserver/wrk_analysis.py -folders ./benchmarks/current_macro_sfischemes_wrk ./benchmarks/current_macro_cetschemes_wrk > ./benchmarks/current_macro/wrk_table.tex
+	cp -r ./benchmarks/current_macro_sfischemes_wrk ./benchmarks/current_macro/sfischemes
+	cp -r ./benchmarks/current_macro_cetschemes_wrk ./benchmarks/current_macro/cetschemes
+	mv ./benchmarks/current_macro ./benchmarks/macro_$(shell date --iso=seconds)
 
 build_firefox: build_lucet_nocet
 	$(MAKE) -C ./firefox-spectre/builds build
