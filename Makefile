@@ -401,11 +401,11 @@ run_macro_benchmark_client_sfischemes_old:
 	python3 ./spectresfi_webserver/autocanon_analysis.py -file ./benchmarks/current_macro_sfischemes/nocet_results.json 2>&1 > ./benchmarks/current_macro_sfischemes/nocet_results.tex
 	mv ./benchmarks/current_macro_sfischemes ./benchmarks/macro_sfischemes_$(shell date --iso=seconds)
 
-run_macro_benchmark: ./spectresfi_webserver/wrk_scripts/runall.sh
+run_macro_benchmark: ./spectresfi_webserver/wrk_scripts/runall.sh ./spectresfi_webserver/wrk_analysis.py
 	rm -rf ./spectresfi_webserver/wrk_scripts/results
 	cd ./spectresfi_webserver/wrk_scripts && ./runall.sh
-	mkdir -p ./benchmarks/current_macro_wrk
-	cp ./spectresfi_webserver/wrk_scripts/results/* ./benchmarks/current_macro_wrk
+	python3 ./spectresfi_webserver/wrk_analysis.py -folders ./spectresfi_webserver/wrk_scripts/results > ./spectresfi_webserver/wrk_scripts/results/wrk_table.tex
+	mv ./spectresfi_webserver/wrk_scripts/results ./benchmarks/macro_$(shell date --iso=seconds)
 
 generate_macro_results: ./benchmarks/current_macro_wrk ./spectresfi_webserver/wrk_analysis.py
 	python3 ./spectresfi_webserver/wrk_analysis.py -folders ./benchmarks/current_macro_wrk > ./benchmarks/current_macro_wrk/wrk_table.tex
