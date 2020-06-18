@@ -192,6 +192,16 @@ run_spec: install_btbflush
 		"sfi-spectre-spec/result/spec_results_ours_expensive=PhtToBtb:PhtToBtb,Interlock:Interlock" -n $(SPEC_BUILD_COUNT)
 	mv sfi-spectre-spec/result/ benchmarks/spec_$(shell date --iso=seconds)
 
+run_spec_sfi: install_btbflush
+	export LD_LIBRARY_PATH="$(CURR_DIR)/libnsl/build/lib/" && \
+	sh cp_spec_data_into_tmp.sh && \
+	cd sfi-spectre-spec && source shrc && cd config && \
+	runspec --config=wasm_sfi_full.cfg --iterations=1 --noreportable --size=ref --wasm oakland && \
+	for spec_build in $(SFI_ASLR_BUILDS); do \
+		runspec --config=$$spec_build.cfg --iterations=1 --noreportable --size=ref --wasmaslr oakland; \
+	done
+	mv sfi-spectre-spec/result/ benchmarks/spec_sfi_$(shell date --iso=seconds)
+
 build_spec2017: build_lucet_nocet
 	cd spec2017 && source shrc && cd config && \
 	runcpu --config=wasm_lucet.cfg --action=clobber --define cores=1 osdi && \
