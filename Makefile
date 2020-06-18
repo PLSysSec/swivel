@@ -18,7 +18,7 @@ build_firefox
 
 SHELL := /bin/bash
 
-DIRS=rustc-cet rust_libloading_aslr lucet-spectre sfi-spectre-testing rlbox_spectre_sandboxing_api rlbox_lucet_spectre_sandbox btbflush-module spectresfi_webserver node_modules firefox-spectre
+DIRS=rustc-cet rust_libloading_aslr lucet-spectre sfi-spectre-testing rlbox_spectre_sandboxing_api rlbox_lucet_spectre_sandbox btbflush-module spectresfi_webserver node_modules firefox-spectre wrk
 
 CURR_DIR := $(shell realpath ./)
 
@@ -106,6 +106,10 @@ node_modules:
 
 firefox-spectre:
 	git clone git@github.com:PLSysSec/firefox-spectre.git $@
+
+wrk:
+	git clone git@github.com:wg/wrk
+	cd wrk && $(MAKE) -j8
 
 get_source: $(DIRS)
 
@@ -369,7 +373,7 @@ run_macrobenchmark_wrk_client_sfischemes:
 	./spectresfi_webserver/spectre_testfib.sh spectre_sfi_full
 	@echo "Server tests passed"
 	rm -rf ./spectresfi_webserver/wrk_scripts/results
-	./spectresfi_webserver/wrk_scripts/runall.sh sfi
+	cd ./spectresfi_webserver/wrk_scripts && ./runall.sh sfi
 	mkdir -p ./benchmarks/current_macro_sfischemes_wrk
 	cp ./spectresfi_webserver/wrk_scripts/results/* ./benchmarks/current_macro_sfischemes_wrk
 
@@ -379,7 +383,7 @@ run_macrobenchmark_wrk_client_cetschemes:
 	./spectresfi_webserver/spectre_testfib.sh spectre_cet_full
 	@echo "Server tests passed"
 	rm -rf ./spectresfi_webserver/wrk_scripts/results
-	./spectresfi_webserver/wrk_scripts/runall.sh cet
+	cd ./spectresfi_webserver/wrk_scripts && ./runall.sh cet
 	mkdir -p ./benchmarks/current_macro_cetschemes_wrk
 	cp ./spectresfi_webserver/wrk_scripts/results/* ./benchmarks/current_macro_cetschemes_wrk
 
