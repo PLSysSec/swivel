@@ -379,7 +379,7 @@ run_macro_benchmark_server_cetschemes:
 run_macro_benchmark_server_sfischemes: install_btbflush
 	./spectresfi_webserver/target/release/spectresfi_webserver
 
-run_macro_benchmark_client_cetschemes:
+run_macro_benchmark_client_cetschemes_old:
 	./spectresfi_webserver/spectre_testfib.sh spectre_cet_aslr
 	./spectresfi_webserver/spectre_testfib.sh spectre_cet_full
 	@echo "CET Server tests passed"
@@ -389,7 +389,7 @@ run_macro_benchmark_client_cetschemes:
 	python3 ./spectresfi_webserver/autocanon_analysis.py -file ./benchmarks/current_macro_cetschemes/cet_results.json 2>&1 > ./benchmarks/current_macro_cetschemes/cet_results.tex
 	mv ./benchmarks/current_macro_cetschemes ./benchmarks/macro_cetschemes_$(shell date --iso=seconds)
 
-run_macro_benchmark_client_sfischemes:
+run_macro_benchmark_client_sfischemes_old:
 	./spectresfi_webserver/spectre_testfib.sh stock
 	./spectresfi_webserver/spectre_testfib.sh spectre_sfi_aslr
 	./spectresfi_webserver/spectre_testfib.sh spectre_sfi_full
@@ -400,7 +400,7 @@ run_macro_benchmark_client_sfischemes:
 	python3 ./spectresfi_webserver/autocanon_analysis.py -file ./benchmarks/current_macro_sfischemes/nocet_results.json 2>&1 > ./benchmarks/current_macro_sfischemes/nocet_results.tex
 	mv ./benchmarks/current_macro_sfischemes ./benchmarks/macro_sfischemes_$(shell date --iso=seconds)
 
-run_macrobenchmark_wrk_client_sfischemes:
+run_macro_benchmark_client_sfischemes:
 	./spectresfi_webserver/spectre_testfib.sh stock
 	./spectresfi_webserver/spectre_testfib.sh spectre_sfi_aslr
 	./spectresfi_webserver/spectre_testfib.sh spectre_sfi_full
@@ -410,7 +410,7 @@ run_macrobenchmark_wrk_client_sfischemes:
 	mkdir -p ./benchmarks/current_macro_sfischemes_wrk
 	cp ./spectresfi_webserver/wrk_scripts/results/* ./benchmarks/current_macro_sfischemes_wrk
 
-run_macrobenchmark_wrk_client_cetschemes:
+run_macro_benchmark_client_cetschemes:
 	./spectresfi_webserver/spectre_testfib.sh stock
 	./spectresfi_webserver/spectre_testfib.sh spectre_cet_aslr
 	./spectresfi_webserver/spectre_testfib.sh spectre_cet_full
