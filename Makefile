@@ -412,7 +412,6 @@ run_macro_benchmark_client_sfischemes:
 	cp ./spectresfi_webserver/wrk_scripts/results/* ./benchmarks/current_macro_sfischemes_wrk
 
 run_macro_benchmark_client_cetschemes:
-	./spectresfi_webserver/spectre_testfib.sh stock
 	./spectresfi_webserver/spectre_testfib.sh spectre_cet_aslr
 	./spectresfi_webserver/spectre_testfib.sh spectre_cet_full
 	@echo "Server tests passed"
