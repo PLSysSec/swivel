@@ -372,7 +372,7 @@ build_macro_benchmark_nocet: spectresfi_webserver node_modules build_lucet_nocet
 	cd ./spectresfi_webserver/modules && make clean
 	cd ./spectresfi_webserver/modules && make -j8
 
-run_macro_benchmark: ./spectresfi_webserver/wrk_scripts/runall.sh ./spectresfi_webserver/wrk_analysis.py
+run_macro_benchmark: install_btbflush ./spectresfi_webserver/wrk_scripts/runall.sh ./spectresfi_webserver/wrk_analysis.py
 	rm -rf ./spectresfi_webserver/wrk_scripts/results
 	cd ./spectresfi_webserver/wrk_scripts && ./runall.sh
 	python3 ./spectresfi_webserver/wrk_analysis.py -folders ./spectresfi_webserver/wrk_scripts/results > ./spectresfi_webserver/wrk_scripts/results/wrk_table.tex
