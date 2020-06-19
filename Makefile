@@ -385,7 +385,7 @@ run_macro_benchmark_echo: ./spectresfi_webserver/wrk_scripts/runall_echo.sh ./sp
 
 run_macro_benchmark_tflite: ./spectresfi_webserver/wrk_scripts/runall_echo.sh ./spectresfi_webserver/wrk_analysis.py
 	rm -rf ./spectresfi_webserver/wrk_scripts/results
-	cd ./spectresfi_webserver/wrk_scripts && ./runall_echo.sh
+	cd ./spectresfi_webserver/wrk_scripts && ./runall_tflite.sh
 	python3 ./spectresfi_webserver/wrk_analysis.py -folders ./spectresfi_webserver/wrk_scripts/results > ./spectresfi_webserver/wrk_scripts/results/wrk_table.tex
 
 build_firefox: build_lucet_nocet
