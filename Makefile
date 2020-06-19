@@ -378,6 +378,11 @@ run_macro_benchmark: install_btbflush ./spectresfi_webserver/wrk_scripts/runall.
 	python3 ./spectresfi_webserver/wrk_analysis.py -folders ./spectresfi_webserver/wrk_scripts/results > ./spectresfi_webserver/wrk_scripts/results/wrk_table.tex
 	mv ./spectresfi_webserver/wrk_scripts/results ./benchmarks/macro_$(shell date --iso=seconds)
 
+run_macro_benchmark_echo: ./spectresfi_webserver/wrk_scripts/runall_echo.sh ./spectresfi_webserver/wrk_analysis.py
+	rm -rf ./spectresfi_webserver/wrk_scripts/results
+	cd ./spectresfi_webserver/wrk_scripts && ./runall_echo.sh
+	python3 ./spectresfi_webserver/wrk_analysis.py -folders ./spectresfi_webserver/wrk_scripts/results > ./spectresfi_webserver/wrk_scripts/results/wrk_table.tex
+
 build_firefox: build_lucet_nocet
 	$(MAKE) -C ./firefox-spectre/builds build
 
