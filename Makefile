@@ -185,7 +185,7 @@ run_spec: install_btbflush
 	done
 	# Baseline
 	python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre-spec/result --filter  \
-		"sfi-spectre-spec/result/spec_results_baseline=LoadLfence:LoadLfence,Strawman:Strawman,Blade:Blade" -n $(SPEC_BUILD_COUNT)
+		"sfi-spectre-spec/result/spec_results_baseline=LoadLfence:LoadLfence,Strawman:Strawman,Blade:Mincut" -n $(SPEC_BUILD_COUNT)
 	# Ours
 	python3 sfi-spectre-testing/scripts/spec_stats.py -i sfi-spectre-spec/result --usePercent --filter \
 		"sfi-spectre-spec/result/spec_results_ours=Stock_Unrolled:Stock_Unrolled,Sfi_Aslr:Sfi_Aslr,Cet_Aslr:Cet_Aslr,Sfi_Full:Sfi_Full,Cet_Full:Cet_Full" -n $(SPEC_BUILD_COUNT)
