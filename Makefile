@@ -225,6 +225,18 @@ run_spec_sfi: install_btbflush
 	done
 	mv sfi-spectre-spec/result/ benchmarks/spec_sfi_$(shell date --iso=seconds)
 
+run_spec_cet: install_btbflush
+	export LD_LIBRARY_PATH="$(CURR_DIR)/libnsl/build/lib/" && \
+	sh cp_spec_data_into_tmp.sh && \
+	cd sfi-spectre-spec && source shrc && cd config && \
+	for spec_build in $(CET_BUILDS); do \
+		runspec --config=$$spec_build.cfg --iterations=1 --noreportable --size=ref --wasmcet oakland; \
+	done && \
+	for spec_build in $(CET_ASLR_BUILDS); do \
+		runspec --config=$$spec_build.cfg --iterations=1 --noreportable --size=ref --wasmcetaslr oakland; \
+	done
+	mv sfi-spectre-spec/result/ benchmarks/spec_cet_$(shell date --iso=seconds)
+
 build_spec2017: build_lucet_nocet
 	cd spec2017 && source shrc && cd config && \
 	runcpu --config=wasm_lucet.cfg --action=clobber --define cores=1 osdi && \
