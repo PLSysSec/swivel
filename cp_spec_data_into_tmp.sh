@@ -1,7 +1,6 @@
-if [ ! -d /tmp/spec/ ]; then \
-    mkdir /tmp/spec
-fi
+#!/bin/bash
 
+mkdir -p /tmp/spec
 
 #401 y y y -- bzip2 -- (done)
 #429 y y y -- mcf -- (done)
@@ -59,6 +58,6 @@ cp sfi-spectre-spec/benchspec/CPU2006/473.astar/data/ref/input/rivers.cfg /tmp/s
 cp sfi-spectre-spec/benchspec/CPU2006/473.astar/data/ref/input/rivers.bin /tmp/spec/astar_rivers.bin
 
 # 482.sphinx3
-mkdir /tmp/spec/sphinx3
+mkdir -p /tmp/spec/sphinx3
 cp -r sfi-spectre-spec/benchspec/CPU2006/482.sphinx3/data/all/input/model /tmp/spec/sphinx3/model
 cp -r sfi-spectre-spec/benchspec/CPU2006/482.sphinx3/data/ref/input /tmp/spec/sphinx3/input
