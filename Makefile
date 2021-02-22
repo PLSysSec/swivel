@@ -11,7 +11,7 @@ build_sightglass run_sightglass build_sightglass_nocet run_sightglass_nocet run_
 run_sightglass_cetonly run_sightglass_cetonly_nocet \
 build_transitions_benchmark run_transitions_benchmark \
 build_macro_benchmark build_macro_benchmark_nocet \
-run_macro_benchmark_except_tflite run_macro_benchmark_echo run_macro_benchmark_tflite \
+run_macro_benchmark run_macro_benchmark_except_tflite run_macro_benchmark_echo run_macro_benchmark_tflite \
 build_firefox
 
 .DEFAULT_GOAL := build
@@ -401,21 +401,28 @@ build_macro_benchmark_nocet: spectresfi_webserver node_modules build_lucet_nocet
 	cd ./spectresfi_webserver/modules && make clean
 	cd ./spectresfi_webserver/modules && make -j8
 
+run_macro_benchmark:  install_btbflush ./spectresfi_webserver/wrk_scripts/runall.sh ./spectresfi_webserver/wrk_scripts/runall_tflite.sh ./spectresfi_webserver/wrk_analysis.py
+	rm -rf ./spectresfi_webserver/wrk_scripts/results
+	cd ./spectresfi_webserver/wrk_scripts && ./runall.sh
+	cd ./spectresfi_webserver/wrk_scripts && ./runall_tflite.sh
+	python3 ./spectresfi_webserver/wrk_analysis.py -folders ./spectresfi_webserver/wrk_scripts/results -sofolder ./spectresfi_webserver/modules -o1 ./spectresfi_webserver/wrk_scripts/results/wrk_table_1.tex -o2 ./spectresfi_webserver/wrk_scripts/results/wrk_table_2.tex
+	mv ./spectresfi_webserver/wrk_scripts/results ./benchmarks/macro_$(shell date --iso=seconds)
+
 run_macro_benchmark_except_tflite: install_btbflush ./spectresfi_webserver/wrk_scripts/runall.sh ./spectresfi_webserver/wrk_analysis.py
 	rm -rf ./spectresfi_webserver/wrk_scripts/results
-	-cd ./spectresfi_webserver/wrk_scripts && ./runall.sh
+	cd ./spectresfi_webserver/wrk_scripts && ./runall.sh
 	python3 ./spectresfi_webserver/wrk_analysis.py -folders ./spectresfi_webserver/wrk_scripts/results -sofolder ./spectresfi_webserver/modules -o1 ./spectresfi_webserver/wrk_scripts/results/wrk_table_1.tex -o2 ./spectresfi_webserver/wrk_scripts/results/wrk_table_2.tex
 	mv ./spectresfi_webserver/wrk_scripts/results ./benchmarks/macro_$(shell date --iso=seconds)
 
 run_macro_benchmark_echo: ./spectresfi_webserver/wrk_scripts/runall_echo.sh ./spectresfi_webserver/wrk_analysis.py
 	rm -rf ./spectresfi_webserver/wrk_scripts/results
-	-cd ./spectresfi_webserver/wrk_scripts && ./runall_echo.sh
-	python3 ./spectresfi_webserver/wrk_analysis.py -folders ./spectresfi_webserver/wrk_scripts/results > ./spectresfi_webserver/wrk_scripts/results/wrk_table.tex
+	cd ./spectresfi_webserver/wrk_scripts && ./runall_echo.sh
+	python3 ./spectresfi_webserver/wrk_analysis.py -sofolder ./spectresfi_webserver/modules -o1 ./spectresfi_webserver/wrk_scripts/results/wrk_table_1.tex -o2 ./spectresfi_webserver/wrk_scripts/results/wrk_table_2.tex
 
-run_macro_benchmark_tflite: ./spectresfi_webserver/wrk_scripts/runall_echo.sh ./spectresfi_webserver/wrk_analysis.py
+run_macro_benchmark_tflite: ./spectresfi_webserver/wrk_scripts/runall_tflite.sh ./spectresfi_webserver/wrk_analysis.py
 	rm -rf ./spectresfi_webserver/wrk_scripts/results
-	-cd ./spectresfi_webserver/wrk_scripts && ./runall_tflite.sh
-	python3 ./spectresfi_webserver/wrk_analysis.py -folders ./spectresfi_webserver/wrk_scripts/results > ./spectresfi_webserver/wrk_scripts/results/wrk_table.tex
+	cd ./spectresfi_webserver/wrk_scripts && ./runall_tflite.sh
+	python3 ./spectresfi_webserver/wrk_analysis.py -sofolder ./spectresfi_webserver/modules -o1 ./spectresfi_webserver/wrk_scripts/results/wrk_table_1.tex -o2 ./spectresfi_webserver/wrk_scripts/results/wrk_table_2.tex
 
 build_firefox: build_lucet_nocet
 	$(MAKE) -C ./firefox-spectre/builds build
