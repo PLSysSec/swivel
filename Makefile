@@ -1,9 +1,9 @@
 .NOTPARALLEL:
-.PHONY : pull clean get_source \
+.PHONY : pull get_source build \
 build_sanity_test build_sanity_test_nocet \
 run_sanity_test run_sanity_test_nocet \
 build_rustc \
-build_lucet build_lucet_nocet \
+build_lucet build_lucet_nocet build_lucet_repro \
 build_spec run_spec \
 build_spec2017 run_spec2017 \
 run_spec_all run_spec_combine_stats \
@@ -12,13 +12,13 @@ run_sightglass_cetonly run_sightglass_cetonly_nocet \
 build_transitions_benchmark run_transitions_benchmark \
 build_macro_benchmark build_macro_benchmark_nocet \
 run_macro_benchmark run_macro_benchmark_except_tflite run_macro_benchmark_echo run_macro_benchmark_tflite \
-build_firefox
+build_repros run_pht_breakout_repro run_btb_breakout_repro run_btb_poison_repro run_rsb_poison_repro
 
 .DEFAULT_GOAL := build
 
 SHELL := /bin/bash
 
-DIRS=rustc-cet rust_libloading_aslr lucet-spectre sfi-spectre-testing rlbox_spectre_sandboxing_api rlbox_lucet_spectre_sandbox btbflush-module spectresfi_webserver node_modules firefox-spectre wrk
+DIRS=rustc-cet rust_libloading_aslr lucet-spectre sfi-spectre-testing btbflush-module spectresfi_webserver node_modules wrk wabt-1.0.19-ubuntu lucet-spectre-repro safeside swivel-btb-exploit
 
 CURR_DIR := $(shell realpath ./)
 
@@ -76,14 +76,6 @@ sfi-spectre-testing:
 	git clone git@github.com:PLSysSec/sfi-spectre-testing.git $@
 	cd $@ && git submodule update --init --recursive
 
-rlbox_spectre_sandboxing_api:
-	git clone git@github.com:PLSysSec/rlbox_spectre_sandboxing_api.git $@
-
-rlbox_lucet_spectre_sandbox:
-	git clone git@github.com:PLSysSec/rlbox_lucet_spectre_sandbox.git $@
-	cd $@ && git submodule update --init --recursive
-	CUSTOM_LUCET_DIR=$(CURR_DIR)/lucet-spectre cmake -S $@ -B $@/build
-
 rustc-cet:
 	git clone git@github.com:PLSysSec/rustc-cet.git $@
 	cd $@ && git submodule update --init --recursive
@@ -104,12 +96,27 @@ spectresfi_webserver:
 node_modules:
 	npm install autocannon
 
-firefox-spectre:
-	git clone git@github.com:PLSysSec/firefox-spectre.git $@
-
 wrk:
 	git clone git@github.com:wg/wrk
 	cd wrk && $(MAKE) -j8
+
+wabt-1.0.19-ubuntu:
+	-mkdir -p $@
+	cd $@ && \
+	wget https://github.com/WebAssembly/wabt/releases/download/1.0.19/wabt-1.0.19-ubuntu.tar.gz && \
+	tar -zxvf wabt-1.0.19-ubuntu.tar.gz
+
+lucet-spectre-repro:
+	git clone git@github.com:PLSysSec/lucet-spectre.git $@
+	cd $@ && git checkout -t origin/more-wasi-primitives
+	cd $@ && git submodule update --init --recursive
+
+safeside:
+	git clone git@github.com:PLSysSec/safeside.git $@
+	cd $@ && git checkout -t origin/breakout
+
+swivel-btb-exploit:
+	git clone git@github.com:PLSysSec/swivel-btb-exploit.git $@
 
 get_source: $(DIRS)
 
@@ -118,16 +125,16 @@ install_deps: $(DIRS)
 
 pull: $(DIRS)
 	git pull
-	cd rlbox_spectre_sandboxing_api && git pull
 	cd rust_libloading_aslr && git pull
-	cd rlbox_lucet_spectre_sandbox && git pull --recurse-submodules
 	cd lucet-spectre && git pull --recurse-submodules
 	cd sfi-spectre-testing && git pull --recurse-submodules
 	cd btbflush-module && git pull
 	cd spectresfi_webserver && git pull
-	cd firefox-spectre && git pull
 	cd rustc-cet && git pull --recurse-submodules
 	cd sfi-spectre-spec && git pull
+	cd repros/lucet-spectre && git pull --recurse-submodules
+	cd repros/safeside && git pull
+	cd repros/swivel-btb-exploit && git pull
 
 libnsl:
 	git clone https://github.com/thkukuk/libnsl
@@ -311,24 +318,23 @@ build_lucet: out/rust_build/bin/rustc build_lucet_nocet
 		CARGO_TARGET_DIR="${CURR_DIR}/lucet-spectre/target-cet" \
 		cargo +rust-cet build --release
 
+build_lucet_repro:
+	cd lucet-spectre-repro && cargo build --release
+
 build_sanity_test: install_deps build_lucet
 	mkdir -p ./out
-	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build
 	REALLY_USE_CET=1 $(MAKE) -C sfi-spectre-testing build -j8
 
 build_sanity_test_nocet: install_deps
 	mkdir -p ./out
 	cd lucet-spectre && cargo build
 	cp -r lucet-spectre/target lucet-spectre/target-cet
-	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build
 	$(MAKE) -C sfi-spectre-testing build -j8
 
 run_sanity_test:
-	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build check
 	REALLY_USE_CET=1 $(MAKE) -C sfi-spectre-testing test
 
 run_sanity_test_nocet:
-	# $(MAKE) -C rlbox_lucet_spectre_sandbox/build check
 	$(MAKE) -C sfi-spectre-testing test
 
 build_sightglass: install_deps build_lucet
@@ -424,9 +430,21 @@ run_macro_benchmark_tflite: ./spectresfi_webserver/wrk_scripts/runall_tflite.sh 
 	cd ./spectresfi_webserver/wrk_scripts && ./runall_tflite.sh
 	python3 ./spectresfi_webserver/wrk_analysis.py -sofolder ./spectresfi_webserver/modules -o1 ./spectresfi_webserver/wrk_scripts/results/wrk_table_1.tex -o2 ./spectresfi_webserver/wrk_scripts/results/wrk_table_2.tex
 
-build_firefox: build_lucet_nocet
-	$(MAKE) -C ./firefox-spectre/builds build
+build_repros: build_lucet_repro
+	cd swivel-btb-exploit && $(MAKE)
+	cmake -S ./safeside/build-lucet -B ./safeside/build-lucet/build -DCMAKE_BUILD_TYPE=Release
+	cd ./safeside/build && $(MAKE)
 
-clean:
-	-cd lucet-spectre && cargo clean
-	-$(MAKE) -C sfi-spectre-testing clean
+run_pht_breakout_repro:
+	cd ./safeside/build-lucet/build && ./run.sh pht_sa
+
+run_btb_breakout_repro:
+	cd ./swivel-btb-exploit/ && ./gdb.sh breakout
+
+run_btb_poison_repro:
+	cd ./swivel-btb-exploit/ && ./gdb.sh leakage
+
+run_rsb_poison_repro:
+	cd ./safeside/build-lucet/build && ./run.sh ret2spec_sa
+
+build: get_source build_rustc build_lucet build_lucet_nocet build_lucet_repro build_sanity_test build_sanity_test_nocet build_sightglass build_sightglass_nocet build_transitions_benchmark build_macro_benchmark build_macro_benchmark_nocet build_repros
