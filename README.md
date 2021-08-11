@@ -1,8 +1,5 @@
 # SpectreSandboxing
 
-This is the top level repo for the paper "" presented at USENIX 2021
-
-
 This is the top level repo for the paper [Swivel: Hardening WebAssembly against Spectre](https://www.usenix.org/conference/usenixsecurity21/presentation/narayan) published at USENIX 2021
 in which we demonstrate protecting Wasm code from Spectre attacks.
 
