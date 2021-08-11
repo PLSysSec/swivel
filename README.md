@@ -37,13 +37,21 @@ so this will take a while.
 ## Software being built by this repo
 
 **[rustc-cet](https://github.com/PLSysSec/rustc-cet.git)** - Our modified version of rust compiler that supports CET.
+
 **[rust_libloading_aslr](https://github.com/PLSysSec/rust_libloading_aslr.git)** - A modified version of a rust package that allows us to customize library loading.
+
 **[lucet-spectre](https://github.com/PLSysSec/lucet-spectre.git)** - Our modified and hardened version of lucet that provides compile flags that allow various Spectre hardenings.
+
 **[lucet-spectre-repro](https://github.com/PLSysSec/lucet-spectre/tree/more-wasi-primitives)** - A modified version of lucet that simplifies our proof-of-concept demos showing Spectre vulnerabilities in Wasm. These modifications expose primitives like cache flushing or timer instructions. These are simply for the purpose of proof-of-concepts. In practice, these primitives are not necessary and can be effectively simulated purely in software.
+
 **[sfi-spectre-testing](https://github.com/PLSysSec/sfi-spectre-testing.git)** - Our repo with several tests, benchmarks graphing scripts etc.
+
 **[btbflush-module](https://github.com/PLSysSec/btbflush-module.git)** - A kernel module that allows userspace use of BTB flushing.
+
 **[sfispectre_webserver](https://github.com/PLSysSec/sfispectre_webserver.git)** - Our macrobenchmark of Wasm web services that measures the overhead of using Swivel.
+
 **[safeside](https://github.com/PLSysSec/safeside.git)** - Our modifications of safeside to show that Spectre proof-of-concepts of PHT and RSB work in Wasm also.
+
 **[swivel-btb-exploit](https://github.com/PLSysSec/swivel-btb-exploit.git)** - Our hand written proof-of-concept that shows BTB Spectre attacks work in Wasm.
 
 ## Running benchmarks/proof-of-concepts
