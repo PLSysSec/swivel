@@ -28,9 +28,9 @@ FOUND_BTBMODULE := $(shell lsmod | grep "cool")
 
 bootstrap:
 	if [ -x "$(shell command -v apt)" ]; then \
-		sudo apt -y install curl cmake msr-tools cpuid cpufrequtils npm; \
+		sudo apt -y install curl cmake msr-tools cpuid cpufrequtils npm gcc g++ clang clang++ gdb; \
 	elif [ -x "$(shell command -v dnf)" ]; then \
-		sudo dnf -y install curl cmake msr-tools cpuid cpufrequtils npm; \
+		sudo dnf -y install curl cmake msr-tools cpuid cpufrequtils npm  gcc g++ clang clang++ gdb; \
 	else \
 		echo "Unknown installer. apt/dnf not found"; \
 		exit 1; \

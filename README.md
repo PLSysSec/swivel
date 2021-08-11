@@ -12,7 +12,7 @@ This repo will download and build all tools used in the paper, such as modified 
 
 ## Build Instructions
 
-**Requirements** - This repo has been tested on Ubuntu 20.04.2 LTS.
+**Requirements** - This repo has been tested on Ubuntu 20.04.2 LTS (recommended) and 64-bit Fedora 32 with the 5.7.0 Linux kernel.
 
 **Note** - Do not use an existing machine. Use a fresh VM or machine.
 
