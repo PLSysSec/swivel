@@ -36,7 +36,7 @@ bootstrap:
 		exit 1; \
 	fi
 	if [ ! -x "$(shell command -v rustc)" ] ; then \
-		curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y; \
+		curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly-2020-05-15 -y; \
 	fi
 	source ~/.cargo/env && rustup target add wasm32-wasi
 	if [ ! -d /opt/wasi-sdk/ ]; then \
