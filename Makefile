@@ -113,7 +113,6 @@ lucet-spectre-repro:
 
 safeside:
 	git clone git@github.com:PLSysSec/safeside.git $@
-	cd $@ && git checkout -t origin/breakout
 
 swivel-btb-exploit:
 	git clone git@github.com:PLSysSec/swivel-btb-exploit.git $@
