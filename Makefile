@@ -97,7 +97,7 @@ node_modules:
 	npm install autocannon
 
 wrk:
-	git clone git@github.com:wg/wrk
+	git clone https://github.com/wg/wrk
 	cd wrk && $(MAKE) -j8
 
 wabt-1.0.19-ubuntu:
