@@ -66,22 +66,22 @@ bootstrap:
 	touch ./bootstrap
 
 rust_libloading_aslr:
-	git clone git@github.com:PLSysSec/rust_libloading_aslr.git $@
+	git clone https://github.com/PLSysSec/rust_libloading_aslr.git $@
 
 lucet-spectre:
-	git clone git@github.com:PLSysSec/lucet-spectre.git $@
+	git clone https://github.com/PLSysSec/lucet-spectre.git $@
 	cd $@ && git submodule update --init --recursive
 
 sfi-spectre-testing:
-	git clone git@github.com:PLSysSec/sfi-spectre-testing.git $@
+	git clone https://github.com/PLSysSec/sfi-spectre-testing.git $@
 	cd $@ && git submodule update --init --recursive
 
 rustc-cet:
-	git clone git@github.com:PLSysSec/rustc-cet.git $@
+	git clone https://github.com/PLSysSec/rustc-cet.git $@
 	cd $@ && git submodule update --init --recursive
 
 btbflush-module:
-	git clone git@github.com:PLSysSec/btbflush-module.git $@
+	git clone https://github.com/PLSysSec/btbflush-module.git $@
 
 install_btbflush: btbflush-module
 	# make -C does not work below
@@ -91,7 +91,7 @@ install_btbflush: btbflush-module
 	fi
 
 spectresfi_webserver:
-	git clone git@github.com:PLSysSec/sfispectre_webserver.git $@
+	git clone https://github.com/PLSysSec/sfispectre_webserver.git $@
 
 node_modules:
 	npm install autocannon
@@ -107,15 +107,15 @@ wabt-1.0.19-ubuntu:
 	tar -zxvf wabt-1.0.19-ubuntu.tar.gz
 
 lucet-spectre-repro:
-	git clone git@github.com:PLSysSec/lucet-spectre.git $@
+	git clone https://github.com/PLSysSec/lucet-spectre.git $@
 	cd $@ && git checkout -t origin/more-wasi-primitives
 	cd $@ && git submodule update --init --recursive
 
 safeside:
-	git clone git@github.com:PLSysSec/safeside.git $@
+	git clone https://github.com/PLSysSec/safeside.git $@
 
 swivel-btb-exploit:
-	git clone git@github.com:PLSysSec/swivel-btb-exploit.git $@
+	git clone https://github.com/PLSysSec/swivel-btb-exploit.git $@
 
 get_source: $(DIRS)
 
@@ -149,7 +149,7 @@ libnsl/build/lib/libnsl.so.1: libnsl/build/lib/libnsl.so
 	cp $< $@
 
 sfi-spectre-spec: libnsl/build/lib/libnsl.so.1
-	git clone git@github.com:PLSysSec/sfi-spectre-spec.git
+	git clone https://github.com/PLSysSec/sfi-spectre-spec.git
 	cd sfi-spectre-spec && LD_LIBRARY_PATH="$(CURR_DIR)/libnsl/build/lib/" SPEC_INSTALL_NOCHECK=1 SPEC_FORCE_INSTALL=1 sh install.sh -f
 
 BASELINE_BUILDS=wasm_loadlfence wasm_strawman wasm_blade wasm_interlock wasm_phttobtb
