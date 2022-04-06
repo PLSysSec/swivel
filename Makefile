@@ -434,7 +434,7 @@ run_macro_benchmark_tflite: ./spectresfi_webserver/wrk_scripts/runall_tflite.sh 
 build_repros: build_lucet_repro
 	cd swivel-btb-exploit && $(MAKE)
 	cmake -S ./safeside/build-lucet -B ./safeside/build-lucet/build -DCMAKE_BUILD_TYPE=Release
-	cd ./safeside/build && $(MAKE)
+	cd ./safeside/build-lucet && $(MAKE)
 
 run_pht_breakout_repro:
 	cd ./safeside/build-lucet/build && ./run.sh pht_sa
