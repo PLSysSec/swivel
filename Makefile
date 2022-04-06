@@ -1,6 +1,6 @@
 .NOTPARALLEL:
 .PHONY : pull get_source build \
-build_sanity_test build_sanity_test_nocet \
+build_sanity_test \
 run_sanity_test run_sanity_test_nocet \
 build_rustc \
 build_lucet build_lucet_nocet build_lucet_repro \
@@ -326,11 +326,11 @@ build_sanity_test: install_deps build_lucet
 	mkdir -p ./out
 	REALLY_USE_CET=1 $(MAKE) -C sfi-spectre-testing build -j8
 
-build_sanity_test_nocet: install_deps
-	mkdir -p ./out
-	cd lucet-spectre && cargo build
-	cp -r lucet-spectre/target lucet-spectre/target-cet
-	$(MAKE) -C sfi-spectre-testing build -j8
+# build_sanity_test_nocet: install_deps
+# 	mkdir -p ./out
+# 	cd lucet-spectre && cargo build
+# 	cp -r lucet-spectre/target lucet-spectre/target-cet
+# 	$(MAKE) -C sfi-spectre-testing build -j8
 
 run_sanity_test:
 	REALLY_USE_CET=1 $(MAKE) -C sfi-spectre-testing test
@@ -448,4 +448,4 @@ run_btb_poison_repro:
 run_rsb_poison_repro:
 	cd ./safeside/build-lucet/build && ./run.sh ret2spec_sa
 
-build: get_source out/rust_build/bin/rustc build_lucet build_lucet_nocet build_lucet_repro build_sanity_test build_sanity_test_nocet build_sightglass build_sightglass_nocet build_transitions_benchmark build_macro_benchmark build_macro_benchmark_nocet build_repros
+build: get_source out/rust_build/bin/rustc build_lucet build_lucet_nocet build_lucet_repro build_sanity_test build_sightglass build_sightglass_nocet build_transitions_benchmark build_macro_benchmark build_macro_benchmark_nocet build_repros
