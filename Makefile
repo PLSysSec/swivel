@@ -436,7 +436,10 @@ run_macro_benchmark_tflite: ./spectresfi_webserver/wrk_scripts/runall_tflite.sh 
 	cd ./spectresfi_webserver/wrk_scripts && ./runall_tflite.sh
 	python3 ./spectresfi_webserver/wrk_analysis.py -sofolder ./spectresfi_webserver/modules -o1 ./spectresfi_webserver/wrk_scripts/results/wrk_table_1.tex -o2 ./spectresfi_webserver/wrk_scripts/results/wrk_table_2.tex
 
-build_repros: build_lucet_repro
+wasi-sdk-custom/build/install/bin/clang++:
+	cd wasi-sdk-custom && $(MAKE) -j8 build
+
+build_repros: wasi-sdk-custom/build/install/bin/clang++ build_lucet_repro
 	cd swivel-btb-exploit && $(MAKE)
 	cmake -S ./safeside/build-lucet -B ./safeside/build-lucet/build -DCMAKE_BUILD_TYPE=Release
 	cd ./safeside/build-lucet/build && $(MAKE)
