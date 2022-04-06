@@ -291,12 +291,14 @@ run_spec_combine_stats:
 out/rust_build/bin/rustc:
 	mkdir -p out/rust_build
 	cd ./rustc-cet && ./x.py build && ./x.py install
+	cd ./rustc-cet && ./x.py build --stage 2 cargo && ./x.py install cargo
 	rustup toolchain link rust-cet ./out/rust_build
 
 build_rustc:
 	# force rebuild
 	mkdir -p out/rust_build
 	cd ./rustc-cet && ./x.py build && ./x.py install
+	cd ./rustc-cet && ./x.py build --stage 2 cargo && ./x.py install cargo
 	rustup toolchain link rust-cet ./out/rust_build
 
 build_lucet_nocet: rust_libloading_aslr
