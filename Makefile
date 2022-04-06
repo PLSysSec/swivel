@@ -446,4 +446,4 @@ run_btb_poison_repro:
 run_rsb_poison_repro:
 	cd ./safeside/build-lucet/build && ./run.sh ret2spec_sa
 
-build: get_source build_rustc build_lucet build_lucet_nocet build_lucet_repro build_sanity_test build_sanity_test_nocet build_sightglass build_sightglass_nocet build_transitions_benchmark build_macro_benchmark build_macro_benchmark_nocet build_repros
+build: get_source out/rust_build/bin/rustc build_lucet build_lucet_nocet build_lucet_repro build_sanity_test build_sanity_test_nocet build_sightglass build_sightglass_nocet build_transitions_benchmark build_macro_benchmark build_macro_benchmark_nocet build_repros
