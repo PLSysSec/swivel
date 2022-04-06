@@ -442,6 +442,17 @@ wasi-sdk-custom/build/install/bin/clang++:
 build_repros: wasi-sdk-custom/build/install/bin/clang++ build_lucet_repro
 	cd swivel-btb-exploit && $(MAKE)
 	cmake -S ./safeside/build-lucet -B ./safeside/build-lucet/build -DCMAKE_BUILD_TYPE=Release
+	mkdir -p ./safeside/build-lucet/build/stock
+	mkdir -p ./safeside/build-lucet/build/loadlfence
+	mkdir -p ./safeside/build-lucet/build/strawman
+	mkdir -p ./safeside/build-lucet/build/sfi_full
+	mkdir -p ./safeside/build-lucet/build/cet_full
+	mkdir -p ./safeside/build-lucet/build/sfi_aslr
+	mkdir -p ./safeside/build-lucet/build/cet_aslr
+	mkdir -p ./safeside/build-lucet/build/cet_only
+	mkdir -p ./safeside/build-lucet/build/blade
+	mkdir -p ./safeside/build-lucet/build/phttobtb
+	mkdir -p ./safeside/build-lucet/build/interlock
 	cd ./safeside/build-lucet/build && $(MAKE)
 
 run_pht_breakout_repro:
