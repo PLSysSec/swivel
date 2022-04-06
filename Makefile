@@ -18,7 +18,7 @@ build_repros run_pht_breakout_repro run_btb_breakout_repro run_btb_poison_repro 
 
 SHELL := /bin/bash
 
-DIRS=rustc-cet rust_libloading_aslr lucet-spectre sfi-spectre-testing btbflush-module spectresfi_webserver node_modules wrk wabt-1.0.19-ubuntu lucet-spectre-repro safeside swivel-btb-exploit
+DIRS=rustc-cet rust_libloading_aslr lucet-spectre sfi-spectre-testing btbflush-module spectresfi_webserver node_modules wrk wabt-1.0.19-ubuntu lucet-spectre-repro safeside swivel-btb-exploit wasi-sdk-custom
 
 CURR_DIR := $(shell realpath ./)
 
@@ -116,6 +116,11 @@ safeside:
 
 swivel-btb-exploit:
 	git clone https://github.com/PLSysSec/swivel-btb-exploit.git $@
+
+wasi-sdk-custom:
+	git clone https://github.com/PLSysSec/wasi-sdk.git $@
+	cd $@ && git checkout -t origin/more-primitives
+	cd $@ && git submodule update --init --recursive
 
 get_source: $(DIRS)
 
