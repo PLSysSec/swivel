@@ -156,6 +156,7 @@ libnsl/build/lib/libnsl.so.1: libnsl/build/lib/libnsl.so
 sfi-spectre-spec: libnsl/build/lib/libnsl.so.1
 	git clone https://github.com/PLSysSec/sfi-spectre-spec.git
 	cd sfi-spectre-spec && LD_LIBRARY_PATH="$(CURR_DIR)/libnsl/build/lib/" SPEC_INSTALL_NOCHECK=1 SPEC_FORCE_INSTALL=1 sh install.sh -f
+	cd sfi-spectre-spec/benchspec/CPU2006/450.soplex/data/ref/input && tar -zxvf data.tar.gz
 
 BASELINE_BUILDS=wasm_loadlfence wasm_strawman wasm_blade wasm_interlock wasm_phttobtb
 OUR_SFI_BUILDS=wasm_lucet wasm_lucet_unroll wasm_sfi_full
