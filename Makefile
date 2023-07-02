@@ -70,6 +70,7 @@ rust_libloading_aslr:
 
 lucet-spectre:
 	git clone https://github.com/PLSysSec/lucet-spectre.git $@
+	git checkout -b working b1c24732e4ede7b34a582d6b51e5de167608400c
 	cd $@ && git submodule update --init --recursive
 
 sfi-spectre-testing:
