@@ -18,6 +18,8 @@ build_repros run_pht_breakout_repro run_btb_breakout_repro run_btb_poison_repro 
 
 SHELL := /bin/bash
 
+export CARGO_NET_GIT_FETCH_WITH_CLI=true
+
 DIRS=rustc-cet rust_libloading_aslr lucet-spectre sfi-spectre-testing btbflush-module spectresfi_webserver node_modules wrk wabt-1.0.19-ubuntu lucet-spectre-repro safeside swivel-btb-exploit wasi-sdk-custom
 
 CURR_DIR := $(shell realpath ./)
@@ -28,7 +30,8 @@ FOUND_BTBMODULE := $(shell lsmod | grep "cool")
 
 bootstrap:
 	if [ -x "$(shell command -v apt)" ]; then \
-		sudo apt -y install curl cmake msr-tools cpuid cpufrequtils npm gcc g++ clang gdb python ninja-build; \
+	 	if [[ "$(shell apt-cache search --names-only '^python$')" ]]; then sudo apt -y install python; else sudo apt -y install python3 python-is-python3; fi; \
+		sudo apt -y install curl cmake msr-tools cpuid cpufrequtils npm gcc g++ clang gdb  ninja-build; \
 	elif [ -x "$(shell command -v dnf)" ]; then \
 		sudo dnf -y install curl cmake msr-tools cpuid cpufrequtils npm  gcc g++ clang gdb python ninja-build; \
 	else \
@@ -70,7 +73,7 @@ rust_libloading_aslr:
 
 lucet-spectre:
 	git clone https://github.com/PLSysSec/lucet-spectre.git $@
-	git checkout -b working b1c24732e4ede7b34a582d6b51e5de167608400c
+	cd $@ && git checkout -b working b1c24732e4ede7b34a582d6b51e5de167608400c
 	cd $@ && git submodule update --init --recursive
 
 sfi-spectre-testing:
@@ -458,15 +461,15 @@ build_repros: wasi-sdk-custom/build/install/bin/clang++ build_lucet_repro
 	cd swivel-btb-exploit && $(MAKE)
 
 run_pht_breakout_repro:
-	cd ./safeside/build-lucet/build && ./run.sh pht_sa
+	cd ./safeside/build-lucet/ && ./run.sh pht_sa stock
 
 run_btb_breakout_repro:
-	cd ./swivel-btb-exploit/ && ./gdb.sh breakout
+	cd ./swivel-btb-exploit/ && ./gdb.sh breakout stock
 
 run_btb_poison_repro:
-	cd ./swivel-btb-exploit/ && ./gdb.sh leakage
+	cd ./swivel-btb-exploit/ && ./gdb.sh leakage stock
 
 run_rsb_poison_repro:
-	cd ./safeside/build-lucet/build && ./run.sh ret2spec_sa
+	cd ./safeside/build-lucet/ && ./run.sh ret2spec_sa stock
 
 build: get_source out/rust_build/bin/rustc build_lucet build_lucet_nocet build_lucet_repro build_sanity_test build_sightglass build_sightglass_nocet build_transitions_benchmark build_macro_benchmark build_macro_benchmark_nocet build_repros
