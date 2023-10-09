@@ -89,8 +89,8 @@ make run_macro_benchmark_tflite
 To run each of the proof of concept exploits you can run the following commands
 
 ```bash
-make run_pht_breakout_repro
-make run_btb_breakout_repro
-make run_btb_poison_repro
-make run_rsb_poison_repro
+make run_pht_breakout_repro # Will print "Leaking the string: It's a s3kr3t!!!\nDone!"
+make run_btb_poison_repro # Runs in gdb. Will print an infinite "SSS...".
+make run_rsb_poison_repro # Will print "Leaking the string: It's a s3kr3t!!!\nDone!"
+make run_btb_breakout_repro # Runs in gdb. 
 ```
